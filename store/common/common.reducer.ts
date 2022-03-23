@@ -1,4 +1,4 @@
-import { ActionType, CommonState } from "@/interfaces/redux.interface";
+import { ActionType, CommonState } from "@/interfaces/redux.interfaces";
 import { ON_TIME_CHANGE } from "@/store/common/common.action-types";
 
 const initialState: CommonState = {

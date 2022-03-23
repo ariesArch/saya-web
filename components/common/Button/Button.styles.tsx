@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { ButtonColor, ButtonVariant } from "@/interfaces/common.interface";
+import { ButtonColor, ButtonVariant } from "@/interfaces/common.interfaces";
 
 export const defaultStyles = (color: ButtonColor) => css`
     background-color: #fff;

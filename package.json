@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "type-check": "tsc",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "@babel/core": "^7.16.0",
     "@babel/eslint-parser": "^7.17.0",
     "@emotion/babel-preset-css-prop": "^11.2.0",
+    "@next/eslint-plugin-next": "^12.1.0",
     "@svgr/webpack": "^6.2.0",
     "@types/js-cookie": "^3.0.1",
     "@types/node": "^16.11.6",

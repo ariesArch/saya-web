@@ -1,6 +1,6 @@
 import { FC, HTMLProps } from "react";
 
-import { RadioColor } from "@/interfaces/common.interface";
+import { RadioColor } from "@/interfaces/common.interfaces";
 
 import * as styles from "./RadioButton.styles";
 

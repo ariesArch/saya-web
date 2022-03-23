@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
-import { ButtonColor, ButtonVariant } from "@/interfaces/common.interface";
+import { ButtonColor, ButtonVariant } from "@/interfaces/common.interfaces";
 
 import * as styles from "./Button.styles";
 
@@ -34,5 +34,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         </button>
     );
 });
+
+Button.displayName = "Button";
 
 export default Button;

@@ -15,6 +15,9 @@ yarn dev
 
 # build for production and launch server
 yarn build
+
+# check for eslint errors (this also runs pre-commit)
+yarn lint
 ```
 
 For detailed explanation on how things work, check out [Next.js docs](https://nextjs.org/docs/getting-started).
@@ -67,7 +70,6 @@ This is the folder we have here -
       reducer-name.action-types.ts
       reducer-name.actions.ts
       reducer-name.reducer.ts
-      reducer-name.selectors.ts
     . . .
   /utils/    
     utilsFileName.ts

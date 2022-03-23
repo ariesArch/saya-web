@@ -4,7 +4,7 @@ import { applyMiddleware, createStore, Middleware, Store } from "redux";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
 
-import { ReduxState } from "@/interfaces/redux.interface";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 import { ON_TIME_CHANGE } from "@/store/common/common.action-types";
 
 import rootReducer from "./root-reducer";

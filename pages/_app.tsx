@@ -2,7 +2,7 @@ import "@/public/css/globals.css";
 
 import { AppProps } from "next/app";
 
-import { InitialPageProps } from "@/interfaces/redux.interface";
+import { InitialPageProps } from "@/interfaces/redux.interfaces";
 import { wrapper } from "@/store/store";
 
 interface Props extends InitialPageProps, AppProps {}

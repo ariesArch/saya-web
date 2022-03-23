@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { RadioColor } from "@/interfaces/common.interface";
+import { RadioColor } from "@/interfaces/common.interfaces";
 
 export const label = css`
     cursor: pointer;

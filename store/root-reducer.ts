@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { ReduxState } from "@/interfaces/redux.interface";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 import commonReducer from "@/store/common/common.reducer";
 
 const rootReducer = combineReducers<ReduxState>({
