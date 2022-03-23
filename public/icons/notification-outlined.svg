@@ -1,0 +1,8 @@
+<svg id="General_Notification" data-name="General / Notification" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g id="Icon_Frame">
+    <path id="Base" d="M0,0H28V28H0Z" fill="none"/>
+    <path id="Vector_166" d="M2.5,19V0h15V19m-15,0h15m-15,0H0m17.5,0H20" transform="translate(4 4)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/>
+    <path id="Vector_77" d="M0,2V0" transform="translate(15 26) rotate(90)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/>
+    <circle id="Ellipse_79" cx="1" cy="1" r="1" transform="translate(13 2)" fill="none" stroke="currentColor" stroke-width="2.2"/>
+  </g>
+</svg>

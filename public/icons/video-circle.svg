@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39.806" height="39.806" viewBox="0 0 39.806 39.806">
+  <g id="video-circle" transform="translate(0 0)">
+    <path id="Vector" d="M29.855,14.927A14.927,14.927,0,1,1,14.927,0,14.927,14.927,0,0,1,29.855,14.927Z" transform="translate(5.162 5.162)" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Vector-2" data-name="Vector" d="M0,0H39.806V39.806H0Z" fill="none" opacity="0"/>
+    <path id="Vector-3" data-name="Vector" d="M0,5.439V3.213C0,.341,2.03-.817,4.512.612L6.437,1.724,8.362,2.837c2.481,1.429,2.481,3.775,0,5.2L6.437,9.154,4.512,10.266C2.03,11.7,0,10.522,0,7.665Z" transform="translate(15.542 14.464)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

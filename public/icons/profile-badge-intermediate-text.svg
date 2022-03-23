@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="308.2" height="82.915" viewBox="0 0 308.2 82.915">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.033" y1="0.201" x2="0.968" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffd347"/>
+      <stop offset="1" stop-color="#d67200"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.071" y1="-0.183" x2="0.927" y2="1.236" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff253"/>
+      <stop offset="1" stop-color="#f5b914"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffec48"/>
+      <stop offset="1" stop-color="#ffeda6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="Intermediate" x="87.2" y="25.915" width="195" height="43" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_2929">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-opacity="0.161" result="color-2"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color-2"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_2930">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-3"/>
+      <feFlood flood-opacity="0.161" result="color-3"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-3"/>
+      <feComposite operator="in" in="color-3"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_2931">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-4"/>
+      <feFlood flood-opacity="0.161" result="color-4"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-4"/>
+      <feComposite operator="in" in="color-4"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_2932">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-5"/>
+      <feFlood flood-opacity="0.161" result="color-5"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-5"/>
+      <feComposite operator="in" in="color-5"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient-2" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff8c0"/>
+      <stop offset="1" stop-color="#ffeda6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="Inter" transform="translate(-536.8 -176.085)">
+    <path id="Path_2942" data-name="Path 2942" d="M601.233,4073.8s10.339,17.1,3.619,30.378c-5.28-1.76-9.052-10.778-9.052-10.778Z" transform="translate(24.2 -3897.715)" fill="#f0ae2c"/>
+    <path id="Path_2927" data-name="Path 2927" d="M-19,21.656l308.2.144v6.137L275.643,50.867H-3.635L-19,27.752Z" transform="translate(555.8 206)" fill="url(#linear-gradient)"/>
+    <path id="Union_2" data-name="Union 2" d="M37.172-3821.3,20-3847.2l17.172-26.507h5.1c12.226-1.688,49.712-8.094,66.2-24.915,3.788,10.021,2.363,19.794,1.105,24.915H312.836l15.364,26.684L312.836-3821.3Z" transform="translate(516.8 4074.706)" fill="url(#linear-gradient-2)"/>
+    <ellipse id="Ellipse_234" data-name="Ellipse 234" cx="89" cy="29" rx="89" ry="29" transform="translate(649 201)" fill="url(#radial-gradient)" style="mix-blend-mode: lighten;isolation: isolate"/>
+    <g data-type="innerShadowGroup">
+      <text id="Intermediate-2" data-name="Intermediate" transform="translate(624 237)" fill="#8a5f09" font-size="36" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Intermediate</tspan></text>
+      <g transform="matrix(1, 0, 0, 1, 536.8, 176.08)" filter="url(#Intermediate)">
+        <text id="Intermediate-3" data-name="Intermediate" transform="translate(87.2 60.92)" fill="#fff" font-size="36" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Intermediate</tspan></text>
+      </g>
+    </g>
+    <g id="Group_1009" data-name="Group 1009" transform="translate(47.015 151.1)">
+      <g data-type="innerShadowGroup">
+        <path id="Path_2929-2" data-name="Path 2929" d="M7.3,36.88C2.09,22.07,12,17.74,20.6,15.59,33.74,12.28,54.26,8.38,57,1.49c0,0,.53,8.65-13.56,14.23S24.12,22.37,18.87,29.35C15,34.53,11.46,49.54,18.2,53.74A37,37,0,0,1,0,60.9S12.11,50.55,7.3,36.88Z" transform="translate(515.9 36)" fill="#8a5d08"/>
+        <g transform="matrix(1, 0, 0, 1, 489.79, 24.98)" filter="url(#Path_2929)">
+          <path id="Path_2929-3" data-name="Path 2929" d="M7.3,36.88C2.09,22.07,12,17.74,20.6,15.59,33.74,12.28,54.26,8.38,57,1.49c0,0,.53,8.65-13.56,14.23S24.12,22.37,18.87,29.35C15,34.53,11.46,49.54,18.2,53.74A37,37,0,0,1,0,60.9S12.11,50.55,7.3,36.88Z" transform="translate(26.11 11.02)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_2930-2" data-name="Path 2930" d="M44.35,18c-2.27.9-4.34,1.69-6.16,2.39C28.71,24,24.78,25.49,20.79,30.8a24,24,0,0,0-3.39,8.47c2.5-4.44,10.42-6.11,22.27-8.93,17-4.06,18.9-24.65,18.9-24.65h0C57.18,9.26,53.6,14.29,44.35,18Z" transform="translate(515.9 36)" fill="#8a5d08"/>
+        <g transform="matrix(1, 0, 0, 1, 489.79, 24.98)" filter="url(#Path_2930)">
+          <path id="Path_2930-3" data-name="Path 2930" d="M44.35,18c-2.27.9-4.34,1.69-6.16,2.39C28.71,24,24.78,25.49,20.79,30.8a24,24,0,0,0-3.39,8.47c2.5-4.44,10.42-6.11,22.27-8.93,17-4.06,18.9-24.65,18.9-24.65h0C57.18,9.26,53.6,14.29,44.35,18Z" transform="translate(26.11 11.02)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_2931-2" data-name="Path 2931" d="M40.23,32.68l-1.81.43c-6.93,1.64-21.23,4.37-21.58,12.58h0c3.17-.75,8.31-1.07,14.53-2.56C42.2,40.55,47.68,32,49.69,28.07a23.89,23.89,0,0,1-9.46,4.61Z" transform="translate(515.9 36)" fill="#8a5d08"/>
+        <g transform="matrix(1, 0, 0, 1, 489.79, 24.98)" filter="url(#Path_2931)">
+          <path id="Path_2931-3" data-name="Path 2931" d="M40.23,32.68l-1.81.43c-6.93,1.64-21.23,4.37-21.58,12.58h0c3.17-.75,8.31-1.07,14.53-2.56C42.2,40.55,47.68,32,49.69,28.07a23.89,23.89,0,0,1-9.46,4.61Z" transform="translate(26.11 11.02)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_2932-2" data-name="Path 2932" d="M22.09,47.24c-1.95.28-3.67.53-4.9.84,2.23,7.77,18.69,2,23.88-6.62a27.79,27.79,0,0,1-9.14,4C28.19,46.37,24.8,46.85,22.09,47.24Z" transform="translate(515.9 36)" fill="#8a5d08"/>
+        <g transform="matrix(1, 0, 0, 1, 489.79, 24.98)" filter="url(#Path_2932)">
+          <path id="Path_2932-3" data-name="Path 2932" d="M22.09,47.24c-1.95.28-3.67.53-4.9.84,2.23,7.77,18.69,2,23.88-6.62a27.79,27.79,0,0,1-9.14,4C28.19,46.37,24.8,46.85,22.09,47.24Z" transform="translate(26.11 11.02)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <ellipse id="Ellipse_240" data-name="Ellipse 240" cx="89" cy="4.433" rx="89" ry="4.433" transform="translate(596.9 248)" opacity="0.8" fill="url(#radial-gradient-2)" style="mix-blend-mode: overlay;isolation: isolate"/>
+    <ellipse id="Ellipse_241" data-name="Ellipse 241" cx="60" cy="4.433" rx="60" ry="4.433" transform="translate(707 196.567)" opacity="0.8" fill="url(#radial-gradient-2)" style="mix-blend-mode: overlay;isolation: isolate"/>
+  </g>
+</svg>

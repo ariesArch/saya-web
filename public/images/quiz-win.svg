@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="339.877" height="157.84" viewBox="0 0 339.877 157.84">
+  <defs>
+    <filter id="WIN" x="89.765" y="7.677" width="159.918" height="132.425" filterUnits="userSpaceOnUse">
+      <feOffset dy="3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_989" data-name="Group 989" transform="translate(-648.098 -585.332)">
+    <g id="Group_988" data-name="Group 988" transform="translate(666.28 609.273)">
+      <g transform="matrix(1, 0, 0, 1, -18.18, -23.94)" filter="url(#WIN)">
+        <text id="WIN-2" data-name="WIN" transform="translate(235.55 71.94) rotate(-20)" fill="#fff" font-size="64" font-family="TTCommons-Black, TT Commons" font-weight="800"><tspan x="-122.24" y="0">WIN</tspan></text>
+      </g>
+      <text id="_3Straight" data-name="3Straight" transform="translate(122.583 114.772)" fill="#ffc800" font-size="31" font-family="TTCommons-BoldItalic, TT Commons" font-weight="700" font-style="italic"><tspan x="-121.055" y="0">3Straight</tspan></text>
+      <g id="Group_987" data-name="Group 987" transform="translate(104.571 51.766)">
+        <text id="_100" data-name="100" transform="translate(197.631 65.395)" fill="#6149da" font-size="64" font-family="TTCommons-Black, TT Commons" font-weight="800"><tspan x="-105.6" y="0">100</tspan></text>
+        <text id="_100-2" data-name="100" transform="translate(194.465 60.646)" fill="#fff" font-size="64" font-family="TTCommons-Black, TT Commons" font-weight="800"><tspan x="-105.6" y="0">100</tspan></text>
+        <g id="General_Star" data-name="General / Star" transform="translate(0 0)">
+          <g id="Icon_Frame" data-name="Icon Frame">
+            <path id="Base" d="M0,0H82.133V82.133H0Z" fill="none"/>
+            <path id="Star_3" data-name="Star 3" d="M24.983,0l7.411,15.97L49.965,18.04,36.974,29.981,40.423,47.23l-15.44-8.59L9.542,47.23l3.448-17.249L0,18.04,17.571,15.97Z" transform="translate(30.331 20.431)" fill="#6149da" stroke="#6149da" stroke-linejoin="round" stroke-width="2"/>
+            <path id="Star_3-2" data-name="Star 3" d="M24.983,0l7.411,15.97L49.965,18.04,36.974,29.981,40.423,47.23l-15.44-8.59L9.542,47.23l3.448-17.249L0,18.04,17.571,15.97Z" transform="translate(25.582 17.265)" fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-width="2"/>
+          </g>
+        </g>
+      </g>
+      <text id="_3Straight-2" data-name="3Straight" transform="translate(121 113.189)" fill="#fff" font-size="31" font-family="TTCommons-BoldItalic, TT Commons" font-weight="700" font-style="italic"><tspan x="-121.055" y="0">3Straight</tspan></text>
+      <text id="_" data-name="&amp;" transform="translate(95.568 88.444)" fill="#6149da" font-size="30" font-family="TTCommons-ExtraBoldItalic, TT Commons" font-weight="800" font-style="italic"><tspan x="-18.3" y="0">&amp;</tspan></text>
+      <text id="_2" data-name="😉" transform="translate(215.3 50.352)" fill="#fff" font-size="46" font-family="SegoeUIEmoji, Segoe UI Emoji"><tspan x="0" y="0">😉</tspan></text>
+      <text id="_3" data-name="🧩" transform="translate(26.3 78.352)" fill="#fff" font-size="46" font-family="SegoeUIEmoji, Segoe UI Emoji"><tspan x="0" y="0">🧩</tspan></text>
+    </g>
+    <g id="Layer_2" data-name="Layer 2" transform="translate(999.205 679.216) rotate(161)">
+      <g id="OBJECTS" transform="translate(0 0)">
+        <path id="Path_2895" data-name="Path 2895" d="M32.213,21.865A18.212,18.212,0,0,0,16.678,37.9l-.572,5.826L15.528,37.9A18.165,18.165,0,0,0,0,21.865,18.165,18.165,0,0,0,15.528,5.826L16.106,0l.572,5.826A18.212,18.212,0,0,0,32.213,21.865Z" transform="translate(17.819 7.093) rotate(17)" fill="#00f397"/>
+        <path id="Path_2896" data-name="Path 2896" d="M10.892,7.475a6.2,6.2,0,0,0-5.248,5.483l-.2,2.018-.2-2.018A6.2,6.2,0,0,0,0,7.475,6.19,6.19,0,0,0,5.254,2.018L5.45,0l.2,2.018a6.19,6.19,0,0,0,5.248,5.456Z" transform="translate(43.234 9.587) rotate(17)" fill="#ffe47d"/>
+        <path id="Path_2897" data-name="Path 2897" d="M10.892,7.5a6.2,6.2,0,0,0-5.254,5.456L5.45,14.976l-.2-2.018A6.2,6.2,0,0,0,0,7.5,6.2,6.2,0,0,0,5.254,2.018L5.45,0l.188,2.018A6.2,6.2,0,0,0,10.892,7.5Z" transform="translate(4.379 38.329) rotate(17)" fill="#ffe47d"/>
+        <path id="Path_2898" data-name="Path 2898" d="M6.513,4.481a3.72,3.72,0,0,0-3.149,3.29l-.121,1.2-.094-1.2A3.727,3.727,0,0,0,0,4.481a3.714,3.714,0,0,0,3.149-3.29L3.263,0l.121,1.191A3.707,3.707,0,0,0,6.513,4.481Z" transform="translate(53.621 25.271) rotate(17)" fill="#ffe47d"/>
+        <path id="Path_2899" data-name="Path 2899" d="M6.539,4.487a3.714,3.714,0,0,0-3.155,3.29L3.27,8.968,3.155,7.777A3.714,3.714,0,0,0,0,4.487,3.727,3.727,0,0,0,3.155,1.2L3.27,0l.114,1.2A3.727,3.727,0,0,0,6.539,4.487Z" transform="translate(33.289 42.117) rotate(17)" fill="#ffe47d"/>
+        <path id="Path_2900" data-name="Path 2900" d="M6.533,4.487a3.714,3.714,0,0,0-3.169,3.29L3.25,8.968,3.128,7.777A3.707,3.707,0,0,0,0,4.487,3.72,3.72,0,0,0,3.149,1.2L3.27,0l.094,1.2A3.727,3.727,0,0,0,6.533,4.487Z" transform="translate(11.876 0) rotate(17)" fill="#ffe47d"/>
+        <path id="Path_2901" data-name="Path 2901" d="M15.411,0S15.411,15.411,0,15.411c15.411,0,15.411,15.411,15.411,15.411s0-15.411,15.411-15.411C15.411,15.411,15.411,0,15.411,0Z" transform="translate(108.086 96.271)" fill="#ffe47d"/>
+        <path id="Path_2902" data-name="Path 2902" d="M5.044,0S5.044,5.044,0,5.044c5.044,0,5.044,5.044,5.044,5.044s0-5.044,5.044-5.044C5.044,5.044,5.044,0,5.044,0Z" transform="translate(101.081 124.011)" fill="#ffe47d"/>
+        <path id="Path_2903" data-name="Path 2903" d="M5.044,0S5.044,5.044,0,5.044c5.044,0,5.044,5.044,5.044,5.044s0-5.044,5.044-5.044C5.044,5.044,5.044,0,5.044,0Z" transform="translate(135.826 97.207)" fill="#ffe47d"/>
+        <path id="Path_2904" data-name="Path 2904" d="M2.8,0A2.744,2.744,0,0,1,0,2.8,2.744,2.744,0,0,1,2.8,5.6,2.744,2.744,0,0,1,5.6,2.8,2.744,2.744,0,0,1,2.8,0Z" transform="translate(106.949 89.266)" fill="#ffe47d"/>
+        <path id="Path_2905" data-name="Path 2905" d="M2.8,0A2.744,2.744,0,0,1,0,2.8,2.744,2.744,0,0,1,2.8,5.6,2.744,2.744,0,0,1,5.6,2.8,2.744,2.744,0,0,1,2.8,0Z" transform="translate(128.989 120.486)" fill="#ffe47d"/>
+        <g id="Group_990" data-name="Group 990" transform="translate(280.293 66.994) rotate(16)">
+          <path id="Path_2906" data-name="Path 2906" d="M21.888,19.15,19.15,0,16.412,19.15,0,21.888l16.412,2.738,2.738,19.15,2.738-19.15L38.3,21.888Z" transform="translate(12.687 9.949)" fill="#ffe47d"/>
+          <path id="Path_2907" data-name="Path 2907" d="M6.367,5.571,5.572,0l-.8,5.571L0,6.367l4.775.8.8,5.571.8-5.571,4.775-.8Z" transform="translate(40.48 38.515)" fill="#ffe47d"/>
+          <path id="Path_2908" data-name="Path 2908" d="M3.184,2.786,2.786,0l-.4,2.786L0,3.184l2.388.4.4,2.786.4-2.786,2.388-.4Z" transform="translate(53.326 57.306)" fill="#ffe47d"/>
+          <path id="Path_2909" data-name="Path 2909" d="M3.184,2.786,2.786,0l-.4,2.786L0,3.184l2.388.4.4,2.786.4-2.786,2.388-.4Z" transform="translate(0 50.541)" fill="#ffe47d"/>
+          <path id="Path_2910" data-name="Path 2910" d="M4.776,7.163l.8,5.571.8-5.571,4.776-.8-4.776-.8L5.571,0l-.8,5.571L0,6.367Z" transform="translate(12.05 12.424)" fill="#ffe47d"/>
+          <path id="Path_2911" data-name="Path 2911" d="M2.388,3.582l.4,2.786.4-2.786,2.388-.4-2.388-.4L2.786,0l-.4,2.786L0,3.184Z" transform="translate(4.775 0)" fill="#ffe47d"/>
+          <path id="Path_2912" data-name="Path 2912" d="M2.388,3.582l.4,2.786.4-2.786,2.388-.4-2.388-.4L2.786,0l-.4,2.786L0,3.184Z" transform="translate(58.102 6.765)" fill="#ffe47d"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="261" height="58.5" viewBox="0 0 261 58.5">
+  <g id="Group_1089" data-name="Group 1089" transform="translate(-4030 -2939.052)">
+    <text id="Play_Win_" data-name="Play &amp; Win 😉" transform="translate(4093 2956.052)" fill="#f63b45" font-size="16" font-family="TTCommons-DemiBold, TT Commons" font-weight="300"><tspan x="0" y="0">PLAY &amp; WIN </tspan><tspan y="0" font-family="SegoeUIEmoji, Segoe UI Emoji" font-weight="400">😉</tspan></text>
+    <g id="Puzzle" transform="translate(3194 748.552)">
+      <rect id="Rectangle_639" data-name="Rectangle 639" width="228" height="35" rx="5" transform="translate(869 2214)" fill="#8c75ff"/>
+      <text id="_3_Straight" data-name="3 Straight" transform="translate(896.094 2239.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">3 Straight</tspan></text>
+      <text id="Puzzle-2" data-name="Puzzle" transform="translate(1017 2239)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300"><tspan x="0" y="0">Puzzle</tspan></text>
+      <g id="Group_965" data-name="Group 965" transform="translate(47.931 107.931)">
+        <g id="Rectangle_642" data-name="Rectangle 642" transform="translate(788.069 2086.069)" fill="#fff" stroke="#8c75ff" stroke-width="3">
+          <rect width="55" height="55" rx="12" stroke="none"/>
+          <rect x="1.5" y="1.5" width="52" height="52" rx="10.5" fill="none"/>
+        </g>
+        <circle id="Ellipse_204" data-name="Ellipse 204" cx="4.5" cy="4.5" r="4.5" transform="translate(795.069 2093.069)" fill="#f63b45"/>
+        <g id="Ellipse_209" data-name="Ellipse 209" transform="translate(795.069 2109.069)" fill="#ffefb7" stroke="#ffe482" stroke-width="1">
+          <circle cx="4.5" cy="4.5" r="4.5" stroke="none"/>
+          <circle cx="4.5" cy="4.5" r="4" fill="none"/>
+        </g>
+        <g id="Ellipse_212" data-name="Ellipse 212" transform="translate(795.069 2125.069)" fill="#ffefb7" stroke="#ffe482" stroke-width="1">
+          <circle cx="4.5" cy="4.5" r="4.5" stroke="none"/>
+          <circle cx="4.5" cy="4.5" r="4" fill="none"/>
+        </g>
+        <g id="Ellipse_205" data-name="Ellipse 205" transform="translate(811.069 2093.069)" fill="#ffefb7" stroke="#ffe482" stroke-width="1">
+          <circle cx="4.5" cy="4.5" r="4.5" stroke="none"/>
+          <circle cx="4.5" cy="4.5" r="4" fill="none"/>
+        </g>
+        <circle id="Ellipse_208" data-name="Ellipse 208" cx="4.5" cy="4.5" r="4.5" transform="translate(811.069 2109.069)" fill="#f63b45"/>
+        <g id="Ellipse_211" data-name="Ellipse 211" transform="translate(811.069 2125.069)" fill="#ffefb7" stroke="#ffe482" stroke-width="1">
+          <circle cx="4.5" cy="4.5" r="4.5" stroke="none"/>
+          <circle cx="4.5" cy="4.5" r="4" fill="none"/>
+        </g>
+        <g id="Ellipse_206" data-name="Ellipse 206" transform="translate(827.069 2093.069)" fill="#ffefb7" stroke="#ffe482" stroke-width="1">
+          <circle cx="4.5" cy="4.5" r="4.5" stroke="none"/>
+          <circle cx="4.5" cy="4.5" r="4" fill="none"/>
+        </g>
+        <g id="Path_2724" data-name="Path 2724" transform="translate(827.115 2109.128)" fill="#ffefb7">
+          <path d="M 4.440885543823242 8.381775856018066 C 2.26787543296814 8.381775856018066 0.4999955296516418 6.613895416259766 0.4999955296516418 4.440885543823242 C 0.4999955296516418 2.26787543296814 2.26787543296814 0.4999955296516418 4.440885543823242 0.4999955296516418 C 6.613895416259766 0.4999955296516418 8.381775856018066 2.26787543296814 8.381775856018066 4.440885543823242 C 8.381775856018066 6.613895416259766 6.613895416259766 8.381775856018066 4.440885543823242 8.381775856018066 Z" stroke="none"/>
+          <path d="M 4.440885543823242 0.9999957084655762 C 2.543575763702393 0.9999957084655762 0.9999957084655762 2.543575763702393 0.9999957084655762 4.440885543823242 C 0.9999957084655762 6.33819580078125 2.543575763702393 7.881775379180908 4.440885543823242 7.881775379180908 C 6.33819580078125 7.881775379180908 7.881775379180908 6.33819580078125 7.881775379180908 4.440885543823242 C 7.881775379180908 2.543575763702393 6.33819580078125 0.9999957084655762 4.440885543823242 0.9999957084655762 M 4.440885543823242 -4.76837158203125e-06 C 6.893515586853027 -4.76837158203125e-06 8.881775856018066 1.988255500793457 8.881775856018066 4.440885543823242 C 8.881775856018066 6.893515586853027 6.893515586853027 8.881775856018066 4.440885543823242 8.881775856018066 C 1.988255500793457 8.881775856018066 -4.76837158203125e-06 6.893515586853027 -4.76837158203125e-06 4.440885543823242 C -4.76837158203125e-06 1.988255500793457 1.988255500793457 -4.76837158203125e-06 4.440885543823242 -4.76837158203125e-06 Z" stroke="none" fill="#ffe482"/>
+        </g>
+        <circle id="Ellipse_210" data-name="Ellipse 210" cx="4.5" cy="4.5" r="4.5" transform="translate(827.069 2125.069)" fill="#f63b45"/>
+        <path id="Path_2725" data-name="Path 2725" d="M-3217.5,1285.5l15.759,15.759" transform="translate(4017.087 812.087)" fill="none" stroke="#f63b45" stroke-width="4"/>
+        <path id="Path_2726" data-name="Path 2726" d="M-3217.5,1285.5l15.759,15.759" transform="translate(4033.297 828.292)" fill="none" stroke="#f63b45" stroke-width="4"/>
+      </g>
+    </g>
+  </g>
+</svg>

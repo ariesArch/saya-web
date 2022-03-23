@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <g id="Group_827" data-name="Group 827" transform="translate(-54.9 -201.9)">
+    <rect id="Rectangle_388" data-name="Rectangle 388" width="36" height="36" rx="18" transform="translate(54.9 201.9)" fill="#3c76eb"/>
+    <g id="vuesax_bold_crown" data-name="vuesax/bold/crown" transform="translate(61.331 208.331)">
+      <g id="crown" transform="translate(0 0)">
+        <path id="Vector" d="M10.364,1.446H.723A.728.728,0,0,1,0,.723.728.728,0,0,1,.723,0h9.641a.728.728,0,0,1,.723.723A.728.728,0,0,1,10.364,1.446Z" transform="translate(6.025 19.763)" fill="#fff"/>
+        <path id="Vector-2" data-name="Vector" d="M17.625,3.174,13.769,5.931A.97.97,0,0,1,12.3,5.488L10.481.629a.96.96,0,0,0-1.8,0L6.847,5.478a.95.95,0,0,1-1.456.443L1.535,3.165A.972.972,0,0,0,.06,4.283L4.07,15.514a.957.957,0,0,0,.906.636h9.188a.97.97,0,0,0,.906-.636L19.081,4.283A.956.956,0,0,0,17.625,3.174Zm-5.64,8.9H7.165a.723.723,0,1,1,0-1.446h4.82a.723.723,0,1,1,0,1.446Z" transform="translate(1.994 2.147)" fill="#fff"/>
+        <path id="Vector-3" data-name="Vector" d="M0,0H23.138V23.138H0Z" transform="translate(23.138 23.138) rotate(180)" fill="none" opacity="0"/>
+      </g>
+    </g>
+  </g>
+</svg>

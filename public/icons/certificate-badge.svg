@@ -1,0 +1,8 @@
+<svg id="eCommerce_Certificate_Badge" data-name="eCommerce / Certificate Badge" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Icon_Frame">
+    <path id="Base" d="M0,0H24V24H0Z" fill="none"/>
+    <path id="Vector" d="M5.391.7A2,2,0,0,1,8.437.7l.042.05a2,2,0,0,0,1.684.7l.065-.005A2,2,0,0,1,12.382,3.6l-.005.065a2,2,0,0,0,.7,1.684l.05.042a2,2,0,0,1,0,3.046l-.05.042a2,2,0,0,0-.7,1.684l.005.065a2,2,0,0,1-2.154,2.154l-.065-.005a2,2,0,0,0-1.684.7l-.042.05a2,2,0,0,1-3.046,0l-.042-.05a2,2,0,0,0-1.684-.7l-.065.005a2,2,0,0,1-2.154-2.154l.005-.065a2,2,0,0,0-.7-1.684L.7,8.437a2,2,0,0,1,0-3.046l.05-.042a2,2,0,0,0,.7-1.684L1.446,3.6A2,2,0,0,1,3.6,1.446l.065.005a2,2,0,0,0,1.684-.7Z" transform="translate(5.086 2.086)" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path id="Vector-2" d="M3.914,12.372v7.542l3-2,3,2V12.372" transform="translate(5.086 2.086)" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path id="Vector_5" d="M4,0,1,3,0,2" transform="translate(10 8)" fill="none" stroke="#f63b45" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

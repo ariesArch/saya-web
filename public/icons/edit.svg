@@ -1,0 +1,8 @@
+<svg id="General_Edit" data-name="General / Edit" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Icon_Frame">
+    <path id="Base" d="M0,0H24V24H0Z" fill="none"/>
+    <path id="Vector_40" d="M0,17l1-4L14,0l3,3L4,16Z" transform="translate(4 3)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Vector_41" d="M0,0,3,3" transform="translate(15 6)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Vector_42" d="M0,0H8" transform="translate(13 20)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

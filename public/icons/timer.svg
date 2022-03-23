@@ -1,0 +1,6 @@
+<svg id="timer" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <path id="Vector" d="M14.583,7.292A7.292,7.292,0,1,1,7.292,0,7.294,7.294,0,0,1,14.583,7.292Z" transform="translate(2.708 3.75)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+  <path id="Vector-2" d="M0,0V4.167" transform="translate(10 6.667)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+  <path id="Vector-3" d="M0,0H5" transform="translate(7.5 1.667)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+  <path id="Vector-4" d="M0,0H20V20H0Z" fill="none" opacity="0"/>
+</svg>

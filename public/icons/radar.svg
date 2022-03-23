@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g id="vuesax_linear_radar" data-name="vuesax/linear/radar" transform="translate(-300 -316)">
+    <g id="radar" transform="translate(300 316)">
+      <path id="Vector" d="M4,2A2,2,0,1,1,2,0,2,2,0,0,1,4,2Z" transform="translate(12 12)" fill="currentColor"/>
+      <path id="Vector-2" d="M0,12A9.926,9.926,0,0,0,2,6,9.926,9.926,0,0,0,0,0" transform="translate(24 8)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Vector-3" d="M2,0A10,10,0,0,0,2,12" transform="translate(2 8)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Vector-4" d="M0,7.2A5.99,5.99,0,0,0,1.2,3.6,5.99,5.99,0,0,0,0,0" transform="translate(19.747 10.4)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Vector-5" d="M1.2,0a6,6,0,0,0,0,7.2" transform="translate(7.053 10.4)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Vector-6" d="M0,0H28V28H0Z" fill="none" opacity="0"/>
+    </g>
+  </g>
+</svg>

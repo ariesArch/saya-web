@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="370.2" height="82.915" viewBox="0 0 370.2 82.915">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.033" y1="0.201" x2="0.968" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffd347"/>
+      <stop offset="1" stop-color="#d67200"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.071" y1="-0.183" x2="0.927" y2="1.236" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff253"/>
+      <stop offset="1" stop-color="#f5b914"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffec48"/>
+      <stop offset="1" stop-color="#ffeda6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="Pre_Intermediate" x="87.2" y="25.915" width="254" height="43" filterUnits="userSpaceOnUse">
+      <feOffset dy="5"/>
+      <feFlood flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_2944">
+      <feOffset dy="5"/>
+      <feFlood flood-opacity="0.161" result="color-2"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color-2"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient-2" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff8c0"/>
+      <stop offset="1" stop-color="#ffeda6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="PI" transform="translate(-536.8 -176.085)">
+    <path id="Path_2942" data-name="Path 2942" d="M601.233,4073.8s10.339,17.1,3.619,30.378c-5.28-1.76-9.052-10.778-9.052-10.778Z" transform="translate(24.2 -3897.715)" fill="#f0ae2c"/>
+    <path id="Path_2927" data-name="Path 2927" d="M-19,21.656l370.2.144v6.137L337.643,50.867H-3.635L-19,27.752Z" transform="translate(555.8 206)" fill="url(#linear-gradient)"/>
+    <path id="Union_2" data-name="Union 2" d="M37.172-3821.3,20-3847.2l17.172-26.507H55.165c15.338-5.564,36.529-14.254,53.306-24.915,3.788,10.021,2.363,19.794,1.105,24.915H374.836l15.364,26.684L374.836-3821.3Z" transform="translate(516.8 4074.706)" fill="url(#linear-gradient-2)"/>
+    <ellipse id="Ellipse_234" data-name="Ellipse 234" cx="89" cy="29" rx="89" ry="29" transform="translate(721.9 201)" fill="url(#radial-gradient)" style="mix-blend-mode: lighten;isolation: isolate"/>
+    <g data-type="innerShadowGroup">
+      <text id="Pre_Intermediate-2" data-name="Pre Intermediate" transform="translate(624 237)" fill="#8a5f09" font-size="36" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Pre Intermediate</tspan></text>
+      <g transform="matrix(1, 0, 0, 1, 536.8, 176.09)" filter="url(#Pre_Intermediate)">
+        <text id="Pre_Intermediate-3" data-name="Pre Intermediate" transform="translate(87.2 60.91)" fill="#fff" font-size="36" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Pre Intermediate</tspan></text>
+      </g>
+    </g>
+    <g data-type="innerShadowGroup">
+      <path id="Path_2944-2" data-name="Path 2944" d="M76.3,58.863s9.35-9.57,12.808-14.766c0,0-.43,2.946,1.418,2.964,2.644,0,5.27-7.712,0-14.272C83.033,23.457,93.8,19.066,93.8,19.066L127.259,0l-1.619,7.722A19.56,19.56,0,0,1,116.49,20.53l-9.359,5.562a5.59,5.59,0,0,0-2.635,3.87l19.926-10.32-3.769,10.064a9.734,9.734,0,0,1-5.873,5.745l-8.691,3.056c-1.729.6-3.111,3.165-3.778,4.867l16.175-5.892-6.66,9.872a9.094,9.094,0,0,1-8.755,3.934l-2.553-.348a4.858,4.858,0,0,0-4.08,1.381l8.234,2.5S95.238,61.3,76.3,58.863Z" transform="translate(492.741 188.59)" fill="#8a5d08"/>
+      <g transform="matrix(1, 0, 0, 1, 536.8, 176.09)" filter="url(#Path_2944)">
+        <path id="Path_2944-3" data-name="Path 2944" d="M76.3,58.863s9.35-9.57,12.808-14.766c0,0-.43,2.946,1.418,2.964,2.644,0,5.27-7.712,0-14.272C83.033,23.457,93.8,19.066,93.8,19.066L127.259,0l-1.619,7.722A19.56,19.56,0,0,1,116.49,20.53l-9.359,5.562a5.59,5.59,0,0,0-2.635,3.87l19.926-10.32-3.769,10.064a9.734,9.734,0,0,1-5.873,5.745l-8.691,3.056c-1.729.6-3.111,3.165-3.778,4.867l16.175-5.892-6.66,9.872a9.094,9.094,0,0,1-8.755,3.934l-2.553-.348a4.858,4.858,0,0,0-4.08,1.381l8.234,2.5S95.238,61.3,76.3,58.863Z" transform="translate(-44.06 12.5)" fill="#fff"/>
+      </g>
+    </g>
+    <ellipse id="Ellipse_238" data-name="Ellipse 238" cx="89" cy="4.433" rx="89" ry="4.433" transform="translate(572.9 248)" opacity="0.8" fill="url(#radial-gradient-2)" style="mix-blend-mode: overlay;isolation: isolate"/>
+    <ellipse id="Ellipse_239" data-name="Ellipse 239" cx="69.5" cy="4.433" rx="69.5" ry="4.433" transform="translate(747 196.567)" opacity="0.8" fill="url(#radial-gradient-2)" style="mix-blend-mode: overlay;isolation: isolate"/>
+  </g>
+</svg>
