@@ -17,13 +17,6 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
             </Head>
             <header>{/* topbar */}</header>
             <div css={body}>{children}</div>
-            <div css={footer}>
-                <p style={{ fontSize: "1.3rem", fontWeight: 600 }}>
-                    Copyright ©
-                    <span style={{ color: "#1e7d34" }}> {new Date().getUTCFullYear()} Binary Lab Ltd.</span>{" "}
-                    All rights reserved.{" "}
-                </p>
-            </div>
         </div>
     );
 };
@@ -40,11 +33,6 @@ const body = css`
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-`;
-
-const footer = css`
-    padding: 1.5rem 2rem;
-    border-top: var(--seperation-line);
 `;
 
 export default DefaultLayout;
