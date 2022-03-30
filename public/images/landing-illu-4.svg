@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1229.2" height="1080.423" viewBox="0 0 1229.2 1080.423">
-  <g id="Group_1088" data-name="Group 1088" transform="translate(6115 -1380.789)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="45.69 -208.02 1139 802" width="1139" height="802">
+  <g id="Group_1088" data-name="Group 1088" transform="matrix(1, 0, 0, 1, 6004.922829, -1708.646234)">
     <path id="Path_3018" data-name="Path 3018" d="M-3326.533,2144.267H-3254" transform="translate(-1916 -227.18)" fill="none" stroke="#f5e4cf" stroke-linecap="round" stroke-width="6"/>
     <g id="Asset_1" data-name="Asset 1" transform="translate(-6115 1800.086)" opacity="0.12">
       <g id="Layer_2" data-name="Layer 2">
@@ -1703,8 +1703,8 @@
     <path id="Path_3019" data-name="Path 3019" d="M-3326.533,2144.267H-3254" transform="translate(-1916 -310.18)" fill="none" stroke="#f5e4cf" stroke-linecap="round" stroke-width="6"/>
     <g id="Group_1066" data-name="Group 1066" transform="translate(-5702 1037.147)">
       <rect id="Rectangle_639" data-name="Rectangle 639" width="205" height="35" rx="5" transform="translate(435 528)" fill="#f63b45"/>
-      <text id="IELTS" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">IELTS</tspan></text>
-      <text id="Training" transform="translate(541.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300"><tspan x="0" y="0">Training</tspan></text>
+      <text id="IELTS" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700" style="white-space: pre;"><tspan x="0" y="0">IELTS</tspan></text>
+      <text id="Training" transform="translate(541.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300" style="white-space: pre;"><tspan x="0" y="0">Training</tspan></text>
       <g id="vuesax_linear_video-circle" data-name="vuesax/linear/video-circle" transform="translate(139.684 278.684)">
         <g id="video-circle" transform="translate(300 254)">
           <path id="Vector" d="M19.973,9.987A9.987,9.987,0,1,1,9.987,0,9.987,9.987,0,0,1,19.973,9.987Z" transform="translate(3.454 3.454)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
@@ -1715,8 +1715,8 @@
     </g>
     <g id="Group_1064" data-name="Group 1064" transform="translate(-5571 1131.614)">
       <rect id="Rectangle_639-2" data-name="Rectangle 639" width="197" height="35" rx="5" transform="translate(435 528)" fill="#f63b45"/>
-      <text id="_140_" data-name="140+" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">140+</tspan></text>
-      <text id="Courses" transform="translate(530.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300"><tspan x="0" y="0">Courses</tspan></text>
+      <text id="_140_" data-name="140+" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700" style="white-space: pre;"><tspan x="0" y="0">140+</tspan></text>
+      <text id="Courses" transform="translate(530.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300" style="white-space: pre;"><tspan x="0" y="0">Courses</tspan></text>
       <g id="vuesax_linear_video-circle-2" data-name="vuesax/linear/video-circle" transform="translate(139.684 278.684)">
         <g id="video-circle-2" data-name="video-circle" transform="translate(300 254)">
           <path id="Vector-4" data-name="Vector" d="M19.973,9.987A9.987,9.987,0,1,1,9.987,0,9.987,9.987,0,0,1,19.973,9.987Z" transform="translate(3.454 3.454)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
@@ -1727,8 +1727,8 @@
     </g>
     <g id="Group_1069" data-name="Group 1069" transform="translate(-5702 990.147)">
       <rect id="Rectangle_639-3" data-name="Rectangle 639" width="234" height="35" rx="5" transform="translate(435 528)" fill="#01ae63"/>
-      <text id="Business" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Business</tspan></text>
-      <text id="English" transform="translate(581.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300"><tspan x="0" y="0">English</tspan></text>
+      <text id="Business" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700" style="white-space: pre;"><tspan x="0" y="0">Business</tspan></text>
+      <text id="English" transform="translate(581.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300" style="white-space: pre;"><tspan x="0" y="0">English</tspan></text>
       <g id="vuesax_linear_video-circle-3" data-name="vuesax/linear/video-circle" transform="translate(139.684 278.684)">
         <g id="video-circle-3" data-name="video-circle" transform="translate(300 254)">
           <path id="Vector-7" data-name="Vector" d="M19.973,9.987A9.987,9.987,0,1,1,9.987,0,9.987,9.987,0,0,1,19.973,9.987Z" transform="translate(3.454 3.454)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
@@ -1739,7 +1739,7 @@
     </g>
     <g id="Group_1067" data-name="Group 1067" transform="translate(-5475.8 1084.614)">
       <rect id="Rectangle_639-4" data-name="Rectangle 639" width="155" height="35" rx="5" transform="translate(435 528)" fill="#8c75ff"/>
-      <text id="Grammer" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Grammer</tspan></text>
+      <text id="Grammer" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700" style="white-space: pre;"><tspan x="0" y="0">Grammer</tspan></text>
       <g id="vuesax_linear_video-circle-4" data-name="vuesax/linear/video-circle" transform="translate(139.684 278.684)">
         <g id="video-circle-4" data-name="video-circle" transform="translate(300 254)">
           <path id="Vector-10" data-name="Vector" d="M19.973,9.987A9.987,9.987,0,1,1,9.987,0,9.987,9.987,0,0,1,19.973,9.987Z" transform="translate(3.454 3.454)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
@@ -1750,7 +1750,7 @@
     </g>
     <g id="Group_1065" data-name="Group 1065" transform="translate(-5702 1131.614)">
       <rect id="Rectangle_639-5" data-name="Rectangle 639" width="119" height="35" rx="5" transform="translate(435 528)" fill="#8c75ff"/>
-      <text id="Travel" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Travel</tspan></text>
+      <text id="Travel" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700" style="white-space: pre;"><tspan x="0" y="0">Travel</tspan></text>
       <g id="vuesax_linear_video-circle-5" data-name="vuesax/linear/video-circle" transform="translate(139.684 278.684)">
         <g id="video-circle-5" data-name="video-circle" transform="translate(300 254)">
           <path id="Vector-13" data-name="Vector" d="M19.973,9.987A9.987,9.987,0,1,1,9.987,0,9.987,9.987,0,0,1,19.973,9.987Z" transform="translate(3.454 3.454)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
@@ -1761,8 +1761,8 @@
     </g>
     <g id="Group_1068" data-name="Group 1068" transform="translate(-5702 1084.614)">
       <rect id="Rectangle_639-6" data-name="Rectangle 639" width="214" height="35" rx="5" transform="translate(435 528)" fill="#3c76eb"/>
-      <text id="Daily" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">Daily</tspan></text>
-      <text id="Small_Talk" data-name="Small Talk" transform="translate(534.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300"><tspan x="0" y="0">Small Talk</tspan></text>
+      <text id="Daily" transform="translate(471.438 554.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700" style="white-space: pre;"><tspan x="0" y="0">Daily</tspan></text>
+      <text id="Small_Talk" data-name="Small Talk" transform="translate(534.559 554)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300" style="white-space: pre;"><tspan x="0" y="0">Small Talk</tspan></text>
       <g id="vuesax_linear_video-circle-6" data-name="vuesax/linear/video-circle" transform="translate(139.684 278.684)">
         <g id="video-circle-6" data-name="video-circle" transform="translate(300 254)">
           <path id="Vector-16" data-name="Vector" d="M19.973,9.987A9.987,9.987,0,1,1,9.987,0,9.987,9.987,0,0,1,19.973,9.987Z" transform="translate(3.454 3.454)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
@@ -1852,8 +1852,8 @@
     </g>
     <g id="Group_1063" data-name="Group 1063" transform="translate(-6077 -911.797)">
       <rect id="Rectangle_639-7" data-name="Rectangle 639" width="219" height="35" rx="5" transform="translate(924 2960)" fill="#f63b45"/>
-      <text id="_10" data-name="10" transform="translate(960.438 2985.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700"><tspan x="0" y="0">10</tspan></text>
-      <text id="Stars_Reward" data-name="Stars Reward" transform="translate(992.559 2985.64)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300"><tspan x="0" y="0">Stars Reward</tspan></text>
+      <text id="_10" data-name="10" transform="translate(960.438 2985.64)" fill="#fff" font-size="28" font-family="TTCommons-Bold, TT Commons" font-weight="700" style="white-space: pre;"><tspan x="0" y="0">10</tspan></text>
+      <text id="Stars_Reward" data-name="Stars Reward" transform="translate(992.559 2985.64)" fill="#fff" font-size="28" font-family="TTCommons-Light, TT Commons" font-weight="300" style="white-space: pre;"><tspan x="0" y="0">Stars Reward</tspan></text>
       <g id="General_Star" data-name="General / Star" transform="translate(931.658 2964.671)">
         <g id="Icon_Frame">
           <path id="Base" d="M0,0H23.657V23.657H0Z" fill="none"/>

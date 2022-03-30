@@ -107,14 +107,18 @@ We also do the same for the `store` directory.
 
 |--|--|--|--|
 
-|@emotion/core @emotion/react | CSS IN JS Library | https://emotion.sh/docs/ |✅
+|@emotion/core @emotion/react | CSS IN JS Library | https://emotion.sh/docs/ | ✅
 
-| axios | For API calls | https://axios-http.com/docs/intro |✅
+| axios | For API calls | https://axios-http.com/docs/intro | ✅
 
-| date-fns | For Date Formatting | https://date-fns.org/ |✅
+| date-fns | For Date Formatting | https://date-fns.org/ | ✅
 
-| react-loading-skeleton | Skeleton Loaders | https://www.npmjs.com/package/react-loading-skeleton |✅
+| framer-motion | For animation | https://www.npmjs.com/package/framer-motion | ✅
 
-| react-tooltip|Tooltips | https://www.npmjs.com/package/react-tooltip |✅
+| react-loading-skeleton | Skeleton Loaders | https://www.npmjs.com/package/react-loading-skeleton | ✅
 
-| react-otp-input | For OTP Input|https://www.npmjs.com/package/react-otp-input |✅
+| react-tooltip | Tooltips | https://www.npmjs.com/package/react-tooltip | ✅
+
+| react-otp-input | For OTP Input | https://www.npmjs.com/package/react-otp-input | ✅
+
+| @tanem/react-nprogress | For page transition loading indicator | https://www.npmjs.com/package/@tanem/react-nprogress | ✅

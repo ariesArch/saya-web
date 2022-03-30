@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
 import { ReduxState } from "@/interfaces/redux.interfaces";
-import commonReducer from "@/store/common/common.reducer";
+import authReducer from "@/store/auth/auth.reducer";
 
 const rootReducer = combineReducers<ReduxState>({
-    commonState: commonReducer,
+    authState: authReducer,
 });
 
 export default rootReducer; // this will return modified version of rootReducer with storage persistence

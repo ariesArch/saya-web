@@ -2,14 +2,17 @@ import axios from "axios";
 
 export const apiUrl =
     process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
-        ? process.env.NEXT_PUBLIC_EM_API_DEVELOPMENT
-        : process.env.NEXT_PUBLIC_EM_API_PRODUCTION;
+        ? process.env.NEXT_PUBLIC_API_DEVELOPMENT
+        : process.env.NEXT_PUBLIC_API_PRODUCTION;
 
-export const createAxiosInstance = (token: any) => {
+export const appToken = process.env.NEXT_PUBLIC_APP_TOKEN;
+
+export const createAxiosInstance = (token = "") => {
     return axios.create({
         baseURL: apiUrl,
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token ? `Bearer ${token}` : false,
+            app_token: appToken as string,
         },
     });
 };
@@ -29,7 +32,8 @@ export const endpoints = {
     },
     user: {
         logout: "/me/logout",
-        updateProfile: "me/update",
+        getProfile: "/me",
+        updateProfile: "/me/update",
         surveyBoxToggle: "/set-show-dialog-false",
         getOnGoingCourses: "/ongoingCourses",
         updatePhoneNumber: "/me/updatePhoneNumber",

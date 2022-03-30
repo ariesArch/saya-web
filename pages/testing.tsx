@@ -1,34 +1,64 @@
 import { css } from "@emotion/react";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import OtpInput from "react-otp-input";
 import ReactTooltip from "react-tooltip";
 
 import Button from "@/components/common/Button/Button.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
 import useIsMounted from "@/hooks/useIsMounted";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import NextJSLogo from "@/public/logo.png";
+import NextJSLogo from "@/public/icons/logo-text.png";
 
 export default function Testing() {
     const isMounted = useIsMounted();
     const [selected, setSelected] = useState("");
+    const popupRef = useRef(null);
+    const [listening, setListening] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
+    const [otp, setOtp] = useState("");
 
-    const onSelect = useCallback((value: string) => {
+    const onOTPChange = (otp: string) => {
+        setOtp(otp);
+    };
+
+    const onSelect = (value: string) => {
         setSelected(value);
-    }, []);
+    };
 
-    const showNotification = useCallback(() => {
+    const showNotification = () => {
         // eslint-disable-next-line no-new
         new Notification("Hello World!", {
             body: "This is a notification!",
         });
-    }, []);
+    };
+
+    const listenForOutsideClicks = (
+        listening: boolean,
+        setListening: (listening: boolean) => void,
+        menuRef: any,
+        setIsOpen: (isOpen: boolean) => void
+    ) => {
+        return () => {
+            if (listening) return;
+            if (!menuRef?.current) return;
+            setListening(true);
+            [`click`, `touchstart`].forEach(() => {
+                document.addEventListener(`click`, (evt) => {
+                    if (menuRef.current.contains(evt.target)) return;
+                    setIsOpen(false);
+                });
+            });
+        };
+    };
 
     useEffect(() => {
         if ("Notification" in window) {
             Notification.requestPermission();
         }
     }, []);
+
+    useEffect(() => listenForOutsideClicks(listening, setListening, popupRef, setIsOpen));
 
     return (
         <DefaultLayout>
@@ -76,6 +106,18 @@ export default function Testing() {
                     Hover me!
                 </div>
                 {isMounted && <ReactTooltip id="main" type="dark" effect="solid" place="bottom" />}
+
+                <div css={popupContainer} ref={popupRef} onClick={() => setIsOpen(true)}>
+                    popup container is {isOpen ? "open" : "closed"}
+                </div>
+                <OtpInput
+                    inputStyle={{ width: "3rem", height: "3rem" }}
+                    value={otp}
+                    isInputNum
+                    onChange={onOTPChange}
+                    numInputs={4}
+                    separator={<span>&nbsp;</span>}
+                />
             </div>
         </DefaultLayout>
     );
@@ -134,3 +176,13 @@ export const toolTipPlaceHolder = css`
     padding: 1rem 2rem;
     background-color: #f5f5f5;
 `;
+
+export const popupContainer = css`
+    padding: 10rem 20rem;
+    border: 1px solid var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const otpInput = css``;
