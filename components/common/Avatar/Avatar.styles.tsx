@@ -1,0 +1,36 @@
+import { css } from "@emotion/react";
+
+export const avatar = css`
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+`;
+
+export const imgContainer = (size = "", borderColor = "") => css`
+    width: ${size || "6rem"};
+    height: ${size || "6rem"};
+    border: 2px solid transparent;
+    background-color: ${borderColor || "var(--color-badge-gold)"};
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+
+    img {
+        border-radius: 50%;
+        user-select: none;
+    }
+`;
+
+export const badge = (size = "") => css`
+    position: absolute;
+    width: ${size ? `calc(${size}/2)` : "3rem"};
+    bottom: ${size ? `calc(-${size}/4)` : "-1.5rem"};
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+`;

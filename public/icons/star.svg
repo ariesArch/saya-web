@@ -1,4 +1,4 @@
-<svg id="General_Star" data-name="General / Star" xmlns="http://www.w3.org/2000/svg" width="23.657" height="23.657" viewBox="0 0 23.657 23.657">
+<svg id="General_Star" data-name="General / Star" xmlns="http://www.w3.org/2000/svg" width="23.657" height="23.657" viewBox="0 0 23 23">
   <g id="Icon_Frame">
     <path id="Base" d="M0,0H23.657V23.657H0Z" fill="none"/>
     <path id="Star_3" d="M8.492,0l2.519,5.288,5.973.686L12.569,9.927l1.172,5.712L8.492,12.795,3.244,15.639,4.416,9.927,0,5.974l5.973-.686Z" transform="translate(3.336 3.943)" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>

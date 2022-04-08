@@ -1,17 +1,17 @@
 import "@/public/css/globals.css";
 
-import { ServerResponse } from "http";
 import cookie from "js-cookie";
 import { AppContext, AppProps } from "next/app";
 import Router from "next/router";
 import { Fragment, useEffect, useState } from "react";
 
 import LoadingIndicator from "@/components/common/LoadingIndicator/LoadingIndicator.component";
-import { InitialPageProps, UserData } from "@/interfaces/redux.interfaces";
-import { onUserDataChange } from "@/store/auth/auth.actions";
+import { InitialPageProps } from "@/interfaces/redux.interfaces";
+import { UserData } from "@/interfaces/user.interfaces";
 import { wrapper } from "@/store/store";
+import { onUserDataChange } from "@/store/user/user.actions";
 import { createAxiosInstance, endpoints } from "@/utils/api";
-import { redirectTo } from "@/utils/index";
+import { redirectOnEitherSide } from "@/utils/index";
 
 interface Props extends InitialPageProps, AppProps {}
 
@@ -57,14 +57,6 @@ const App = ({ Component, pageProps }: Props) => {
     );
 };
 
-const redirectOnEitherSide = (res: ServerResponse | undefined, pathname: string) => {
-    if (res) {
-        redirectTo(307, pathname, res);
-    } else {
-        Router.push(pathname);
-    }
-};
-
 App.getInitialProps = wrapper.getInitialAppProps(
     (store) =>
         async ({ Component, ctx }: AppContext): Promise<InitialPageProps> => {
@@ -72,6 +64,8 @@ App.getInitialProps = wrapper.getInitialAppProps(
             let pageProps = {};
             let token: string | undefined = "";
             let userData: UserData | undefined;
+            // the routes that don't need any conditional logics to be redirected or not.
+            const allowedPaths = ["/testing", "/about"];
 
             if (Component.getInitialProps) {
                 pageProps = await Component.getInitialProps(ctx);
@@ -81,6 +75,13 @@ App.getInitialProps = wrapper.getInitialAppProps(
                 token = (req as any).cookies && (req as any).cookies.token;
             } else {
                 token = cookie.get("token");
+            }
+
+            if (allowedPaths.includes(pathname)) {
+                return {
+                    pageProps,
+                    token,
+                };
             }
 
             if (token) {

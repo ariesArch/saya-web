@@ -7,4 +7,7 @@ module.exports = {
 
         return config;
     },
+    images: {
+        domains: ["saya-education.s3.amazonaws.com"],
+    },
 };

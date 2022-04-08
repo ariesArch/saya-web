@@ -19,7 +19,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         children,
         variant = "default",
         color = "default",
-        style,
         ...rest
     } = props;
 

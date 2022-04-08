@@ -4,11 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import OtpInput from "react-otp-input";
 import ReactTooltip from "react-tooltip";
 
+import Avatar from "@/components/common/Avatar/Avatar.component";
 import Button from "@/components/common/Button/Button.component";
+import PopupButton from "@/components/common/PopupButton/PopupButton.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
 import useIsMounted from "@/hooks/useIsMounted";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import NextJSLogo from "@/public/icons/logo-text.png";
+import ManPortrait from "@/public/images/man-portrait.jpg";
 
 export default function Testing() {
     const isMounted = useIsMounted();
@@ -17,6 +20,7 @@ export default function Testing() {
     const [listening, setListening] = useState(false);
     const [isOpen, setIsOpen] = useState(true);
     const [otp, setOtp] = useState("");
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const onOTPChange = (otp: string) => {
         setOtp(otp);
@@ -32,6 +36,9 @@ export default function Testing() {
             body: "This is a notification!",
         });
     };
+
+    const onPopupToggle = () => setIsPopupOpen(!isPopupOpen);
+    const onPopupClose = () => setIsPopupOpen(false);
 
     const listenForOutsideClicks = (
         listening: boolean,
@@ -102,6 +109,14 @@ export default function Testing() {
                         </div>
                     ))}
                 </div>
+                <PopupButton
+                    popupContent={<div style={{ minHeight: "10rem" }}>hello</div>}
+                    open={isPopupOpen}
+                    position="right"
+                    onClose={onPopupClose}
+                    onClick={onPopupToggle}>
+                    <Avatar src={ManPortrait} badge="advanced" size="5rem" />
+                </PopupButton>
                 <div css={toolTipPlaceHolder} data-for="main" data-tip="react tool tip">
                     Hover me!
                 </div>

@@ -5,16 +5,25 @@
   --default-font-color: #444;
   --font-color-dark: #222;
   --default-background-color: #f5f5f5;
+  --color-background-gray: #FCFCFC;
 
   --color-primary: #F63B45;
   --color-primary-button-hover: hsl(357, 91%, 45%);
   --color-primary-dark: #E32E38;
   --color-red-text: #E23061;
+  --color-pink-red: #EF5B6A;
+  --color-pink-red-button-hover: hsl(354, 82%, 60%);
+  --color-pink: #EF5B96;
+  --color-pink-button-hover: hsl(336, 82%, 60%);
   --color-green: #03C06E;
   --color-green-button-hover: hsl(154, 97%, 35%);
   --color-light-green: #278590;
   --color-blue: #3C76EB;
   --color-blue-button-hover: hsl(220, 81%, 55%);
+  --color-orchid: #CC5BEF;
+  --color-orchid-button-hover: hsl(286, 82%, 60%);
+  --color-indigo: #AF5BEF;
+  --color-indigo-button-hover: hsl(274, 82%, 65%);
   --color-violet: #745BEF;
   --color-violet-button-hover: hsl(250, 82%, 60%);
   --color-violet-light: #8C74FB;
