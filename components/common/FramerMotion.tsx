@@ -34,3 +34,9 @@ export const landingAnimationConfig = {
     whileInView: "onscreen",
     viewport: { once: true },
 };
+
+export const transition = {
+    type: "spring",
+    stiffness: 500,
+    damping: 30,
+};

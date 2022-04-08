@@ -50,6 +50,42 @@ export const defaultStyles = (color: ButtonColor) => css`
             border-color: var(--color-violet);
         }
     `};
+
+    ${color === "pink-red" &&
+    `
+        color: var(--color-pink-red);
+        
+        &:hover {
+            border-color: var(--color-pink-red);
+        }
+    `};
+
+    ${color === "pink" &&
+    `
+        color: var(--color-pink);
+        
+        &:hover {
+            border-color: var(--color-pink);
+        }
+    `};
+
+    ${color === "orchid" &&
+    `
+        color: var(--color-orchid);
+        
+        &:hover {
+            border-color: var(--color-orchid);
+        }
+    `};
+
+    ${color === "indigo" &&
+    `
+        color: var(--color-indigo);
+        
+        &:hover {
+            border-color: var(--color-indigo);
+        }
+    `};
 `;
 
 export const containedStyles = (color: ButtonColor) => css`
@@ -105,6 +141,140 @@ export const containedStyles = (color: ButtonColor) => css`
             background-color: var(--color-violet-button-hover);
         }
     `};
+
+    ${color === "pink-red" &&
+    `
+        background-color: var(--color-pink-red);
+         border-color: var(--color-pink-red-button-hover);
+        
+        &:hover {
+            background-color: var(--color-pink-red-button-hover);
+        }
+    `};
+
+    ${color === "pink" &&
+    `
+        background-color: var(--color-pink);
+         border-color: var(--color-pink-button-hover);
+        
+        &:hover {
+            background-color: var(--color-pink-button-hover);
+        }
+    `};
+
+    ${color === "orchid" &&
+    `
+        background-color: var(--color-orchid);
+         border-color: var(--color-orchid-button-hover);
+        
+        &:hover {
+            background-color: var(--color-orchid-button-hover);
+        }
+    `};
+
+    ${color === "indigo" &&
+    `
+        background-color: var(--color-indigo);
+         border-color: var(--color-indigo-button-hover);
+        
+        &:hover {
+            background-color: var(--color-indigo-button-hover);
+        }
+    `};
+`;
+
+export const outlinedStyles = (color: ButtonColor) => css`
+    border: 1px solid;
+
+    ${color === "primary" &&
+    `   
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        
+        &:hover {
+            border-color: var(--color-primary-button-hover);
+        }
+    `};
+
+    ${color === "default" &&
+    `
+        border-color: var(--color-blue);
+        color: var(--color-blue);
+        
+        &:hover {
+            border-color: var(--color-blue-button-hover);
+        }
+    `};
+
+    ${color === "success" &&
+    `
+        border-color: var(--color-green);
+        color: var(--color-green);
+        
+        &:hover {
+            border-color: var(--color-green-button-hover);
+        }
+    `};
+
+    ${color === "rank" &&
+    `
+        border-color: var(--color-violet-light);
+        color: var(--color-violet-light);
+        
+        &:hover {
+            border-color: var(--color-violet-light-button-hover);
+        }
+    `};
+
+    ${color === "course" &&
+    `
+        border-color: var(--color-violet);
+        color: var(--color-violet);
+        
+        &:hover {
+            border-color: var(--color-violet-button-hover);
+        }
+    `};
+
+    ${color === "pink-red" &&
+    `
+        border-color: var(--color-pink-red);
+        color: var(--color-pink-red);
+        
+        &:hover {
+            border-color: var(--color-pink-red-button-hover);
+        }
+    `};
+
+    ${color === "pink" &&
+    `
+        border-color: var(--color-pink);
+        color: var(--color-pink);
+        
+        &:hover {
+            border-color: var(--color-pink-button-hover);
+        }
+    `};
+
+    ${color === "orchid" &&
+    `
+        border-color: var(--color-orchid);
+        color: var(--color-orchid);
+        
+        &:hover {
+            border-color: var(--color-orchid-button-hover);
+        }
+    `};
+
+    ${color === "indigo" &&
+    `
+        border-color: var(--color-indigo);
+        color: var(--color-indigo);
+        
+        &:hover {
+            border-color: var(--color-indigo-button-hover);
+        }
+    `};
 `;
 
 export const button = (color: ButtonColor, variant: ButtonVariant, loading: boolean) => css`
@@ -112,6 +282,8 @@ export const button = (color: ButtonColor, variant: ButtonVariant, loading: bool
     font-weight: 500;
     padding: 0.6rem 2rem;
     border-radius: 2.5rem;
+    display: flex;
+    align-items: center;
     transition: all 0.4s;
 
     &:active {
@@ -127,5 +299,7 @@ export const button = (color: ButtonColor, variant: ButtonVariant, loading: bool
           pointer-events: auto !important;
     `};
 
-    ${variant === "default" ? defaultStyles(color) : containedStyles(color)}
+    ${variant === "default" && defaultStyles(color)};
+    ${variant === "contained" && containedStyles(color)};
+    ${variant === "outlined" && outlinedStyles(color)};
 `;

@@ -1,5 +1,5 @@
-<svg id="Media_Playlist" data-name="Media / Playlist" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <g id="Icon_Frame" transform="translate(0 0)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="327.298 130.284 21.887 17.976" width="21.887" height="17.975">
+  <g id="Icon_Frame" transform="matrix(1, 0, 0, 1, 326.607085, 128.249145)">
     <path id="Base" d="M0,0H24V24H0Z" transform="translate(0 0)" fill="none"/>
     <path id="Polygon_6" d="M2,0,4,4H0Z" transform="translate(6 4) rotate(90)" fill="#f63b45" stroke="#f63b45" stroke-linejoin="round" stroke-width="2"/>
     <path id="Vector_48" d="M0,0H18" transform="translate(3 12)" fill="none" stroke="#444" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>

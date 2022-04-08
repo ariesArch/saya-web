@@ -1,21 +1,22 @@
 import { css } from "@emotion/react";
 import Head from "next/head";
-import React from "react";
+import { ReactNode } from "react";
 
 interface DefaultLayoutProps {
     title?: string;
-    children: React.ReactNode;
+    topBar?: ReactNode;
+    children: ReactNode;
 }
 
 const DefaultLayout = (props: DefaultLayoutProps) => {
-    const { title = "SAYA - The English Learning Platform", children } = props;
+    const { title = "SAYA - The English Learning Platform", topBar, children } = props;
     return (
         <div css={container}>
             <Head>
                 <title>{title}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
-            <header>{/* topbar */}</header>
+            {topBar && <header>{topBar}</header>}
             <div css={body}>{children}</div>
         </div>
     );

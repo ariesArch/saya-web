@@ -2,12 +2,12 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 
 import VisibilitySensor from "@/components/common/VisibilitySensor/VisibilitySensor.component";
-import CourseSection from "@/components/Landing/CourseSection/CourseSection.component";
-import FeaturesSection from "@/components/Landing/FeaturesSection/FeaturesSection.component";
-import Footer from "@/components/Landing/Footer/Footer.component";
-import LiveClassSection from "@/components/Landing/LiveClassSection/LiveClassSection.component";
-import OverviewSection from "@/components/Landing/OverviewSection/OverviewSection.component";
-import TopBar from "@/components/Landing/TopBar/TopBar.component";
+import CourseSection from "@/components/landing/CourseSection/CourseSection.component";
+import FeaturesSection from "@/components/landing/FeaturesSection/FeaturesSection.component";
+import Footer from "@/components/landing/Footer/Footer.component";
+import LiveClassSection from "@/components/landing/LiveClassSection/LiveClassSection.component";
+import OverviewSection from "@/components/landing/OverviewSection/OverviewSection.component";
+import TopBar from "@/components/landing/TopBar/TopBar.component";
 import { LandingSectionType } from "@/interfaces/common.interfaces";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
@@ -37,9 +37,8 @@ export default function Home() {
     }, [sectionStatus, visibleSection]);
 
     return (
-        <DefaultLayout>
+        <DefaultLayout topBar={<TopBar visibleSection={visibleSection} />}>
             <div css={container}>
-                <TopBar visibleSection={visibleSection} />
                 <VisibilitySensor onChange={(isVisible) => onVisibleSectionChange(isVisible, "overview")}>
                     <OverviewSection />
                 </VisibilitySensor>
