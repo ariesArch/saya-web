@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { FC, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Avatar from "@/components/common/Avatar/Avatar.component";
 import Button from "@/components/common/Button/Button.component";
 import PopupButton from "@/components/common/PopupButton/PopupButton.component";
 import ProgressBar from "@/components/common/ProgressBar/ProgressBar.component";
+import { ReduxState } from "@/interfaces/redux.interfaces";
+import { UserData } from "@/interfaces/user.interfaces";
 import ChevronRight from "@/public/icons/chevron-right.svg";
 import CrownIcon from "@/public/icons/crown.svg";
 import EditIcon from "@/public/icons/edit.svg";
@@ -16,18 +18,19 @@ import ReloadIcon from "@/public/icons/reload.svg";
 import StartIcon from "@/public/icons/star-outlined.svg";
 import GraduateIcon from "@/public/icons/teacher.svg";
 import TickSquareIcon from "@/public/icons/tick-square.svg";
-import ManPortrait from "@/public/images/man-portrait.jpg";
 import { userLogoutAsync } from "@/store/user/user.actions";
 
 import * as styles from "./UserPopupButton.styles";
 
 interface PopupContentsProps {
+    userData: UserData | Record<string, never>;
     onPopupClose: () => void;
 }
 
-const PopupContents: FC<PopupContentsProps> = ({ onPopupClose }) => {
+const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
     const router = useRouter();
     const dispatch = useDispatch();
+    const { name, photo, phone } = userData;
 
     const onLogoutSuccess = () => {
         router.push("/");
@@ -48,10 +51,10 @@ const PopupContents: FC<PopupContentsProps> = ({ onPopupClose }) => {
         <div css={styles.popupContents}>
             <div css={styles.header}>
                 <div css={styles.userInfo}>
-                    <Avatar src={ManPortrait} size="5.5rem" badge="advanced" />
+                    <Avatar src={photo} size="5.5rem" badge="advanced" />
                     <div css={styles.userInfoTexts}>
-                        <span css={styles.username}>Khant Zaw</span>
-                        <span css={styles.phone}>09 451 778 548</span>
+                        <span css={styles.username}>{name}</span>
+                        <span css={styles.phone}>{phone && `0${phone.substr(2)}`}</span>
                     </div>
                 </div>
 
@@ -109,6 +112,7 @@ const PopupContents: FC<PopupContentsProps> = ({ onPopupClose }) => {
 };
 
 const UserPopupButton = () => {
+    const userData = useSelector((state: ReduxState) => state.userState.userData);
     const [isOpen, setIsOpen] = useState(false);
 
     const onPopupToggle = () => setIsOpen(!isOpen);
@@ -116,13 +120,13 @@ const UserPopupButton = () => {
 
     return (
         <PopupButton
-            popupContent={<PopupContents onPopupClose={onPopupClose} />}
+            popupContent={<PopupContents userData={userData} onPopupClose={onPopupClose} />}
             position="right"
             verticalOffset={-110}
             open={isOpen}
             onClose={onPopupClose}
             onClick={onPopupToggle}>
-            <Avatar src={ManPortrait} badge="advanced" size="5rem" />
+            <Avatar src={userData?.photo} badge="advanced" size="5rem" />
         </PopupButton>
     );
 };

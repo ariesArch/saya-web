@@ -1,7 +1,0 @@
-<svg id="Arrow_Arrow_Left_2" data-name="Arrow Left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <g id="Icon_Frame">
-    <path id="Base" d="M0,0H24V24H0Z" fill="none"/>
-    <path id="Vector" d="M5,0,0,5" transform="translate(9 7)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Vector-2" d="M0,0,5,5" transform="translate(9 12)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-  </g>
-</svg>

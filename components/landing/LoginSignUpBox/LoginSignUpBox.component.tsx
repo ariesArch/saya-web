@@ -6,7 +6,7 @@ import OtpInput from "react-otp-input";
 import { useDispatch } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
-import ArrowLeft from "@/public/icons/arrow-left.svg";
+import ArrowLeft from "@/public/icons/chevron-left.svg";
 import MyanmarFlag from "@/public/icons/myanmar-flag.png";
 import { userLoginAsync, userVerifyLoginAsync } from "@/store/user/user.actions";
 import { secondsToFormattedTime } from "@/utils/date-time";
@@ -53,12 +53,8 @@ const LoginSignUpBox = () => {
         }
     };
 
-    const onOTPVerifySuccess = (isNewUser: boolean) => {
-        if (isNewUser) {
-            router.push("/complete-profile").then(() => setIsLoading(false));
-        } else {
-            router.push("/home").then(() => setIsLoading(false));
-        }
+    const onOTPVerifySuccess = () => {
+        router.push("/home").then(() => setIsLoading(false));
     };
 
     const onOTPVerifyFailure = (e: any) => {

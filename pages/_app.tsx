@@ -91,14 +91,8 @@ App.getInitialProps = wrapper.getInitialAppProps(
 
                     userData = { ...data };
 
-                    if (data?.is_new_user) {
-                        if (pathname !== "/complete-profile") {
-                            redirectOnEitherSide(res, "/complete-profile");
-                        }
-                    } else {
-                        if (pathname === "/" || pathname === "/complete-profile") {
-                            redirectOnEitherSide(res, "/home");
-                        }
+                    if (pathname === "/") {
+                        redirectOnEitherSide(res, "/home");
                     }
                 } catch (e) {
                     // only remove the token if the token is invalid // preventing the token from being remove if the user lost the connection

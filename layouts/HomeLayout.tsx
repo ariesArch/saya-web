@@ -1,12 +1,15 @@
 import { css } from "@emotion/react";
 import Head from "next/head";
 import { ReactNode } from "react";
+import { useSelector } from "react-redux";
 
 import GoPremiumPopupBtn from "@/components/common/GoPremiumPopupBtn/GoPremiumPopupBtn.component";
 import SideNav from "@/components/common/SideNav/SideNav.component";
 import WeeklyScheduler from "@/components/common/WeeklyScheduler/WeeklyScheduler.component";
+import CompleteProfileModal from "@/components/home/CompleteProfileModal/CompleteProfileModal.component";
 import HeaderNav from "@/components/home/HeaderNav/HeaderNav.component";
 import RankTable from "@/components/home/RankTable/RankTable.component";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 
 interface DefaultLayoutProps {
     title?: string;
@@ -17,6 +20,8 @@ interface DefaultLayoutProps {
 
 const HomeLayout = (props: DefaultLayoutProps) => {
     const { title = "SAYA - The English Learning Platform", showSidePanel = true, heading, children } = props;
+    const { is_new_user, name } = useSelector((state: ReduxState) => state.userState.userData);
+
     return (
         <div css={container}>
             <Head>
@@ -37,6 +42,8 @@ const HomeLayout = (props: DefaultLayoutProps) => {
                 )}
 
                 <GoPremiumPopupBtn />
+
+                {(is_new_user || !name) && <CompleteProfileModal />}
             </div>
         </div>
     );

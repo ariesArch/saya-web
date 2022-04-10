@@ -10,7 +10,7 @@ export const label = css`
     font-size: 1.5rem;
 `;
 
-export const input = (color: RadioColor, isLabel: boolean) => css`
+export const input = (color: RadioColor, isLabel: boolean, size = "2.3rem") => css`
     &[type="radio"] {
         /* Add if not using autoprefixer */
         appearance: none;
@@ -22,8 +22,8 @@ export const input = (color: RadioColor, isLabel: boolean) => css`
         font: inherit;
         color: currentColor;
         cursor: pointer;
-        width: 2.3rem;
-        height: 2.3rem;
+        width: ${size};
+        height: ${size};
         border: 2px solid #f5f5f5;
         border-radius: 50%;
         display: grid;
@@ -34,21 +34,20 @@ export const input = (color: RadioColor, isLabel: boolean) => css`
 
         &::before {
             content: "";
-            width: 0.9rem;
-            height: 0.9rem;
+            width: calc(${size} * 0.4);
+            height: calc(${size} * 0.4);
             border-radius: 50%;
             transform: scale(0);
             transition: 120ms transform ease-in-out;
-            box-shadow: inset 1em 1em var(--color-primary);
 
             ${color === "primary" &&
             `
-                box-shadow: inset 1em 1em var(--color-primary);
+                background-color: var(--color-primary);
             `}
 
             ${color === "course" &&
             `
-                box-shadow: inset 1em 1em var(--color-violet);
+                background-color: var(--color-violet);
             `}
         }
 
