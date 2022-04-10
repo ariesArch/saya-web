@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 
+import { clickEffect } from "@/components/common/commonStyles";
 import { ButtonColor, ButtonVariant } from "@/interfaces/common.interfaces";
 
 export const defaultStyles = (color: ButtonColor) => css`
@@ -84,6 +85,15 @@ export const defaultStyles = (color: ButtonColor) => css`
         
         &:hover {
             border-color: var(--color-indigo);
+        }
+    `};
+
+    ${color === "light-green" &&
+    `
+        color: var(--color-light-green);
+        
+        &:hover {
+            border-color: var(--color-light-green);
         }
     `};
 `;
@@ -181,6 +191,16 @@ export const containedStyles = (color: ButtonColor) => css`
             background-color: var(--color-indigo-button-hover);
         }
     `};
+
+    ${color === "light-green" &&
+    `
+        background-color: var(--color-light-green);
+         border-color: var(--color-light-green-button-hover);
+        
+        &:hover {
+            background-color: var(--color-light-green-button-hover);
+        }
+    `};
 `;
 
 export const outlinedStyles = (color: ButtonColor) => css`
@@ -275,6 +295,16 @@ export const outlinedStyles = (color: ButtonColor) => css`
             border-color: var(--color-indigo-button-hover);
         }
     `};
+
+    ${color === "light-green" &&
+    `
+        border-color: var(--color-light-green);
+        color: var(--color-light-green);
+        
+        &:hover {
+            border-color: var(--color-light-green-button-hover);
+        }
+    `};
 `;
 
 export const button = (color: ButtonColor, variant: ButtonVariant, loading: boolean) => css`
@@ -283,12 +313,9 @@ export const button = (color: ButtonColor, variant: ButtonVariant, loading: bool
     padding: 0.6rem 2rem;
     border-radius: 2.5rem;
     display: flex;
+    justify-content: center;
     align-items: center;
-    transition: all 0.4s;
-
-    &:active {
-        transform: scale(0.9);
-    }
+    ${clickEffect};
 
     ${loading &&
     `

@@ -7,7 +7,8 @@ export type ButtonColor =
     | "pink-red"
     | "pink"
     | "orchid"
-    | "indigo";
+    | "indigo"
+    | "light-green";
 
 export type ButtonVariant = "default" | "contained" | "outlined";
 
