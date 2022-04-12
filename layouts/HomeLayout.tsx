@@ -16,10 +16,17 @@ interface DefaultLayoutProps {
     children: ReactNode;
     showSidePanel?: boolean;
     heading?: ReactNode;
+    backgroundColor?: string;
 }
 
 const HomeLayout = (props: DefaultLayoutProps) => {
-    const { title = "SAYA - The English Learning Platform", showSidePanel = true, heading, children } = props;
+    const {
+        title = "SAYA - The English Learning Platform",
+        showSidePanel = true,
+        heading,
+        children,
+        backgroundColor = "#fff",
+    } = props;
     const { is_new_user, name } = useSelector((state: ReduxState) => state.userState.userData);
 
     return (
@@ -28,7 +35,7 @@ const HomeLayout = (props: DefaultLayoutProps) => {
                 <title>{title}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
-            <div css={body}>
+            <div css={body(backgroundColor)}>
                 <div css={contents}>
                     <SideNav />
                     <HeaderNav heading={heading} />
@@ -55,11 +62,12 @@ const container = css`
     height: 100%;
 `;
 
-const body = css`
+const body = (backgroundColor: string) => css`
     box-sizing: inherit;
     width: 100%;
     flex-grow: 1;
     display: flex;
+    background-color: ${backgroundColor};
 `;
 
 export const contents = css`

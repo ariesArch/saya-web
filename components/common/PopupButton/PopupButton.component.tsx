@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes, CSSProperties, FC, ReactNode, useEffect, useRef } from "react";
+import { CSSProperties, FC, HTMLAttributes, ReactNode, useEffect, useRef } from "react";
 
 import * as styles from "./PopupButton.styles";
 
-interface PopupButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PopupButtonProps extends HTMLAttributes<HTMLDivElement> {
     popupContent: ReactNode | ReactNode[];
     style?: CSSProperties;
     containerStyle?: CSSProperties;
@@ -48,9 +48,9 @@ const PopupButton: FC<PopupButtonProps> = (props) => {
 
     return (
         <div css={styles.popupContainer} className={className} style={{ ...containerStyle }}>
-            <button {...rest} ref={buttonRef}>
+            <div {...rest} ref={buttonRef}>
                 {children}
-            </button>
+            </div>
 
             <div css={styles.contents(open, position, horizontalOffset, verticalOffset)} ref={popupRef}>
                 {popupContent}

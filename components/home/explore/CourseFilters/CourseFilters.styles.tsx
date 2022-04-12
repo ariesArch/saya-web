@@ -23,6 +23,7 @@ export const dropdownWrapper = css`
     svg {
         width: 2rem;
         height: auto;
+        color: var(--color-primary);
     }
 
     &::after {

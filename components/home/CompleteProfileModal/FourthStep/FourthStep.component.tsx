@@ -2,11 +2,8 @@ import { FC } from "react";
 
 import Button from "@/components/common/Button/Button.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
+import { levelIcons } from "@/components/common/sharedData";
 import InputCard from "@/components/home/CompleteProfileModal/InputCard/InputCard.component";
-import AdvancedLevel from "@/public/icons/level-advanced.svg";
-import BeginnerLevel from "@/public/icons/level-beginner.svg";
-import IntermediateLevel from "@/public/icons/level-intermediate.svg";
-import PreintermediateLevel from "@/public/icons/level-preintermediate.svg";
 
 import * as styles from "./FourthStep.styles";
 
@@ -54,22 +51,22 @@ const levelsData = {
         {
             id: 1,
             text: "Beginner",
-            icon: <BeginnerLevel />,
+            icon: levelIcons.beginner,
         },
         {
             id: 2,
             text: "Pre-Intermediate",
-            icon: <PreintermediateLevel />,
+            icon: levelIcons.preintermediate,
         },
         {
             id: 3,
             text: "Intermediate",
-            icon: <IntermediateLevel />,
+            icon: levelIcons.intermediate,
         },
         {
             id: 4,
             text: "Advanced",
-            icon: <AdvancedLevel />,
+            icon: levelIcons.advanced,
         },
     ],
 };

@@ -37,5 +37,6 @@ export const subTexts = css`
         width: 2rem;
         height: auto;
         margin-right: 0.5rem;
+        color: var(--color-primary);
     }
 `;

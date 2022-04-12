@@ -126,7 +126,9 @@ const UserPopupButton = () => {
             open={isOpen}
             onClose={onPopupClose}
             onClick={onPopupToggle}>
-            <Avatar src={userData?.photo} badge="advanced" size="5rem" />
+            <button>
+                <Avatar src={userData?.photo} badge="advanced" size="5rem" />
+            </button>
         </PopupButton>
     );
 };
