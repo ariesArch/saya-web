@@ -1,6 +1,6 @@
-<svg id="timer" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-  <path id="Vector" d="M14.583,7.292A7.292,7.292,0,1,1,7.292,0,7.294,7.294,0,0,1,14.583,7.292Z" transform="translate(2.708 3.75)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-  <path id="Vector-2" d="M0,0V4.167" transform="translate(10 6.667)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-  <path id="Vector-3" d="M0,0H5" transform="translate(7.5 1.667)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-  <path id="Vector-4" d="M0,0H20V20H0Z" fill="none" opacity="0"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="218.308 228.384 16.639 18.854" width="16.639" height="18.854">
+  <path id="Vector" d="M14.583,7.292A7.292,7.292,0,1,1,7.292,0,7.294,7.294,0,0,1,14.583,7.292Z" transform="matrix(1, 0, 0, 1, 219.285049, 231.535812)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+  <path id="Vector-2" d="M0,0V4.167" transform="matrix(1, 0, 0, 1, 226.577056, 234.452819)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+  <path id="Vector-3" d="M0,0H5" transform="matrix(1, 0, 0, 1, 224.077056, 229.452819)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+  <path id="Vector-4" d="M0,0H20V20H0Z" fill="none" opacity="0" transform="matrix(1, 0, 0, 1, 216.577056, 227.785812)"/>
 </svg>

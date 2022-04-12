@@ -16,6 +16,7 @@ export const contents = (
     background-color: #fff;
     border-radius: 1rem;
     min-width: 20rem;
+    width: fit-content;
     height: fit-content;
     box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
     overflow: hidden;

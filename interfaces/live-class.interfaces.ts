@@ -1,4 +1,4 @@
-import { ClassLevel, Teacher } from "@/interfaces/common.interfaces";
+import { Teacher } from "@/interfaces/common.interfaces";
 
 export interface LiveEvent {
     id: number;
@@ -9,18 +9,27 @@ export interface LiveEvent {
     image_url: string;
     thumb_url: string;
     date: string;
-    old_date: string;
+    old_date: string | null;
     from: string;
-    old_from: string;
+    old_from: string | null;
     to: string;
     title: string;
     description: string;
     teacher_name: string;
     teacher: Teacher;
-    level: ClassLevel;
+    level: number;
     category: string;
-    is_live: true;
-    is_notify: true;
-    created_at: string;
+    is_live: boolean;
+    is_notify: boolean;
+    created_at?: string;
     deleted_at: null | string;
 }
+
+export interface ParsedLiveEventsWeek {
+    id: number;
+    isCurrentWeek: boolean;
+    isNextWeek: boolean;
+    days: { id: string; name: string; isToday: boolean; date: string; items: LiveEvent[] }[];
+}
+
+export type ParsedLiveEventData = ParsedLiveEventsWeek[];

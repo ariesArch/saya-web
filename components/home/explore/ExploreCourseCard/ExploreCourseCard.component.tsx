@@ -1,11 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
-import AdvancedLevel from "@/public/icons/level-advanced.svg";
-import BeginnerLevel from "@/public/icons/level-beginner.svg";
-import IntermediateLevel from "@/public/icons/level-intermediate.svg";
-import PreintermediateLevel from "@/public/icons/level-preintermediate.svg";
+import { levelIcons, Levels } from "@/components/common/sharedData";
 
 import * as styles from "./ExploreCourseCard.styles";
 
@@ -32,18 +29,11 @@ const ClassroomCourseCard: FC<Props> = ({ courseId, image, courseName, level }) 
                 {courseName}
             </a>
             <div css={styles.subTexts}>
-                {levelIcons[level.toLowerCase()] || levelIcons.pretintermediate}
+                {levelIcons[level.toLowerCase() as Levels] || levelIcons.preintermediate}
                 {level} . Tr.Sanra
             </div>
         </div>
     );
-};
-
-const levelIcons: Record<string, ReactNode> = {
-    beginner: <BeginnerLevel />,
-    preintermediate: <PreintermediateLevel />,
-    intermediate: <IntermediateLevel />,
-    advanced: <AdvancedLevel />,
 };
 
 export default ClassroomCourseCard;

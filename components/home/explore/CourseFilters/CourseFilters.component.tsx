@@ -2,11 +2,9 @@ import { ReactNode, useState } from "react";
 
 import Button from "@/components/common/Button/Button.component";
 import PopupButton from "@/components/common/PopupButton/PopupButton.component";
+import { levelIcons } from "@/components/common/sharedData";
 import { ButtonColor } from "@/interfaces/common.interfaces";
 import ArrowDownCircle from "@/public/icons/arrow-down-circle.svg";
-import AdvancedLevel from "@/public/icons/level-advanced.svg";
-import BeginnerLevel from "@/public/icons/level-beginner.svg";
-import IntermediateLevel from "@/public/icons/level-intermediate.svg";
 
 import * as styles from "./CourseFilters.styles";
 
@@ -76,9 +74,9 @@ interface LevelItem {
 }
 
 const levelItems: LevelItem[] = [
-    { id: 1, name: "Beginner", value: "beginner", icon: <BeginnerLevel /> },
-    { id: 2, name: "Intermediate", value: "intermediate", icon: <IntermediateLevel /> },
-    { id: 3, name: "Advanced", value: "advanced", icon: <AdvancedLevel /> },
+    { id: 1, name: "Beginner", value: "beginner", icon: levelIcons.beginner },
+    { id: 2, name: "Intermediate", value: "intermediate", icon: levelIcons.intermediate },
+    { id: 3, name: "Advanced", value: "advanced", icon: levelIcons.advanced },
 ];
 
 const filtersItems = [
