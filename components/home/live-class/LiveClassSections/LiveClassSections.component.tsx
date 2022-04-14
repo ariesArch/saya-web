@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import LiveClassCard from "@/components/home/live-class/LiveClassCard/LiveClassCard.component";
 import { ParsedLiveEventData } from "@/interfaces/live-class.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
-import { parseData } from "@/utils/index";
+import { parseLiveClassData } from "@/utils/index";
 
 import * as styles from "./LiveClassSections.styles";
 
@@ -15,7 +15,7 @@ const LiveClassSections = () => {
 
     useEffect(() => {
         if (events.length) {
-            setLiveClasses(parseData(events));
+            setLiveClasses(parseLiveClassData(events));
 
             if (events.find((event) => event.is_notify)) {
                 if ("Notification" in window) {

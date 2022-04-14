@@ -2,13 +2,18 @@ import { differenceInSeconds } from "date-fns";
 import cookie from "js-cookie";
 
 import { DispatchType } from "@/interfaces/redux.interfaces";
-import { UserData } from "@/interfaces/user.interfaces";
-import { USER_DATA_CHANGE } from "@/store/user/user.action-types";
+import { SubscriptionPlan, UserData } from "@/interfaces/user.interfaces";
+import { SUBSCRIPTION_PLANS_CHANGE, USER_DATA_CHANGE } from "@/store/user/user.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
 import { emptyFunction } from "@/utils/index";
 
 export const onUserDataChange = (data: UserData) => ({
     type: USER_DATA_CHANGE,
+    payload: data,
+});
+
+export const onSubscriptionPlansChange = (data: SubscriptionPlan[]) => ({
+    type: SUBSCRIPTION_PLANS_CHANGE,
     payload: data,
 });
 
@@ -101,6 +106,21 @@ export const userUpdateProfileAsync = (
         } catch (e) {
             console.log(e);
             onFailure();
+        }
+    };
+};
+
+export const onFetchSubscriptionPlansAsync = () => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const token = cookie.get("token");
+            const instance = createAxiosInstance(token);
+
+            const { data } = await instance.get(endpoints.subscriptionPlans.getSubscriptionPlans);
+
+            dispatch(onSubscriptionPlansChange(data.data as SubscriptionPlan[]));
+        } catch (e) {
+            console.log(e);
         }
     };
 };

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
 import PopupButton from "@/components/common/PopupButton/PopupButton.component";
-import { levelIcons } from "@/components/common/sharedData";
+import { levelData } from "@/components/common/sharedData";
 import ClassDetailsPopupContent from "@/components/home/live-class/ClassDetailsPopupContent/ClassDetailsPopupContent.component";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
 import NotificationIcon from "@/public/icons/notification.svg";
@@ -23,7 +23,7 @@ interface Props {
 }
 
 const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
-    const { date, from, to, image_url, title, teacher_name, is_notify } = data;
+    const { date, from, to, image_url, title, teacher_name, is_notify, level, zoom_meeting_id } = data;
     const dispatch = useDispatch();
 
     const [distance, setDistance] = useState({ hours: 0, minutes: 0, seconds: 0 });
@@ -95,15 +95,20 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
                     <div css={styles.mainTexts}>
                         <span css={styles.title}>{title}</span>
                         <div css={styles.subtitles}>
-                            {levelIcons.intermediate} Intermediate . Tr. {teacher_name}
+                            {levelData[level]?.icon} {levelData[level]?.name} . Tr. {teacher_name}
                         </div>
                     </div>
 
                     <div css={styles.buttonContainer}>
                         {status === "live" ? (
-                            <Button variant="contained" color="success">
-                                <VideoCameraIcon /> Join Now
-                            </Button>
+                            <a
+                                href={`/home/live-class/join/${zoom_meeting_id}`}
+                                target="_blank"
+                                rel="noreferrer">
+                                <Button variant="contained" color="success">
+                                    <VideoCameraIcon /> Join Now
+                                </Button>
+                            </a>
                         ) : (
                             <PopupButton
                                 popupContent={<ClassDetailsPopupContent data={data} />}

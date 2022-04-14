@@ -1,10 +1,11 @@
 import { HYDRATE } from "next-redux-wrapper";
 
 import { ActionType, UserState } from "@/interfaces/redux.interfaces";
-import { USER_DATA_CHANGE } from "@/store/user/user.action-types";
+import { SUBSCRIPTION_PLANS_CHANGE, USER_DATA_CHANGE } from "@/store/user/user.action-types";
 
 const initialState: UserState = {
     userData: {},
+    subscriptionPlans: [],
 };
 
 const userReducer = (state = initialState, action: ActionType) => {
@@ -13,6 +14,8 @@ const userReducer = (state = initialState, action: ActionType) => {
             return { ...state, userData: { ...state.userData, ...action.payload.userState.userData } };
         case USER_DATA_CHANGE:
             return { ...state, userData: action.payload };
+        case SUBSCRIPTION_PLANS_CHANGE:
+            return { ...state, subscriptionPlans: action.payload };
         default:
             return state;
     }

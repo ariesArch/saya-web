@@ -7,7 +7,7 @@ export const button = css`
     background-color: var(--color-blue);
     border-radius: 1rem;
     position: fixed;
-    bottom: 1rem;
+    bottom: 2rem;
     left: 3rem;
     z-index: 100;
     color: #fff;

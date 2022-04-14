@@ -13,3 +13,18 @@ export const levelIcons: Record<Levels, ReactNode> = {
     intermediate: <IntermediateLevel />,
     advanced: <AdvancedLevel />,
 };
+
+export const levelData: Record<number, any> = {
+    1: {
+        name: "Beginner",
+        icon: <BeginnerLevel />,
+    },
+    2: {
+        name: "Intermediate",
+        icon: <IntermediateLevel />,
+    },
+    3: {
+        name: "Advanced",
+        icon: <AdvancedLevel />,
+    },
+};
