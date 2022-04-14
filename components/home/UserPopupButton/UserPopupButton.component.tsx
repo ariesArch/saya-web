@@ -122,7 +122,7 @@ const UserPopupButton = () => {
         <PopupButton
             popupContent={<PopupContents userData={userData} onPopupClose={onPopupClose} />}
             position="right"
-            verticalOffset={-110}
+            verticalOffset={-130}
             open={isOpen}
             onClose={onPopupClose}
             onClick={onPopupToggle}>

@@ -19,3 +19,16 @@ export interface UserData {
         title: string;
     };
 }
+
+export interface SubscriptionPlan {
+    id: number;
+    name: string;
+    price: number;
+    month: number;
+    final_price: number;
+    has_promotion: boolean;
+    is_percentage: boolean;
+    promotion_title: string;
+    promotion_price: number;
+    is_popular: boolean;
+}

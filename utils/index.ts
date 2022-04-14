@@ -24,6 +24,7 @@ export const emptyFunction = () => {
     // do nothing
 };
 
+// Group items in the array that has the same property
 export function groupBy(array: Record<string, any>[], property: string) {
     const hash: Record<string, any> = {};
 
@@ -38,12 +39,22 @@ export function groupBy(array: Record<string, any>[], property: string) {
     return hash;
 }
 
-export const parseData = (data: LiveEvent[]) => {
+export const parseLiveClassData = (data: LiveEvent[]) => {
     const parsedData: ParsedLiveEventData = [];
 
     const thisWeekData: LiveEvent[] = [];
     const nextWeekData: LiveEvent[] = [];
     const upcomingWeeksData: LiveEvent[] = [];
+
+    data.forEach((item) => {
+        if (isThisISOWeek(new Date(item.date))) {
+            thisWeekData.push(item);
+        } else if (isNextWeek(new Date(item.date))) {
+            nextWeekData.push(item);
+        } else {
+            upcomingWeeksData.push(item);
+        }
+    });
 
     const parseWeekData = (data: Record<string, LiveEvent>) => {
         const weekData: any[] = [];
@@ -61,16 +72,7 @@ export const parseData = (data: LiveEvent[]) => {
         return weekData;
     };
 
-    data.forEach((item) => {
-        if (isThisISOWeek(new Date(item.date))) {
-            thisWeekData.push(item);
-        } else if (isNextWeek(new Date(item.date))) {
-            nextWeekData.push(item);
-        } else {
-            upcomingWeeksData.push(item);
-        }
-    });
-
+    // grouping events that has the same date in the week
     if (thisWeekData.length) {
         const groupedData = groupBy(thisWeekData, "date");
         parsedData.push({

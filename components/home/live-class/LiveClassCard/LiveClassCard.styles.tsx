@@ -82,6 +82,7 @@ export const subtitles = css`
         height: auto;
         color: var(--color-primary);
         margin-right: 0.5rem;
+        flex-shrink: 0;
     }
 `;
 

@@ -1,6 +1,6 @@
 import { Course, CourseItem } from "@/interfaces/courses.interfaces";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
-import { UserData } from "@/interfaces/user.interfaces";
+import { SubscriptionPlan, UserData } from "@/interfaces/user.interfaces";
 
 export interface InitialPageProps {
     pageProps: any;
@@ -22,6 +22,7 @@ export interface ActionType {
 
 export interface UserState {
     userData: UserData | Record<string, never>; // Record<string, never> means Empty Object
+    subscriptionPlans: SubscriptionPlan[];
 }
 
 export interface CoursesState {

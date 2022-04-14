@@ -94,4 +94,12 @@ export const buttonContainer = css`
         height: auto;
         margin-right: 1rem;
     }
+
+    button {
+        svg {
+            width: 2rem;
+            height: auto;
+            margin-right: 0.5rem;
+        }
+    }
 `;
