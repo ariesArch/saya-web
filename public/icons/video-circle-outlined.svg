@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <g id="video-circle" transform="translate(-300 -254)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="96.47 222.689 19.932 20.035" width="19.931" height="20.035">
+  <g id="video-circle" transform="matrix(1, 0, 0, 1, -205.687026, -33.3904)">
     <path id="Vector" d="M0,3.279V1.937C0,.206,1.224-.493,2.72.369l1.161.671,1.161.671c1.5.861,1.5,2.276,0,3.137l-1.161.671L2.72,6.19C1.224,7.051,0,6.344,0,4.621Z" transform="translate(309.371 262.721)" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
     <path id="Vector-2" d="M18,9A9,9,0,1,1,9,0,9,9,0,0,1,18,9Z" transform="translate(303.113 257.113)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
     <path id="Vector-3" d="M0,0H24V24H0Z" transform="translate(300 254)" fill="none" opacity="0"/>

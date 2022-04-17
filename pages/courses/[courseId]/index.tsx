@@ -1,12 +1,12 @@
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
-import { onCourseEnrollAsync, onSingleCourseFetchAsync } from "@/store/courses/courses.actions";
+import { onCourseEnrollAsync } from "@/store/courses/courses.actions";
 
 const CoursePage = () => {
     const router = useRouter();
@@ -17,20 +17,19 @@ const CoursePage = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const onEnroll = () => {
-        setIsLoading(true);
-        dispatch(
-            onCourseEnrollAsync(
-                courseId as string,
-                () => setIsLoading(false),
-                () => setIsLoading(false)
-            )
-        );
+    const onEnrollSuccess = () => {
+        setIsLoading(false);
+        router.push(`/courses/${courseId}/learn/lesson/${selectedCourse?.chapters[0]?.lessons[0]?.id}`);
     };
 
-    useEffect(() => {
-        dispatch(onSingleCourseFetchAsync(courseId as string));
-    }, [courseId, dispatch]);
+    const onEnrollFailure = () => {
+        setIsLoading(false);
+    };
+
+    const onEnroll = () => {
+        setIsLoading(true);
+        dispatch(onCourseEnrollAsync(courseId as string, onEnrollSuccess, onEnrollFailure));
+    };
 
     return (
         <CourseLayout>
@@ -41,7 +40,7 @@ const CoursePage = () => {
                     color="course"
                     onClick={onEnroll}
                     loading={isLoading}
-                    disabled={selectedCourse?.is_enrolled}>
+                    isDisabled={selectedCourse?.is_enrolled}>
                     {selectedCourse?.is_enrolled ? "Enrolled" : "Free Enroll"}
                 </Button>
             </div>

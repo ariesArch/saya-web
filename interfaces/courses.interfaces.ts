@@ -53,3 +53,5 @@ export interface Course {
     current_viewing: Lesson;
     similar_courses: CourseItem[];
 }
+
+export type LessonStatus = "playing" | "locked" | "done" | "incomplete";

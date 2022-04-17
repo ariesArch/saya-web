@@ -4,7 +4,7 @@ import * as styles from "./ProgressBar.styles";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     progress: number;
-    color?: "violet" | "blue";
+    color?: "violet" | "blue" | "white";
 }
 
 const ProgressBar: FC<Props> = ({ progress, color = "violet", ...rest }) => {
