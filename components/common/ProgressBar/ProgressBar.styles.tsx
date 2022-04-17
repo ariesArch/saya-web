@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const progressBar = (progress: number, color: "violet" | "blue") => css`
+export const progressBar = (progress: number, color: "violet" | "blue" | "white") => css`
     width: 100%;
     height: 0.5rem;
     border-radius: 0.25rem;
@@ -30,6 +30,15 @@ export const progressBar = (progress: number, color: "violet" | "blue") => css`
         
         &::after {
             background-color: var(--color-blue);
+        }
+    `};
+
+    ${color === "white" &&
+    `
+        background-color: rgba(255, 255, 255, 0.15);
+        
+        &::after {
+            background-color: #fff;
         }
     `};
 `;

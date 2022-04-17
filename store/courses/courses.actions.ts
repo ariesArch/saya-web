@@ -1,4 +1,5 @@
 import cookie from "js-cookie";
+import { EmptyObject } from "redux";
 
 import { Course, CourseItem } from "@/interfaces/courses.interfaces";
 import { DispatchType } from "@/interfaces/redux.interfaces";
@@ -7,6 +8,7 @@ import {
     COURSES_CHANGE,
     ENROLLED_COURSES_CHANGE,
     SELECTED_COURSE_UPDATE,
+    SET_SELECTED_COURSE,
 } from "@/store/courses/courses.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
 import { emptyFunction } from "@/utils/index";
@@ -23,6 +25,11 @@ export const onEnrolledCoursesChange = (courses: CourseItem[]) => ({
 
 export const onCourseUpdate = (course: Partial<CourseItem>) => ({
     type: COURSE_UPDATE,
+    payload: course,
+});
+
+export const onSetSelectedCourse = (course: Course | EmptyObject) => ({
+    type: SET_SELECTED_COURSE,
     payload: course,
 });
 
@@ -73,13 +80,13 @@ export const onSingleCourseFetchAsync = (
     return async (dispatch: DispatchType) => {
         const token = cookie.get("token");
 
-        dispatch(onSelectedCourseUpdate({}));
+        dispatch(onSetSelectedCourse({}));
 
         try {
             const instance = createAxiosInstance(token);
             const { data } = await instance.post(endpoints.course.getCourseDetails, { course_id: id });
 
-            dispatch(onSelectedCourseUpdate(data as Course));
+            dispatch(onSetSelectedCourse(data as Course));
             onSuccess();
         } catch (e) {
             console.log(e);

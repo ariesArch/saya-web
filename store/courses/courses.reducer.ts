@@ -4,6 +4,7 @@ import {
     COURSES_CHANGE,
     ENROLLED_COURSES_CHANGE,
     SELECTED_COURSE_UPDATE,
+    SET_SELECTED_COURSE,
 } from "@/store/courses/courses.action-types";
 
 const initialState: CoursesState = {
@@ -25,6 +26,8 @@ const coursesReducer = (state = initialState, action: ActionType) => {
                     course.id === action.payload.id ? { ...course, ...action.payload } : course
                 ),
             };
+        case SET_SELECTED_COURSE:
+            return { ...state, selectedCourse: action.payload };
         case SELECTED_COURSE_UPDATE:
             return { ...state, selectedCourse: { ...state.selectedCourse, ...action.payload } };
         default:

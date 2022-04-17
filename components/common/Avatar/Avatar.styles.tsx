@@ -6,11 +6,16 @@ export const avatar = css`
     height: fit-content;
 `;
 
-export const imgContainer = (size = "", borderColor = "") => css`
+export const imgContainer = (size = "", borderColor = "", hasBorder: boolean) => css`
     width: ${size || "6rem"};
     height: ${size || "6rem"};
     border: 2px solid transparent;
     background-color: ${borderColor || "var(--color-badge-gold)"};
+    ${!hasBorder &&
+    `
+       border: none;
+       background-color: #f5f5f5;
+    `};
     border-radius: 50%;
     position: relative;
     overflow: hidden;

@@ -13,12 +13,13 @@ interface Props {
     size?: string;
     badge?: "beginner" | "preintermediate" | "intermediate" | "advanced";
     borderColor?: string;
+    hasBorder?: boolean;
 }
 
-const Avatar: FC<Props> = ({ src, size, badge, borderColor }) => {
+const Avatar: FC<Props> = ({ src, size, badge, borderColor, hasBorder = true }) => {
     return (
         <div css={styles.avatar}>
-            <div css={styles.imgContainer(size, borderColor)}>
+            <div css={styles.imgContainer(size, borderColor, hasBorder)}>
                 <Image src={src} layout="fill" objectFit="cover" />
             </div>
             {badge && <div css={styles.badge(size)}>{badges[badge]}</div>}
