@@ -98,6 +98,7 @@ export const backBtn = css`
     border: 1px solid #dbdbdb;
     border-radius: 50%;
     display: flex;
+    justify-content: center;
     align-items: center;
     ${clickEffect};
 
@@ -106,7 +107,7 @@ export const backBtn = css`
     }
 
     svg {
-        width: 2.5rem;
+        width: 0.8rem;
         height: auto;
     }
 `;
