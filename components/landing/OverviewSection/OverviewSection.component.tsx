@@ -1,7 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 
-import { contentsVariant } from "@/components/common/FramerMotion";
 import LoginSignUpBox from "@/components/landing/LoginSignUpBox/LoginSignUpBox.component";
 import AndroidIcon from "@/public/icons/download-android.png";
 import AppleStoreIcon from "@/public/icons/download-app-store.png";
@@ -66,17 +65,31 @@ const OverviewSection = () => {
     );
 };
 
+export const contentsVariant: Variants = {
+    offscreen: {
+        y: 1500,
+    },
+    onscreen: {
+        y: 0,
+        transition: {
+            type: "spring",
+            bounce: 0.3,
+            duration: 2.5,
+        },
+    },
+};
+
 const loginBoxVariants: Variants = {
     offscreen: {
-        y: 300,
+        y: 1500,
     },
     onscreen: {
         y: 0,
         skewY: "-10deg",
         transition: {
             type: "spring",
-            bounce: 0.4,
-            duration: 1.5,
+            bounce: 0.3,
+            duration: 2.5,
         },
     },
 };

@@ -1,6 +1,7 @@
 import { Course, CourseItem } from "@/interfaces/courses.interfaces";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
-import { SubscriptionPlan, UserData } from "@/interfaces/user.interfaces";
+import { PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
+import { UserData } from "@/interfaces/user.interfaces";
 
 export interface InitialPageProps {
     pageProps: any;
@@ -11,6 +12,7 @@ export interface ReduxState {
     userState: UserState;
     coursesState: CoursesState;
     liveClassState: LiveClassState;
+    paymentState: PaymentState;
 }
 
 export type DispatchType = (action: ActionType) => ActionType;
@@ -22,7 +24,11 @@ export interface ActionType {
 
 export interface UserState {
     userData: UserData | Record<string, never>; // Record<string, never> means Empty Object
+}
+
+export interface PaymentState {
     subscriptionPlans: SubscriptionPlan[];
+    providers: PaymentProvider[];
 }
 
 export interface CoursesState {

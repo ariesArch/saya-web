@@ -105,3 +105,7 @@ export const parseLiveClassData = (data: LiveEvent[]) => {
 
     return parsedData;
 };
+
+export const formatCurrency = (value: number) => {
+    return Math.floor(value).toLocaleString("en-US");
+};
