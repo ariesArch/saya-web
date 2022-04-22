@@ -1,8 +1,10 @@
+import axios from "axios";
 import cookie from "js-cookie";
 import { EmptyObject } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 
-import { Course, CourseItem } from "@/interfaces/courses.interfaces";
-import { DispatchType } from "@/interfaces/redux.interfaces";
+import { Course, CourseItem, OTPResponse } from "@/interfaces/courses.interfaces";
+import { DispatchType, ReduxState } from "@/interfaces/redux.interfaces";
 import {
     COURSE_UPDATE,
     COURSES_CHANGE,
@@ -75,12 +77,16 @@ export const onEnrolledCoursesFetchAsync = (onSuccess = emptyFunction, onFailure
 export const onSingleCourseFetchAsync = (
     id: string,
     onSuccess = emptyFunction,
-    onFailure = emptyFunction
+    onFailure = emptyFunction,
+    resetState = true
 ) => {
-    return async (dispatch: DispatchType) => {
+    return async (dispatch: DispatchType, getState: () => ReduxState) => {
         const token = cookie.get("token");
+        const { coursesState } = getState();
 
-        dispatch(onSetSelectedCourse({}));
+        if (coursesState.selectedCourse?.id && resetState) {
+            dispatch(onSetSelectedCourse({}));
+        }
 
         try {
             const instance = createAxiosInstance(token);
@@ -100,19 +106,61 @@ export const onCourseEnrollAsync = (
     onSuccess = emptyFunction,
     onFailure = emptyFunction
 ) => {
-    return async (dispatch: DispatchType) => {
+    return async (dispatch: ThunkDispatch<any, any, any>) => {
         const token = cookie.get("token");
 
         try {
             const instance = createAxiosInstance(token);
             await instance.post(endpoints.course.enrollACourse, { course_id: courseId });
 
-            dispatch(onSelectedCourseUpdate({ is_enrolled: true }));
+            dispatch(onSingleCourseFetchAsync(courseId));
 
             onSuccess();
         } catch (e) {
             console.log(e);
             onFailure();
+        }
+    };
+};
+
+export const fetchVideoOtp = (
+    videoId: string,
+    onSuccess: (data: OTPResponse) => void = emptyFunction,
+    onFailure = emptyFunction
+) => {
+    return async () => {
+        try {
+            const { data } = await axios.get(`/api/vdocipher/otp?videoId=${videoId}`);
+
+            onSuccess(data as OTPResponse);
+        } catch (e) {
+            console.log(e);
+            onFailure();
+        }
+    };
+};
+
+interface SubmitVideoViewingBehaviorArgs {
+    vdocipher_id: string;
+    started_seeing_at: 0;
+    total_covered_seconds: 0;
+    total_played_seconds: 0;
+    last_reached_second: 0;
+    ended_seeing_at: 0;
+    total_covered_array: 0;
+}
+
+export const submitVideoViewingBehavior = (data: SubmitVideoViewingBehaviorArgs, courseId: string) => {
+    return async (dispatch: ThunkDispatch<any, any, any>) => {
+        const token = cookie.get("token");
+
+        try {
+            const instance = createAxiosInstance(token);
+            await instance.post(endpoints.survey.setVideoViewingBehavior, data);
+
+            dispatch(onSingleCourseFetchAsync(courseId, undefined, undefined, false));
+        } catch (e) {
+            console.log(e);
         }
     };
 };

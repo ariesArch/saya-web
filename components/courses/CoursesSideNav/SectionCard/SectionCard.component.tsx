@@ -17,7 +17,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const SectionCard: FC<Props> = (props) => {
     const { chapter, index, currentLessonId, ...rest } = props;
 
-    const status = ({ id, is_lock, is_practice_done }: Lesson): LessonStatus => {
+    const status = ({ id, is_lock, mark_as_done }: Lesson): LessonStatus => {
         let status: LessonStatus = "incomplete";
 
         if (id === currentLessonId) {
@@ -30,7 +30,7 @@ const SectionCard: FC<Props> = (props) => {
             return status;
         }
 
-        if (is_practice_done) {
+        if (mark_as_done) {
             status = "done";
 
             if (id === currentLessonId) {

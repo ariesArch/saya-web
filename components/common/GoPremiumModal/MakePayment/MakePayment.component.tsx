@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
 import SubscriptionPlanCard from "@/components/common/GoPremiumModal/SubscriptionPlanCard/SubscriptionPlanCard.component";
+import { PaymentProvider } from "@/interfaces/payment.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import ChevronDown from "@/public/icons/chevron-down.svg";
 import ChevronLeft from "@/public/icons/chevron-left.svg";
 import TickCircleIcon from "@/public/icons/tick-circle-inverted.svg";
-import { fetchPaymentProvidersAsync } from "@/store/payment/payment.actions";
+import { fetchPaymentProvidersAsync, onInitializePaymentAsync } from "@/store/payment/payment.actions";
 import { formatCurrency } from "@/utils/index";
 
 import * as styles from "./MakePayment.styles";
@@ -24,14 +25,63 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
         paymentProviders: state.paymentState.providers,
     }));
     const dispatch = useDispatch();
+    const allParsedProviders = parseProviders(paymentProviders);
+    const [parsedProviders, setParsedProviders] = useState<ParsedProviders[]>([]);
 
     const [selectedMethod, setSelectedMethod] = useState<string>("");
     const [discount] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
+
     const onSelectMethod = (provider: string) => setSelectedMethod(provider);
+
+    const showLessProviders = () => {
+        if (paymentProviders.length > 3) setParsedProviders(allParsedProviders.slice(0, 3));
+        if (paymentProviders.length === 3) setParsedProviders(allParsedProviders.slice(0, 2));
+        if (paymentProviders.length < 3) setParsedProviders(allParsedProviders);
+    };
+
+    const onClickSeeMore = () => {
+        if (parsedProviders.length < allParsedProviders.length) {
+            setParsedProviders(allParsedProviders);
+        } else {
+            showLessProviders();
+        }
+    };
+
+    const onClickPayNow = () => {
+        const paymentData = selectedMethod.split("-");
+
+        setIsLoading(true);
+
+        dispatch(
+            onInitializePaymentAsync(
+                {
+                    plan_id: selectedPlanId,
+                    provider: paymentData[0],
+                    method: paymentData[1],
+                    promo_code: "",
+                },
+                onPayNowSuccess,
+                onPayNowFailure
+            )
+        );
+    };
+
+    const onPayNowSuccess = (data: any) => {
+        setIsLoading(false);
+        console.log(data);
+    };
+
+    const onPayNowFailure = () => setIsLoading(false);
 
     useEffect(() => {
         dispatch(fetchPaymentProvidersAsync());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!paymentProviders.length) return;
+        showLessProviders();
+    }, [paymentProviders]);
 
     return (
         <div css={styles.container}>
@@ -50,25 +100,33 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
             <div css={styles.paymentMethods}>
                 <span css={styles.paymentHeading}>Select Payment Method</span>
 
-                {paymentProviders.map(({ provider, image_url }) => (
+                {parsedProviders.map(({ provider, image_url, type }) => (
                     <div
-                        key={provider}
-                        css={styles.paymentItem(selectedMethod === provider)}
-                        onClick={() => onSelectMethod(provider)}>
-                        {selectedMethod === provider ? (
+                        key={`${provider}-${type}`}
+                        css={styles.paymentItem(selectedMethod === `${provider}-${type}`)}
+                        onClick={() => onSelectMethod(`${provider}-${type}`)}>
+                        {selectedMethod === `${provider}-${type}` ? (
                             <TickCircleIcon />
                         ) : (
                             <Image src={image_url} width={30} height={30} />
                         )}
 
-                        <span>{provider}</span>
+                        <span>
+                            {provider} ({type})
+                        </span>
                     </div>
                 ))}
 
-                <a css={styles.moreOptions}>
-                    More Payment Options
-                    <ChevronDown />
-                </a>
+                {allParsedProviders.length >= 3 && (
+                    <a
+                        css={styles.moreOptions(parsedProviders.length < allParsedProviders.length)}
+                        onClick={onClickSeeMore}>
+                        {parsedProviders.length < allParsedProviders.length
+                            ? "More Payment Options"
+                            : "Less Payment Options"}
+                        <ChevronDown />
+                    </a>
+                )}
             </div>
 
             <div css={styles.summary}>
@@ -92,10 +150,30 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
             </div>
 
             <div css={styles.buttonContainer}>
-                <Button variant="contained">Pay Now</Button>
+                <Button
+                    variant="contained"
+                    onClick={onClickPayNow}
+                    loading={isLoading}
+                    isDisabled={!selectedMethod}>
+                    Pay Now
+                </Button>
             </div>
         </div>
     );
+};
+
+interface ParsedProviders extends PaymentProvider {
+    type: string;
+}
+
+const parseProviders = (providers: PaymentProvider[]): ParsedProviders[] => {
+    const parsedProviders: ParsedProviders[] = [];
+
+    providers.forEach((item) =>
+        item.methods.forEach((method) => method !== "PWA" && parsedProviders.push({ ...item, type: method }))
+    );
+
+    return parsedProviders;
 };
 
 export default MakePayment;

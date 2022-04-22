@@ -34,15 +34,19 @@ const ClassroomPage = () => {
                 </div>
                 <div css={coursesGrid}>
                     {!!enrolledCourses.length &&
-                        enrolledCourses.map(({ id, cover, title, course_total_finished_length }) => (
-                            <ClassroomCourseCard
-                                key={id}
-                                courseId={id}
-                                image={cover}
-                                courseName={title}
-                                progress={course_total_finished_length}
-                            />
-                        ))}
+                        enrolledCourses.map(
+                            ({ id, cover, title, course_total_finished_length, total_length_in_seconds }) => (
+                                <ClassroomCourseCard
+                                    key={id}
+                                    courseId={id}
+                                    image={cover}
+                                    courseName={title}
+                                    progress={Math.floor(
+                                        (course_total_finished_length / +total_length_in_seconds) * 100
+                                    )}
+                                />
+                            )
+                        )}
                 </div>
                 {!isFetching && !enrolledCourses.length && (
                     <div css={placeHolder}>No enrolled courses to show.</div>

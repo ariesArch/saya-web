@@ -32,6 +32,7 @@ export interface CourseItem {
     category: string;
     is_enrolled: boolean;
     course_total_finished_length: number;
+    teacher: Teacher;
 }
 
 export interface Course {
@@ -55,3 +56,8 @@ export interface Course {
 }
 
 export type LessonStatus = "playing" | "locked" | "done" | "incomplete";
+
+export interface OTPResponse {
+    otp: string;
+    playbackInfo: string;
+}

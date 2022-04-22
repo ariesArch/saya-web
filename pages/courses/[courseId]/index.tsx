@@ -1,21 +1,27 @@
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import Script from "next/script";
+import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
+import VideoPlayer from "@/components/courses/VideoPlayer/VideoPlayer.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
+import PlaylistIcon from "@/public/icons/playlist.svg";
 import { onCourseEnrollAsync } from "@/store/courses/courses.actions";
 
-const CoursePage = () => {
+const CoursesPage = () => {
     const router = useRouter();
     const { courseId } = router.query;
-
-    const dispatch = useDispatch();
     const selectedCourse = useSelector((state: ReduxState) => state.coursesState.selectedCourse);
-
+    const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
+
+    const onEnroll = () => {
+        setIsLoading(true);
+        dispatch(onCourseEnrollAsync(courseId as string, onEnrollSuccess, onEnrollFailure));
+    };
 
     const onEnrollSuccess = () => {
         setIsLoading(false);
@@ -26,24 +32,43 @@ const CoursePage = () => {
         setIsLoading(false);
     };
 
-    const onEnroll = () => {
-        setIsLoading(true);
-        dispatch(onCourseEnrollAsync(courseId as string, onEnrollSuccess, onEnrollFailure));
-    };
+    useEffect(() => {
+        if (!selectedCourse.id) return;
+
+        if (selectedCourse.is_enrolled) {
+            router.push(`/courses/${courseId}/learn/lesson/${selectedCourse.chapters[0].lessons[0].id}`);
+            return;
+        }
+    }, [courseId, dispatch, router, selectedCourse]);
 
     return (
         <CourseLayout>
             <div css={container}>
-                <h1>{courseId}</h1>
-                <Button
-                    variant="contained"
-                    color="course"
-                    onClick={onEnroll}
-                    loading={isLoading}
-                    isDisabled={selectedCourse?.is_enrolled}>
-                    {selectedCourse?.is_enrolled ? "Enrolled" : "Free Enroll"}
-                </Button>
+                <div css={playerContainer}>
+                    <VideoPlayer vdocipherId={selectedCourse?.cover} />
+                </div>
+
+                {selectedCourse?.id && (
+                    <div css={contents}>
+                        <span css={title}>{selectedCourse?.title}</span>
+
+                        <Button
+                            css={button}
+                            variant="contained"
+                            color="course"
+                            onClick={onEnroll}
+                            loading={isLoading}
+                            isDisabled={selectedCourse?.is_enrolled}>
+                            <PlaylistIcon />
+                            {selectedCourse?.is_enrolled ? "Enrolled" : "Free Enroll"}
+                        </Button>
+                    </div>
+                )}
             </div>
+
+            {!selectedCourse?.is_enrolled && (
+                <Script src="https://player.vdocipher.com/playerAssets/1.6.10/vdo.js" />
+            )}
         </CourseLayout>
     );
 };
@@ -51,18 +76,35 @@ const CoursePage = () => {
 const container = css`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    height: 80vh;
+`;
+
+const playerContainer = css`
     width: 100%;
     background-color: #fff;
     border-radius: 1rem;
-    padding: 2rem 4rem;
+    padding: 1.5rem 2rem;
+`;
 
-    h1 {
-        margin-bottom: 1rem;
+const contents = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 4rem;
+    margin-top: 2rem;
+`;
+
+const title = css`
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+`;
+
+const button = css`
+    svg {
+        width: 2rem;
+        height: auto;
+        margin-right: 0.5rem;
     }
 `;
 
-export default CoursePage;
+export default memo(CoursesPage);
