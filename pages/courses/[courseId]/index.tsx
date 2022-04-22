@@ -83,6 +83,7 @@ const playerContainer = css`
     background-color: #fff;
     border-radius: 1rem;
     padding: 1.5rem 2rem;
+    min-height: 45rem;
 `;
 
 const contents = css`
