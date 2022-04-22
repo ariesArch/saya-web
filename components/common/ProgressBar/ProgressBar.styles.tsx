@@ -11,6 +11,7 @@ export const progressBar = (progress: number, color: "violet" | "blue" | "white"
         position: absolute;
         left: 0;
         width: ${progress}%;
+        max-width: 100%;
         height: 100%;
         border-radius: 0.25rem;
     }

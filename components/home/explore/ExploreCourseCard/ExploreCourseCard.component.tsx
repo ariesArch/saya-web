@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 
 import { levelIcons, Levels } from "@/components/common/sharedData";
+import { Teacher } from "@/interfaces/common.interfaces";
 
 import * as styles from "./ExploreCourseCard.styles";
 
@@ -11,9 +12,10 @@ interface Props {
     image: string | StaticImageData;
     courseName: string;
     level: string;
+    teacher: Teacher;
 }
 
-const ClassroomCourseCard: FC<Props> = ({ courseId, image, courseName, level }) => {
+const ClassroomCourseCard: FC<Props> = ({ courseId, image, courseName, level, teacher }) => {
     const router = useRouter();
 
     const onRedirectToCourse = () => {
@@ -30,7 +32,7 @@ const ClassroomCourseCard: FC<Props> = ({ courseId, image, courseName, level }) 
             </a>
             <div css={styles.subTexts}>
                 {levelIcons[level.toLowerCase() as Levels] || levelIcons.preintermediate}
-                {level} . Tr.Sanra
+                {level} . Tr. {teacher?.name}
             </div>
         </div>
     );

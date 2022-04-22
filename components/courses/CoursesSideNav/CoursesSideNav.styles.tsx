@@ -6,7 +6,7 @@ export const container = css`
 `;
 
 export const scrollContainer = css`
-    max-height: calc(100vh - 18rem);
+    max-height: calc(100vh - 21rem);
     padding: 1rem 0.5rem 1rem;
     margin-top: 1.5rem;
 `;

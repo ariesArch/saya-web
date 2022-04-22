@@ -17,9 +17,19 @@ import * as styles from "./DescriptionCard.styles";
 const DescriptionCard = () => {
     const router = useRouter();
     const selectedCourse = useSelector((state: ReduxState) => state.coursesState.selectedCourse);
-    const { id, title, level, teacher, is_enrolled, chapters, course_total_finished_length } = selectedCourse;
+    const {
+        id,
+        title,
+        level,
+        teacher,
+        is_enrolled,
+        chapters,
+        course_total_finished_length,
+        course_total_length,
+    } = selectedCourse;
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
+    const progress = Math.floor((course_total_finished_length / course_total_length) * 100);
 
     const onEnroll = () => {
         setIsLoading(true);
@@ -60,8 +70,8 @@ const DescriptionCard = () => {
 
             {is_enrolled ? (
                 <div css={styles.progressContainer}>
-                    <span>{course_total_finished_length}% Learned</span>
-                    <ProgressBar progress={course_total_finished_length} color="white" />
+                    <span>{progress}% Learned</span>
+                    <ProgressBar progress={progress} color="white" />
                 </div>
             ) : (
                 <button css={styles.button} onClick={onEnroll} disabled={isLoading}>

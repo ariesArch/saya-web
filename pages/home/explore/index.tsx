@@ -29,13 +29,14 @@ const ExplorePage = () => {
 
                 <div css={coursesGrid}>
                     {popularCourses &&
-                        popularCourses.map(({ id, title, cover, level }) => (
+                        popularCourses.map(({ id, title, cover, level, teacher }) => (
                             <ExploreCourseCard
                                 key={id}
                                 courseId={id}
                                 image={cover}
                                 courseName={title}
                                 level={level}
+                                teacher={teacher}
                             />
                         ))}
                 </div>

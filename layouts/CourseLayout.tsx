@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SideNav from "@/components/common/SideNav/SideNav.component";
 import CoursesSideNav from "@/components/courses/CoursesSideNav/CoursesSideNav.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
-import { onSingleCourseFetchAsync } from "@/store/courses/courses.actions";
+import { onSetSelectedCourse, onSingleCourseFetchAsync } from "@/store/courses/courses.actions";
 
 interface DefaultLayoutProps {
     title?: string;
@@ -22,8 +22,19 @@ const HomeLayout = (props: DefaultLayoutProps) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (selectedCourse?.id === courseId) return;
-        dispatch(onSingleCourseFetchAsync(courseId as string));
+        if (selectedCourse?.id !== courseId) {
+            dispatch(onSingleCourseFetchAsync(courseId as string));
+        }
+
+        const routeChangeHandler = (nextRoute: string) => {
+            if (!nextRoute.includes("/courses")) {
+                dispatch(onSetSelectedCourse({}));
+            }
+        };
+
+        router.events.on("routeChangeStart", routeChangeHandler);
+
+        return () => router.events.off("routeChangeStart", routeChangeHandler);
     }, []);
 
     return (

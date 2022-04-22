@@ -27,7 +27,7 @@ const HomeLayout = (props: DefaultLayoutProps) => {
         children,
         backgroundColor = "#fff",
     } = props;
-    const { is_new_user, name } = useSelector((state: ReduxState) => state.userState.userData);
+    const { name } = useSelector((state: ReduxState) => state.userState.userData);
 
     return (
         <div css={container}>
@@ -50,7 +50,7 @@ const HomeLayout = (props: DefaultLayoutProps) => {
 
                 <GoPremiumPopupBtn />
 
-                {(is_new_user || !name) && <CompleteProfileModal />}
+                {!name && <CompleteProfileModal />}
             </div>
         </div>
     );

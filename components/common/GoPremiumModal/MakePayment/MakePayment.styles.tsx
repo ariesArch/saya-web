@@ -97,7 +97,7 @@ export const paymentHeading = css`
     margin-bottom: 1.5rem;
 `;
 
-export const moreOptions = css`
+export const moreOptions = (isUp: boolean) => css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,6 +108,9 @@ export const moreOptions = css`
         width: 1rem;
         height: auto;
         margin-left: 0.5rem;
+        transition: all 0.2s;
+
+        transform: ${!isUp ? "rotate(180deg)" : "rotate(0deg)"};
     }
 `;
 
