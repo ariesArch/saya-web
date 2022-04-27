@@ -13,16 +13,19 @@ import { fetchSubscriptionPlansAsync } from "@/store/payment/payment.actions";
 import * as styles from "./SubscriptionPlans.styles";
 
 interface Props {
+    isOpen: boolean;
     onSelectPlan: (id: number) => void;
 }
 
-const SubscriptionPlans: FC<Props> = ({ onSelectPlan }) => {
+const SubscriptionPlans: FC<Props> = ({ isOpen, onSelectPlan }) => {
     const dispatch = useDispatch();
     const plans = useSelector((state: ReduxState) => state.paymentState.subscriptionPlans);
 
     useEffect(() => {
-        dispatch(fetchSubscriptionPlansAsync());
-    }, [dispatch]);
+        if (isOpen && plans.length === 0) {
+            dispatch(fetchSubscriptionPlansAsync());
+        }
+    }, [dispatch, isOpen, plans.length]);
 
     return (
         <div css={styles.plansContainer}>

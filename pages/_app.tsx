@@ -2,8 +2,9 @@ import "@/public/css/globals.css";
 
 import cookie from "js-cookie";
 import { AppContext, AppProps } from "next/app";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
+import ReactGA from "react-ga";
 
 import LoadingIndicator from "@/components/common/LoadingIndicator/LoadingIndicator.component";
 import { InitialPageProps } from "@/interfaces/redux.interfaces";
@@ -11,11 +12,13 @@ import { UserData } from "@/interfaces/user.interfaces";
 import { wrapper } from "@/store/store";
 import { onUserDataChange } from "@/store/user/user.actions";
 import { createAxiosInstance, endpoints } from "@/utils/api";
+import { GATrackingId } from "@/utils/constants";
 import { redirectOnEitherSide } from "@/utils/index";
 
 interface Props extends InitialPageProps, AppProps {}
 
 const App = ({ Component, pageProps }: Props) => {
+    const router = useRouter();
     const [state, setState] = useState({
         isRouteChanging: false,
         loadingKey: 0,
@@ -30,12 +33,22 @@ const App = ({ Component, pageProps }: Props) => {
                 loadingKey: prevState.loadingKey ^ 1,
             }));
         };
+        if (process.env.NEXT_PUBLIC_ENVIRONMENT === "production") {
+            ReactGA.initialize(GATrackingId as string, { debug: false });
+            ReactGA.set({ page: router.pathname });
+            ReactGA.pageview(router.pathname);
+        }
 
-        const handleRouteChangeEnd = () => {
+        const handleRouteChangeEnd = (url: string) => {
             setState((prevState) => ({
                 ...prevState,
                 isRouteChanging: false,
             }));
+
+            if (process.env.NEXT_PUBLIC_ENVIRONMENT === "production") {
+                ReactGA.set({ page: url });
+                ReactGA.pageview(url);
+            }
         };
 
         Router.events.on("routeChangeStart", handleRouteChangeStart);

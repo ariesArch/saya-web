@@ -8,6 +8,6 @@ module.exports = {
         return config;
     },
     images: {
-        domains: ["saya-education.s3.amazonaws.com", "staging.saya.education"],
+        domains: ["saya-education.s3.amazonaws.com", "staging.saya.education", "backend.saya.education"],
     },
 };

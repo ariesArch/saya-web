@@ -101,6 +101,10 @@ button {
 ul, li {
   list-style: none;
 }
+
+input, textarea {
+  outline: none;
+}
 /* for flex-grow: 1 to work on body div of the DefaultLayout
   Need height: 100% on html and body tags as well
 */

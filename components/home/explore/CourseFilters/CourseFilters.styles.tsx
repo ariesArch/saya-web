@@ -43,6 +43,7 @@ export const filterItems = css`
     flex-wrap: wrap;
 
     button {
+        padding: 0.6rem 1.5rem;
         margin: 0.5rem 0;
 
         &:not(:last-child) {

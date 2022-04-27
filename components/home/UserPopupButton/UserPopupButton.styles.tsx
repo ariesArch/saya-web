@@ -15,6 +15,7 @@ export const header = css`
 export const userInfo = css`
     display: flex;
     align-items: center;
+    margin-bottom: 1rem;
 `;
 
 export const userInfoTexts = css`

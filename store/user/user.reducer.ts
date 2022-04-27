@@ -10,7 +10,10 @@ const initialState: UserState = {
 const userReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case HYDRATE:
-            return { ...state, userData: { ...state.userData, ...action.payload.userState.userData } };
+            return {
+                ...state,
+                userData: { ...state.userData, ...action.payload.userState.userData },
+            };
         case USER_DATA_CHANGE:
             return { ...state, userData: action.payload };
         default:

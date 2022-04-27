@@ -33,9 +33,13 @@ const GoPremiumModal: FC<Props> = ({ isOpen, onClose }) => {
                     </div>
                     <SimpleBar css={styles.mainContents}>
                         {!selectedPlan ? (
-                            <SubscriptionPlans onSelectPlan={onSelectPlan} />
+                            <SubscriptionPlans isOpen={isOpen} onSelectPlan={onSelectPlan} />
                         ) : (
-                            <MakePayment selectedPlanId={selectedPlan} onGoBack={() => setSelectedPlan(0)} />
+                            <MakePayment
+                                isOpen={isOpen}
+                                selectedPlanId={selectedPlan}
+                                onGoBack={() => setSelectedPlan(0)}
+                            />
                         )}
                     </SimpleBar>
                 </div>

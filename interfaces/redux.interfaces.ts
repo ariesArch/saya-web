@@ -1,4 +1,4 @@
-import { Course, CourseItem } from "@/interfaces/courses.interfaces";
+import { Category, Course, CourseItem } from "@/interfaces/courses.interfaces";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
 import { PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
@@ -29,12 +29,14 @@ export interface UserState {
 export interface PaymentState {
     subscriptionPlans: SubscriptionPlan[];
     providers: PaymentProvider[];
+    isPaymentModalOpen: boolean;
 }
 
 export interface CoursesState {
     popularCourses: CourseItem[];
     enrolledCourses: CourseItem[];
     selectedCourse: Course | Record<string, never>;
+    categories: Category[];
 }
 
 export interface LiveClassState {

@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import SimpleBar from "simplebar-react";
 
 import Button from "@/components/common/Button/Button.component";
-import FirstStep from "@/components/home/CompleteProfileModal/FirstStep/FirstStep.component";
-import FourthStep from "@/components/home/CompleteProfileModal/FourthStep/FourthStep.component";
-import SecondStep from "@/components/home/CompleteProfileModal/SecondStep/SecondStep.component";
-import ThirdStep from "@/components/home/CompleteProfileModal/ThirdStep/ThirdStep.component";
 import ChevronLeft from "@/public/icons/chevron-left.svg";
 import { userUpdateProfileAsync } from "@/store/user/user.actions";
 
 import * as styles from "./CompleteProfileModal.styles";
+import FirstStep from "./FirstStep/FirstStep.component";
+import FourthStep from "./FourthStep/FourthStep.component";
+import SecondStep from "./SecondStep/SecondStep.component";
+import ThirdStep from "./ThirdStep/ThirdStep.component";
 
 const CompleteProfileModal = () => {
     const dispatch = useDispatch();

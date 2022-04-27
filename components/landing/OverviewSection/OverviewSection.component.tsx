@@ -67,10 +67,12 @@ const OverviewSection = () => {
 
 export const contentsVariant: Variants = {
     offscreen: {
-        y: 1500,
+        opacity: 0,
+        x: -1000,
     },
     onscreen: {
-        y: 0,
+        opacity: 1,
+        x: 0,
         transition: {
             type: "spring",
             bounce: 0.3,
@@ -81,10 +83,12 @@ export const contentsVariant: Variants = {
 
 const loginBoxVariants: Variants = {
     offscreen: {
-        y: 1500,
+        opacity: 0,
+        x: 1000,
     },
     onscreen: {
-        y: 0,
+        opacity: 1,
+        x: 0,
         skewY: "-10deg",
         transition: {
             type: "spring",

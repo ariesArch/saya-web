@@ -20,6 +20,10 @@ export const imgContainer = (size = "", borderColor = "", hasBorder: boolean) =>
     position: relative;
     overflow: hidden;
 
+    & > span {
+        background-color: #f5f5f5 !important;
+    }
+
     img {
         border-radius: 50%;
         user-select: none;

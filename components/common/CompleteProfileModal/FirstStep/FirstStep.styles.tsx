@@ -11,7 +11,6 @@ export const input = css`
     padding: 1.2rem 1.2rem;
     border-radius: 1rem;
     font-size: 1.5rem;
-    outline: none;
 `;
 
 export const text = css`

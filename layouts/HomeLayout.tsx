@@ -1,20 +1,19 @@
 import { css } from "@emotion/react";
-import Head from "next/head";
 import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 
 import GoPremiumPopupBtn from "@/components/common/GoPremiumPopupBtn/GoPremiumPopupBtn.component";
 import SideNav from "@/components/common/SideNav/SideNav.component";
-import WeeklyScheduler from "@/components/common/WeeklyScheduler/WeeklyScheduler.component";
-import CompleteProfileModal from "@/components/home/CompleteProfileModal/CompleteProfileModal.component";
+// import WeeklyScheduler from "@/components/common/WeeklyScheduler/WeeklyScheduler.component";
 import HeaderNav from "@/components/home/HeaderNav/HeaderNav.component";
-import RankTable from "@/components/home/RankTable/RankTable.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
+// import RankTable from "@/components/home/RankTable/RankTable.component";
+import DefaultLayout from "@/layouts/DefaultLayout";
 
 interface DefaultLayoutProps {
     title?: string;
     children: ReactNode;
-    showSidePanel?: boolean;
+    // showSidePanel?: boolean;
     heading?: ReactNode;
     backgroundColor?: string;
 }
@@ -22,45 +21,33 @@ interface DefaultLayoutProps {
 const HomeLayout = (props: DefaultLayoutProps) => {
     const {
         title = "SAYA - The English Learning Platform",
-        showSidePanel = true,
+        // showSidePanel = true,
         heading,
         children,
         backgroundColor = "#fff",
     } = props;
-    const { name } = useSelector((state: ReduxState) => state.userState.userData);
+    const { is_premium } = useSelector((state: ReduxState) => state.userState.userData);
 
     return (
-        <div css={container}>
-            <Head>
-                <title>{title}</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </Head>
+        <DefaultLayout title={title}>
             <div css={body(backgroundColor)}>
                 <div css={contents}>
                     <SideNav />
                     <HeaderNav heading={heading} />
                     <div css={mainContents}>{children}</div>
                 </div>
-                {showSidePanel && (
-                    <div css={sidePanelContainer}>
-                        <WeeklyScheduler />
-                        <RankTable />
-                    </div>
-                )}
+                {/* {showSidePanel && ( */}
+                {/*    <div css={sidePanelContainer}> */}
+                {/*        <WeeklyScheduler /> */}
+                {/*        <RankTable /> */}
+                {/*    </div> */}
+                {/* )} */}
 
-                <GoPremiumPopupBtn />
-
-                {!name && <CompleteProfileModal />}
+                {!is_premium && <GoPremiumPopupBtn />}
             </div>
-        </div>
+        </DefaultLayout>
     );
 };
-
-const container = css`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-`;
 
 const body = (backgroundColor: string) => css`
     box-sizing: inherit;

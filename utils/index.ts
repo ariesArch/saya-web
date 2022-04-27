@@ -5,6 +5,8 @@ import Router from "next/router";
 import { LiveEvent, ParsedLiveEventData } from "@/interfaces/live-class.interfaces";
 import { isNextWeek } from "@/utils/date-time";
 
+export const generateUniqueId = (): string => `_${Math.random().toString(36).substr(2, 9)}`;
+
 export const redirectTo = (status: number, location: string, res: ServerResponse) => {
     res.writeHead(status, {
         Location: location,

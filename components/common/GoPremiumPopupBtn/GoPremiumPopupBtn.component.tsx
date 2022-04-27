@@ -1,33 +1,28 @@
-import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import GoPremiumModal from "@/components/common/GoPremiumModal/GoPremiumModal.component";
 import ChevronRightIcon from "@/public/icons/chevron-right.svg";
 import CrownIcon from "@/public/icons/crown.svg";
+import { onPaymentModalToggle } from "@/store/payment/payment.actions";
 
 import * as styles from "./GoPremiumPopupBtn.styles";
 
 const GoPremiumPopupBtn = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const onClose = () => setIsOpen(false);
-    const onOpen = () => setIsOpen(true);
+    const dispatch = useDispatch();
+    const onOpen = () => dispatch(onPaymentModalToggle(true));
 
     return (
-        <Fragment>
-            <button css={styles.button} onClick={onOpen}>
-                <div css={styles.crownIconContainer}>
-                    <CrownIcon />
+        <button css={styles.button} onClick={onOpen}>
+            <div css={styles.crownIconContainer}>
+                <CrownIcon />
+            </div>
+            <div css={styles.buttonTexts}>
+                <div css={styles.buttonTitle}>
+                    Go Premium
+                    <ChevronRightIcon />
                 </div>
-                <div css={styles.buttonTexts}>
-                    <div css={styles.buttonTitle}>
-                        Go Premium
-                        <ChevronRightIcon />
-                    </div>
-                    <span css={styles.buttonSubtitle}>30% off</span>
-                </div>
-            </button>
-
-            <GoPremiumModal isOpen={isOpen} onClose={onClose} />
-        </Fragment>
+                <span css={styles.buttonSubtitle}>30% off</span>
+            </div>
+        </button>
     );
 };
 

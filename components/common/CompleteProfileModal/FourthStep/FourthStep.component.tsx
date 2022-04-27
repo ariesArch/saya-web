@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import Button from "@/components/common/Button/Button.component";
+import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
+// import Button from "@/components/common/Button/Button.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
 import { levelIcons } from "@/components/common/sharedData";
-import InputCard from "@/components/home/CompleteProfileModal/InputCard/InputCard.component";
 
 import * as styles from "./FourthStep.styles";
 
@@ -32,15 +32,15 @@ const FourthStep: FC<Props> = ({ level, onChange }) => {
                 ))}
             </div>
 
-            <div css={styles.separator}>-or-</div>
+            {/* <div css={styles.separator}>-or-</div> */}
 
-            <div css={styles.buttonContainer}>
-                <Button variant="contained" color="light-green">
-                    Take your level test now!
-                </Button>
-            </div>
+            {/* <div css={styles.buttonContainer}> */}
+            {/*    <Button variant="contained" color="light-green"> */}
+            {/*        Take your level test now! */}
+            {/*    </Button> */}
+            {/* </div> */}
 
-            <a css={styles.link}>Get badge on profile</a>
+            {/* <a css={styles.link}>Get badge on profile</a> */}
         </InputCard>
     );
 };

@@ -3,23 +3,25 @@ import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
+import MakePaymentSummary from "@/components/common/GoPremiumModal/MakePayment/Summary/Summary.component";
+import PaymentSummary from "@/components/common/GoPremiumModal/PaymentSummary/PaymentSummary.component";
 import SubscriptionPlanCard from "@/components/common/GoPremiumModal/SubscriptionPlanCard/SubscriptionPlanCard.component";
-import { PaymentProvider } from "@/interfaces/payment.interfaces";
+import { CheckPromoResponse, PaymentProvider, PaymentResponse } from "@/interfaces/payment.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import ChevronDown from "@/public/icons/chevron-down.svg";
 import ChevronLeft from "@/public/icons/chevron-left.svg";
 import TickCircleIcon from "@/public/icons/tick-circle-inverted.svg";
 import { fetchPaymentProvidersAsync, onInitializePaymentAsync } from "@/store/payment/payment.actions";
-import { formatCurrency } from "@/utils/index";
 
 import * as styles from "./MakePayment.styles";
 
 interface Props {
+    isOpen: boolean;
     selectedPlanId: number;
     onGoBack: () => void;
 }
 
-const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
+const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
     const { selectedPlan, paymentProviders } = useSelector((state: ReduxState) => ({
         selectedPlan: state.paymentState.subscriptionPlans.find((plan) => plan.id === selectedPlanId),
         paymentProviders: state.paymentState.providers,
@@ -29,8 +31,11 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
     const [parsedProviders, setParsedProviders] = useState<ParsedProviders[]>([]);
 
     const [selectedMethod, setSelectedMethod] = useState<string>("");
-    const [discount] = useState(0);
+    const [discount, setDiscount] = useState({ amount: 0, type: "AMOUNT", promoCode: "" });
+    const [paymentResponse, setPaymentResponse] = useState<PaymentResponse | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const paymentData = selectedMethod.split("-");
 
     const onSelectMethod = (provider: string) => setSelectedMethod(provider);
 
@@ -49,8 +54,6 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
     };
 
     const onClickPayNow = () => {
-        const paymentData = selectedMethod.split("-");
-
         setIsLoading(true);
 
         dispatch(
@@ -59,7 +62,7 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
                     plan_id: selectedPlanId,
                     provider: paymentData[0],
                     method: paymentData[1],
-                    promo_code: "",
+                    promo_code: discount.promoCode,
                 },
                 onPayNowSuccess,
                 onPayNowFailure
@@ -67,23 +70,31 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
         );
     };
 
-    const onPayNowSuccess = (data: any) => {
+    const onPayNowSuccess = (data: PaymentResponse) => {
         setIsLoading(false);
-        console.log(data);
+        setPaymentResponse(data);
     };
 
     const onPayNowFailure = () => setIsLoading(false);
 
+    const onGoBackFromSummary = () => setPaymentResponse(null);
+
+    const onAddPromoCode = (data: CheckPromoResponse) => {
+        setDiscount({ amount: data.amount, type: data.type, promoCode: data.promo_code });
+    };
+
     useEffect(() => {
-        dispatch(fetchPaymentProvidersAsync());
-    }, [dispatch]);
+        if (isOpen && paymentProviders.length === 0) {
+            dispatch(fetchPaymentProvidersAsync());
+        }
+    }, [dispatch, isOpen, paymentProviders.length]);
 
     useEffect(() => {
         if (!paymentProviders.length) return;
         showLessProviders();
     }, [paymentProviders]);
 
-    return (
+    return !paymentResponse ? (
         <div css={styles.container}>
             <div css={styles.header}>
                 <a css={styles.backBtn} onClick={onGoBack}>
@@ -123,31 +134,18 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
                         onClick={onClickSeeMore}>
                         {parsedProviders.length < allParsedProviders.length
                             ? "More Payment Options"
-                            : "Less Payment Options"}
+                            : "Show Less"}
                         <ChevronDown />
                     </a>
                 )}
             </div>
 
-            <div css={styles.summary}>
-                <div css={styles.summaryText}>
-                    <span>Total</span>
-                    <span>{formatCurrency(selectedPlan?.final_price || selectedPlan?.price || 0)} MMK</span>
-                </div>
-                <div css={styles.summaryText}>
-                    <span>
-                        Discount <a>[Add coupon code]</a>
-                    </span>
-                    <span>- {formatCurrency(discount)} MMK</span>
-                </div>
-                <div css={styles.summaryText}>
-                    <span>Grand Total</span>
-                    <span>
-                        {formatCurrency((selectedPlan?.final_price || selectedPlan?.price || 0) - discount)}{" "}
-                        MMK
-                    </span>
-                </div>
-            </div>
+            <MakePaymentSummary
+                price={selectedPlan?.final_price || selectedPlan?.price || 0}
+                discount={discount}
+                planId={selectedPlanId}
+                onAddPromoCode={onAddPromoCode}
+            />
 
             <div css={styles.buttonContainer}>
                 <Button
@@ -158,6 +156,14 @@ const MakePayment: FC<Props> = ({ selectedPlanId, onGoBack }) => {
                     Pay Now
                 </Button>
             </div>
+        </div>
+    ) : (
+        <div css={styles.summaryContainer}>
+            <a css={styles.summaryBackBtn} onClick={onGoBackFromSummary}>
+                <ChevronLeft />
+                Back
+            </a>
+            <PaymentSummary {...paymentResponse} provider={paymentData[0]} method={paymentData[1]} />
         </div>
     );
 };

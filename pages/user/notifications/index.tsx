@@ -5,7 +5,7 @@ import HomeLayout from "@/layouts/HomeLayout";
 const NotificationsPage = () => {
     return (
         <HomeLayout showSidePanel={false} heading="Notifications">
-            <div css={container}>Notifications</div>
+            <div css={container}>You don&apos;t have any notifications right now.</div>
         </HomeLayout>
     );
 };
@@ -15,7 +15,7 @@ const container = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5rem;
+    font-size: 3rem;
 `;
 
 export default NotificationsPage;

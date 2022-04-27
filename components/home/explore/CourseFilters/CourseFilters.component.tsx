@@ -1,14 +1,17 @@
 import { ReactNode, useState } from "react";
+import { useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
 import PopupButton from "@/components/common/PopupButton/PopupButton.component";
 import { levelIcons } from "@/components/common/sharedData";
 import { ButtonColor } from "@/interfaces/common.interfaces";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 import ArrowDownCircle from "@/public/icons/arrow-down-circle.svg";
 
 import * as styles from "./CourseFilters.styles";
 
 const CourseFilters = () => {
+    const categories = useSelector((state: ReduxState) => state.coursesState.categories);
     const [filters, setFilters] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [levelItem, setLevelItem] = useState<LevelItem>(levelItems[1]);
@@ -52,15 +55,16 @@ const CourseFilters = () => {
             </PopupButton>
 
             <div css={styles.filterItems}>
-                {filtersItems.map(({ id, name, value, btnColor }) => (
-                    <Button
-                        key={id}
-                        variant={!filters.includes(value) ? "contained" : "outlined"}
-                        color={btnColor as ButtonColor}
-                        onClick={() => onFilterItemClick(value)}>
-                        {name}
-                    </Button>
-                ))}
+                {categories &&
+                    categories.map(({ id, name }, i) => (
+                        <Button
+                            key={id}
+                            variant={!filters.includes(id) ? "contained" : "outlined"}
+                            color={btnColors[i]}
+                            onClick={() => onFilterItemClick(id)}>
+                            {name}
+                        </Button>
+                    ))}
             </div>
         </div>
     );
@@ -79,37 +83,6 @@ const levelItems: LevelItem[] = [
     { id: 3, name: "Advanced", value: "advanced", icon: levelIcons.advanced },
 ];
 
-const filtersItems = [
-    {
-        id: 1,
-        name: "IELTS Training",
-        value: "ielts-training",
-        btnColor: "pink-red",
-    },
-    {
-        id: 2,
-        name: "Business English",
-        value: "business-english",
-        btnColor: "pink",
-    },
-    {
-        id: 3,
-        name: "Travel English",
-        value: "travel-english",
-        btnColor: "orchid",
-    },
-    {
-        id: 4,
-        name: "Grammar",
-        value: "grammar",
-        btnColor: "indigo",
-    },
-    {
-        id: 5,
-        name: "Daily Small Talk",
-        value: "daily-small-talk",
-        btnColor: "course",
-    },
-];
+const btnColors: ButtonColor[] = ["pink-red", "pink", "orchid", "indigo", "course", "rank", "default"];
 
 export default CourseFilters;
