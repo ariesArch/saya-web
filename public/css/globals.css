@@ -74,11 +74,12 @@ html {
     font-size: 81.25%; /* 13px */
   }
 }
-/*@media only screen and (max-width: 56.25em) { !*900px*!*/
-/*    html {*/
-/*        font-size: 50%; !* 8px *!*/
-/*    }*/
-/*}*/
+@media only screen and (max-width: 56.25em) {
+  /*900px*/
+    html {
+        font-size: 50%; /* 8px */
+    }
+}
 body {
   font-size: 1.4rem;
   color: #444;

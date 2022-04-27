@@ -42,10 +42,22 @@ export const date = css`
     strong {
         font-size: 2rem;
     }
+
+    @media only screen and (max-width: 1245px) {
+        font-size: 1.6rem;
+
+        strong {
+            font-size: 1.8rem;
+        }
+    }
 `;
 
 export const duration = css`
     font-size: 1.8rem;
+
+    @media only screen and (max-width: 1245px) {
+        font-size: 1.6rem;
+    }
 `;
 
 export const classTitle = css`
@@ -54,10 +66,22 @@ export const classTitle = css`
     color: var(--font-color-dark);
     flex-grow: 1;
     text-align: center;
+
+    @media only screen and (max-width: 1245px) {
+        font-size: 1.8rem;
+    }
 `;
 
 export const teacherName = css`
     font-size: 1.8rem;
+
+    @media only screen and (max-width: 1245px) {
+        font-size: 1.6rem;
+    }
+
+    @media only screen and (max-width: 1096px) {
+        display: none;
+    }
 `;
 
 export const separator = css`
@@ -77,5 +101,14 @@ export const button = css`
     svg {
         color: #fff;
         margin-right: 0.5rem;
+    }
+
+    @media only screen and (max-width: 1245px) {
+        font-size: 1.6rem;
+
+        svg {
+            width: 2rem;
+            height: auto;
+        }
     }
 `;

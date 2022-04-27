@@ -19,10 +19,15 @@ const OverviewSection = () => {
                 variants={contentsVariant}>
                 <div css={styles.textsContainer}>
                     <div css={styles.headingContainer}>
-                        <h1 css={styles.heading}>Become fluent in English.</h1>
-                        <h1 css={styles.headingTips}>
-                            <span css={styles.headingTooltip}>4 skills</span>
-                            <span css={styles.additionalTip}>+ effective learning</span>
+                        <h1 css={styles.heading}>
+                            Become fluent in{" "}
+                            <span css={styles.tipContainer}>
+                                English.
+                                <h1 css={styles.headingTips}>
+                                    <span css={styles.headingTooltip}>4 skills</span>
+                                    <span css={styles.additionalTip}>+ effective learning</span>
+                                </h1>
+                            </span>
                         </h1>
                     </div>
                     <h2 css={styles.subHeading}>

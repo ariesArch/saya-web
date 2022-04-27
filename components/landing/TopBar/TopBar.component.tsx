@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FC, memo, useEffect, useState } from "react";
 
 import { transition } from "@/components/common/FramerMotion";
+import NavBtn from "@/components/landing/TopBar/NavBtn/NavBtn.component";
 import useTopBarStatus from "@/hooks/useTopBarStatus";
 import { LandingSectionType } from "@/interfaces/common.interfaces";
 import LogoText from "@/public/icons/logo-text.png";
@@ -48,6 +49,8 @@ const TopBar: FC<Props> = ({ visibleSection }) => {
                     </li>
                 ))}
             </ul>
+
+            <NavBtn />
         </motion.div>
     );
 };

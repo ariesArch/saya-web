@@ -12,6 +12,10 @@ export const topBar = (isFloating: boolean, isHidden: boolean) => css`
     z-index: 100;
     transition: all 0.4s;
 
+    @media only screen and (max-width: 992px) {
+        padding: 3rem 3rem 1rem;
+    }
+
     ${isHidden &&
     `
     transform: translateY(-20rem);
@@ -29,6 +33,14 @@ export const topBar = (isFloating: boolean, isHidden: boolean) => css`
 export const logoContainer = css`
     width: 20rem;
 
+    @media only screen and (max-width: 695px) {
+        width: 25rem;
+    }
+
+    @media only screen and (max-width: 545px) {
+        width: 20rem;
+    }
+
     img {
         width: 100%;
     }
@@ -38,6 +50,14 @@ export const nav = css`
     display: flex;
     align-items: center;
     margin-left: 8rem;
+
+    @media only screen and (max-width: 992px) {
+        margin-left: auto;
+    }
+
+    @media only screen and (max-width: 695px) {
+        display: none;
+    }
 `;
 
 export const navItem = (isSelected: boolean) => css`
@@ -52,6 +72,14 @@ export const navItem = (isSelected: boolean) => css`
 
     &:not(:last-child) {
         margin-right: 3rem;
+
+        @media only screen and (max-width: 992px) {
+            margin-right: 1.5rem;
+        }
+
+        @media only screen and (max-width: 900px) {
+            margin-right: 2.5rem;
+        }
     }
 `;
 
