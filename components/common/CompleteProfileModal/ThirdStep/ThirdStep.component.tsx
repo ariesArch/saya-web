@@ -1,7 +1,7 @@
 import { FC } from "react";
 
+import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
-import InputCard from "@/components/home/CompleteProfileModal/InputCard/InputCard.component";
 
 import * as styles from "./ThirdStep.styles";
 

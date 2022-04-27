@@ -5,16 +5,24 @@ import Script from "next/script";
 import { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+// import Button from "@/components/common/Button/Button.component";
+import PostQuestion from "@/components/courses/PostQuestion/PostQuestion.component";
 import VideoPlayer from "@/components/courses/VideoPlayer/VideoPlayer.component";
 import { Lesson } from "@/interfaces/courses.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
+// import LampChargeIcon from "@/public/icons/lamp-charge.svg";
 
 const LessonPage = () => {
     const router = useRouter();
-    const { lessonId } = router.query;
+    const { courseId, lessonId } = router.query;
     const selectedCourse = useSelector((state: ReduxState) => state.coursesState.selectedCourse);
     const [selectedLesson, setSelectedLesson] = useState<Lesson>();
+
+    useEffect(() => {
+        if (!selectedCourse.id) return;
+        if (!selectedCourse.is_enrolled) router.push(`/courses/${courseId}`);
+    }, [courseId, router, selectedCourse.id, selectedCourse.is_enrolled]);
 
     useEffect(() => {
         if (!selectedCourse.id) return;
@@ -37,13 +45,25 @@ const LessonPage = () => {
 
                 {selectedLesson && (
                     <div css={lessonInfo}>
-                        <span css={subtitle}>
-                            Lecture: {formatDistance(0, selectedLesson?.total_length * 1000)}
-                        </span>
-                        <span css={title}>{selectedLesson?.title}</span>
+                        <div css={textsContainer}>
+                            <span css={subtitle}>
+                                Lecture: {formatDistance(0, selectedLesson?.total_length * 1000)}
+                            </span>
+                            <span css={title}>{selectedLesson?.title}</span>
+                        </div>
+                        {/* <Button css={button} variant="contained" color="success"> */}
+                        {/*    <LampChargeIcon /> */}
+                        {/*    Practice */}
+                        {/* </Button> */}
                     </div>
                 )}
             </div>
+
+            {lessonId && (
+                <div css={postQuestionContainer}>
+                    <PostQuestion lessonId={lessonId as string} />
+                </div>
+            )}
 
             <Script src="https://player.vdocipher.com/playerAssets/1.6.10/vdo.js" />
         </CourseLayout>
@@ -65,8 +85,25 @@ const playerContainer = css`
 
 export const lessonInfo = css`
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 6rem;
+`;
+
+export const textsContainer = css`
+    display: flex;
     flex-direction: column;
-    padding: 1rem 4rem;
+`;
+
+export const button = css`
+    padding: 0.6rem 1.2rem;
+    font-size: 2rem;
+
+    svg {
+        width: 2rem;
+        height: auto;
+        margin-right: 0.5rem !important;
+    }
 `;
 
 export const title = css`
@@ -76,6 +113,12 @@ export const title = css`
 
 export const subtitle = css`
     font-size: 1.5rem;
+`;
+
+export const postQuestionContainer = css`
+    padding: 2rem 0;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 2rem;
 `;
 
 export default memo(LessonPage);

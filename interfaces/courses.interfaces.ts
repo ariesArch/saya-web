@@ -57,6 +57,13 @@ export interface Course {
 
 export type LessonStatus = "playing" | "locked" | "done" | "incomplete";
 
+export interface Category {
+    id: string;
+    name: string;
+    color: string;
+    photo: string;
+}
+
 export interface OTPResponse {
     otp: string;
     playbackInfo: string;

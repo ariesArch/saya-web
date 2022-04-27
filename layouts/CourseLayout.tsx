@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SideNav from "@/components/common/SideNav/SideNav.component";
 import CoursesSideNav from "@/components/courses/CoursesSideNav/CoursesSideNav.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
+import DefaultLayout from "@/layouts/DefaultLayout";
 import { onSetSelectedCourse, onSingleCourseFetchAsync } from "@/store/courses/courses.actions";
 
 interface DefaultLayoutProps {
@@ -21,9 +21,15 @@ const HomeLayout = (props: DefaultLayoutProps) => {
     const selectedCourse = useSelector((state: ReduxState) => state.coursesState.selectedCourse);
     const dispatch = useDispatch();
 
+    const onSingleCourseFetchFailure = (e: any) => {
+        if (e?.response.status === 404) router.push("/home/classroom");
+    };
+
     useEffect(() => {
+        if (!courseId) return () => router.events.off("routeChangeComplete", routeChangeHandler);
+
         if (selectedCourse?.id !== courseId) {
-            dispatch(onSingleCourseFetchAsync(courseId as string));
+            dispatch(onSingleCourseFetchAsync(courseId as string, undefined, onSingleCourseFetchFailure));
         }
 
         const routeChangeHandler = (nextRoute: string) => {
@@ -32,17 +38,13 @@ const HomeLayout = (props: DefaultLayoutProps) => {
             }
         };
 
-        router.events.on("routeChangeStart", routeChangeHandler);
+        router.events.on("routeChangeComplete", routeChangeHandler);
 
-        return () => router.events.off("routeChangeStart", routeChangeHandler);
+        return () => router.events.off("routeChangeComplete", routeChangeHandler);
     }, []);
 
     return (
-        <div css={container}>
-            <Head>
-                <title>{title}</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </Head>
+        <DefaultLayout title={title}>
             <div css={body}>
                 <div css={contents}>
                     <SideNav />
@@ -52,16 +54,9 @@ const HomeLayout = (props: DefaultLayoutProps) => {
                     <CoursesSideNav />
                 </div>
             </div>
-        </div>
+        </DefaultLayout>
     );
 };
-
-const container = css`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: #f9f9f9;
-`;
 
 const body = css`
     box-sizing: inherit;

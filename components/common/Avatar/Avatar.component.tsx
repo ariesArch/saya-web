@@ -5,6 +5,7 @@ import AdvancedBadge from "@/public/icons/profile-badge-advanced.svg";
 import BeginnerBadge from "@/public/icons/profile-badge-beginner.svg";
 import IntermediateBadge from "@/public/icons/profile-badge-intermediate.svg";
 import PreintermediateBadge from "@/public/icons/profile-badge-preintermediate.svg";
+import PlaceholderImg from "@/public/images/no_photo.png";
 
 import * as styles from "./Avatar.styles";
 
@@ -20,7 +21,7 @@ const Avatar: FC<Props> = ({ src, size, badge, borderColor, hasBorder = true }) 
     return (
         <div css={styles.avatar}>
             <div css={styles.imgContainer(size, borderColor, hasBorder)}>
-                <Image src={src} layout="fill" objectFit="cover" />
+                <Image src={src || PlaceholderImg} layout="fill" objectFit="cover" />
             </div>
             {badge && <div css={styles.badge(size)}>{badges[badge]}</div>}
         </div>

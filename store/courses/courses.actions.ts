@@ -3,13 +3,14 @@ import cookie from "js-cookie";
 import { EmptyObject } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
-import { Course, CourseItem, OTPResponse } from "@/interfaces/courses.interfaces";
+import { Category, Course, CourseItem, OTPResponse } from "@/interfaces/courses.interfaces";
 import { DispatchType, ReduxState } from "@/interfaces/redux.interfaces";
 import {
     COURSE_UPDATE,
     COURSES_CHANGE,
     ENROLLED_COURSES_CHANGE,
     SELECTED_COURSE_UPDATE,
+    SET_CATEGORIES,
     SET_SELECTED_COURSE,
 } from "@/store/courses/courses.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
@@ -40,13 +41,20 @@ export const onSelectedCourseUpdate = (course: Partial<Course>) => ({
     payload: course,
 });
 
+export const onSetCategories = (categories: Category[]) => ({
+    type: SET_CATEGORIES,
+    payload: categories,
+});
+
 export const onCoursesFetchAsync = (onSuccess = emptyFunction, onFailure = emptyFunction) => {
     return async (dispatch: DispatchType) => {
         const token = cookie.get("token");
         try {
             const instance = createAxiosInstance(token);
+            const categories = await instance.get(endpoints.category.getAllCategories);
             const { data } = await instance.get(endpoints.course.getPopularCourses);
 
+            dispatch(onSetCategories(categories.data.data as Category[]));
             dispatch(onCoursesChange(data?.data as CourseItem[]));
 
             onSuccess();
@@ -77,7 +85,7 @@ export const onEnrolledCoursesFetchAsync = (onSuccess = emptyFunction, onFailure
 export const onSingleCourseFetchAsync = (
     id: string,
     onSuccess = emptyFunction,
-    onFailure = emptyFunction,
+    onFailure: (e: any) => void = emptyFunction,
     resetState = true
 ) => {
     return async (dispatch: DispatchType, getState: () => ReduxState) => {
@@ -96,7 +104,7 @@ export const onSingleCourseFetchAsync = (
             onSuccess();
         } catch (e) {
             console.log(e);
-            onFailure();
+            onFailure(e);
         }
     };
 };
@@ -161,6 +169,41 @@ export const submitVideoViewingBehavior = (data: SubmitVideoViewingBehaviorArgs,
             dispatch(onSingleCourseFetchAsync(courseId, undefined, undefined, false));
         } catch (e) {
             console.log(e);
+        }
+    };
+};
+
+export const fetchCategoriesAsync = () => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+
+        try {
+            const instance = createAxiosInstance(token);
+            const { data } = await instance.get(endpoints.category.getAllCategories);
+
+            dispatch(onSetCategories(data as Category[]));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const onSubmitStudentQuestion = (
+    form: { question: string; lesson_id: string },
+    onSuccess = emptyFunction,
+    onFailure = emptyFunction
+) => {
+    return async () => {
+        const token = cookie.get("token");
+
+        try {
+            const instance = createAxiosInstance(token);
+            await instance.post(endpoints.student.storeStudentQuestions, form);
+
+            onSuccess();
+        } catch (e) {
+            console.log(e);
+            onFailure();
         }
     };
 };

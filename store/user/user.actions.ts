@@ -3,11 +3,12 @@ import cookie from "js-cookie";
 
 import { DispatchType } from "@/interfaces/redux.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
+import { onEnrolledCoursesChange } from "@/store/courses/courses.actions";
 import { USER_DATA_CHANGE } from "@/store/user/user.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
 import { emptyFunction } from "@/utils/index";
 
-export const onUserDataChange = (data: UserData) => ({
+export const onUserDataChange = (data: UserData | Record<string, any>) => ({
     type: USER_DATA_CHANGE,
     payload: data,
 });
@@ -60,7 +61,7 @@ export const userLogoutAsync = (
     onSuccess = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {
-    return async () => {
+    return async (dispatch: DispatchType) => {
         try {
             const token = cookie.get("token");
 
@@ -71,6 +72,9 @@ export const userLogoutAsync = (
             cookie.remove("token");
 
             onSuccess();
+
+            dispatch(onUserDataChange({}));
+            dispatch(onEnrolledCoursesChange([]));
         } catch (e) {
             console.log(e);
             onFailure(e);
@@ -83,6 +87,7 @@ export const userUpdateProfileAsync = (
         name: string;
         email: string;
         gender: string;
+        image?: string;
     },
     onSuccess: () => void = emptyFunction,
     onFailure: () => void = emptyFunction
@@ -91,13 +96,33 @@ export const userUpdateProfileAsync = (
         try {
             const token = cookie.get("token");
 
+            // image file object can only be sent by appending to formData
+            const formData = new FormData();
+            if (form.name) formData.append("name", form.name);
+            if (form.email) formData.append("email", form.email);
+            if (form.gender) formData.append("gender", form.gender);
+            if (form.image) formData.append("image", form.image);
+
             const instance = createAxiosInstance(token);
 
-            const { data } = await instance.post(endpoints.user.updateProfile, form);
+            const { data } = await instance.post(endpoints.user.updateProfile, formData);
 
             onSuccess();
 
-            dispatch(onUserDataChange(data as UserData));
+            const changedData: Partial<UserData> = {
+                name: form.name,
+                gender: form.gender as "male" | "female",
+                email: form.email,
+            };
+            if (form.image) changedData.photo = URL.createObjectURL(form.image);
+
+            // response data is sometimes not correct, especially for the image
+            dispatch(
+                onUserDataChange({
+                    ...data,
+                    ...changedData,
+                } as UserData)
+            );
         } catch (e) {
             console.log(e);
             onFailure();

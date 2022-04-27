@@ -24,7 +24,7 @@ export const input = (color: RadioColor, isLabel: boolean, size = "2.3rem") => c
         cursor: pointer;
         width: ${size};
         height: ${size};
-        border: 2px solid #f5f5f5;
+        border: 2px solid #eee;
         border-radius: 50%;
         display: grid;
         place-content: center;

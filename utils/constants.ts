@@ -10,6 +10,16 @@ export const siteURL =
         ? process.env.NEXT_PUBLIC_SITE_URL_DEVELOPMENT
         : process.env.NEXT_PUBLIC_SITE_URL_PRODUCTION;
 
+export const apiUrl =
+    process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
+        ? process.env.NEXT_PUBLIC_API_DEVELOPMENT
+        : process.env.NEXT_PUBLIC_API_PRODUCTION;
+
+export const appToken =
+    process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
+        ? process.env.NEXT_PUBLIC_APP_TOKEN_DEVELOPMENT
+        : process.env.NEXT_PUBLIC_APP_TOKEN_PRODUCTION;
+
 export const facebookLink = "https://facebook.com/sayathelearningapp";
 export const linkedInLink = "https://linkedin.com";
 export const youtubeLink = "https://www.youtube.com/";
@@ -19,3 +29,5 @@ export const zoomSdkSecretKey = process.env.NEXT_PUBLIC_ZOOM_API_SECRET_KEY;
 export const zoomDecryptionKey = process.env.NEXT_PUBLIC_ZOOM_DECRYPTION_KEY;
 
 export const vdocipherSecretKey = process.env.NEXT_PUBLIC_VDOCIPHER_API_SECRET_KEY;
+
+export const GATrackingId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;

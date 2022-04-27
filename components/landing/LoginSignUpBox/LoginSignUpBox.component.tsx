@@ -1,7 +1,7 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ChangeEvent, memo, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, memo, useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 import { useDispatch } from "react-redux";
 
@@ -67,7 +67,8 @@ const LoginSignUpBox = () => {
         }
     };
 
-    const onClickNext = () => {
+    const onClickNext = (e: FormEvent) => {
+        e.preventDefault();
         setIsLoading(true);
 
         if (step === "phone") {
@@ -108,7 +109,7 @@ const LoginSignUpBox = () => {
     }, [expirationTimer]);
 
     return (
-        <div css={styles.container}>
+        <form css={styles.container} onSubmit={onClickNext}>
             <motion.div
                 css={styles.inputContainer}
                 variants={phoneInputVariants}
@@ -134,9 +135,9 @@ const LoginSignUpBox = () => {
                 initial="exit">
                 <div css={styles.optTextsContainer}>
                     <div css={styles.optHeader}>
-                        <button css={styles.backBtn} onClick={onGoBack}>
+                        <a css={styles.backBtn} onClick={onGoBack}>
                             <ArrowLeft />
-                        </button>
+                        </a>
                         <span css={styles.optHeading}>Enter OTP</span>
                     </div>
                     <span css={styles.optSubHeading}>
@@ -171,12 +172,12 @@ const LoginSignUpBox = () => {
                 css={styles.button}
                 variant="contained"
                 color="success"
-                onClick={onClickNext}
+                type="submit"
                 loading={isLoading}
                 isDisabled={step === "phone" ? phone.length < 7 : otp.length < 6}>
                 {step === "phone" ? "Next" : "Login"}
             </Button>
-        </div>
+        </form>
     );
 };
 

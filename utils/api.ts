@@ -1,11 +1,6 @@
 import axios from "axios";
 
-export const apiUrl =
-    process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
-        ? process.env.NEXT_PUBLIC_API_DEVELOPMENT
-        : process.env.NEXT_PUBLIC_API_PRODUCTION;
-
-export const appToken = process.env.NEXT_PUBLIC_APP_TOKEN;
+import { apiUrl, appToken } from "@/utils/constants";
 
 export const createAxiosInstance = (token = "") => {
     return axios.create({

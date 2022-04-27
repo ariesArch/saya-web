@@ -1,0 +1,6 @@
+<svg id="close-circle" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52.1 52">
+  <path id="Vector" d="M21.16,42.319A21.16,21.16,0,1,0,0,21.16,21.222,21.222,0,0,0,21.16,42.319Z" transform="translate(4.84 4.84)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path id="Vector-2" data-name="Vector" d="M0,13.7,13.7,0" transform="translate(19.151 19.151)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path id="Vector-3" data-name="Vector" d="M13.7,13.7,0,0" transform="translate(19.151 19.151)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path id="Vector-4" data-name="Vector" d="M0,0H52V52H0Z" fill="none" opacity="0"/>
+</svg>
