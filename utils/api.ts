@@ -60,6 +60,7 @@ export const endpoints = {
     },
     course: {
         getPopularCourses: "/popularCourses",
+        getPopularCoursesWithFilter: "/course-filter",
         enrollACourse: "/enrollCourse",
         getCourseDetails: "/course",
     },

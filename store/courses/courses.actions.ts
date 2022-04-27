@@ -51,10 +51,30 @@ export const onCoursesFetchAsync = (onSuccess = emptyFunction, onFailure = empty
         const token = cookie.get("token");
         try {
             const instance = createAxiosInstance(token);
-            const categories = await instance.get(endpoints.category.getAllCategories);
             const { data } = await instance.get(endpoints.course.getPopularCourses);
 
-            dispatch(onSetCategories(categories.data.data as Category[]));
+            dispatch(onCoursesChange(data?.data as CourseItem[]));
+
+            onSuccess();
+        } catch (e) {
+            console.log(e);
+
+            onFailure();
+        }
+    };
+};
+
+export const onCoursesFilterAsync = (
+    filters: { level: string; category: string[] } = { level: "all", category: ["business-english"] },
+    onSuccess = emptyFunction,
+    onFailure = emptyFunction
+) => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+        try {
+            const instance = createAxiosInstance(token);
+            const { data } = await instance.post(endpoints.course.getPopularCoursesWithFilter, filters);
+
             dispatch(onCoursesChange(data?.data as CourseItem[]));
 
             onSuccess();
@@ -181,7 +201,7 @@ export const fetchCategoriesAsync = () => {
             const instance = createAxiosInstance(token);
             const { data } = await instance.get(endpoints.category.getAllCategories);
 
-            dispatch(onSetCategories(data as Category[]));
+            dispatch(onSetCategories(data?.data as Category[]));
         } catch (e) {
             console.log(e);
         }

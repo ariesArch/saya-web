@@ -7,13 +7,14 @@ import ExploreCourseCard from "@/components/home/explore/ExploreCourseCard/Explo
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import HomeLayout from "@/layouts/HomeLayout";
 import CertificateBadge from "@/public/icons/certificate-badge.svg";
-import { onCoursesFetchAsync } from "@/store/courses/courses.actions";
+import { fetchCategoriesAsync, onCoursesFetchAsync } from "@/store/courses/courses.actions";
 
 const ExplorePage = () => {
     const dispatch = useDispatch();
     const { popularCourses } = useSelector((state: ReduxState) => state.coursesState);
 
     useEffect(() => {
+        dispatch(fetchCategoriesAsync());
         dispatch(onCoursesFetchAsync());
     }, [dispatch]);
 
