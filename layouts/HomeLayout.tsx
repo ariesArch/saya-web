@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 import { useSelector } from "react-redux";
 
 import GoPremiumPopupBtn from "@/components/common/GoPremiumPopupBtn/GoPremiumPopupBtn.component";
@@ -13,7 +13,7 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 interface DefaultLayoutProps {
     title?: string;
     children: ReactNode;
-    // showSidePanel?: boolean;
+    showSidePanel?: boolean;
     heading?: ReactNode;
     backgroundColor?: string;
 }
@@ -21,7 +21,7 @@ interface DefaultLayoutProps {
 const HomeLayout = (props: DefaultLayoutProps) => {
     const {
         title = "SAYA - The English Learning Platform",
-        // showSidePanel = true,
+        showSidePanel = true,
         heading,
         children,
         backgroundColor = "#fff",
@@ -36,12 +36,13 @@ const HomeLayout = (props: DefaultLayoutProps) => {
                     <HeaderNav heading={heading} />
                     <div css={mainContents}>{children}</div>
                 </div>
-                {/* {showSidePanel && ( */}
-                {/*    <div css={sidePanelContainer}> */}
-                {/*        <WeeklyScheduler /> */}
-                {/*        <RankTable /> */}
-                {/*    </div> */}
-                {/* )} */}
+                {showSidePanel && (
+                    <Fragment />
+                    // <div css={sidePanelContainer}>
+                    //     <WeeklyScheduler />
+                    //     <RankTable />
+                    // </div>
+                )}
 
                 {!is_premium && <GoPremiumPopupBtn />}
             </div>
