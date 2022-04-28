@@ -16,10 +16,16 @@ export const closeButton = css`
     position: absolute;
     top: 5rem;
     left: 8rem;
+    z-index: 1000;
 
     @media only screen and (max-width: 745px) {
         left: unset;
         right: 5rem;
+    }
+
+    @media only screen and (max-width: 495px) {
+        top: 2rem;
+        right: 2rem;
     }
 
     svg {
