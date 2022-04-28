@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 export const container = (status: string) => css`
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 100%;
     border-radius: 1.4rem;
     background-color: #f7f7f7;
 

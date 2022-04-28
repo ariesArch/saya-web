@@ -6,6 +6,11 @@ export const container = css`
     width: fit-content;
     padding-left: 10rem;
     padding-bottom: 2rem;
+
+    @media only screen and (max-width: 745px) {
+        margin: 0 auto;
+        padding-left: 0;
+    }
 `;
 
 export const header = css`

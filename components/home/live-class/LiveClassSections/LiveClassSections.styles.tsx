@@ -6,6 +6,10 @@ export const container = css`
     flex-direction: column;
     padding-top: 2rem;
     padding-left: 5rem;
+
+    @media only screen and (max-width: 1245px) {
+        padding-left: 2rem;
+    }
 `;
 
 export const weekSection = css`
@@ -23,6 +27,10 @@ export const section = css`
     display: flex;
     position: relative;
     padding-left: 7rem;
+
+    @media only screen and (max-width: 545px) {
+        padding-left: 5rem;
+    }
 
     &:not(:last-child) {
         border-left: 2px dashed #8b8b8b;
@@ -63,6 +71,16 @@ export const subHeading = css``;
 export const grid = css`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 1.5rem;
+    column-gap: 2.5rem;
     row-gap: 2rem;
+    width: 100%;
+
+    @media only screen and (max-width: 1245px) {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+    }
+
+    @media only screen and (max-width: 1075px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;

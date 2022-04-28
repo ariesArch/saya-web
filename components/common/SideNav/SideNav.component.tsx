@@ -1,5 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "react-responsive";
 
 import UserPopupButton from "@/components/home/UserPopupButton/UserPopupButton.component";
 import HomeIcon from "@/public/icons/home.svg";
@@ -10,6 +11,7 @@ import * as styles from "./SideNav.styles";
 
 const SideNav = () => {
     const router = useRouter();
+    const isMobile = useMediaQuery({ maxWidth: 692 });
 
     const onItemClick = (route: string) => {
         router.push(route);
@@ -32,7 +34,11 @@ const SideNav = () => {
                 </motion.a>
             ))}
             <div css={styles.avatarContainer}>
-                <UserPopupButton />
+                <UserPopupButton
+                    position={isMobile ? "top" : "right"}
+                    verticalOffset={isMobile ? 10 : -70}
+                    horizontalOffset={isMobile ? -240 : 0}
+                />
             </div>
         </div>
     );

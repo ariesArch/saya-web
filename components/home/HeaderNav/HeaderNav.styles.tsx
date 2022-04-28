@@ -10,6 +10,10 @@ export const headerNav = css`
     z-index: 50;
     background-color: #fff;
     padding-left: 8rem;
+
+    @media only screen and (max-width: 692px) {
+        padding-left: 2rem;
+    }
 `;
 
 export const navItem = (isSingle?: boolean) => css`
@@ -18,6 +22,10 @@ export const navItem = (isSingle?: boolean) => css`
     font-weight: 700;
     padding-top: 1rem;
     padding-bottom: 1rem;
+
+    @media only screen and (max-width: 495px) {
+        font-size: 4rem;
+    }
 
     &:not(:last-child) {
         margin-right: 4rem;

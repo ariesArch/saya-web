@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import "simplebar/dist/simplebar.min.css";
+
 import { FC, useState } from "react";
 import SimpleBar from "simplebar-react";
 

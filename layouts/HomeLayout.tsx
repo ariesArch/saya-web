@@ -64,6 +64,10 @@ export const contents = css`
     border-right: 1px solid #eeeeee;
     display: flex;
     flex-direction: column;
+
+    @media only screen and (max-width: 692px) {
+        padding-left: 0;
+    }
 `;
 
 export const mainContents = css`
@@ -71,6 +75,10 @@ export const mainContents = css`
     flex-direction: column;
     padding: 2rem 4rem 2rem 7rem;
     flex-grow: 1;
+
+    @media only screen and (max-width: 692px) {
+        padding: 2rem;
+    }
 `;
 
 export const sidePanelContainer = css`

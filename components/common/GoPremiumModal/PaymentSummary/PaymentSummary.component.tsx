@@ -67,9 +67,9 @@ const PaymentSummary: FC<Props> = ({ value, type, expired_date_time, provider, m
 
                     <span css={styles.warning}>Scan before it expires</span>
                 </div>
-                <div css={styles.buttonsContainer}>
-                    <Button color="primary">Resend code</Button>
-                </div>
+                {/* <div css={styles.buttonsContainer}> */}
+                {/*    <Button color="primary">Resend code</Button> */}
+                {/* </div> */}
             </div>
 
             <p css={styles.instructions}>

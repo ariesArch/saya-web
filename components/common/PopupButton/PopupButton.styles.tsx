@@ -30,8 +30,8 @@ export const contents = (
     `
         top: auto;
         bottom: calc(100% + 1rem + ${verticalOffset}px);
-        left: calc(0px + ${horizontalOffset}px;
-        right: 0;)
+        left: calc(0px + ${horizontalOffset}px);
+        right: 0;
     `}
   
     ${position === "bottom" &&

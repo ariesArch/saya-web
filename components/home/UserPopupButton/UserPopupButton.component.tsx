@@ -24,6 +24,35 @@ import { userLogoutAsync } from "@/store/user/user.actions";
 
 import * as styles from "./UserPopupButton.styles";
 
+interface Props {
+    position?: "top" | "bottom" | "left" | "right";
+    horizontalOffset?: number;
+    verticalOffset?: number;
+}
+
+const UserPopupButton: FC<Props> = ({ position = "right", verticalOffset = -70, horizontalOffset = 0 }) => {
+    const userData = useSelector((state: ReduxState) => state.userState.userData);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const onPopupToggle = () => setIsOpen(!isOpen);
+    const onPopupClose = () => setIsOpen(false);
+
+    return (
+        <PopupButton
+            popupContent={<PopupContents userData={userData} onPopupClose={onPopupClose} />}
+            position={position}
+            horizontalOffset={horizontalOffset}
+            verticalOffset={verticalOffset}
+            open={isOpen}
+            onClose={onPopupClose}
+            onClick={onPopupToggle}>
+            <button>
+                <Avatar src={userData?.photo} size="5rem" hasBorder={false} />
+            </button>
+        </PopupButton>
+    );
+};
+
 interface PopupContentsProps {
     userData: UserData | Record<string, never>;
     onPopupClose: () => void;
@@ -131,28 +160,6 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
                 </a>
             ))}
         </div>
-    );
-};
-
-const UserPopupButton = () => {
-    const userData = useSelector((state: ReduxState) => state.userState.userData);
-    const [isOpen, setIsOpen] = useState(false);
-
-    const onPopupToggle = () => setIsOpen(!isOpen);
-    const onPopupClose = () => setIsOpen(false);
-
-    return (
-        <PopupButton
-            popupContent={<PopupContents userData={userData} onPopupClose={onPopupClose} />}
-            position="right"
-            verticalOffset={-70}
-            open={isOpen}
-            onClose={onPopupClose}
-            onClick={onPopupToggle}>
-            <button>
-                <Avatar src={userData?.photo} size="5rem" hasBorder={false} />
-            </button>
-        </PopupButton>
     );
 };
 

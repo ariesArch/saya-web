@@ -2,6 +2,7 @@ import { format, intervalToDuration } from "date-fns";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 
 import Button from "@/components/common/Button/Button.component";
 import PopupButton from "@/components/common/PopupButton/PopupButton.component";
@@ -25,6 +26,7 @@ interface Props {
 const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
     const { date, from, to, image_url, title, teacher_name, is_notify, level, zoom_meeting_id } = data;
     const dispatch = useDispatch();
+    const isTablet = useMediaQuery({ maxWidth: 992 });
 
     const [distance, setDistance] = useState({ hours: 0, minutes: 0, seconds: 0 });
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -114,8 +116,8 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
                                 popupContent={<ClassDetailsPopupContent data={data} />}
                                 open={isPopupOpen}
                                 onClose={onPopupClose}
-                                horizontalOffset={-200}
-                                verticalOffset={-220}
+                                horizontalOffset={isTablet ? -180 : -200}
+                                verticalOffset={isTablet ? -80 : -220}
                                 onClick={onPopupToggle}>
                                 <Button variant="contained" color="primary">
                                     Class details

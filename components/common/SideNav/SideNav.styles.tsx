@@ -12,6 +12,18 @@ export const sideNav = css`
     height: 100vh;
     z-index: 100;
     background-color: #fff;
+
+    @media only screen and (max-width: 692px) {
+        bottom: 0;
+        top: unset;
+        right: 0;
+        flex-direction: row;
+        height: auto;
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        justify-content: center;
+    }
 `;
 
 export const navButton = css`
@@ -24,6 +36,11 @@ export const navButton = css`
 
     &:not(:last-child) {
         margin-bottom: 2rem;
+
+        @media only screen and (max-width: 692px) {
+            margin-bottom: 0;
+            margin-right: 4rem;
+        }
     }
 
     &:hover {

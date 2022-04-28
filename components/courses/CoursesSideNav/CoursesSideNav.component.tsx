@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import "simplebar/src/simplebar.css";
+import "simplebar/dist/simplebar.min.css";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
