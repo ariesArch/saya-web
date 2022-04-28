@@ -4,6 +4,10 @@ export const plansContainer = css`
     display: flex;
     flex-direction: column;
     padding-bottom: 2rem;
+
+    @media only screen and (max-width: 495px) {
+        align-items: center;
+    }
 `;
 
 export const header = css`
@@ -30,6 +34,10 @@ export const headerIcon = css`
 export const heading = css`
     font-size: 4.5rem;
     font-weight: 700;
+
+    @media only screen and (max-width: 495px) {
+        font-size: 3.5rem;
+    }
 `;
 
 export const descriptions = css`
@@ -55,6 +63,14 @@ export const descriptionItem = css`
     &:not(:last-child) {
         margin-bottom: 1rem;
     }
+
+    @media only screen and (max-width: 495px) {
+        font-size: 1.5rem;
+
+        svg {
+            width: 2rem;
+        }
+    }
 `;
 
 export const cardsContainer = css`
@@ -70,5 +86,13 @@ export const cardsContainer = css`
 
     @media only screen and (max-width: 545px) {
         margin-top: 5rem;
+    }
+
+    @media only screen and (max-width: 495px) {
+        grid-template-columns: repeat(1, 1fr);
+        height: calc(100vh - 25rem);
+        overflow-y: auto;
+        padding-top: 5rem;
+        margin-top: 2rem;
     }
 `;
