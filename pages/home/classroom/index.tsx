@@ -79,6 +79,18 @@ const coursesGrid = css`
     grid-template-columns: repeat(4, 1fr);
     column-gap: 2rem;
     row-gap: 3rem;
+
+    @media only screen and (max-width: 1245px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media only screen and (max-width: 692px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and (max-width: 478px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;
 
 const placeHolder = css`

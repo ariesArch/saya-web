@@ -63,4 +63,12 @@ export const cardsContainer = css`
     row-gap: 2rem;
     column-gap: 2rem;
     margin-top: 5rem;
+
+    @media only screen and (max-width: 745px) {
+        margin-top: 8rem;
+    }
+
+    @media only screen and (max-width: 545px) {
+        margin-top: 5rem;
+    }
 `;

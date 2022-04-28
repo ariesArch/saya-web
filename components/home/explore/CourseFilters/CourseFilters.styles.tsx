@@ -3,6 +3,11 @@ import { css } from "@emotion/react";
 export const courseFilters = css`
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: 775px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 `;
 
 export const dropdownWrapper = css`
@@ -14,6 +19,10 @@ export const dropdownWrapper = css`
     align-items: center;
     border: 1px solid var(--color-primary);
     border-radius: 2.5rem;
+
+    @media only screen and (max-width: 775px) {
+        margin-bottom: 1rem;
+    }
 
     span {
         margin-left: 0.5rem;

@@ -19,6 +19,14 @@ const container = css`
     height: 100%;
     display: flex;
     padding: 3rem 10% 0;
+
+    @media only screen and (max-width: 692px) {
+        padding: 3rem 5rem 0;
+    }
+
+    @media only screen and (max-width: 545px) {
+        padding: 3rem 0 0;
+    }
 `;
 
 const card = css`
@@ -28,6 +36,11 @@ const card = css`
     flex-grow: 1;
     margin: 0 auto;
     border: 1px solid #eee;
+    height: fit-content;
+
+    @media only screen and (max-width: 692px) {
+        padding: 5rem;
+    }
 `;
 
 export default EditProfilePage;

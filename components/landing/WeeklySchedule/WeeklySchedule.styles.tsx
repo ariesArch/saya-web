@@ -8,6 +8,10 @@ export const container = css`
     border-radius: 1rem;
     width: fit-content;
     box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.14);
+
+    @media only screen and (max-width: 695px) {
+        margin: 0 auto;
+    }
 `;
 
 export const header = css`

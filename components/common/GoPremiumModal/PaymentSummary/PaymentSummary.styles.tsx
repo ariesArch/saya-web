@@ -4,6 +4,11 @@ export const container = css`
     display: flex;
     flex-direction: column;
     padding: 4rem;
+    align-items: center;
+
+    @media only screen and (max-width: 445px) {
+        padding: 4rem 0;
+    }
 `;
 
 export const contents = css`
@@ -23,6 +28,10 @@ export const heading = css`
     font-weight: 400;
     color: var(--color-primary);
     margin-bottom: 5rem;
+
+    @media only screen and (max-width: 445px) {
+        font-size: 4rem;
+    }
 `;
 
 export const qrContainer = css`
