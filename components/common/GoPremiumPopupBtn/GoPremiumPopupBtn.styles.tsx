@@ -13,6 +13,12 @@ export const button = css`
     color: #fff;
     transition: all 0.2s;
 
+    @media only screen and (max-width: 692px) {
+        bottom: 10rem;
+        left: 2rem;
+        background-color: transparent;
+    }
+
     &:hover {
         transform: scale(1.01);
     }
@@ -46,6 +52,10 @@ export const buttonTexts = css`
     display: flex;
     flex-direction: column;
     text-align: left;
+
+    @media only screen and (max-width: 692px) {
+        display: none;
+    }
 `;
 
 export const buttonTitle = css`
