@@ -8,12 +8,22 @@ export const container = css`
     box-shadow: 0 1px 3px #00000014;
     border-radius: 14px;
     padding: 1rem 2rem;
+
+    @media only screen and (max-width: 692px) {
+        flex-wrap: wrap;
+    }
 `;
 
 export const textsContainer = css`
     display: flex;
     flex-direction: column;
     max-width: 20rem;
+
+    @media only screen and (max-width: 692px) {
+        max-width: unset;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
 `;
 
 export const title = css`
@@ -28,6 +38,10 @@ export const subtitle = css`
 export const inputContainer = css`
     flex-grow: 1;
     margin: 0 2rem;
+
+    @media only screen and (max-width: 692px) {
+        margin-left: 0;
+    }
 
     textarea {
         width: 100%;
@@ -53,5 +67,13 @@ export const button = css`
         width: 2rem;
         height: auto;
         margin-right: 1rem;
+    }
+
+    @media only screen and (max-width: 692px) {
+        font-size: 3rem;
+
+        svg {
+            width: 2.5rem;
+        }
     }
 `;

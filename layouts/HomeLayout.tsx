@@ -67,6 +67,7 @@ export const contents = css`
 
     @media only screen and (max-width: 692px) {
         padding-left: 0;
+        padding-bottom: 8rem;
     }
 `;
 

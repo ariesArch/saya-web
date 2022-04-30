@@ -21,6 +21,10 @@ export const modalContents = css`
     align-items: center;
     position: relative;
     padding: 5rem 10rem;
+
+    @media only screen and (max-width: 692px) {
+        padding: 2rem 4rem;
+    }
 `;
 
 export const closeButton = css`
@@ -31,6 +35,13 @@ export const closeButton = css`
     right: 4rem;
     border-radius: 50%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+
+    @media only screen and (max-width: 692px) {
+        width: 4rem;
+        height: 4rem;
+        top: 2rem;
+        right: 3rem;
+    }
 
     svg {
         width: 100%;

@@ -27,11 +27,19 @@ export const sectionCard = css`
 
 export const chapter = css`
     margin-bottom: 0.2rem;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 2rem;
+    }
 `;
 
 export const title = css`
     font-size: 1.8rem;
     font-weight: 600;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 2.8rem;
+    }
 `;
 
 export const iconsContainer = css`
@@ -47,6 +55,14 @@ export const iconsContainer = css`
         &:not(:last-child) {
             margin-right: 0.3rem;
         }
+
+        @media only screen and (max-width: 992px) {
+            width: 2.5rem;
+
+            &:not(:last-child) {
+                margin-right: 0.6rem;
+            }
+        }
     }
 `;
 
@@ -56,5 +72,9 @@ export const statusIcon = (status: LessonStatus) => css`
 
     &:not(:last-child) {
         margin-right: 0.3rem;
+
+        @media only screen and (max-width: 992px) {
+            margin-right: 0.6rem;
+        }
     }
 `;

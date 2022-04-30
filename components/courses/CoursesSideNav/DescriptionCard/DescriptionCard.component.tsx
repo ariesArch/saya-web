@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 
 import Avatar from "@/components/common/Avatar/Avatar.component";
 import ProgressBar from "@/components/common/ProgressBar/ProgressBar.component";
@@ -28,6 +29,7 @@ const DescriptionCard = () => {
         course_total_length,
     } = selectedCourse;
     const dispatch = useDispatch();
+    const isTablet = useMediaQuery({ maxWidth: 992 });
     const [isLoading, setIsLoading] = useState(false);
     const progress = Math.floor((course_total_finished_length / course_total_length) * 100);
 
@@ -62,9 +64,13 @@ const DescriptionCard = () => {
                 </div>
 
                 {teacher?.photo ? (
-                    <Avatar src={teacher?.photo} hasBorder={false} />
+                    <Avatar src={teacher?.photo} hasBorder={false} size={isTablet ? "10rem" : undefined} />
                 ) : (
-                    <Skeleton width="6rem" height="6rem" circle />
+                    <Skeleton
+                        width={isTablet ? "10rem" : "6rem"}
+                        height={isTablet ? "10rem" : "6rem"}
+                        circle
+                    />
                 )}
             </div>
 

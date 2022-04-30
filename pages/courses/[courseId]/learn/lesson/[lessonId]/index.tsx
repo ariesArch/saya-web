@@ -79,8 +79,7 @@ const playerContainer = css`
     width: 100%;
     background-color: #fff;
     border-radius: 1rem;
-    padding: 1.5rem 2rem;
-    min-height: 45rem;
+    min-height: 25rem;
 `;
 
 export const lessonInfo = css`
@@ -109,16 +108,28 @@ export const button = css`
 export const title = css`
     font-size: 2.4rem;
     font-weight: 600;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 3rem;
+    }
 `;
 
 export const subtitle = css`
     font-size: 1.5rem;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 2rem;
+    }
 `;
 
 export const postQuestionContainer = css`
     padding: 2rem 0;
     border-top: 1px solid #e5e5e5;
     margin-top: 2rem;
+
+    @media only screen and (max-width: 692px) {
+        margin: 2rem 1.5rem 0;
+    }
 `;
 
 export default memo(LessonPage);

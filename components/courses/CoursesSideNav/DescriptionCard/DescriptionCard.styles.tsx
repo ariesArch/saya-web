@@ -33,6 +33,14 @@ export const title = css`
     margin-bottom: 0.5rem;
     margin-right: 0.5rem;
     min-height: 2rem;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 3.5rem;
+    }
+
+    @media only screen and (max-width: 695px) {
+        font-size: 3rem;
+    }
 `;
 
 export const info = css`
@@ -48,6 +56,22 @@ export const info = css`
         margin-right: 0.5rem;
         flex-shrink: 0;
         color: #fff;
+    }
+
+    @media only screen and (max-width: 992px) {
+        font-size: 2.5rem;
+
+        svg {
+            width: 2rem;
+        }
+    }
+
+    @media only screen and (max-width: 695px) {
+        font-size: 2rem;
+
+        svg {
+            width: 1.8rem;
+        }
     }
 `;
 
@@ -80,5 +104,13 @@ export const progressContainer = css`
     span {
         font-size: 1.5rem;
         margin-bottom: 0.5rem;
+
+        @media only screen and (max-width: 992px) {
+            font-size: 2.5rem;
+        }
+
+        @media only screen and (max-width: 695px) {
+            font-size: 2rem;
+        }
     }
 `;
