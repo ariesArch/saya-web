@@ -7,6 +7,7 @@ export const plansContainer = css`
 
     @media only screen and (max-width: 495px) {
         align-items: center;
+        padding-top: 10rem;
     }
 `;
 

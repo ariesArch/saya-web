@@ -36,6 +36,11 @@ export const backBtn = css`
         margin-right: 1rem;
         margin-top: -0.1rem;
     }
+
+    @media only screen and (max-width: 425px) {
+        top: -3.5rem;
+        left: -2rem;
+    }
 `;
 
 export const heading = css`
