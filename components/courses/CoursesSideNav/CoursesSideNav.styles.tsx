@@ -58,6 +58,15 @@ export const backBtn = css`
         height: auto;
         margin-right: 0.5rem;
     }
+
+    @media only screen and (max-width: 992px) {
+        font-size: 2.5rem;
+
+        svg {
+            width: 0.8rem;
+            margin-right: 0.8rem;
+        }
+    }
 `;
 
 export const materialSectionCard = css`

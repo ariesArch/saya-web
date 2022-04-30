@@ -10,7 +10,7 @@ export const sideNav = css`
     top: 0;
     left: 0;
     height: 100vh;
-    z-index: 100;
+    z-index: 1000;
     background-color: #fff;
 
     @media only screen and (max-width: 692px) {

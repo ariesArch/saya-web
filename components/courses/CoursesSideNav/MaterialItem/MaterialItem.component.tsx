@@ -1,4 +1,5 @@
 import { FC, Fragment, HTMLAttributes, ReactNode } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import Avatar from "@/components/common/Avatar/Avatar.component";
 import { Lesson, LessonStatus } from "@/interfaces/courses.interfaces";
@@ -20,6 +21,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const MaterialItem: FC<Props> = (props) => {
     const { material, currentLessonId, isCourseEnrolled, onGoPremiumModalOpen, ...rest } = props;
     const { id, title, cover_photo, mark_as_done, is_lock } = material;
+    const isTablet = useMediaQuery({ maxWidth: 992 });
 
     const status = (): LessonStatus => {
         let status: LessonStatus = "incomplete";
@@ -89,7 +91,7 @@ const MaterialItem: FC<Props> = (props) => {
 
     return (
         <div css={styles.material(status(), isCourseEnrolled)} {...rest}>
-            <Avatar src={cover_photo} hasBorder={false} />
+            <Avatar src={cover_photo} hasBorder={false} size={isTablet ? "10rem" : undefined} />
 
             <div css={styles.contents}>
                 <span css={styles.title}>{title}</span>

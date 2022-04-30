@@ -42,6 +42,10 @@ export const title = css`
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 2.8rem;
+    }
 `;
 
 export const status = (status: LessonStatus) => css`
@@ -60,6 +64,15 @@ export const status = (status: LessonStatus) => css`
 
     a {
         pointer-events: auto;
+    }
+
+    @media only screen and (max-width: 992px) {
+        font-size: 2rem;
+
+        svg {
+            width: 2.5rem;
+            margin-right: 0.8rem;
+        }
     }
 `;
 

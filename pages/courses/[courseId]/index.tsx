@@ -82,8 +82,7 @@ const playerContainer = css`
     width: 100%;
     background-color: #fff;
     border-radius: 1rem;
-    padding: 1.5rem 2rem;
-    min-height: 45rem;
+    min-height: 25rem;
 `;
 
 const contents = css`
@@ -98,6 +97,10 @@ const title = css`
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1rem;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 4rem;
+    }
 `;
 
 const button = css`

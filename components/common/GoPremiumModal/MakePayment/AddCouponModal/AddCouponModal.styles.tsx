@@ -5,6 +5,10 @@ export const iconContainer = css`
     align-self: center;
     margin-bottom: 4rem;
 
+    @media only screen and (max-width: 692px) {
+        width: 10rem;
+    }
+
     svg {
         width: 100%;
         height: auto;
@@ -15,6 +19,11 @@ export const heading = css`
     font-size: 4rem;
     font-weight: 500;
     margin-bottom: 2rem;
+    text-align: center;
+
+    @media only screen and (max-width: 692px) {
+        font-size: 3rem;
+    }
 `;
 
 export const inputContainer = css`
@@ -36,6 +45,10 @@ export const input = css`
     text-align: center;
     font-size: 2rem;
     color: #222;
+
+    @media only screen and (max-width: 692px) {
+        font-size: 1.6rem;
+    }
 `;
 
 export const button = css`
