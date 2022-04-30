@@ -46,6 +46,10 @@ export const title = css`
     @media only screen and (max-width: 992px) {
         font-size: 2.8rem;
     }
+
+    @media only screen and (max-width: 692px) {
+        font-size: 2.2rem;
+    }
 `;
 
 export const status = (status: LessonStatus) => css`
@@ -73,6 +77,10 @@ export const status = (status: LessonStatus) => css`
             width: 2.5rem;
             margin-right: 0.8rem;
         }
+    }
+
+    @media only screen and (max-width: 692px) {
+        font-size: 1.6rem;
     }
 `;
 
