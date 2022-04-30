@@ -28,7 +28,7 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
         <div css={container}>
             <Head>
                 <title>{title}</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="viewport" content="width=device-width, minimum-scale=1" />
             </Head>
             {topBar && <header>{topBar}</header>}
             <div css={body}>{children}</div>
