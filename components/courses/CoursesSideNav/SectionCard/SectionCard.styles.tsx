@@ -32,7 +32,7 @@ export const chapter = css`
         font-size: 2rem;
     }
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         font-size: 1.6rem;
     }
 `;
@@ -45,8 +45,8 @@ export const title = css`
         font-size: 2.8rem;
     }
 
-    @media only screen and (max-width: 692px) {
-        font-size: 2.3rem;
+    @media only screen and (max-width: 695px) {
+        font-size: 2rem;
     }
 `;
 
@@ -71,6 +71,14 @@ export const iconsContainer = css`
                 margin-right: 0.6rem;
             }
         }
+
+        @media only screen and (max-width: 695px) {
+            width: 2rem;
+
+            &:not(:last-child) {
+                margin-right: 0.4rem;
+            }
+        }
     }
 `;
 
@@ -83,6 +91,14 @@ export const statusIcon = (status: LessonStatus) => css`
 
         @media only screen and (max-width: 992px) {
             margin-right: 0.6rem;
+        }
+    }
+
+    @media only screen and (max-width: 695px) {
+        width: 2rem;
+
+        &:not(:last-child) {
+            margin-right: 0.4rem;
         }
     }
 `;

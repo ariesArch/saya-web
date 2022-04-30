@@ -5,7 +5,7 @@ export const iconContainer = css`
     align-self: center;
     margin-bottom: 4rem;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         width: 10rem;
     }
 
@@ -21,7 +21,7 @@ export const heading = css`
     margin-bottom: 2rem;
     text-align: center;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         font-size: 3rem;
     }
 `;
@@ -46,7 +46,7 @@ export const input = css`
     font-size: 2rem;
     color: #222;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         font-size: 1.6rem;
     }
 `;

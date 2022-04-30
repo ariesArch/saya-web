@@ -13,7 +13,7 @@ export const sideNav = css`
     z-index: 1000;
     background-color: #fff;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         bottom: 0;
         top: unset;
         right: 0;
@@ -37,7 +37,7 @@ export const navButton = css`
     &:not(:last-child) {
         margin-bottom: 2rem;
 
-        @media only screen and (max-width: 692px) {
+        @media only screen and (max-width: 695px) {
             margin-bottom: 0;
             margin-right: 4rem;
         }

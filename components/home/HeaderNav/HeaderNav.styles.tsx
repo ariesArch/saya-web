@@ -11,7 +11,7 @@ export const headerNav = css`
     background-color: #fff;
     padding-left: 8rem;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding-left: 2rem;
     }
 `;

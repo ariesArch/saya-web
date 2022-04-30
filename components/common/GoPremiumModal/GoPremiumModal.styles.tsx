@@ -92,7 +92,7 @@ export const mainContents = css`
         align-self: center;
     }
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 5rem 3rem;
     }
 

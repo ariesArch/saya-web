@@ -13,7 +13,7 @@ export const button = css`
     color: #fff;
     transition: all 0.2s;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         bottom: 10rem;
         left: 2rem;
         background-color: transparent;
@@ -53,7 +53,7 @@ export const buttonTexts = css`
     flex-direction: column;
     text-align: left;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         display: none;
     }
 `;

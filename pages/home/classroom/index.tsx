@@ -84,7 +84,7 @@ const coursesGrid = css`
         grid-template-columns: repeat(3, 1fr);
     }
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         grid-template-columns: repeat(2, 1fr);
     }
 

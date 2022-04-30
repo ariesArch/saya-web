@@ -127,7 +127,7 @@ export const postQuestionContainer = css`
     border-top: 1px solid #e5e5e5;
     margin-top: 2rem;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         margin: 2rem 1.5rem 0;
     }
 `;
