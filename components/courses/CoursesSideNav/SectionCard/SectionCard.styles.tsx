@@ -31,6 +31,10 @@ export const chapter = css`
     @media only screen and (max-width: 992px) {
         font-size: 2rem;
     }
+
+    @media only screen and (max-width: 692px) {
+        font-size: 1.6rem;
+    }
 `;
 
 export const title = css`
@@ -39,6 +43,10 @@ export const title = css`
 
     @media only screen and (max-width: 992px) {
         font-size: 2.8rem;
+    }
+
+    @media only screen and (max-width: 692px) {
+        font-size: 2.3rem;
     }
 `;
 
