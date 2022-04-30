@@ -22,7 +22,7 @@ export const modalContents = css`
     position: relative;
     padding: 5rem 10rem;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 2rem 4rem;
     }
 `;
@@ -36,7 +36,7 @@ export const closeButton = css`
     border-radius: 50%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         width: 4rem;
         height: 4rem;
         top: 2rem;

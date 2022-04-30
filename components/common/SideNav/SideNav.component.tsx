@@ -11,7 +11,7 @@ import * as styles from "./SideNav.styles";
 
 const SideNav = () => {
     const router = useRouter();
-    const isMobile = useMediaQuery({ maxWidth: 692 });
+    const isMobile = useMediaQuery({ maxWidth: 695 });
 
     const onItemClick = (route: string) => {
         router.push(route);

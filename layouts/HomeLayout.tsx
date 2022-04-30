@@ -65,7 +65,7 @@ export const contents = css`
     display: flex;
     flex-direction: column;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding-left: 0;
         padding-bottom: 8rem;
     }
@@ -77,7 +77,7 @@ export const mainContents = css`
     padding: 2rem 4rem 2rem 7rem;
     flex-grow: 1;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 2rem;
     }
 `;

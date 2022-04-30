@@ -101,6 +101,10 @@ const title = css`
     @media only screen and (max-width: 992px) {
         font-size: 4rem;
     }
+
+    @media only screen and (max-width: 695px) {
+        font-size: 2.5rem;
+    }
 `;
 
 const button = css`

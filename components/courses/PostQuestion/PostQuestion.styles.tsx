@@ -9,7 +9,7 @@ export const container = css`
     border-radius: 14px;
     padding: 1rem 2rem;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         flex-wrap: wrap;
     }
 `;
@@ -19,7 +19,7 @@ export const textsContainer = css`
     flex-direction: column;
     max-width: 20rem;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         max-width: unset;
         width: 100%;
         margin-bottom: 2rem;
@@ -39,7 +39,7 @@ export const inputContainer = css`
     flex-grow: 1;
     margin: 0 2rem;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         margin-left: 0;
     }
 
@@ -69,7 +69,7 @@ export const button = css`
         margin-right: 1rem;
     }
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         font-size: 3rem;
 
         svg {

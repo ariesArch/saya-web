@@ -70,7 +70,7 @@ const body = css`
         flex-direction: column;
     }
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding-right: 0;
         padding-bottom: 8rem;
     }
@@ -80,7 +80,7 @@ export const contents = css`
     padding: 0 0 4rem 5rem;
     flex-grow: 1;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 0;
     }
 `;
@@ -94,7 +94,7 @@ export const mainContents = css`
         padding: 3rem 0 2rem 5rem;
     }
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 0;
     }
 `;
@@ -116,12 +116,12 @@ export const sidePanel = css`
         width: 35rem;
     }
 
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: 695px) {
         width: 100%;
         padding: 2rem 0 2rem 10rem;
     }
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 4rem 2rem 2rem;
     }
 `;

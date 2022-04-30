@@ -20,7 +20,7 @@ const container = css`
     display: flex;
     padding: 3rem 10% 0;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 3rem 5rem 0;
     }
 
@@ -38,7 +38,7 @@ const card = css`
     border: 1px solid #eee;
     height: fit-content;
 
-    @media only screen and (max-width: 692px) {
+    @media only screen and (max-width: 695px) {
         padding: 5rem;
     }
 `;
