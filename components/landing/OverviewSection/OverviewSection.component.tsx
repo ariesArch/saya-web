@@ -73,7 +73,7 @@ const OverviewSection = () => {
 export const contentsVariant: Variants = {
     offscreen: {
         opacity: 0,
-        x: -1000,
+        x: -500,
     },
     onscreen: {
         opacity: 1,
@@ -81,7 +81,7 @@ export const contentsVariant: Variants = {
         transition: {
             type: "spring",
             bounce: 0.3,
-            duration: 2.5,
+            duration: 1.5,
         },
     },
 };
@@ -89,7 +89,7 @@ export const contentsVariant: Variants = {
 const loginBoxVariants: Variants = {
     offscreen: {
         opacity: 0,
-        x: 1000,
+        x: 500,
     },
     onscreen: {
         opacity: 1,
@@ -98,7 +98,7 @@ const loginBoxVariants: Variants = {
         transition: {
             type: "spring",
             bounce: 0.3,
-            duration: 2.5,
+            duration: 1.5,
         },
     },
 };
