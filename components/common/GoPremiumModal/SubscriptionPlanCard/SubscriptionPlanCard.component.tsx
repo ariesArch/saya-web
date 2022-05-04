@@ -29,18 +29,18 @@ const SubscriptionPlanCard: FC<Props> = ({ data, showBadge = true, ...rest }) =>
 
             <div css={styles.pricesContainer}>
                 <div css={styles.discountedPrice}>
-                    <strong>{formatCurrency((final_price || price) * month)}</strong> MMK
+                    <strong>{formatCurrency(final_price || price)}</strong> MMK
                 </div>
                 {!!has_promotion && (
                     <div css={styles.price}>
-                        <span>{formatCurrency(price * month)}</span> MMK
+                        <span>{formatCurrency(price)}</span> MMK
                     </div>
                 )}
             </div>
 
             <div css={styles.total}>
                 <span>
-                    <strong>{formatCurrency(price)}</strong> MMK per month
+                    <strong>{formatCurrency(price / month)}</strong> MMK per month
                 </span>
             </div>
 
