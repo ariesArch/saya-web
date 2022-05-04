@@ -148,7 +148,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
             </div>
 
             <MakePaymentSummary
-                totalPrice={(selectedPlan?.price || 0) * (selectedPlan?.month || 0)}
+                totalPrice={selectedPlan?.price || 0}
                 discount={discount}
                 planId={selectedPlanId}
                 onAddPromoCode={onAddPromoCode}
