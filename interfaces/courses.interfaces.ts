@@ -91,3 +91,15 @@ export interface QuizQuestion {
         }
     ];
 }
+
+export interface QuizPayloadData {
+    overall_started_practice_at: string;
+    overall_ended_practice_at: string;
+    lesson_id: string;
+    practices: {
+        question_id: string;
+        clicked_answer_option_id: string;
+        started_practice_at: string;
+        ended_practice_at: string;
+    }[];
+}

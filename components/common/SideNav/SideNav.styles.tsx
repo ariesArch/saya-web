@@ -40,12 +40,6 @@ export const navItem = css`
             margin-right: 4rem;
         }
     }
-
-    span {
-        font-size: 1.2rem;
-        margin-top: 0.4rem;
-        font-weight: 600;
-    }
 `;
 
 export const navButton = css`
@@ -72,10 +66,10 @@ export const avatarContainer = css`
     display: flex;
     flex-direction: column;
     align-items: center;
+`;
 
-    span {
-        font-size: 1.2rem;
-        margin-top: 0.4rem;
-        font-weight: 600;
-    }
+export const label = css`
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+    font-weight: 600;
 `;

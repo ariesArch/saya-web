@@ -13,7 +13,7 @@ export const summaryText = css`
     justify-content: space-between;
     align-items: center;
 
-    a {
+    button {
         font-size: 1.3rem;
         margin: 0 0.5rem;
         color: var(--color-blue);

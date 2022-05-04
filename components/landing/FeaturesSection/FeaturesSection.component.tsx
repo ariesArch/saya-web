@@ -12,7 +12,7 @@ const FeaturesSection = () => {
                 <h4 css={styles.heading}>Interactive Practice</h4>
                 <h5 css={styles.subHeading}>
                     Practice what you have learned through fun exercises and get your quizz summary right
-                    inside tha application.
+                    inside the application.
                 </h5>
             </motion.div>
             <motion.div css={styles.illuContainer} variants={illuVariants} {...landingAnimationConfig}>

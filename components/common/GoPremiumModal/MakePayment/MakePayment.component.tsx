@@ -31,7 +31,14 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
     const [parsedProviders, setParsedProviders] = useState<ParsedProviders[]>([]);
 
     const [selectedMethod, setSelectedMethod] = useState<string>("");
-    const [discount, setDiscount] = useState({ amount: 0, type: "AMOUNT", promoCode: "" });
+    const [discount, setDiscount] = useState({
+        amount: selectedPlan?.promotion_price || 0,
+        type: selectedPlan?.is_percentage ? "PERCENT" : "AMOUNT",
+        promoCode: "",
+    });
+
+    console.log(selectedPlan);
+
     const [paymentResponse, setPaymentResponse] = useState<PaymentResponse | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -141,7 +148,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
             </div>
 
             <MakePaymentSummary
-                price={selectedPlan?.final_price || selectedPlan?.price || 0}
+                totalPrice={(selectedPlan?.price || 0) * (selectedPlan?.month || 0)}
                 discount={discount}
                 planId={selectedPlanId}
                 onAddPromoCode={onAddPromoCode}

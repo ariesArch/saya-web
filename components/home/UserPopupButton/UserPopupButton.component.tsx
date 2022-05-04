@@ -18,7 +18,7 @@ import ExitIcon from "@/public/icons/exit.svg";
 import ReloadIcon from "@/public/icons/reload.svg";
 // import StartIcon from "@/public/icons/star-outlined.svg";
 // import GraduateIcon from "@/public/icons/teacher.svg";
-import TickSquareIcon from "@/public/icons/tick-square.svg";
+// import TickSquareIcon from "@/public/icons/tick-square.svg";
 import { onPaymentModalToggle } from "@/store/payment/payment.actions";
 import { userLogoutAsync } from "@/store/user/user.actions";
 
@@ -170,12 +170,12 @@ const menuItems = [
         route: "/user/edit-profile",
         icon: <EditIcon />,
     },
-    {
-        id: 2,
-        name: "Finished Courses",
-        route: "/home/classroom",
-        icon: <TickSquareIcon />,
-    },
+    // {
+    //     id: 2,
+    //     name: "Finished Courses",
+    //     route: "/home/classroom",
+    //     icon: <TickSquareIcon />,
+    // },
     {
         id: 3,
         name: "Logout",
