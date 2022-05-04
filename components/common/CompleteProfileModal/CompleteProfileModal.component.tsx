@@ -129,9 +129,9 @@ const CompleteProfileModal = () => {
 
                     <div css={styles.buttonContainer}>
                         {step !== 1 && (
-                            <a css={styles.backBtn} onClick={onClickBack}>
+                            <div css={styles.backBtn} onClick={onClickBack}>
                                 <ChevronLeft />
-                            </a>
+                            </div>
                         )}
 
                         <Button

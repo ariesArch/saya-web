@@ -27,9 +27,11 @@ class MyDocument extends Document {
                     <meta name="twitter:title" content={siteTitle} />
                     <meta name="twitter:creator" content="Thet Aung with Binary Lab Team" />
                     <meta name="twitter:card" content="summary" />
+                    <meta property="twitter:image" content="/saya-landing.jpg" />
                     <meta property="og:type" content="website" />
                     <meta property="og:description" content={siteShortDescription} />
                     <meta property="og:title" content={siteTitle} />
+                    <meta property="og:image" content="/saya-landing.jpg" />
                 </Head>
                 <body>
                     <Main />

@@ -21,7 +21,7 @@ const Avatar: FC<Props> = ({ src, size, badge, borderColor, hasBorder = true }) 
     return (
         <div css={styles.avatar}>
             <div css={styles.imgContainer(size, borderColor, hasBorder)}>
-                <Image src={src || PlaceholderImg} layout="fill" objectFit="cover" />
+                <Image src={src || PlaceholderImg} layout="fill" objectFit="cover" alt="User Avatar" />
             </div>
             {badge && <div css={styles.badge(size)}>{badges[badge]}</div>}
         </div>

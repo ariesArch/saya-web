@@ -27,7 +27,7 @@ const MakePaymentSummary: FC<Props> = ({ price, discount, planId, onAddPromoCode
                 </div>
                 <div css={styles.summaryText}>
                     <span>
-                        Discount <a onClick={onOpen}>[Add coupon code]</a>
+                        Discount <button onClick={onOpen}>[Add coupon code]</button>
                     </span>
                     <span>
                         - {formatCurrency(discount.amount)} {discount.type === "AMOUNT" ? "MMK" : "%"}

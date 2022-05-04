@@ -116,7 +116,7 @@ export const sidePanel = css`
         width: 35rem;
     }
 
-    @media only screen and (max-width: 695px) {
+    @media only screen and (max-width: 992px) {
         width: 100%;
         padding: 2rem 0 2rem 10rem;
     }

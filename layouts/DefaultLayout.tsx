@@ -1,12 +1,16 @@
 import { css } from "@emotion/react";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import CompleteProfileModal from "@/components/common/CompleteProfileModal/CompleteProfileModal.component";
-import GoPremiumModal from "@/components/common/GoPremiumModal/GoPremiumModal.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import { onPaymentModalToggle } from "@/store/payment/payment.actions";
+
+const CompleteProfileModal = dynamic(
+    () => import("@/components/common/CompleteProfileModal/CompleteProfileModal.component")
+);
+const GoPremiumModal = dynamic(() => import("@/components/common/GoPremiumModal/GoPremiumModal.component"));
 
 interface DefaultLayoutProps {
     title?: string;

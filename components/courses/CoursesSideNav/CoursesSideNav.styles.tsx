@@ -7,8 +7,11 @@ export const container = css`
 
 export const scrollContainer = css`
     max-height: calc(100vh - 18rem);
-    padding: 1rem 0.5rem 1rem;
-    margin-top: 1.5rem;
+    padding: 0 0.5rem;
+
+    & > div {
+        margin: 0;
+    }
 `;
 
 export const sections = css`
@@ -59,7 +62,7 @@ export const backBtn = css`
         margin-right: 0.5rem;
     }
 
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: 695px) {
         font-size: 2.5rem;
 
         svg {

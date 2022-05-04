@@ -8,7 +8,7 @@ import SimpleBar from "simplebar-react";
 import { transition } from "@/components/common/FramerMotion";
 import RankBanner from "@/components/home/RankBanner/RankBanner.component";
 import RankItem from "@/components/home/RankItem/RankItem.component";
-import ManPortrait from "@/public/images/man-portrait.jpg";
+import ManPortrait from "@/public/images/man-portrait.png";
 
 import * as styles from "./RankTable.styles";
 

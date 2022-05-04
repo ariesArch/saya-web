@@ -11,7 +11,7 @@ import RadioButton from "@/components/common/RadioButton/RadioButton.component";
 import useIsMounted from "@/hooks/useIsMounted";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import NextJSLogo from "@/public/icons/logo-text.png";
-import ManPortrait from "@/public/images/man-portrait.jpg";
+import ManPortrait from "@/public/images/man-portrait.png";
 
 export default function Testing() {
     const isMounted = useIsMounted();

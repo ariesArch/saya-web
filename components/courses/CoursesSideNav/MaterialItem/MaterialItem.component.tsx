@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { FC, Fragment, HTMLAttributes, ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -21,6 +22,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const MaterialItem: FC<Props> = (props) => {
     const { material, currentLessonId, isCourseEnrolled, onGoPremiumModalOpen, ...rest } = props;
     const { id, title, cover_photo, mark_as_done, is_lock } = material;
+    const router = useRouter();
     const isTablet = useMediaQuery({ maxWidth: 992 });
 
     const status = (): LessonStatus => {
@@ -54,7 +56,8 @@ const MaterialItem: FC<Props> = (props) => {
             case "playing":
                 return (
                     <Fragment>
-                        <VideoCircleOutlinedIcon /> Practicing
+                        <VideoCircleOutlinedIcon />{" "}
+                        {router.pathname.includes("/practice") ? "Practicing" : "Playing"}
                     </Fragment>
                 );
             case "done":
@@ -91,7 +94,7 @@ const MaterialItem: FC<Props> = (props) => {
 
     return (
         <div css={styles.material(status(), isCourseEnrolled)} {...rest}>
-            <Avatar src={cover_photo} hasBorder={false} size={isTablet ? "10rem" : undefined} />
+            <Avatar src={cover_photo} hasBorder={false} size={isTablet ? "7rem" : undefined} />
 
             <div css={styles.contents}>
                 <span css={styles.title}>{title}</span>

@@ -6,6 +6,7 @@ import AndroidIcon from "@/public/icons/download-android.png";
 import AppleStoreIcon from "@/public/icons/download-app-store.png";
 import PlayStoreIcon from "@/public/icons/download-google-play.png";
 import OverviewIllu from "@/public/images/landing-illu-1.svg";
+import { downloadLinks } from "@/utils/constants";
 
 import * as styles from "./OverviewSection.styles";
 
@@ -22,7 +23,7 @@ const OverviewSection = () => {
                         <h1 css={styles.heading}>
                             Become fluent in{" "}
                             <span css={styles.tipContainer}>
-                                English.
+                                English
                                 <h1 css={styles.headingTips}>
                                     <span css={styles.headingTooltip}>4 skills</span>
                                     <span css={styles.additionalTip}>+ effective learning</span>
@@ -32,7 +33,7 @@ const OverviewSection = () => {
                     </div>
                     <h2 css={styles.subHeading}>
                         with lectures from some of Myanmar best teachers, engaging contents, interactive
-                        practices sessions.
+                        practices sessions and live classes.
                     </h2>
                 </div>
 
@@ -53,14 +54,14 @@ const OverviewSection = () => {
                     <div css={styles.downloadLinksContainer}>
                         <span css={styles.downloadHeading}>Learn on mobile</span>
                         <div css={styles.downloadLinks}>
-                            <a href="https://play.google.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={PlayStoreIcon} />
+                            <a href={downloadLinks.playStore} target="_blank" rel="noopener noreferrer">
+                                <Image src={PlayStoreIcon} alt="Play Store Icon" />
                             </a>
-                            <a href="https://android.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={AndroidIcon} />
+                            <a href={downloadLinks.apk} target="_blank" rel="noopener noreferrer">
+                                <Image src={AndroidIcon} alt="APK Icon" />
                             </a>
-                            <a href="https://apps.apple.com/us/app" target="_blank" rel="noopener noreferrer">
-                                <Image src={AppleStoreIcon} />
+                            <a href={downloadLinks.appStore} target="_blank" rel="noopener noreferrer">
+                                <Image src={AppleStoreIcon} alt="Appstore Icon" />
                             </a>
                         </div>
                     </div>

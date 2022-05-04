@@ -28,8 +28,8 @@ const CourseSection = () => {
                     <div css={styles.textSection}>
                         <h4 css={styles.heading}>Learning Schedule</h4>
                         <h5 css={styles.subHeading}>
-                            with lectures from some of Myanmar best teachers, engaging contents, interactive
-                            practices sessions.
+                            Set your study timetable and get notified to watch the daily lectures and join the
+                            live classes.
                         </h5>
                     </div>
                     <div>
@@ -49,19 +49,17 @@ const textSections = [
         id: 1,
         heading: "Courses",
         subHeading:
-            "with lectures from some of Myanmar best teachers, engaging contents, interactive practices sessions.",
+            "All courses are designed by our teachers to cover everyone with different level of English proficiency.",
+    },
+    {
+        id: 3,
+        heading: "Earn Reward",
+        subHeading: "Earn stars as you progress through your learning journey.",
     },
     {
         id: 2,
         heading: "Saya Premium",
-        subHeading:
-            "with lectures from some of Myanmar best teachers, engaging contents, interactive practices sessions.",
-    },
-    {
-        id: 3,
-        heading: "Stars Reward",
-        subHeading:
-            "with lectures from some of Myanmar best teachers, engaging contents, interactive practices sessions.",
+        subHeading: "Get access to all courses, lectures, and live classes at a very affordable price.",
     },
 ];
 

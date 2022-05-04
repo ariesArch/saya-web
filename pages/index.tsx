@@ -9,7 +9,7 @@ import LiveClassSection from "@/components/landing/LiveClassSection/LiveClassSec
 import OverviewSection from "@/components/landing/OverviewSection/OverviewSection.component";
 import TopBar from "@/components/landing/TopBar/TopBar.component";
 import { LandingSectionType } from "@/interfaces/common.interfaces";
-import DefaultLayout from "@/layouts/DefaultLayout";
+import UnauthedLayout from "@/layouts/UnauthedLayout";
 
 export default function Home() {
     const [visibleSection, setVisibleSection] = useState<LandingSectionType>("overview");
@@ -37,7 +37,7 @@ export default function Home() {
     }, [sectionStatus, visibleSection]);
 
     return (
-        <DefaultLayout topBar={<TopBar visibleSection={visibleSection} />}>
+        <UnauthedLayout topBar={<TopBar visibleSection={visibleSection} />}>
             <div css={container}>
                 <VisibilitySensor onChange={(isVisible) => onVisibleSectionChange(isVisible, "overview")}>
                     <OverviewSection />
@@ -55,7 +55,7 @@ export default function Home() {
                     <Footer />
                 </VisibilitySensor>
             </div>
-        </DefaultLayout>
+        </UnauthedLayout>
     );
 }
 

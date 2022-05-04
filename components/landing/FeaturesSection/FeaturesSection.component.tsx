@@ -11,8 +11,8 @@ const FeaturesSection = () => {
             <motion.div css={styles.contents} variants={contentsVariant} {...landingAnimationConfig}>
                 <h4 css={styles.heading}>Interactive Practice</h4>
                 <h5 css={styles.subHeading}>
-                    with lectures from some of Myanmar best teachers, engaging contents, interactive practices
-                    sessions.
+                    Practice what you have learned through fun exercises and get your quizz summary right
+                    inside tha application.
                 </h5>
             </motion.div>
             <motion.div css={styles.illuContainer} variants={illuVariants} {...landingAnimationConfig}>

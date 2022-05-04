@@ -64,7 +64,7 @@ const DescriptionCard = () => {
                 </div>
 
                 {teacher?.photo ? (
-                    <Avatar src={teacher?.photo} hasBorder={false} size={isTablet ? "10rem" : undefined} />
+                    <Avatar src={teacher?.photo} hasBorder={false} size={isTablet ? "7rem" : undefined} />
                 ) : (
                     <Skeleton
                         width={isTablet ? "10rem" : "6rem"}

@@ -23,13 +23,11 @@ const ClassroomCourseCard: FC<Props> = ({ courseId, image, courseName, level, te
     };
 
     return (
-        <div css={styles.courseCard}>
-            <a css={styles.imageContainer} onClick={onRedirectToCourse}>
-                <Image src={image} layout="fill" />
-            </a>
-            <a css={styles.courseName} onClick={onRedirectToCourse}>
-                {courseName}
-            </a>
+        <div css={styles.courseCard} onClick={onRedirectToCourse}>
+            <div css={styles.imageContainer}>
+                <Image src={image} layout="fill" alt="Course Cover" />
+            </div>
+            <div css={styles.courseName}>{courseName}</div>
             <div css={styles.subTexts}>
                 {levelIcons[level.toLowerCase() as Levels] || levelIcons.preintermediate}
                 {level} . Tr. {teacher?.name}
