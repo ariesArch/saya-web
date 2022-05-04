@@ -41,9 +41,9 @@ const NavBtn = () => {
             <div css={styles.navContents(isOpen)}>
                 <div css={styles.navItems(isOpen)}>
                     {navItems.map((item) => (
-                        <a css={styles.navItem} key={item.id} onClick={() => onItemClick(item.href)}>
+                        <button css={styles.navItem} key={item.id} onClick={() => onItemClick(item.href)}>
                             {item.name}
-                        </a>
+                        </button>
                     ))}
                 </div>
             </div>

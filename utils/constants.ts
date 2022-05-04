@@ -10,6 +10,18 @@ export const siteURL =
         ? process.env.NEXT_PUBLIC_SITE_URL_DEVELOPMENT
         : process.env.NEXT_PUBLIC_SITE_URL_PRODUCTION;
 
+export const downloadLinks = {
+    playStore: "https://play.google.com/store/apps/details?id=com.saya&hl=en&gl=US",
+    appStore: "https://apps.apple.com/us/app/saya-the-english-learning-app/id1612592914",
+    apk: "https://play.google.com/store/apps/details?id=com.saya&hl=en&gl=US",
+};
+
+export const socialLinks = {
+    facebook: "https://www.facebook.com/sayathelearningapp",
+    instagram: "https://instagram.com/saya_english_app",
+    youtube: "https://youtube.com/channel/UCbOZPau0cA0haiHQ65j4YhQ",
+};
+
 export const apiUrl =
     process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
         ? process.env.NEXT_PUBLIC_API_DEVELOPMENT
@@ -19,10 +31,6 @@ export const appToken =
     process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
         ? process.env.NEXT_PUBLIC_APP_TOKEN_DEVELOPMENT
         : process.env.NEXT_PUBLIC_APP_TOKEN_PRODUCTION;
-
-export const facebookLink = "https://facebook.com/sayathelearningapp";
-export const linkedInLink = "https://linkedin.com";
-export const youtubeLink = "https://www.youtube.com/";
 
 export const zoomSdkKey = process.env.NEXT_PUBLIC_ZOOM_API_KEY;
 export const zoomSdkSecretKey = process.env.NEXT_PUBLIC_ZOOM_API_SECRET_KEY;

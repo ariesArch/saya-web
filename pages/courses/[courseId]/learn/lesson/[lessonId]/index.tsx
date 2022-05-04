@@ -19,6 +19,10 @@ const LessonPage = () => {
     const selectedCourse = useSelector((state: ReduxState) => state.coursesState.selectedCourse);
     const [selectedLesson, setSelectedLesson] = useState<Lesson>();
 
+    // const onPractice = () => {
+    //     router.push(`${router.asPath}/practice`);
+    // };
+
     useEffect(() => {
         if (!selectedCourse.id) return;
         if (!selectedCourse.is_enrolled) router.push(`/courses/${courseId}`);
@@ -51,7 +55,7 @@ const LessonPage = () => {
                             </span>
                             <span css={title}>{selectedLesson?.title}</span>
                         </div>
-                        {/* <Button css={button} variant="contained" color="success"> */}
+                        {/* <Button css={button} variant="contained" color="success" onClick={onPractice}> */}
                         {/*    <LampChargeIcon /> */}
                         {/*    Practice */}
                         {/* </Button> */}

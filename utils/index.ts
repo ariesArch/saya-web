@@ -111,3 +111,12 @@ export const parseLiveClassData = (data: LiveEvent[]) => {
 export const formatCurrency = (value: number) => {
     return Math.floor(value).toLocaleString("en-US");
 };
+
+export const numToArrOfNum = (num: number) => {
+    const arr = [];
+    // eslint-disable-next-line no-plusplus
+    for (let i = 1; i <= num; i++) {
+        arr.push(i);
+    }
+    return arr;
+};

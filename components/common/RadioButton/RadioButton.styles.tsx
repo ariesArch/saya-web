@@ -28,6 +28,7 @@ export const input = (color: RadioColor, isLabel: boolean, size = "2.3rem") => c
         border-radius: 50%;
         display: grid;
         place-content: center;
+        flex-shrink: 0;
         transition: all 0.2s;
 
         ${isLabel && `margin-right: .5rem;`};

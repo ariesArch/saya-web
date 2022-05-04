@@ -68,3 +68,26 @@ export interface OTPResponse {
     otp: string;
     playbackInfo: string;
 }
+
+export type QuizQuestionType = "true-false" | "multiple-choice" | "fill-in-the-blank";
+
+export type QuizQuestionFormat = "text" | "audio";
+
+export interface QuizQuestion {
+    id: string;
+    question_type: QuizQuestionType;
+    format: QuizQuestionFormat;
+    updated_at: number;
+    question: string;
+    lesson_id: string;
+    answers: [
+        {
+            id: string;
+            format: string;
+            updated_at: number;
+            answer: string;
+            is_answer: string;
+            explanation: string;
+        }
+    ];
+}

@@ -5,6 +5,7 @@ import {
     ENROLLED_COURSES_CHANGE,
     SELECTED_COURSE_UPDATE,
     SET_CATEGORIES,
+    SET_QUIZ,
     SET_SELECTED_COURSE,
 } from "@/store/courses/courses.action-types";
 
@@ -13,6 +14,7 @@ const initialState: CoursesState = {
     enrolledCourses: [],
     selectedCourse: {},
     categories: [],
+    quiz: [],
 };
 
 const coursesReducer = (state = initialState, action: ActionType) => {
@@ -34,6 +36,8 @@ const coursesReducer = (state = initialState, action: ActionType) => {
             return { ...state, selectedCourse: { ...state.selectedCourse, ...action.payload } };
         case SET_CATEGORIES:
             return { ...state, categories: action.payload };
+        case SET_QUIZ:
+            return { ...state, quiz: action.payload };
         default:
             return state;
     }

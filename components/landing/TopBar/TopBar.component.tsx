@@ -34,10 +34,13 @@ const TopBar: FC<Props> = ({ visibleSection }) => {
             <div css={styles.logoContainer}>
                 <Image src={LogoText} alt="SAYA Logo" />
             </div>
-            <ul css={styles.nav}>
+            <div css={styles.nav}>
                 {navItems.map(({ id, name, href }) => (
-                    <li key={id} css={styles.navItem(selectedItem === href)}>
-                        <a onClick={() => onNavClick(href)}>{name}</a>
+                    <div
+                        key={id}
+                        css={styles.navItem(selectedItem === href)}
+                        onClick={() => onNavClick(href)}>
+                        <span>{name}</span>
                         {selectedItem === href && (
                             <motion.div
                                 css={styles.underline}
@@ -46,9 +49,9 @@ const TopBar: FC<Props> = ({ visibleSection }) => {
                                 transition={transition}
                             />
                         )}
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
 
             <NavBtn />
         </motion.div>

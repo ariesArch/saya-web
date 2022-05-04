@@ -3,7 +3,7 @@ import cookie from "js-cookie";
 import { EmptyObject } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
-import { Category, Course, CourseItem, OTPResponse } from "@/interfaces/courses.interfaces";
+import { Category, Course, CourseItem, OTPResponse, QuizQuestion } from "@/interfaces/courses.interfaces";
 import { DispatchType, ReduxState } from "@/interfaces/redux.interfaces";
 import {
     COURSE_UPDATE,
@@ -11,6 +11,7 @@ import {
     ENROLLED_COURSES_CHANGE,
     SELECTED_COURSE_UPDATE,
     SET_CATEGORIES,
+    SET_QUIZ,
     SET_SELECTED_COURSE,
 } from "@/store/courses/courses.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
@@ -44,6 +45,11 @@ export const onSelectedCourseUpdate = (course: Partial<Course>) => ({
 export const onSetCategories = (categories: Category[]) => ({
     type: SET_CATEGORIES,
     payload: categories,
+});
+
+export const onSetQuiz = (quiz: QuizQuestion[]) => ({
+    type: SET_QUIZ,
+    payload: quiz,
 });
 
 export const onCoursesFetchAsync = (onSuccess = emptyFunction, onFailure = emptyFunction) => {
@@ -224,6 +230,21 @@ export const onSubmitStudentQuestion = (
         } catch (e) {
             console.log(e);
             onFailure();
+        }
+    };
+};
+
+export const fetchLessonQuizAsync = (lessonId: string) => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+
+        try {
+            const instance = createAxiosInstance(token);
+            const { data } = await instance.post(endpoints.question.getAllQuestions, { lesson_id: lessonId });
+
+            dispatch(onSetQuiz(data?.data));
+        } catch (e) {
+            console.log(e);
         }
     };
 };

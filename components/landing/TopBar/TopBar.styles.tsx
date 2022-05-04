@@ -66,6 +66,7 @@ export const navItem = (isSelected: boolean) => css`
     padding: 0.5rem 1rem 2rem;
     position: relative;
     white-space: nowrap;
+    cursor: pointer;
     transition: all 0.4s;
 
     ${isSelected && `color: var(--color-primary);`}

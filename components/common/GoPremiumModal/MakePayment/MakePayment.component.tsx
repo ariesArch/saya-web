@@ -97,10 +97,10 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
     return !paymentResponse ? (
         <div css={styles.container}>
             <div css={styles.header}>
-                <a css={styles.backBtn} onClick={onGoBack}>
+                <button css={styles.backBtn} onClick={onGoBack}>
                     <ChevronLeft />
                     Back
-                </a>
+                </button>
                 <h1 css={styles.heading}>Make Payment</h1>
             </div>
 
@@ -119,7 +119,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                         {selectedMethod === `${provider}-${type}` ? (
                             <TickCircleIcon />
                         ) : (
-                            <Image src={image_url} width={30} height={30} />
+                            <Image src={image_url} width={30} height={30} alt="Provider Icon" />
                         )}
 
                         <span>
@@ -159,10 +159,10 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
         </div>
     ) : (
         <div css={styles.summaryContainer}>
-            <a css={styles.summaryBackBtn} onClick={onGoBackFromSummary}>
+            <button css={styles.summaryBackBtn} onClick={onGoBackFromSummary}>
                 <ChevronLeft />
                 Back
-            </a>
+            </button>
             <PaymentSummary {...paymentResponse} provider={paymentData[0]} method={paymentData[1]} />
         </div>
     );

@@ -29,7 +29,7 @@ export const chapter = css`
     margin-bottom: 0.2rem;
 
     @media only screen and (max-width: 992px) {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     @media only screen and (max-width: 695px) {
@@ -42,7 +42,7 @@ export const title = css`
     font-weight: 600;
 
     @media only screen and (max-width: 992px) {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
     }
 
     @media only screen and (max-width: 695px) {
@@ -65,7 +65,7 @@ export const iconsContainer = css`
         }
 
         @media only screen and (max-width: 992px) {
-            width: 2.5rem;
+            width: 2.2rem;
 
             &:not(:last-child) {
                 margin-right: 0.6rem;
@@ -88,8 +88,12 @@ export const statusIcon = (status: LessonStatus) => css`
 
     &:not(:last-child) {
         margin-right: 0.3rem;
+    }
 
-        @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: 992px) {
+        width: 2.2rem;
+
+        &:not(:last-child) {
             margin-right: 0.6rem;
         }
     }

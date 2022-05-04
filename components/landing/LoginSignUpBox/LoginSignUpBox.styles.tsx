@@ -69,8 +69,8 @@ export const input = css`
     }
 
     &:focus {
-        border: 1px solid var(--color-light-green);
-        box-shadow: 0 0 2px rgba(102, 175, 233, 0.5);
+        border: 1px solid var(--color-primary);
+        box-shadow: 0 0 2px var(--color-primary-button-hover);
     }
 `;
 

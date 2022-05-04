@@ -116,7 +116,7 @@ const LoginSignUpBox = () => {
                 animate={step === "phone" ? "enter" : "exit"}
                 initial="enter">
                 <div css={styles.iconContainer}>
-                    <Image src={MyanmarFlag} />
+                    <Image src={MyanmarFlag} alt="Myanmar Flag" />
                     <span>+95</span>
                 </div>
                 <input
@@ -135,9 +135,9 @@ const LoginSignUpBox = () => {
                 initial="exit">
                 <div css={styles.optTextsContainer}>
                     <div css={styles.optHeader}>
-                        <a css={styles.backBtn} onClick={onGoBack}>
+                        <div css={styles.backBtn} onClick={onGoBack}>
                             <ArrowLeft />
-                        </a>
+                        </div>
                         <span css={styles.optHeading}>Enter OTP</span>
                     </div>
                     <span css={styles.optSubHeading}>

@@ -21,17 +21,15 @@ const ClassroomCourseCard: FC<Props> = ({ courseId, image, courseName, progress 
     };
 
     return (
-        <div css={styles.courseCard}>
-            <a css={styles.imageContainer} onClick={onRedirectToCourse}>
-                <Image src={image} layout="fill" />
-            </a>
+        <div css={styles.courseCard} onClick={onRedirectToCourse}>
+            <div css={styles.imageContainer}>
+                <Image src={image} layout="fill" alt="Course Cover" />
+            </div>
             <div css={styles.progressContainer}>
                 <span css={styles.progressText}>{progress}% Learned</span>
                 <ProgressBar progress={progress} />
             </div>
-            <a css={styles.courseName} onClick={onRedirectToCourse}>
-                {courseName}
-            </a>
+            <div css={styles.courseName}>{courseName}</div>
         </div>
     );
 };

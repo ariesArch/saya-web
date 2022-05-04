@@ -8,8 +8,8 @@ export const card = (isSelectedCourse: boolean) => css`
     color: #fff;
     border-radius: 1.4rem;
     padding: 1.5rem 1.5rem 1.2rem;
-    margin: 0 0.5rem;
     background-color: #fff;
+    margin: 0 0.5rem 2rem;
 
     ${isSelectedCourse &&
     `
@@ -35,7 +35,7 @@ export const title = css`
     min-height: 2rem;
 
     @media only screen and (max-width: 992px) {
-        font-size: 3.5rem;
+        font-size: 2.6rem;
     }
 
     @media only screen and (max-width: 695px) {
@@ -59,11 +59,7 @@ export const info = css`
     }
 
     @media only screen and (max-width: 992px) {
-        font-size: 2.5rem;
-
-        svg {
-            width: 2rem;
-        }
+        font-size: 1.8rem;
     }
 
     @media only screen and (max-width: 695px) {
@@ -106,7 +102,7 @@ export const progressContainer = css`
         margin-bottom: 0.5rem;
 
         @media only screen and (max-width: 992px) {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
         }
 
         @media only screen and (max-width: 695px) {

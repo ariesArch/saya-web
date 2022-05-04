@@ -65,7 +65,7 @@ export const headingTips = css`
     align-items: center;
     position: absolute;
     bottom: calc(100% + 1rem);
-    left: calc(100% - 2rem);
+    left: calc(100% - 10rem);
     white-space: nowrap;
 
     @media only screen and (max-width: 1095px) {

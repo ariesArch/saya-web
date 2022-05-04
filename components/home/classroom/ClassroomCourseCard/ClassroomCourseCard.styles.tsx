@@ -4,6 +4,7 @@ export const courseCard = css`
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
+    cursor: pointer;
 `;
 
 export const imageContainer = css`

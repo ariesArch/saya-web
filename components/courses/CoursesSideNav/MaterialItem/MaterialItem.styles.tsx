@@ -44,7 +44,7 @@ export const title = css`
     margin-bottom: 0.5rem;
 
     @media only screen and (max-width: 992px) {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
     }
 
     @media only screen and (max-width: 695px) {
@@ -71,10 +71,10 @@ export const status = (status: LessonStatus) => css`
     }
 
     @media only screen and (max-width: 992px) {
-        font-size: 2rem;
+        font-size: 1.8rem;
 
         svg {
-            width: 2.5rem;
+            width: 2.2rem;
             margin-right: 0.8rem;
         }
     }
