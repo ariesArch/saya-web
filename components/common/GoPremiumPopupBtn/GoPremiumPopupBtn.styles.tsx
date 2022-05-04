@@ -9,7 +9,7 @@ export const button = css`
     position: fixed;
     bottom: 2rem;
     left: 3rem;
-    z-index: 100;
+    z-index: 100000;
     color: #fff;
     transition: all 0.2s;
 
