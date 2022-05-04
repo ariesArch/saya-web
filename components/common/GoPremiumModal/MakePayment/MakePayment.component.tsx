@@ -163,7 +163,14 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                 <ChevronLeft />
                 Back
             </button>
-            <PaymentSummary {...paymentResponse} provider={paymentData[0]} method={paymentData[1]} />
+            <PaymentSummary
+                {...paymentResponse}
+                provider={paymentData[0]}
+                method={paymentData[1]}
+                image={
+                    allParsedProviders.find(({ provider }) => provider === paymentData[0])?.image_url || ""
+                }
+            />
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import { PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
 import { ActionType, PaymentState } from "@/interfaces/redux.interfaces";
 import {
     PAYMENT_MODAL_TOGGLE,
@@ -14,9 +15,15 @@ const initialState: PaymentState = {
 const paymentReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case SUBSCRIPTION_PLANS_CHANGE:
-            return { ...state, subscriptionPlans: action.payload };
+            return {
+                ...state,
+                subscriptionPlans: (action.payload as SubscriptionPlan[]).sort((a, b) => a.month - b.month),
+            };
         case PAYMENT_PROVIDERS_CHANGE:
-            return { ...state, providers: action.payload };
+            return {
+                ...state,
+                providers: (action.payload as PaymentProvider[]).sort((a, b) => a.order - b.order),
+            };
         case PAYMENT_MODAL_TOGGLE:
             return { ...state, isPaymentModalOpen: action.payload };
         default:

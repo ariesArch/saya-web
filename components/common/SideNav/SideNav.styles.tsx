@@ -23,15 +23,13 @@ export const sideNav = css`
         padding-top: 1rem;
         padding-bottom: 1rem;
         justify-content: center;
+        align-items: flex-end;
     }
 `;
 
-export const navButton = css`
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
+export const navItem = css`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 
     &:not(:last-child) {
@@ -42,6 +40,21 @@ export const navButton = css`
             margin-right: 4rem;
         }
     }
+
+    span {
+        font-size: 1.2rem;
+        margin-top: 0.4rem;
+        font-weight: 600;
+    }
+`;
+
+export const navButton = css`
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         color: inherit;
@@ -55,4 +68,14 @@ export const navButton = css`
     }
 `;
 
-export const avatarContainer = css``;
+export const avatarContainer = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+        font-size: 1.2rem;
+        margin-top: 0.4rem;
+        font-weight: 600;
+    }
+`;

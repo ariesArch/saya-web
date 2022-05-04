@@ -20,18 +20,20 @@ const SideNav = () => {
     return (
         <div css={styles.sideNav}>
             {navItems.map(({ id, name, icon, routes }) => (
-                <motion.a
-                    key={id}
-                    css={styles.navButton}
-                    title={name}
-                    onClick={() => onItemClick(routes[0])}
-                    initial="inactive"
-                    animate={routes.includes(router.pathname) ? "active" : "inactive"}
-                    variants={iconVariants}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.9 }}>
-                    {icon}
-                </motion.a>
+                <div key={id} css={styles.navItem}>
+                    <motion.button
+                        css={styles.navButton}
+                        title={name}
+                        onClick={() => onItemClick(routes[0])}
+                        initial="inactive"
+                        animate={routes.includes(router.pathname) ? "active" : "inactive"}
+                        variants={iconVariants}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.9 }}>
+                        {icon}
+                    </motion.button>
+                    <span>{name}</span>
+                </div>
             ))}
             <div css={styles.avatarContainer}>
                 <UserPopupButton
@@ -39,6 +41,7 @@ const SideNav = () => {
                     verticalOffset={isMobile ? 10 : -70}
                     horizontalOffset={isMobile ? -240 : 0}
                 />
+                <span>Profile</span>
             </div>
         </div>
     );
