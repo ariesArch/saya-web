@@ -7,13 +7,13 @@ import { formatCurrency } from "@/utils/index";
 import * as styles from "./Summary.styles";
 
 interface Props {
-    price: number;
+    totalPrice: number;
     discount: { amount: number; type: string };
     planId: number;
     onAddPromoCode: (data: CheckPromoResponse) => void;
 }
 
-const MakePaymentSummary: FC<Props> = ({ price, discount, planId, onAddPromoCode }) => {
+const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddPromoCode }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const onOpen = () => setIsModalOpen(true);
     const onClose = () => setIsModalOpen(false);
@@ -23,21 +23,29 @@ const MakePaymentSummary: FC<Props> = ({ price, discount, planId, onAddPromoCode
             <div css={styles.summary}>
                 <div css={styles.summaryText}>
                     <span>Total</span>
-                    <span>{formatCurrency(price)} MMK</span>
+                    <span>{formatCurrency(totalPrice)} MMK</span>
                 </div>
                 <div css={styles.summaryText}>
                     <span>
                         Discount <button onClick={onOpen}>[Add coupon code]</button>
                     </span>
                     <span>
-                        - {formatCurrency(discount.amount)} {discount.type === "AMOUNT" ? "MMK" : "%"}
+                        -{" "}
+                        {formatCurrency(
+                            discount.type === "AMOUNT"
+                                ? discount.amount
+                                : totalPrice * (discount.amount / 100)
+                        )}{" "}
+                        MMK
                     </span>
                 </div>
                 <div css={styles.summaryText}>
                     <span>Grand Total</span>
                     <span>
                         {formatCurrency(
-                            discount.type === "AMOUNT" ? price - discount.amount : price * discount.amount
+                            discount.type === "AMOUNT"
+                                ? totalPrice - discount.amount
+                                : totalPrice - totalPrice * (discount.amount / 100)
                         )}{" "}
                         MMK
                     </span>

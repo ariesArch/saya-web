@@ -55,7 +55,7 @@ const ClassDetailsPopupContent: FC<Props> = ({ data }) => {
 
                     <Button variant="contained" color="success" onClick={onNotifyToggle} loading={isLoading}>
                         <NotificationIcon />
-                        {is_notify ? "Unnotify" : "Get notify"}
+                        {is_notify ? "Unnotify" : "Get notified"}
                     </Button>
                 </div>
             </div>

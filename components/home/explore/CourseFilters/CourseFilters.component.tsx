@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
@@ -34,11 +34,6 @@ const CourseFilters = () => {
         setFilters(newFilters);
         dispatch(onCoursesFilterAsync({ level: levelItem.value, category: newFilters }));
     };
-
-    useEffect(() => {
-        if (!categories.length) return;
-        setFilters(categories.map(({ id }) => id));
-    }, [categories]);
 
     return (
         <div css={styles.courseFilters}>

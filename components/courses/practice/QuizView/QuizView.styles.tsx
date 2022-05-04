@@ -9,9 +9,12 @@ export const container = css`
 
 export const questionContainer = css`
     padding: 2rem 0;
+    text-align: center;
+`;
+
+export const questionText = css`
     font-size: 2.5rem;
     font-weight: 600;
-    text-align: center;
 `;
 
 export const answersContainer = css`

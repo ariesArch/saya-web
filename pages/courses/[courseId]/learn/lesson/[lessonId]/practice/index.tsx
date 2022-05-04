@@ -1,14 +1,16 @@
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import QuizProgress from "@/components/courses/practice/QuizProgress/QuizProgress.component";
 import QuizView from "@/components/courses/practice/QuizView/QuizView.component";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
 import { fetchLessonQuizAsync } from "@/store/courses/courses.actions";
 
 const PracticePage = () => {
+    const { quiz } = useSelector((state: ReduxState) => ({ quiz: state.coursesState.quiz }));
     const dispatch = useDispatch();
     const router = useRouter();
     const { lessonId } = router.query;
@@ -21,7 +23,7 @@ const PracticePage = () => {
         <CourseLayout>
             <div css={container}>
                 <QuizProgress totalLength={8} currentQuestion={5} />
-                <QuizView />
+                <QuizView questions={quiz} />
             </div>
         </CourseLayout>
     );

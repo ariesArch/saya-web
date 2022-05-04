@@ -24,28 +24,24 @@ const SubscriptionPlanCard: FC<Props> = ({ data, showBadge = true, ...rest }) =>
             )}
 
             <div css={styles.month}>
-                <strong>{month}</strong> month
+                <strong>{month}</strong> month{month > 1 && "s"}
             </div>
 
             <div css={styles.pricesContainer}>
                 <div css={styles.discountedPrice}>
-                    MMK <strong>{formatCurrency((final_price || price) / month)}</strong> /mo
+                    <strong>{formatCurrency((final_price || price) * month)}</strong> MMK
                 </div>
                 {!!has_promotion && (
                     <div css={styles.price}>
-                        MMK <span>{formatCurrency(price / month)}</span> /mo
+                        <span>{formatCurrency(price * month)}</span> MMK
                     </div>
                 )}
             </div>
 
             <div css={styles.total}>
-                {has_promotion ? (
-                    <span>
-                        Total <strong>{formatCurrency(final_price)}</strong> MMK for {month} months
-                    </span>
-                ) : (
-                    "Billed every months"
-                )}
+                <span>
+                    <strong>{formatCurrency(price)}</strong> MMK per month
+                </span>
             </div>
 
             {!!has_promotion && <span css={styles.discount}>{promotion_price}% OFF</span>}

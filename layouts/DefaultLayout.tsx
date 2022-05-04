@@ -21,7 +21,7 @@ interface DefaultLayoutProps {
 const DefaultLayout = (props: DefaultLayoutProps) => {
     const { title = "SAYA - The English Learning Platform", topBar, children } = props;
     const { isOpen, userData } = useSelector((state: ReduxState) => ({
-        isOpen: state.paymentState.isPaymentModalOpen,
+        isOpen: true,
         userData: state.userState.userData,
     }));
     const dispatch = useDispatch();
