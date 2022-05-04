@@ -98,7 +98,7 @@ export const instructions = css`
 
 export const imageContainer = css`
     width: 40rem;
-    height: 20rem;
+    height: 26rem;
     position: relative;
     border-radius: 5rem;
     overflow: hidden;

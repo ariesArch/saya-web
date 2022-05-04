@@ -5,8 +5,6 @@ import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
-import MPUImg from "@/public/images/mpu.png";
-import WavePayImg from "@/public/images/wavepay.png";
 import { onPaymentModalToggle } from "@/store/payment/payment.actions";
 
 import * as styles from "./PaymentSummary.styles";
@@ -17,9 +15,10 @@ interface Props {
     expired_date_time: string;
     provider: string;
     method: string;
+    image: string;
 }
 
-const PaymentSummary: FC<Props> = ({ value, type, expired_date_time, provider, method }) => {
+const PaymentSummary: FC<Props> = ({ value, type, expired_date_time, provider, method, image }) => {
     const dispatch = useDispatch();
     const [countdown, setCountdown] = useState(0);
 
@@ -82,7 +81,7 @@ const PaymentSummary: FC<Props> = ({ value, type, expired_date_time, provider, m
         <div css={styles.container}>
             <h5 css={styles.heading}>Pay with {provider}</h5>
             <div css={styles.imageContainer}>
-                <Image src={method === "OTP" ? MPUImg : WavePayImg} alt={provider} layout="fill" />
+                <Image src={image} alt={provider} layout="fill" />
             </div>
             <p css={styles.instructions}>
                 ပွင့်လာမည့် New tab တွင် {provider} acc ဖြင့် ငွေလွှဲပေးပါ။
