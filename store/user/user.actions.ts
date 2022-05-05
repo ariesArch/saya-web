@@ -42,7 +42,7 @@ export const userVerifyLoginAsync = (
         try {
             const instance = createAxiosInstance();
 
-            const { data } = await instance.post(endpoints.auth.verifyLogin, form);
+            const { data } = await instance.post(endpoints.auth.verifyLogin, { ...form, platform: "web" });
 
             const { access_token, expires_in } = data;
 
