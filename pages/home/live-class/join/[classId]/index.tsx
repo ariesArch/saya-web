@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useCallback, useEffect } from "react";
+import { Fragment, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ReduxState } from "@/interfaces/redux.interfaces";
@@ -43,9 +43,29 @@ const LiveClassJoinPage = () => {
     }, [dispatch]);
 
     return (
-        <DefaultLayout>
+        <DefaultLayout
+            headChildren={
+                <Fragment>
+                    <link
+                        type="text/css"
+                        rel="stylesheet"
+                        href="https://source.zoom.us/2.4.0/css/bootstrap.css"
+                    />
+                    <link
+                        type="text/css"
+                        rel="stylesheet"
+                        href="https://source.zoom.us/2.4.0/css/react-select.css"
+                    />
+                </Fragment>
+            }>
             <div css={container}>
-                <h1>{event?.is_live ? "Joining Class . . ." : "The event is not live."}</h1>
+                <h1>
+                    {event
+                        ? event?.is_live
+                            ? "Joining Class . . ."
+                            : "The event is not live."
+                        : "Loading .. ."}
+                </h1>
             </div>
         </DefaultLayout>
     );

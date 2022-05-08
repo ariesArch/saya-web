@@ -13,3 +13,9 @@ export const isNextWeek = (date: Date): boolean => {
 
     return isThisISOWeek(nextWeek);
 };
+
+export const convertTZ = (date: Date | string, tzString: string) => {
+    return new Date(
+        (typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", { timeZone: tzString })
+    );
+};

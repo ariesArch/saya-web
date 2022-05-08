@@ -22,7 +22,7 @@ const HomeLayout = (props: DefaultLayoutProps) => {
     const dispatch = useDispatch();
 
     const onSingleCourseFetchFailure = (e: any) => {
-        if (e?.response.status === 404) router.push("/home/classroom");
+        if (e?.response?.status === 404) router.push("/home/classroom");
     };
 
     useEffect(() => {
