@@ -15,11 +15,12 @@ const GoPremiumModal = dynamic(() => import("@/components/common/GoPremiumModal/
 interface DefaultLayoutProps {
     title?: string;
     topBar?: ReactNode;
+    headChildren?: ReactNode;
     children: ReactNode;
 }
 
 const DefaultLayout = (props: DefaultLayoutProps) => {
-    const { title = "SAYA - The English Learning Platform", topBar, children } = props;
+    const { title = "SAYA - The English Learning Platform", topBar, headChildren, children } = props;
     const { isOpen, userData } = useSelector((state: ReduxState) => ({
         isOpen: state.paymentState.isPaymentModalOpen,
         userData: state.userState.userData,
@@ -33,6 +34,7 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
             <Head>
                 <title>{title}</title>
                 <meta name="viewport" content="width=device-width, minimum-scale=1" />
+                {headChildren}
             </Head>
             {topBar && <header>{topBar}</header>}
             <div css={body}>{children}</div>

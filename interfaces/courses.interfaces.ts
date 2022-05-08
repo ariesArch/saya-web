@@ -80,16 +80,16 @@ export interface QuizQuestion {
     updated_at: number;
     question: string;
     lesson_id: string;
-    answers: [
-        {
-            id: string;
-            format: string;
-            updated_at: number;
-            answer: string;
-            is_answer: string;
-            explanation: string;
-        }
-    ];
+    answers: QuizQuestionAnswer[];
+}
+
+export interface QuizQuestionAnswer {
+    id: string;
+    format: string;
+    updated_at: number;
+    answer: string;
+    is_answer: boolean;
+    explanation: string;
 }
 
 export interface QuizPayloadData {
