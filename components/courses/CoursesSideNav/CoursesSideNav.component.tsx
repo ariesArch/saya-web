@@ -58,7 +58,7 @@ const CoursesSideNav = () => {
         <div css={styles.container}>
             <DescriptionCard />
 
-            <SimpleBar css={styles.scrollContainer}>
+            <div css={styles.scrollContainer}>
                 {!selectedChapter.chapter.id ? (
                     <div css={styles.sections}>
                         {selectedCourse?.chapters?.map((chapter, i) => (
@@ -72,7 +72,7 @@ const CoursesSideNav = () => {
                         ))}
                     </div>
                 ) : (
-                    <div css={styles.materials}>
+                    <SimpleBar css={styles.materials}>
                         <div css={styles.chapterInfo}>
                             <Button css={styles.backBtn} onClick={onUnselectChapter}>
                                 <ChevronLeftIcon /> Back
@@ -96,9 +96,9 @@ const CoursesSideNav = () => {
                                 onGoPremiumModalOpen={onModalOpen}
                             />
                         ))}
-                    </div>
+                    </SimpleBar>
                 )}
-            </SimpleBar>
+            </div>
         </div>
     );
 };

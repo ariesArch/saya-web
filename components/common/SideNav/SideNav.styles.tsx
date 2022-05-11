@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 export const sideNav = css`
     display: flex;
     flex-direction: column;
-    padding: 10rem 1.5rem 0;
+    padding: 10rem 1rem 0;
     border-right: 1px solid #f5f5f5;
     width: fit-content;
     position: fixed;

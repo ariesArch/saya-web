@@ -19,6 +19,7 @@ export const card = css`
     border-radius: 1rem;
     box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.14);
     padding: 0.4rem;
+    position: relative;
 `;
 
 export const imageContainer = css`
@@ -26,6 +27,10 @@ export const imageContainer = css`
     min-height: 18rem;
     position: relative;
     flex-shrink: 0;
+
+    @media only screen and (max-width: 545px) {
+        width: 10rem;
+    }
 
     img {
         width: 100% !important;

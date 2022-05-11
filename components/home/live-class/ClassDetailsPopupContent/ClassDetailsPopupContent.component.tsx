@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
@@ -14,20 +14,37 @@ import * as styles from "./ClassDetailsPopupContent.styles";
 
 interface Props {
     data: LiveEvent;
+    buttonRef: any;
+    onPopupClose: () => void;
 }
 
-const ClassDetailsPopupContent: FC<Props> = ({ data }) => {
+const ClassDetailsPopupContent: FC<Props> = ({ data, buttonRef, onPopupClose }) => {
     const { uuid, image_url, teacher_name, title, date, from, description, is_notify } = data;
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
+    const popupRef = useRef(null);
 
     const onNotifyToggle = () => {
         setIsLoading(true);
         dispatch(onLiveClassNotifyToggleAsync({ uuid, is_notify }, () => setIsLoading(false)));
     };
 
+    const handleClickAway = (e: MouseEvent) => {
+        if ((popupRef as any).current.contains(e.target)) return;
+
+        if (buttonRef.current && buttonRef.current.contains(e.target)) return;
+
+        onPopupClose();
+    };
+
+    useEffect(() => {
+        document.addEventListener("click", handleClickAway);
+
+        return () => document.removeEventListener("click", handleClickAway);
+    });
+
     return (
-        <div css={styles.container}>
+        <div css={styles.container} ref={popupRef}>
             <div css={styles.imageContainer}>
                 <Image src={image_url} alt="event photo" layout="fill" />
             </div>

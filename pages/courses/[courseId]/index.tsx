@@ -81,8 +81,9 @@ const container = css`
 const playerContainer = css`
     width: 100%;
     background-color: #fff;
-    border-radius: 1rem;
+    border-radius: 1.4rem;
     min-height: 25rem;
+    overflow: hidden;
 `;
 
 const contents = css`
