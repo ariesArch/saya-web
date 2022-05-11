@@ -4,7 +4,7 @@ import { LessonStatus } from "@/interfaces/courses.interfaces";
 
 export const material = (status: LessonStatus, isEnrolled: boolean) => css`
     display: flex;
-    padding: 1rem;
+    padding: 1rem 1.4rem;
     cursor: pointer;
     transition: all 0.2s;
     border-bottom: 1px solid #f5f5f5;

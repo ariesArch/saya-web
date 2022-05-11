@@ -3,12 +3,11 @@ import { css } from "@emotion/react";
 export const button = css`
     display: flex;
     align-items: center;
-    padding: 0.4rem 1rem;
     background-color: var(--color-blue);
     border-radius: 1rem;
     position: fixed;
-    bottom: 2rem;
-    left: 3rem;
+    bottom: 2.5rem;
+    left: 4rem;
     z-index: 100000;
     color: #fff;
     transition: all 0.2s;
@@ -24,7 +23,7 @@ export const button = css`
     }
 
     &:active {
-        transform: scale(0.95);
+        transform: scale(0.99);
     }
 `;
 
@@ -48,6 +47,7 @@ export const crownIconContainer = css`
 `;
 
 export const buttonTexts = css`
+    padding: 0.4rem 1rem 0.4rem 0;
     margin-left: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -63,6 +63,7 @@ export const buttonTitle = css`
     align-items: center;
     font-size: 1.8rem;
     font-weight: 600;
+    white-space: nowrap;
 
     & > svg {
         margin-left: 0.5rem;

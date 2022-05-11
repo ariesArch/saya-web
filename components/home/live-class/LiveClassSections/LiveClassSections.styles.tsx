@@ -29,7 +29,7 @@ export const section = css`
     padding-left: 7rem;
 
     @media only screen and (max-width: 545px) {
-        padding-left: 5rem;
+        padding-left: 3.5rem;
     }
 
     &:not(:last-child) {
@@ -64,9 +64,17 @@ export const heading = (isToday: boolean) => css`
     `
         color: var(--color-primary);
     `};
+
+    @media only screen and (max-width: 545px) {
+        font-size: 2.5rem;
+    }
 `;
 
-export const subHeading = css``;
+export const subHeading = css`
+    @media only screen and (max-width: 545px) {
+        font-size: 1.2rem;
+    }
+`;
 
 export const grid = css`
     display: grid;

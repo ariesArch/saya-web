@@ -27,7 +27,7 @@ export const topBar = (isFloating: boolean, isHidden: boolean) => css`
         background-color: #fff;
         box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
         transform: translateY(0);
-        padding: 1rem 5rem 1rem;
+        padding-top: 1rem !important;
   `}
 `;
 

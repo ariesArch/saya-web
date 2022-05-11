@@ -1,8 +1,15 @@
 import { css } from "@emotion/react";
 
 export const container = css`
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
     display: flex;
-    min-width: 45rem;
+    background-color: #fff;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
 `;
 
 export const imageContainer = css`

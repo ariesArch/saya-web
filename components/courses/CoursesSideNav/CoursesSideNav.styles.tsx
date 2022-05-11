@@ -6,12 +6,7 @@ export const container = css`
 `;
 
 export const scrollContainer = css`
-    max-height: calc(100vh - 18rem);
     padding: 0 0.5rem;
-
-    & > div {
-        margin: 0;
-    }
 `;
 
 export const sections = css`
@@ -31,6 +26,11 @@ export const materials = css`
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
     position: relative;
+    max-height: calc(100vh - 18rem);
+
+    & > div {
+        margin: 0;
+    }
 `;
 
 export const chapterInfo = css`
@@ -38,12 +38,12 @@ export const chapterInfo = css`
     flex-direction: column;
     margin-bottom: 2rem;
     background-color: #fff;
-    padding: 0.5rem 0.8rem;
+    padding: 0.8rem 1.2rem;
     border-top-right-radius: 1.4rem;
     border-top-left-radius: 1.4rem;
 
     position: sticky;
-    top: 0;
+    top: -1px;
     left: 1rem;
     z-index: 5;
 `;
