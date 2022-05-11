@@ -4,6 +4,7 @@ import { QuizQuestionAnswer, QuizQuestionFormat, QuizQuestionType } from "@/inte
 import CheckCircleIcon from "@/public/icons/check-circle.svg";
 import CloseCircleIcon from "@/public/icons/close-circle.svg";
 import TickCircleIcon from "@/public/icons/tick-circle-inverted.svg";
+import { emptyFunction } from "@/utils/index";
 
 import * as styles from "./AnswersContainer.styles";
 
@@ -12,11 +13,19 @@ interface Props {
     selectedAnswer: QuizQuestionAnswer | null;
     format: QuizQuestionFormat;
     questionType: QuizQuestionType;
-    onSelectAnswer: (answer: QuizQuestionAnswer) => void;
+    onSelectAnswer?: (answer: QuizQuestionAnswer) => void;
+    isSummary?: boolean;
 }
 
 const AnswersContainer: FC<Props> = (props) => {
-    const { answers, format, questionType, selectedAnswer, onSelectAnswer } = props;
+    const {
+        answers,
+        format,
+        questionType,
+        selectedAnswer,
+        onSelectAnswer = emptyFunction,
+        isSummary = false,
+    } = props;
     const isMultipleChoice = questionType === "multiple-choice" && format !== "audio";
     const isTrueFalse = questionType === "true-false" && format !== "audio";
 
@@ -27,6 +36,12 @@ const AnswersContainer: FC<Props> = (props) => {
             }
             return <CloseCircleIcon />;
         }
+        if (isSummary) {
+            if (isCorrect) {
+                return <TickCircleIcon color="var(--color-violet-light)" />;
+            }
+        }
+
         return <CheckCircleIcon />;
     };
 
@@ -42,9 +57,13 @@ const AnswersContainer: FC<Props> = (props) => {
                         !!selectedAnswer?.id
                     )}
                     onClick={() => onSelectAnswer(answer)}>
-                    <div css={styles.selectItemIcon}>
-                        {renderAnswerIcon(selectedAnswer?.id === answer.id, answer.is_answer)}
-                    </div>
+                    {((isSummary && answer.is_answer) ||
+                        questionType === "multiple-choice" ||
+                        selectedAnswer?.id === answer.id) && (
+                        <div css={styles.selectItemIcon}>
+                            {renderAnswerIcon(selectedAnswer?.id === answer.id, answer.is_answer)}
+                        </div>
+                    )}
                     <span css={styles.label}>{answer.answer}</span>
                 </div>
             ))}

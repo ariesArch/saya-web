@@ -5,13 +5,13 @@ import Script from "next/script";
 import { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-// import Button from "@/components/common/Button/Button.component";
+import Button from "@/components/common/Button/Button.component";
 import PostQuestion from "@/components/courses/PostQuestion/PostQuestion.component";
 import VideoPlayer from "@/components/courses/VideoPlayer/VideoPlayer.component";
 import { Lesson } from "@/interfaces/courses.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
-// import LampChargeIcon from "@/public/icons/lamp-charge.svg";
+import LampChargeIcon from "@/public/icons/lamp-charge.svg";
 
 const LessonPage = () => {
     const router = useRouter();
@@ -19,9 +19,9 @@ const LessonPage = () => {
     const selectedCourse = useSelector((state: ReduxState) => state.coursesState.selectedCourse);
     const [selectedLesson, setSelectedLesson] = useState<Lesson>();
 
-    // const onPractice = () => {
-    //     router.push(`${router.asPath}/practice`);
-    // };
+    const onPractice = () => {
+        router.push(`${router.asPath}/practice`);
+    };
 
     useEffect(() => {
         if (!selectedCourse.id) return;
@@ -55,10 +55,12 @@ const LessonPage = () => {
                             </span>
                             <span css={title}>{selectedLesson?.title}</span>
                         </div>
-                        {/* <Button css={button} variant="contained" color="success" onClick={onPractice}> */}
-                        {/*    <LampChargeIcon /> */}
-                        {/*    Practice */}
-                        {/* </Button> */}
+                        {selectedLesson?.has_practice && (
+                            <Button css={button} variant="contained" color="success" onClick={onPractice}>
+                                <LampChargeIcon />
+                                Practice
+                            </Button>
+                        )}
                     </div>
                 )}
             </div>

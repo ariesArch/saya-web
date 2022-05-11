@@ -1,4 +1,11 @@
-import { Category, Course, CourseItem, QuizQuestion } from "@/interfaces/courses.interfaces";
+import {
+    Category,
+    Course,
+    CourseItem,
+    QuizQuestion,
+    QuizSolutionItem,
+    QuizSummary,
+} from "@/interfaces/courses.interfaces";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
 import { PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
@@ -38,6 +45,8 @@ export interface CoursesState {
     selectedCourse: Course | Record<string, never>;
     categories: Category[];
     quiz: QuizQuestion[];
+    quizSolution: QuizSolutionItem[];
+    quizSummary: QuizSummary | Record<string, never>;
 }
 
 export interface LiveClassState {

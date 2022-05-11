@@ -3,7 +3,16 @@ import cookie from "js-cookie";
 import { EmptyObject } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
-import { Category, Course, CourseItem, OTPResponse, QuizQuestion } from "@/interfaces/courses.interfaces";
+import {
+    Category,
+    Course,
+    CourseItem,
+    OTPResponse,
+    QuizPayloadData,
+    QuizQuestion,
+    QuizSolutionItem,
+    QuizSummary,
+} from "@/interfaces/courses.interfaces";
 import { DispatchType, ReduxState } from "@/interfaces/redux.interfaces";
 import {
     COURSE_UPDATE,
@@ -12,9 +21,12 @@ import {
     SELECTED_COURSE_UPDATE,
     SET_CATEGORIES,
     SET_QUIZ,
+    SET_QUIZ_SOLUTION,
+    SET_QUIZ_SUMMARY,
     SET_SELECTED_COURSE,
 } from "@/store/courses/courses.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
+import { calculateQuizSummary } from "@/utils/courses";
 import { emptyFunction } from "@/utils/index";
 
 export const onCoursesChange = (courses: CourseItem[]) => ({
@@ -50,6 +62,16 @@ export const onSetCategories = (categories: Category[]) => ({
 export const onSetQuiz = (quiz: QuizQuestion[]) => ({
     type: SET_QUIZ,
     payload: quiz,
+});
+
+export const onSetQuizSolution = (quizSolution: QuizSolutionItem[]) => ({
+    type: SET_QUIZ_SOLUTION,
+    payload: quizSolution,
+});
+
+export const onSetQuizSummary = (quizSummary: QuizSummary) => ({
+    type: SET_QUIZ_SUMMARY,
+    payload: quizSummary,
 });
 
 export const onCoursesFetchAsync = (onSuccess = emptyFunction, onFailure = emptyFunction) => {
@@ -242,9 +264,57 @@ export const fetchLessonQuizAsync = (lessonId: string) => {
             const instance = createAxiosInstance(token);
             const { data } = await instance.post(endpoints.question.getAllQuestions, { lesson_id: lessonId });
 
-            dispatch(onSetQuiz(data?.data));
+            dispatch(onSetQuiz(data?.data as QuizQuestion[]));
         } catch (e) {
             console.log(e);
+        }
+    };
+};
+
+export const onSubmitQuizPracticingBehavior = (
+    form: QuizPayloadData,
+    onSuccess = emptyFunction,
+    onFailure = emptyFunction
+) => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+        const newFormData = {
+            ...form,
+            practices: form.practices.map((item) => {
+                const newItem = { ...item };
+                delete newItem?.isAnswer;
+                return item;
+            }),
+        };
+
+        try {
+            const instance = createAxiosInstance(token);
+            await instance.post(endpoints.question.submitQuizPracticingBehavior, newFormData);
+
+            dispatch(onSetQuizSummary(calculateQuizSummary(form)));
+            onSuccess();
+        } catch (e) {
+            console.log(e);
+            onFailure();
+        }
+    };
+};
+
+export const fetchSummaryAsync = (lessonId: string, onSuccess = emptyFunction, onFailure = emptyFunction) => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+
+        try {
+            const instance = createAxiosInstance(token);
+            const { data } = await instance.post(endpoints.lesson.getLessonWithSolutions, {
+                lesson_id: lessonId,
+            });
+
+            dispatch(onSetQuizSolution(data?.data as QuizSolutionItem[]));
+            onSuccess();
+        } catch (e) {
+            console.log(e);
+            onFailure();
         }
     };
 };

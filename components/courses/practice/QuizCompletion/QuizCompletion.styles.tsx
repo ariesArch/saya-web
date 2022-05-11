@@ -39,6 +39,15 @@ export const detailsItem = css`
     &:not(:last-child) {
         margin-right: 1rem;
     }
+
+    @media only screen and (max-width: 1145px) {
+        font-size: 2.5rem;
+        padding: 0.5rem 2rem;
+    }
+
+    @media only screen and (max-width: 695px) {
+        font-size: 2.2rem;
+    }
 `;
 
 export const iconContainer = css`
@@ -49,10 +58,18 @@ export const iconContainer = css`
         width: 2.5rem;
         height: auto;
         margin-left: 0.4rem;
+
+        @media only screen and (max-width: 695px) {
+            width: 2rem;
+        }
     }
 
     &:not(:last-child) {
         margin-right: 3rem;
+
+        @media only screen and (max-width: 695px) {
+            margin-right: 1.5rem;
+        }
     }
 `;
 
@@ -62,6 +79,15 @@ export const label = css`
     font-weight: 500;
     margin-left: 1rem;
     margin-bottom: -0.8rem;
+
+    @media only screen and (max-width: 1145px) {
+        font-size: 1.4rem;
+    }
+
+    @media only screen and (max-width: 695px) {
+        font-size: 1.2rem;
+        margin-left: 0.5rem;
+    }
 `;
 
 export const buttonsContainer = css`

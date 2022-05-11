@@ -15,6 +15,7 @@ export const createAxiosInstance = (token = "") => {
 export const endpoints = {
     question: {
         getAllQuestions: "/questions",
+        submitQuizPracticingBehavior: "/submitQuizzesPracticingBehaviours",
     },
     ads: {
         getAds: "/ads",

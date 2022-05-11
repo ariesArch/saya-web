@@ -1,5 +1,7 @@
 import { FC } from "react";
+import { useSelector } from "react-redux";
 
+import { ReduxState } from "@/interfaces/redux.interfaces";
 import CloseCircleIcon from "@/public/icons/close-circle.svg";
 import PracticeDoneIcon from "@/public/icons/practice-done.svg";
 import TakeNextLessonIcon from "@/public/icons/take-next-lesson.svg";
@@ -10,9 +12,15 @@ import * as styles from "./QuizCompletion.styles";
 
 interface Props {
     onViewSummary: () => void;
+    onVisitNextLesson: () => void;
 }
 
-const QuizCompletion: FC<Props> = ({ onViewSummary }) => {
+const QuizCompletion: FC<Props> = ({ onViewSummary, onVisitNextLesson }) => {
+    const { quizSummary } = useSelector((state: ReduxState) => ({
+        quizSummary: state.coursesState.quizSummary,
+    }));
+    const { correctAnswers, incorrectAnswers, averageCorrectness, averageSpeed } = quizSummary;
+
     return (
         <div css={styles.container}>
             <div css={styles.header}>
@@ -22,17 +30,17 @@ const QuizCompletion: FC<Props> = ({ onViewSummary }) => {
             <div css={styles.details}>
                 <div css={styles.detailsItem}>
                     <div css={styles.iconContainer}>
-                        6 <TickCircleIcon color="var(--color-violet-light)" />
+                        {correctAnswers} <TickCircleIcon color="var(--color-violet-light)" />
                     </div>
                     <div css={styles.iconContainer}>
-                        3 <CloseCircleIcon />
+                        {incorrectAnswers} <CloseCircleIcon />
                     </div>
                 </div>
                 <div css={styles.detailsItem}>
-                    31% <span css={styles.label}>Correct</span>
+                    {averageCorrectness}% <span css={styles.label}>Correct</span>
                 </div>
                 <div css={styles.detailsItem}>
-                    5.sec <span css={styles.label}>Avg Speed</span>
+                    {averageSpeed}.sec <span css={styles.label}>Avg Speed</span>
                 </div>
             </div>
 
@@ -40,7 +48,7 @@ const QuizCompletion: FC<Props> = ({ onViewSummary }) => {
                 <button css={styles.button} onClick={onViewSummary}>
                     <ViewSummaryIcon /> View Summary
                 </button>
-                <button css={styles.button}>
+                <button css={styles.button} onClick={onVisitNextLesson}>
                     <TakeNextLessonIcon /> Take Next Lesson
                 </button>
             </div>

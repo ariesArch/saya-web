@@ -15,7 +15,7 @@ const QuestionContainer: FC<Props> = ({ format, questionType, question }) => {
     return (
         <div css={styles.questionContainer(questionType === "true-false" && format !== "audio")}>
             {format === "text" ? (
-                <span css={styles.questionText}>{question}</span>
+                <div css={styles.questionText}>{question}</div>
             ) : (
                 <div css={styles.speakerContainer}>
                     <SpeakerIcon />

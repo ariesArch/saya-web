@@ -106,14 +106,14 @@ export const sidePanel = css`
     right: 0;
     z-index: 100;
     height: 100vh;
-    width: 38rem;
+    width: 35rem;
     flex-shrink: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
 
     @media only screen and (max-width: 1245px) {
-        width: 35rem;
+        width: 32rem;
     }
 
     @media only screen and (max-width: 992px) {
