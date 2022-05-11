@@ -10,7 +10,7 @@ const useIntersection = (element: RefObject<Element>, rootMargin = "0px") => {
             ([entry]) => {
                 setState(entry.isIntersecting);
             },
-            { rootMargin, root: document.body }
+            { rootMargin }
         );
 
         if (current) observer.observe(current);
