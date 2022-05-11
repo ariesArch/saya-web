@@ -1,13 +1,16 @@
 import { format } from "date-fns";
 import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
+import { carouselTransition, carouselVariants } from "@/components/common/FramerMotion";
 import AnswersContainer from "@/components/courses/practice/AnswersContainer/AnswersContainer.component";
 import QuestionContainer from "@/components/courses/practice/QuestionContainer/QuestionContainer.component";
 import QuizExplanation from "@/components/courses/practice/QuizExplanation/QuizExplanation.component";
 import QuizProgress from "@/components/courses/practice/QuizProgress/QuizProgress.component";
 import { QuizPayloadData, QuizQuestion, QuizQuestionAnswer } from "@/interfaces/courses.interfaces";
-import LampChargeIcon from "@/public/icons/lamp-charge.svg";
+import LampChargeIcon from "@/public/icons/bold-lamp-charge.svg";
+import { onSubmitQuizPracticingBehavior } from "@/store/courses/courses.actions";
 import { convertTZ } from "@/utils/date-time";
 
 import * as styles from "./QuizView.styles";
@@ -16,9 +19,11 @@ interface Props {
     lessonId: string;
     questions: QuizQuestion[];
     onComplete: () => void;
+    setIsLoading: (isLoading: boolean) => void;
 }
 
-const QuizView: FC<Props> = ({ lessonId, questions, onComplete }) => {
+const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) => {
+    const dispatch = useDispatch();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [quizData, setQuizData] = useState<QuizPayloadData>({
         overall_started_practice_at: formatDate(new Date()),
@@ -42,6 +47,7 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete }) => {
                     started_practice_at: questionStartedTime,
                     ended_practice_at: formatDate(new Date()),
                     question_id: questions[currentIndex].id,
+                    isAnswer: answer.is_answer,
                 },
             ],
         });
@@ -59,8 +65,29 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete }) => {
             setCurrentIndex(currentIndex + 1);
             setQuestionStartedTime(formatDate(new Date()));
         } else {
-            onComplete();
+            submitQuiz();
         }
+    };
+
+    const submitQuiz = () => {
+        const newQuizData = {
+            ...quizData,
+            overall_ended_practice_at: formatDate(new Date()),
+        };
+        setQuizData(newQuizData);
+
+        setIsLoading(true);
+        dispatch(onSubmitQuizPracticingBehavior(newQuizData, onSubmitSuccess, onSubmitFailure));
+    };
+
+    const onSubmitSuccess = () => {
+        setIsLoading(false);
+        onComplete();
+    };
+
+    const onSubmitFailure = () => {
+        setIsLoading(false);
+        onComplete();
     };
 
     useEffect(() => {
@@ -79,14 +106,11 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete }) => {
             <motion.div
                 css={styles.contents}
                 key={currentIndex}
-                variants={variants}
+                variants={carouselVariants}
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 },
-                }}>
+                transition={carouselTransition}>
                 {questions[currentIndex] && (
                     <QuestionContainer
                         format={questions[currentIndex].format}
@@ -114,23 +138,6 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete }) => {
             )}
         </div>
     );
-};
-
-const variants = {
-    enter: {
-        x: 1000,
-        opacity: 0,
-    },
-    center: {
-        zIndex: 1,
-        x: 0,
-        opacity: 1,
-    },
-    exit: {
-        zIndex: 0,
-        x: -1000,
-        opacity: 0,
-    },
 };
 
 // only Myanmar Time is accepted to need to convert the Timezone first

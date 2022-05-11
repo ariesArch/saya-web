@@ -42,3 +42,26 @@ export const transition = {
     stiffness: 500,
     damping: 30,
 };
+
+export const carouselVariants = {
+    // direction comes from "custom" attribute
+    enter: (direction = 1) => ({
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+    }),
+    center: {
+        zIndex: 1,
+        x: 0,
+        opacity: 1,
+    },
+    exit: (direction = 1) => ({
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+    }),
+};
+
+export const carouselTransition = {
+    x: { type: "spring", stiffness: 300, damping: 30 },
+    opacity: { duration: 0.2 },
+};

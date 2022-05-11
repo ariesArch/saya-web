@@ -92,6 +92,20 @@ export interface QuizQuestionAnswer {
     explanation: string;
 }
 
+export interface QuizSolutionItem {
+    id: string;
+    question_type: QuizQuestionType;
+    format: QuizQuestionFormat;
+    updated_at: number;
+    question: string;
+    lesson_id: string;
+    answers: QuizSolutionAnswer[];
+}
+
+export interface QuizSolutionAnswer extends QuizQuestionAnswer {
+    is_user_choice: boolean;
+}
+
 export interface QuizPayloadData {
     overall_started_practice_at: string;
     overall_ended_practice_at: string;
@@ -101,5 +115,14 @@ export interface QuizPayloadData {
         clicked_answer_option_id: string;
         started_practice_at: string;
         ended_practice_at: string;
+        // need to filter this out on the payload
+        isAnswer?: boolean;
     }[];
+}
+
+export interface QuizSummary {
+    correctAnswers: number;
+    incorrectAnswers: number;
+    averageCorrectness: number;
+    averageSpeed: number;
 }

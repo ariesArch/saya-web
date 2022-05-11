@@ -15,7 +15,7 @@ export const selectItem = (
 ) => css`
     display: flex;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 1rem 2rem;
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 1.4rem;
     border: 2px solid transparent;
@@ -23,8 +23,28 @@ export const selectItem = (
     font-size: 1.8rem;
     transition: all 0.2s;
 
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
+
     ${isActive && `border-color: #fff;`};
-    ${isAnswerSelected && `cursor: default;`};
+    ${isAnswerSelected &&
+    `
+        cursor: default;
+        
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+             background-color: rgba(0, 0, 0, 0.1);
+        }
+    `};
+
     ${!isMultipleChoice
         ? `
         white-space: nowrap;
@@ -44,24 +64,12 @@ export const selectItem = (
         justify-content: center;
         flex-basis: calc(100% - 0.75rem);
         font-size: 2.2rem;
-        
-        & > div {
-            display: none;
-        }
     `}
-
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.15);
-    }
-
-    &:active {
-        background-color: rgba(0, 0, 0, 0.12);
-    }
 `;
 
 export const selectItemIcon = css`
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 2.2rem;
+    height: 2.2rem;
     margin-right: 1.2rem;
     flex-shrink: 0;
     display: flex;

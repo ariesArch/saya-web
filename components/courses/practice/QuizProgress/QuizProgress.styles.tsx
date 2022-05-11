@@ -6,8 +6,12 @@ export const container = css`
 `;
 
 export const label = css`
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 600;
+
+    @media only screen and (max-width: 345px) {
+        display: none;
+    }
 `;
 
 export const progressContainer = css`
@@ -25,5 +29,13 @@ export const progressItem = (isActive: boolean) => css`
 
     &:not(:last-child) {
         margin-right: 0.8rem;
+    }
+
+    @media only screen and (max-width: 1095px) {
+        width: 3rem;
+
+        &:not(:last-child) {
+            margin-right: 0.4rem;
+        }
     }
 `;

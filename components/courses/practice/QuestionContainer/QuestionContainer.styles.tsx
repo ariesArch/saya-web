@@ -10,6 +10,10 @@ export const questionContainer = (isTrueFalse: boolean) => css`
          background-color: #fff;
          border-radius: 1.4rem;
          color: #444;
+         
+         @media only screen and (max-width: 1095px) {
+              padding: 10rem 3rem;
+        }
     `};
 `;
 

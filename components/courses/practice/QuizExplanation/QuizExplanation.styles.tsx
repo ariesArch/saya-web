@@ -8,6 +8,7 @@ export const container = (isCorrect: boolean) => css`
     background-color: #fff;
     color: var(--default-font-color);
     border-radius: 1.4rem;
+    margin-bottom: 2rem;
 
     ${isCorrect &&
     `
@@ -15,6 +16,22 @@ export const container = (isCorrect: boolean) => css`
         text-align: center;
         padding: 3rem 10rem;
     `};
+
+    @media only screen and (max-width: 992px) {
+        width: calc(100% - 20rem);
+    }
+
+    @media only screen and (max-width: 645px) {
+        width: calc(100% - 12rem);
+    }
+
+    @media only screen and (max-width: 545px) {
+        width: calc(100% - 4rem);
+    }
+
+    @media only screen and (max-width: 445px) {
+        width: 100%;
+    }
 `;
 
 export const iconContainer = css`
@@ -89,7 +106,8 @@ export const explanation = css`
     background-color: #fafafa;
     border-radius: 1.4rem;
     padding: 1.5rem 2rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    word-break: break-all;
 `;
 
 export const button = css`
