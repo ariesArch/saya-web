@@ -8,7 +8,7 @@ export const topBar = (isFloating: boolean, isHidden: boolean) => css`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #fff;
+    background-color: #fffcf8;
     z-index: 100;
     transition: all 0.4s;
 
@@ -18,15 +18,16 @@ export const topBar = (isFloating: boolean, isHidden: boolean) => css`
 
     ${isHidden &&
     `
-    transform: translateY(-20rem);
+        transform: translateY(-20rem);
   `}
 
     ${isFloating &&
     `
-    position: fixed;
-    background-color: #fff;
-    box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
-    transform: translateY(0);
+        position: fixed;
+        background-color: #fff;
+        box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
+        transform: translateY(0);
+        padding: 1rem 5rem 1rem;
   `}
 `;
 

@@ -96,6 +96,10 @@ export const headingTooltip = css`
         border-color: var(--color-primary) transparent transparent transparent;
         transform: rotate(-222deg);
 
+        @media only screen and (min-width: 100em) {
+            transform: rotate(-225deg);
+        }
+
         @media only screen and (max-width: 1245px) {
             top: 46%;
             left: -1rem;
@@ -117,7 +121,7 @@ export const additionalTip = css`
 `;
 
 export const subHeading = css`
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 500;
 
     @media only screen and (max-width: 1245px) {
