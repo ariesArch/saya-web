@@ -68,8 +68,11 @@ export const avatarContainer = css`
     align-items: center;
 `;
 
-export const label = css`
+export const label = (isActive: boolean) => css`
     font-size: 1.2rem;
     margin-top: 0.4rem;
     font-weight: 600;
+    transition: all .2s;
+  
+    ${isActive && `color: var(--color-primary);`}};
 `;

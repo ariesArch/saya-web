@@ -9,7 +9,7 @@ export const label = css`
     font-size: 2rem;
     font-weight: 600;
 
-    @media only screen and (max-width: 345px) {
+    @media only screen and (max-width: 425px) {
         display: none;
     }
 `;

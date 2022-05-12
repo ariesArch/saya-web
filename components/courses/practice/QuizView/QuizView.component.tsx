@@ -2,7 +2,9 @@ import { format } from "date-fns";
 import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import useSound from "use-sound";
 
+import Button from "@/components/common/Button/Button.component";
 import { carouselTransition, carouselVariants } from "@/components/common/FramerMotion";
 import AnswersContainer from "@/components/courses/practice/AnswersContainer/AnswersContainer.component";
 import QuestionContainer from "@/components/courses/practice/QuestionContainer/QuestionContainer.component";
@@ -31,31 +33,46 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
         lesson_id: lessonId,
         practices: [],
     });
+    const [selectedAnswerTemp, setSelectedAnswerTemp] = useState<QuizQuestionAnswer | null>(null);
     const [selectedAnswer, setSelectedAnswer] = useState<QuizQuestionAnswer | null>(null);
     const [questionStartedTime, setQuestionStartedTime] = useState<string>("");
 
-    const onSelectAnswer = (answer: QuizQuestionAnswer) => {
-        if (selectedAnswer?.id) return;
+    const [playSelect] = useSound("/sounds/select.mp3", { volume: 0.5 });
+    const [playCorrect] = useSound("/sounds/correct.mp3", { volume: 0.5 });
+    const [playIncorrect] = useSound("/sounds/incorrect.mp3", { volume: 0.5 });
 
-        setSelectedAnswer(answer);
+    const onSelectAnswerTemp = (answer: QuizQuestionAnswer) => {
+        if (selectedAnswer) return;
+        playSelect();
+        setSelectedAnswerTemp(answer);
+    };
+
+    const onCheckAnswer = () => {
+        if (!selectedAnswerTemp) return;
+
+        setSelectedAnswer(selectedAnswerTemp);
         setQuizData({
             ...quizData,
             practices: [
                 ...quizData.practices,
                 {
-                    clicked_answer_option_id: answer.id,
+                    clicked_answer_option_id: selectedAnswerTemp.id,
                     started_practice_at: questionStartedTime,
                     ended_practice_at: formatDate(new Date()),
                     question_id: questions[currentIndex].id,
-                    isAnswer: answer.is_answer,
+                    isAnswer: selectedAnswerTemp.is_answer,
                 },
             ],
         });
 
-        if (answer.is_answer) {
+        if (selectedAnswerTemp.is_answer) {
+            playCorrect();
+
             setTimeout(() => {
                 onNext();
             }, 2000);
+        } else {
+            playIncorrect();
         }
     };
 
@@ -94,6 +111,11 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
         setQuestionStartedTime(formatDate(new Date()));
     }, []);
 
+    useEffect(() => {
+        if (selectedAnswerTemp) setSelectedAnswerTemp(null);
+        if (selectedAnswer) setSelectedAnswer(null);
+    }, [currentIndex]);
+
     return (
         <div css={styles.container}>
             {!!questions.length && (
@@ -116,17 +138,30 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                         format={questions[currentIndex].format}
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
+                        selectedAnswer={selectedAnswerTemp?.answer || ""}
+                        correctAnswer={
+                            questions[currentIndex].answers.find((answer) => answer.is_answer)?.answer ?? ""
+                        }
+                        isTempAnswerSelected={!!selectedAnswerTemp}
+                        isSelected={!!selectedAnswer}
                     />
                 )}
 
                 {questions[currentIndex] && (
                     <AnswersContainer
                         answers={questions[currentIndex].answers}
-                        selectedAnswer={selectedAnswer}
+                        selectedAnswer={selectedAnswerTemp}
+                        isTemp={!selectedAnswer}
                         questionType={questions[currentIndex].question_type}
                         format={questions[currentIndex].format}
-                        onSelectAnswer={onSelectAnswer}
+                        onSelectAnswer={onSelectAnswerTemp}
                     />
+                )}
+
+                {selectedAnswerTemp && !selectedAnswer && (
+                    <Button css={styles.checkBtn} variant="contained" color="primary" onClick={onCheckAnswer}>
+                        Check answer
+                    </Button>
                 )}
             </motion.div>
             {selectedAnswer && (

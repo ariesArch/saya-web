@@ -57,6 +57,13 @@ const SummaryView: FC<Props> = ({ currentIndex, onCurrentIndexChange, questions 
                         format={questions[currentIndex].format}
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
+                        correctAnswer={
+                            questions[currentIndex].answers.find((answer) => answer.is_answer)?.answer ?? ""
+                        }
+                        selectedAnswer={
+                            questions[currentIndex].answers.find((answer) => answer.is_user_choice)?.answer ??
+                            ""
+                        }
                     />
 
                     <AnswersContainer

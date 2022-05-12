@@ -17,16 +17,8 @@ export const questionContainer = (isTrueFalse: boolean) => css`
     `};
 `;
 
-export const speakerContainer = css`
-    padding: 2rem 0;
-
-    svg {
-        width: 8rem;
-        height: auto;
-    }
-`;
-
 export const questionText = css`
     font-size: 2.5rem;
     font-weight: 600;
+    transition: all 0.4s;
 `;

@@ -32,7 +32,7 @@ const SideNav = () => {
                         whileTap={{ scale: 0.9 }}>
                         {icon}
                     </motion.button>
-                    <span css={styles.label}>{name}</span>
+                    <span css={styles.label(routes.includes(router.pathname))}>{name}</span>
                 </div>
             ))}
             <div css={styles.avatarContainer}>
@@ -41,7 +41,7 @@ const SideNav = () => {
                     verticalOffset={isMobile ? 10 : -70}
                     horizontalOffset={isMobile ? -240 : 0}
                 />
-                <span css={styles.label}>Profile</span>
+                <span css={styles.label(false)}>Profile</span>
             </div>
         </div>
     );
