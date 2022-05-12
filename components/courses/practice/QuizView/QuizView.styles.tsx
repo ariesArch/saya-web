@@ -41,3 +41,16 @@ export const contents = css`
         padding: 0;
     }
 `;
+
+export const checkBtn = css`
+    align-self: center;
+    background-color: #222;
+    border-radius: 0.8rem;
+    border-color: #222;
+    padding: 1rem 2rem;
+
+    &:hover {
+        background-color: #272727;
+        border-color: #444;
+    }
+`;
