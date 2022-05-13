@@ -24,7 +24,7 @@ export const userLoginAsync = (
 
             const { data } = await instance.post(endpoints.auth.login, {
                 ...form,
-                platform: "web",
+                platform: 1,
             });
             onSuccess(differenceInSeconds(new Date(data?.otp_expires_at * 1000), new Date()));
         } catch (e) {
