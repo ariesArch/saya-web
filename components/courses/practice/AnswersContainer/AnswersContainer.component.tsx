@@ -63,7 +63,7 @@ const AnswersContainer: FC<Props> = (props) => {
                     )}
                     onClick={() => onSelectAnswer(answer)}>
                     {((isSummary && answer.is_answer) ||
-                        questionType === "multiple-choice" ||
+                        isMultipleChoice ||
                         selectedAnswer?.id === answer.id) && (
                         <div css={styles.selectItemIcon}>
                             {renderAnswerIcon(selectedAnswer?.id === answer.id, answer.is_answer)}
