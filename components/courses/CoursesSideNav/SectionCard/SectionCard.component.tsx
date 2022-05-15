@@ -64,7 +64,7 @@ const statusIcons: Record<LessonStatus, ReactNode> = {
     playing: <VideoCircleOutlinedIcon />,
     locked: <LockCircleIcon />,
     done: <TickCircleIcon />,
-    incomplete: <CheckCircleIcon />,
+    incomplete: <CheckCircleIcon color="#d2d2d2" />,
 };
 
 export default SectionCard;

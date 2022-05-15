@@ -42,7 +42,7 @@ const AnswersContainer: FC<Props> = (props) => {
             }
         }
 
-        return <CheckCircleIcon />;
+        return <CheckCircleIcon color="#d2d2d2" />;
     };
 
     return (

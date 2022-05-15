@@ -9,12 +9,12 @@ import { ReduxState } from "@/interfaces/redux.interfaces";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { onSetSelectedCourse, onSingleCourseFetchAsync } from "@/store/courses/courses.actions";
 
-interface DefaultLayoutProps {
+interface CourseLayoutProps {
     title?: string;
     children: ReactNode;
 }
 
-const HomeLayout = (props: DefaultLayoutProps) => {
+const HomeLayout = (props: CourseLayoutProps) => {
     const { title = "SAYA - The English Learning Platform", children } = props;
     const router = useRouter();
     const { courseId } = router.query;
@@ -76,7 +76,7 @@ const body = css`
     }
 `;
 
-export const contents = css`
+const contents = css`
     padding: 0 0 4rem 5rem;
     flex-grow: 1;
 
@@ -85,7 +85,7 @@ export const contents = css`
     }
 `;
 
-export const mainContents = css`
+const mainContents = css`
     display: flex;
     flex-direction: column;
     padding: 2.5rem 0 2rem 8rem;
@@ -99,7 +99,7 @@ export const mainContents = css`
     }
 `;
 
-export const sidePanel = css`
+const sidePanel = css`
     padding: 2rem 0 2rem 2rem;
     position: sticky;
     top: 0;

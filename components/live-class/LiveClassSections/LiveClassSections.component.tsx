@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import LiveClassCard from "@/components/home/live-class/LiveClassCard/LiveClassCard.component";
+import LiveClassCard from "@/components/live-class/LiveClassCard/LiveClassCard.component";
 import { ParsedLiveEventData } from "@/interfaces/live-class.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import { parseLiveClassData } from "@/utils/index";

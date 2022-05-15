@@ -58,13 +58,13 @@ const navItems = [
         id: 2,
         name: "Live",
         icon: <RadarIcon />,
-        routes: ["/home/live-class"],
+        routes: ["/live-class"],
     },
     {
         id: 3,
         name: "Notifications",
         icon: <NotificationIcon />,
-        routes: ["/user/notifications"],
+        routes: ["/notifications"],
     },
 ];
 
