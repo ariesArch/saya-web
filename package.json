@@ -36,7 +36,8 @@
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.0",
-    "simplebar-react": "^2.3.6"
+    "simplebar-react": "^2.3.6",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

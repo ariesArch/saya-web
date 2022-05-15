@@ -88,10 +88,10 @@ const contents = css`
 const mainContents = css`
     display: flex;
     flex-direction: column;
-    padding: 2.5rem 0 2rem 8rem;
+    padding: 2rem 0 2rem 8rem;
 
     @media only screen and (max-width: 1245px) {
-        padding: 2.5rem 0 2rem 5rem;
+        padding: 2rem 0 2rem 5rem;
     }
 
     @media only screen and (max-width: 695px) {

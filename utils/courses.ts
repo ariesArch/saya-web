@@ -1,6 +1,7 @@
 import { differenceInSeconds } from "date-fns";
 
 import { Chapter, QuizPayloadData, QuizSummary } from "@/interfaces/courses.interfaces";
+import { numToArrOfNum } from "@/utils/index";
 
 export const calculateQuizSummary = (quizPayloadData: QuizPayloadData): QuizSummary => {
     let correctAnswers = 0;
@@ -58,4 +59,30 @@ export const getNextLessonId = (chapters: Chapter[], lessonId: string): string |
         }
     }
     return nextId;
+};
+
+// turns a number into a string of underscores
+const numToUnderscores = (str: string) =>
+    numToArrOfNum(str.length)
+        .map(() => "_")
+        .join("");
+
+export const renderFillInTheBankQuestion = (
+    question: string,
+    isSelected: boolean,
+    isTempAnswerSelected: boolean,
+    correctAnswer: string,
+    selectedAnswer: string
+) => {
+    const replaceableStr = !isSelected
+        ? `<span style="position: relative; font-size: 3.5rem; line-height: 0.1rem; white-space: nowrap">&nbsp;&nbsp;${numToUnderscores(
+              correctAnswer
+          )}${
+              isTempAnswerSelected
+                  ? `<span style="font-size: 2.5rem; position: absolute; top: calc(50% + 0.4rem); left: 50%; transform: translate(-50%, -50%)">${selectedAnswer}</span>`
+                  : ""
+          }&nbsp;&nbsp;</span>`
+        : `<span style="color: var(--color-green); white-space: nowrap">${correctAnswer}</span>`;
+
+    return question.replace("[__]", replaceableStr);
 };

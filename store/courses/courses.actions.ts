@@ -259,6 +259,7 @@ export const onSubmitStudentQuestion = (
 export const fetchLessonQuizAsync = (lessonId: string) => {
     return async (dispatch: DispatchType) => {
         const token = cookie.get("token");
+        dispatch(onSetQuiz([]));
 
         try {
             const instance = createAxiosInstance(token);
