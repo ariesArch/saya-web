@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="203.923" height="153.313" viewBox="0 0 203.923 153.313">
+  <g id="Group_1056" data-name="Group 1056" transform="translate(-867.854 -294.323)">
+    <g id="payment_successful" data-name="payment successful" transform="translate(32.572)">
+      <path id="Icon_ionic-md-checkmark-circle" data-name="Icon ionic-md-checkmark-circle" d="M49.381,3.375A46.006,46.006,0,1,0,95.387,49.381,46.141,46.141,0,0,0,49.381,3.375ZM39.936,73.91,16.358,50.332l6.613-6.613L39.958,60.705,75.812,24.852l6.613,6.613Z" transform="translate(893.863 313.144)" fill="#01ae63"/>
+      <circle id="Ellipse_258" data-name="Ellipse 258" cx="5" cy="5" r="5" transform="translate(979 303)" fill="#ffc800"/>
+      <g id="Ellipse_259" data-name="Ellipse 259" transform="translate(1012 389)" fill="#3c76eb" stroke="#3c76eb" stroke-width="1">
+        <circle cx="6" cy="6" r="6" stroke="none"/>
+        <circle cx="6" cy="6" r="5.5" fill="none"/>
+      </g>
+      <circle id="Ellipse_260" data-name="Ellipse 260" cx="5.5" cy="5.5" r="5.5" transform="translate(869 405)" fill="#f63b45"/>
+      <circle id="Ellipse_261" data-name="Ellipse 261" cx="5.5" cy="5.5" r="5.5" transform="translate(864 333)" fill="#01ae63"/>
+      <path id="Path_3059" data-name="Path 3059" d="M7612,854s10.9,9.521,3.4,18.9,7.6,19.05,7.6,19.05" transform="translate(-6049.434 3479.598) rotate(-30)" fill="none" stroke="#ff9100" stroke-width="3"/>
+      <path id="Path_3060" data-name="Path 3060" d="M7612,854s10.9,9.521,3.4,18.9,7.6,19.05,7.6,19.05" transform="matrix(-0.242, -0.97, 0.97, -0.242, 2013.796, 7940.917)" fill="none" stroke="#ff00f7" stroke-width="3"/>
+      <circle id="Ellipse_262" data-name="Ellipse 262" cx="2.5" cy="2.5" r="2.5" transform="translate(911 414)" fill="#012eae"/>
+      <path id="Path_3062" data-name="Path 3062" d="M7612,854s10.9,9.521,3.4,18.9,7.6,19.05,7.6,19.05" transform="translate(-150.29 7975.385) rotate(-89)" fill="none" stroke="#00d5ff" stroke-width="3"/>
+      <rect id="Rectangle_1498" data-name="Rectangle 1498" width="9.685" height="9.685" transform="translate(917.48 294.323) rotate(42)" fill="#8c75ff"/>
+    </g>
+    <rect id="Rectangle_1497" data-name="Rectangle 1497" width="10" height="10" rx="2" transform="translate(975 421)" fill="#00ffd5"/>
+  </g>
+</svg>

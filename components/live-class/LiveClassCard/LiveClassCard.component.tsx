@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
 import { levelData } from "@/components/common/sharedData";
-import ClassDetailsPopupContent from "@/components/home/live-class/ClassDetailsPopupContent/ClassDetailsPopupContent.component";
+import ClassDetailsPopupContent from "@/components/live-class/ClassDetailsPopupContent/ClassDetailsPopupContent.component";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
 import NotificationIcon from "@/public/icons/notification.svg";
 import RadarIcon from "@/public/icons/radar.svg";
@@ -101,10 +101,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
 
                     <div css={styles.buttonContainer}>
                         {status === "live" ? (
-                            <a
-                                href={`/home/live-class/join/${zoom_meeting_id}`}
-                                target="_blank"
-                                rel="noreferrer">
+                            <a href={`/live-class/join/${zoom_meeting_id}`} target="_blank" rel="noreferrer">
                                 <Button variant="contained" color="success">
                                     <VideoCameraIcon /> Join Now
                                 </Button>

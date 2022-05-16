@@ -1,26 +1,36 @@
+import { FC, HTMLAttributes } from "react";
+
+import CheckCircleIcon from "@/public/icons/check-circle.svg";
 import CloseIcon from "@/public/icons/close-circle.svg";
 import TickIcon from "@/public/icons/tick-circle.svg";
 
 import * as styles from "./WeeklySchedule.styles";
 
-const WeeklyScheduler = () => {
-    const icon = (status: "active" | "inactive" | "undetermined") => {
+interface Props extends HTMLAttributes<HTMLDivElement> {
+    data?: ScheduleData;
+}
+
+const WeeklyScheduler: FC<Props> = ({ data = scheduleData, ...rest }) => {
+    const icon = (status: "active" | "inactive" | "undetermined" | "ongoing") => {
         switch (status) {
             case "active":
                 return <TickIcon />;
             case "inactive":
                 return <CloseIcon />;
+            case "ongoing":
+                return <CheckCircleIcon />;
             default:
                 return "-";
         }
     };
 
     return (
-        <div css={styles.container}>
+        <div css={styles.container} {...rest}>
             <div css={styles.header}>
-                <span css={styles.month}>Feb</span>
+                <span css={styles.month}>{data.month}</span>
                 <span css={styles.avg}>
-                    <span>AVG. </span>55%
+                    <span>AVG. </span>
+                    {data.avg}%
                 </span>
             </div>
             <div css={styles.table}>
@@ -36,47 +46,49 @@ const WeeklyScheduler = () => {
     );
 };
 
-interface ScheduleData {
+export interface ScheduleData {
+    id: number;
     month: string;
     avg: string;
     data: {
         id: number;
         day: string;
-        status: "active" | "inactive" | "undetermined";
+        status: "active" | "inactive" | "undetermined" | "ongoing";
         percentage: string;
     }[];
 }
 
-const data: ScheduleData = {
+const scheduleData: ScheduleData = {
+    id: 1,
     month: "Feb",
     avg: "55",
     data: [
         {
-            id: 1,
+            id: 11,
             day: "7",
             status: "active",
             percentage: "82%",
         },
         {
-            id: 2,
+            id: 12,
             day: "8",
             status: "inactive",
             percentage: "",
         },
         {
-            id: 3,
+            id: 13,
             day: "9",
             status: "active",
             percentage: "70%",
         },
         {
-            id: 4,
+            id: 14,
             day: "10",
             status: "active",
             percentage: "100%",
         },
         {
-            id: 5,
+            id: 15,
             day: "11",
             status: "undetermined",
             percentage: "",
@@ -88,7 +100,7 @@ const data: ScheduleData = {
             percentage: "",
         },
         {
-            id: 7,
+            id: 17,
             day: "13",
             status: "inactive",
             percentage: "",

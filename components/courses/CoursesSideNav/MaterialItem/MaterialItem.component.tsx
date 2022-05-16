@@ -86,7 +86,7 @@ const MaterialItem: FC<Props> = (props) => {
             default:
                 return (
                     <Fragment>
-                        <CheckCircleIcon /> Incomplete
+                        <CheckCircleIcon color="#d2d2d2" /> Incomplete
                     </Fragment>
                 );
         }

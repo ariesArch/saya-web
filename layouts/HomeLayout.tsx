@@ -10,7 +10,7 @@ import { ReduxState } from "@/interfaces/redux.interfaces";
 // import RankTable from "@/components/home/RankTable/RankTable.component";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
-interface DefaultLayoutProps {
+interface HomeLayoutProps {
     title?: string;
     children: ReactNode;
     showSidePanel?: boolean;
@@ -18,7 +18,7 @@ interface DefaultLayoutProps {
     backgroundColor?: string;
 }
 
-const HomeLayout = (props: DefaultLayoutProps) => {
+const HomeLayout = (props: HomeLayoutProps) => {
     const {
         title = "SAYA - The English Learning Platform",
         showSidePanel = true,
@@ -58,7 +58,7 @@ const body = (backgroundColor: string) => css`
     background-color: ${backgroundColor};
 `;
 
-export const contents = css`
+const contents = css`
     padding: 0 0 4rem 5rem;
     flex-grow: 1;
     border-right: 1px solid #eeeeee;
@@ -71,7 +71,7 @@ export const contents = css`
     }
 `;
 
-export const mainContents = css`
+const mainContents = css`
     display: flex;
     flex-direction: column;
     padding: 2rem 4rem 2rem 7rem;
@@ -82,19 +82,19 @@ export const mainContents = css`
     }
 `;
 
-export const sidePanelContainer = css`
-    background-color: var(--color-background-gray);
-    padding: 2rem;
-    position: sticky;
-    top: 0;
-    right: 0;
-    z-index: 100;
-    height: 100vh;
-    width: 38rem;
-    flex-shrink: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-`;
+// const sidePanelContainer = css`
+//     background-color: var(--color-background-gray);
+//     padding: 2rem;
+//     position: sticky;
+//     top: 0;
+//     right: 0;
+//     z-index: 100;
+//     height: 100vh;
+//     width: 38rem;
+//     flex-shrink: 0;
+//     overflow: hidden;
+//     display: flex;
+//     flex-direction: column;
+// `;
 
 export default HomeLayout;

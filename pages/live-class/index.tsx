@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import LiveClassSections from "@/components/home/live-class/LiveClassSections/LiveClassSections.component";
+import LiveClassSections from "@/components/live-class/LiveClassSections/LiveClassSections.component";
 import HomeLayout from "@/layouts/HomeLayout";
 import RadarIcon from "@/public/icons/radar.svg";
 import { onLiveClassesFetchAsync } from "@/store/live-class/live-class.actions";

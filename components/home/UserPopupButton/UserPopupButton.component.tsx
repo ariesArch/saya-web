@@ -167,7 +167,7 @@ const menuItems = [
     {
         id: 1,
         name: "Edit Profile",
-        route: "/user/edit-profile",
+        route: "/edit-profile",
         icon: <EditIcon />,
     },
     // {
