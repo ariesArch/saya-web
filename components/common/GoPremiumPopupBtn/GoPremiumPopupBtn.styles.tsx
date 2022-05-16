@@ -14,8 +14,6 @@ export const button = css`
 
     @media only screen and (max-width: 695px) {
         bottom: 10rem;
-        left: 2rem;
-        background-color: transparent;
     }
 
     &:hover {

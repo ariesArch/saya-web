@@ -1,16 +1,23 @@
 import { css } from "@emotion/react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import Calendar from "@/components/calendar/calendar/Calendar.component";
 import CalendarHeader from "@/components/calendar/Header/Header.component";
+import SideModal from "@/components/calendar/SideModal/SideModal.component";
 import SidePanel from "@/components/calendar/SidePanel/SidePanel.component";
+import { clickEffect } from "@/components/common/commonStyles";
 import GoPremiumPopupBtn from "@/components/common/GoPremiumPopupBtn/GoPremiumPopupBtn.component";
 import SideNav from "@/components/common/SideNav/SideNav.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import CalenderIcon from "@/public/icons/calendar.svg";
 
 const HomeLayout = () => {
     const { is_premium } = useSelector((state: ReduxState) => state.userState.userData);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const onModalOpen = () => setIsModalOpen(true);
+    const onModalClose = () => setIsModalOpen(false);
 
     return (
         <DefaultLayout>
@@ -18,15 +25,25 @@ const HomeLayout = () => {
                 <div css={contents}>
                     <SideNav />
                     <CalendarHeader />
+
                     <div css={mainContents}>
                         <Calendar />
                     </div>
+
+                    <button css={navBtn} onClick={onModalOpen}>
+                        <CalenderIcon />
+                    </button>
                 </div>
 
                 <div css={sidePanel}>
                     <SidePanel />
                 </div>
 
+                {isModalOpen && (
+                    <SideModal isOpen={isModalOpen} onClose={onModalClose}>
+                        <SidePanel />
+                    </SideModal>
+                )}
                 {!is_premium && <GoPremiumPopupBtn />}
             </div>
         </DefaultLayout>
@@ -39,6 +56,10 @@ const body = css`
     flex-grow: 1;
     display: flex;
     background-color: #fff;
+
+    @media only screen and (max-width: 1175px) {
+        flex-direction: column;
+    }
 `;
 
 const contents = css`
@@ -63,6 +84,10 @@ const mainContents = css`
     @media only screen and (max-width: 695px) {
         padding: 2rem;
     }
+
+    @media only screen and (max-width: 595px) {
+        padding: 4rem 2rem 4rem 0;
+    }
 `;
 
 const sidePanel = css`
@@ -77,6 +102,30 @@ const sidePanel = css`
     display: flex;
     flex-direction: column;
     background-color: #fcfcfc;
+
+    @media only screen and (max-width: 1175px) {
+        display: none;
+    }
+`;
+
+export const navBtn = css`
+    display: none;
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    z-index: 100;
+    width: 6rem;
+    height: 6rem;
+    ${clickEffect};
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media only screen and (max-width: 1175px) {
+        display: flex;
+    }
 `;
 
 export default HomeLayout;

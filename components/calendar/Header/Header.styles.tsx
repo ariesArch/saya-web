@@ -13,6 +13,20 @@ export const header = css`
     background-color: #fff;
     padding-left: 8rem;
     padding-right: 4rem;
+
+    @media only screen and (max-width: 1175px) {
+        padding-right: 10rem;
+    }
+
+    @media only screen and (max-width: 695px) {
+        padding-left: 2rem;
+    }
+
+    @media only screen and (max-width: 595px) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 1rem;
+    }
 `;
 
 export const heading = css`

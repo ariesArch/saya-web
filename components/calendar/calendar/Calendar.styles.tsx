@@ -9,11 +9,28 @@ export const grid = css`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     column-gap: 1rem;
+
+    @media only screen and (max-width: 595px) {
+        display: flex;
+        flex-direction: column;
+
+        &:not(:last-of-type) {
+            margin-bottom: 1rem;
+        }
+    }
 `;
 
 export const gridCol = css`
     display: flex;
     flex-direction: column;
+
+    @media only screen and (max-width: 595px) {
+        flex-direction: row;
+
+        &:not(:last-of-type) {
+            margin-bottom: 4rem;
+        }
+    }
 `;
 
 export const colHeader = css`
@@ -21,6 +38,10 @@ export const colHeader = css`
     flex-direction: column;
     align-items: center;
     margin-bottom: 3rem;
+
+    @media only screen and (max-width: 595px) {
+        width: 10rem;
+    }
 `;
 
 export const heading = css`
@@ -36,6 +57,10 @@ export const subHeading = css`
 export const colBody = css`
     display: flex;
     flex-direction: column;
+
+    @media only screen and (max-width: 595px) {
+        flex-grow: 1;
+    }
 `;
 
 export const scheduleItem = css`
@@ -74,6 +99,11 @@ export const addBtn = css`
     align-self: center;
     width: 3rem;
     height: 3rem;
+
+    @media only screen and (max-width: 595px) {
+        width: 4rem;
+        height: 4rem;
+    }
 
     svg {
         width: 100%;
