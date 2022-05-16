@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 
 import VisibilitySensor from "@/components/common/VisibilitySensor/VisibilitySensor.component";
+import FAQSection from "@/components/faq/FAQSection/FAQSection.component";
 import CourseSection from "@/components/landing/CourseSection/CourseSection.component";
 import FeaturesSection from "@/components/landing/FeaturesSection/FeaturesSection.component";
 import Footer from "@/components/landing/Footer/Footer.component";
@@ -18,6 +19,7 @@ export default function Home() {
         liveClass: false,
         features: false,
         course: false,
+        faq: false,
         contact: false,
     });
 
@@ -50,6 +52,9 @@ export default function Home() {
                 </VisibilitySensor>
                 <VisibilitySensor onChange={(isVisible) => onVisibleSectionChange(isVisible, "course")}>
                     <CourseSection />
+                </VisibilitySensor>
+                <VisibilitySensor onChange={(isVisible) => onVisibleSectionChange(isVisible, "faq")}>
+                    <FAQSection />
                 </VisibilitySensor>
                 <VisibilitySensor onChange={(isVisible) => onVisibleSectionChange(isVisible, "contact")}>
                     <Footer />

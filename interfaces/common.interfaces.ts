@@ -14,7 +14,7 @@ export type ButtonVariant = "default" | "contained" | "outlined";
 
 export type RadioColor = "primary" | "course";
 
-export type LandingSectionType = "overview" | "liveClass" | "features" | "course" | "contact";
+export type LandingSectionType = "overview" | "liveClass" | "features" | "course" | "contact" | "faq";
 
 export interface Teacher {
     name: string;

@@ -58,7 +58,6 @@ export const nav = css`
     }
 
     @media only screen and (max-width: 695px) {
-        display: none;
     }
 `;
 
