@@ -4,11 +4,12 @@ import useIntersection from "@/hooks/useIntersection";
 
 interface Props {
     onChange: (isVisible: boolean) => void;
+    rootMargin?: string;
 }
 
-const VisibilitySensor: FC<Props> = ({ children, onChange, ...rest }) => {
+const VisibilitySensor: FC<Props> = ({ children, onChange, rootMargin = "-70px", ...rest }) => {
     const ref = useRef(null);
-    const isVisible = useIntersection(ref, "-70px");
+    const isVisible = useIntersection(ref, rootMargin);
 
     useEffect(() => {
         onChange(isVisible);

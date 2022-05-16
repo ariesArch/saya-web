@@ -25,13 +25,15 @@ const TopBar: FC<Props> = ({ visibleSection }) => {
         setSelectedItem(id);
     };
 
+    const onLogoClick = () => window.scrollTo(0, 0);
+
     useEffect(() => {
         if (visibleSection !== selectedItem) setSelectedItem(visibleSection);
     }, [selectedItem, visibleSection]);
 
     return (
         <motion.div css={styles.topBar(isFloating, isHidden)}>
-            <div css={styles.logoContainer}>
+            <div css={styles.logoContainer} onClick={onLogoClick}>
                 <Image src={LogoText} alt="SAYA Logo" />
             </div>
             <div css={styles.nav}>
@@ -81,6 +83,11 @@ const navItems = [
     },
     {
         id: 5,
+        name: "FAQs",
+        href: "faq",
+    },
+    {
+        id: 6,
         name: "Contact",
         href: "contact",
     },

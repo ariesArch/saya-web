@@ -14,7 +14,7 @@ import CrownIcon from "@/public/icons/crown.svg";
 import EditIcon from "@/public/icons/edit.svg";
 import ExitIcon from "@/public/icons/exit.svg";
 // import IntermediateBadge from "@/public/icons/profile-badge-preintermediate-text.svg";
-// import QuestionIcon from "@/public/icons/question-mark-circle.svg";
+import QuestionIcon from "@/public/icons/question-mark-circle.svg";
 import ReloadIcon from "@/public/icons/reload.svg";
 // import StartIcon from "@/public/icons/star-outlined.svg";
 // import GraduateIcon from "@/public/icons/teacher.svg";
@@ -182,12 +182,12 @@ const menuItems = [
         route: "",
         icon: <ExitIcon />,
     },
-    // {
-    //     id: 4,
-    //     name: "Help",
-    //     route: "/help",
-    //     icon: <QuestionIcon />,
-    // },
+    {
+        id: 4,
+        name: "FAQs",
+        route: "/faq",
+        icon: <QuestionIcon />,
+    },
 ];
 
 export default UserPopupButton;

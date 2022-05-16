@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FC, HTMLAttributes } from "react";
 
 import Button from "@/components/common/Button/Button.component";
 import FacebookIcon from "@/public/icons/facebook.png";
@@ -10,14 +11,14 @@ import { socialLinks } from "@/utils/constants";
 
 import * as styles from "./Footer.styles";
 
-const Footer = () => {
+const Footer: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     const onGoTop = () => {
         const element = document.getElementById("overview");
         if (element) element.scrollIntoView({ block: "start" });
     };
 
     return (
-        <footer css={styles.footer} id="contact">
+        <footer css={styles.footer} id="contact" {...props}>
             <div css={styles.container}>
                 <div css={styles.logoContainer}>
                     <Logo />

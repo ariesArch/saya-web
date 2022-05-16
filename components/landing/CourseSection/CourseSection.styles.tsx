@@ -4,6 +4,7 @@ export const container = css`
     display: flex;
     flex-direction: column;
     margin-top: 10rem;
+    margin-bottom: 10rem;
 `;
 
 export const aboutCourse = css`
