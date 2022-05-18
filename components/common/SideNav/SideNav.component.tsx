@@ -22,7 +22,7 @@ const SideNav = () => {
             {navItems.map(({ id, name, icon, routes }) => (
                 <div key={id} css={styles.navItem}>
                     <motion.button
-                        css={styles.navButton}
+                        css={styles.navButton(routes.includes(router.pathname))}
                         title={name}
                         onClick={() => onItemClick(routes[0])}
                         initial="inactive"

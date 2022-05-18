@@ -147,7 +147,7 @@ const CompleteProfileModal = () => {
 
                 {step === 4 && (
                     <div css={styles.tip}>
-                        Tap <a>Edit Profile</a> to edit when saved.
+                        Tap <button>Edit Profile</button> to edit when saved.
                     </div>
                 )}
             </SimpleBar>

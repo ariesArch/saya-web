@@ -154,10 +154,10 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
             {/* </div> */}
 
             {menuItems.map(({ id, name, icon, route }) => (
-                <a key={id} css={styles.menuItem} onClick={() => onClickMenuItem(route)}>
+                <div key={id} css={styles.menuItem} onClick={() => onClickMenuItem(route)}>
                     {icon}
                     <span>{name}</span>
-                </a>
+                </div>
             ))}
         </div>
     );
