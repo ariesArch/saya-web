@@ -1,3 +1,4 @@
+import { withSentry } from "@sentry/nextjs";
 import crypto from "crypto";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -32,4 +33,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).send(`${req.method} Bad request`);
 };
 
-export default handler;
+export default withSentry(handler);

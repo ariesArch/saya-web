@@ -42,7 +42,7 @@ export const navItem = css`
     }
 `;
 
-export const navButton = css`
+export const navButton = (isActive: boolean) => css`
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -59,6 +59,10 @@ export const navButton = css`
         height: auto;
         color: inherit;
         transition: inherit;
+
+        path:nth-last-of-type(1) {
+            ${isActive && "fill: #fff;"};
+        }
     }
 `;
 

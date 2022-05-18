@@ -89,6 +89,16 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
     const submitQuiz = () => {
         const newQuizData = {
             ...quizData,
+            practices: [
+                ...quizData.practices,
+                {
+                    clicked_answer_option_id: (selectedAnswerTemp as QuizQuestionAnswer).id,
+                    started_practice_at: questionStartedTime,
+                    ended_practice_at: formatDate(new Date()),
+                    question_id: questions[currentIndex].id,
+                    isAnswer: (selectedAnswerTemp as QuizQuestionAnswer).is_answer,
+                },
+            ],
             overall_ended_practice_at: formatDate(new Date()),
         };
         setQuizData(newQuizData);
