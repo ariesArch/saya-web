@@ -131,6 +131,7 @@ export const menuItem = css`
     display: flex;
     align-items: center;
     font-size: 1.7rem;
+    cursor: pointer;
     transition: all 0.2s;
 
     svg {
