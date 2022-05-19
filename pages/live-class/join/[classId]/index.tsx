@@ -13,7 +13,9 @@ const LiveClassJoinPage = () => {
     const { classId } = router.query;
 
     const { event, user } = useSelector((state: ReduxState) => ({
-        event: state.liveClassState.events.find((e) => e.zoom_meeting_id === classId),
+        event: state.liveClassState.events.find(
+            (e) => e.zoom_meeting_id === decodeURIComponent(classId as string)
+        ),
         user: state.userState.userData,
     }));
 
