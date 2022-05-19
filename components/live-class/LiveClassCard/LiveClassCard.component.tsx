@@ -101,7 +101,10 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
 
                     <div css={styles.buttonContainer}>
                         {status === "live" ? (
-                            <a href={`/live-class/join/${zoom_meeting_id}`} target="_blank" rel="noreferrer">
+                            <a
+                                href={`/live-class/join/${encodeURIComponent(zoom_meeting_id)}`}
+                                target="_blank"
+                                rel="noreferrer">
                                 <Button variant="contained" color="success">
                                     <VideoCameraIcon /> Join Now
                                 </Button>
