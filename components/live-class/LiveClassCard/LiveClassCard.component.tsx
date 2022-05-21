@@ -1,4 +1,4 @@
-import { format, intervalToDuration } from "date-fns";
+import { format, intervalToDuration, parseISO } from "date-fns";
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -37,7 +37,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
 
         const d = intervalToDuration({
             start: new Date(),
-            end: new Date(`${date} ${from}`),
+            end: parseISO(`${date} ${from}`),
         });
 
         setDistance({
@@ -49,7 +49,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
         const interval = setInterval(() => {
             const d = intervalToDuration({
                 start: new Date(),
-                end: new Date(`${date} ${from}`),
+                end: parseISO(`${date} ${from}`),
             });
 
             setDistance({
@@ -71,7 +71,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
             }
 
             // remove if the event is finished
-            if (new Date(`${date} ${to}`).getTime() < new Date().getTime()) {
+            if (parseISO(`${date} ${to}`).getTime() < new Date().getTime()) {
                 dispatch(onRemoveClass(data.id));
                 clearInterval(interval);
             }
@@ -90,7 +90,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
                 <div css={styles.classInfo}>
                     <div css={styles.date(is_notify)}>
                         {is_notify && <NotificationIcon />}
-                        {format(new Date(date), "MMM dd, EEE")} | {from}
+                        {format(parseISO(date), "MMM dd, EEE")} | {from}
                     </div>
                     <div css={styles.mainTexts}>
                         <span css={styles.title}>{title}</span>

@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -39,7 +39,7 @@ const LiveClassSections = () => {
                                 )}
                                 <h5 css={styles.heading(isToday)}>{isToday ? "Today" : name}</h5>
                                 <span css={styles.subHeading}>
-                                    {format(new Date(date), isToday ? "MMM dd, EEE" : "MMM dd")}
+                                    {format(parseISO(date), isToday ? "MMM dd, EEE" : "MMM dd")}
                                 </span>
                             </div>
 

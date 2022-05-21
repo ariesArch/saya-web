@@ -1,4 +1,4 @@
-import { differenceInDays, format, isValid } from "date-fns";
+import { differenceInDays, format, isValid, parseISO } from "date-fns";
 import { useRouter } from "next/router";
 import { FC, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,8 +65,8 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
     const { name, photo, phone, is_premium, start_date, end_date } = userData;
 
     const calculateProgress = (): number => {
-        const totalDaysOfSub = differenceInDays(new Date(end_date), new Date(start_date));
-        const totalDaysLeftBeforeExpire = totalDaysOfSub - differenceInDays(new Date(start_date), new Date());
+        const totalDaysOfSub = differenceInDays(parseISO(end_date), parseISO(start_date));
+        const totalDaysLeftBeforeExpire = totalDaysOfSub - differenceInDays(parseISO(start_date), new Date());
 
         return 100 - (totalDaysLeftBeforeExpire / totalDaysOfSub) * 100;
     };
@@ -104,12 +104,12 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
                         <div css={styles.subInfo}>
                             <div css={styles.subInfoTexts}>
                                 <span>
-                                    <strong>{differenceInDays(new Date(end_date), new Date())} days</strong>{" "}
+                                    <strong>{differenceInDays(parseISO(end_date), new Date())} days</strong>{" "}
                                     premium left
                                 </span>
                                 <span>
                                     Expire at{" "}
-                                    {isValid(end_date) && format(new Date(end_date), "MMM dd, yyyy")}
+                                    {isValid(end_date) && format(parseISO(end_date), "MMM dd, yyyy")}
                                 </span>
                             </div>
                             <Button css={styles.renewBtn} variant="contained" onClick={onGoPremiumBtnClick}>
