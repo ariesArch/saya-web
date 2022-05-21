@@ -19,3 +19,9 @@ export const convertTZ = (date: Date | string, tzString: string) => {
         (typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", { timeZone: tzString })
     );
 };
+
+export function convertTo24hr(amPmString: string) {
+    const d = new Date(`1/1/2013 ${amPmString}`);
+    // to lead with zero
+    return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}:00`;
+}
