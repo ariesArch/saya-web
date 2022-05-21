@@ -1,4 +1,4 @@
-import { differenceInDays, format, isValid, parseISO } from "date-fns";
+import { differenceInDays, format, parseISO } from "date-fns";
 import { useRouter } from "next/router";
 import { FC, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -108,8 +108,7 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
                                     premium left
                                 </span>
                                 <span>
-                                    Expire at{" "}
-                                    {isValid(end_date) && format(parseISO(end_date), "MMM dd, yyyy")}
+                                    Expire at {end_date && format(parseISO(end_date), "MMM dd, yyyy")}
                                 </span>
                             </div>
                             <Button css={styles.renewBtn} variant="contained" onClick={onGoPremiumBtnClick}>
