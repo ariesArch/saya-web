@@ -12,6 +12,7 @@ import RadarIcon from "@/public/icons/radar.svg";
 import TimerIcon from "@/public/icons/timer.svg";
 import VideoCameraIcon from "@/public/icons/video-camera.svg";
 import { onRemoveClass, onUpdateClass } from "@/store/live-class/live-class.actions";
+import { convertTo24hr } from "@/utils/date-time";
 
 import * as styles from "./LiveClassCard.styles";
 
@@ -37,7 +38,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
 
         const d = intervalToDuration({
             start: new Date(),
-            end: parseISO(`${date} ${from}`),
+            end: parseISO(`${date} ${convertTo24hr(from)}`),
         });
 
         setDistance({
@@ -49,7 +50,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
         const interval = setInterval(() => {
             const d = intervalToDuration({
                 start: new Date(),
-                end: parseISO(`${date} ${from}`),
+                end: parseISO(`${date} ${convertTo24hr(from)}`),
             });
 
             setDistance({
@@ -71,7 +72,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
             }
 
             // remove if the event is finished
-            if (parseISO(`${date} ${to}`).getTime() < new Date().getTime()) {
+            if (parseISO(`${date} ${convertTo24hr(to)}`).getTime() < new Date().getTime()) {
                 dispatch(onRemoveClass(data.id));
                 clearInterval(interval);
             }
