@@ -106,7 +106,9 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
                                     <strong>{differenceInDays(new Date(end_date), new Date())} days</strong>{" "}
                                     premium left
                                 </span>
-                                <span>Expire at {format(new Date(end_date), "MMM dd, yyyy")}</span>
+                                <span>
+                                    Expire at {end_date && format(new Date(end_date), "MMM dd, yyyy")}
+                                </span>
                             </div>
                             <Button css={styles.renewBtn} variant="contained" onClick={onGoPremiumBtnClick}>
                                 <ReloadIcon />
