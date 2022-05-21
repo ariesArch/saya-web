@@ -1,4 +1,4 @@
-import { differenceInSeconds } from "date-fns";
+import { differenceInSeconds, parseISO } from "date-fns";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { FC, useEffect, useState } from "react";
@@ -33,7 +33,7 @@ const PaymentSummary: FC<Props> = ({ value, type, expired_date_time, provider, m
         let timeout: NodeJS.Timeout;
 
         if (type === "QR") {
-            const timeDiff = differenceInSeconds(new Date(expired_date_time), new Date());
+            const timeDiff = differenceInSeconds(parseISO(expired_date_time), new Date());
 
             setCountdown(timeDiff > 0 ? timeDiff : 0);
 

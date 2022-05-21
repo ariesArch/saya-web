@@ -1,4 +1,4 @@
-import { differenceInDays, format } from "date-fns";
+import { differenceInDays, format, isValid, parseISO } from "date-fns";
 import { useRouter } from "next/router";
 import { FC, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import ChevronRight from "@/public/icons/chevron-right.svg";
 import CrownIcon from "@/public/icons/crown.svg";
 import EditIcon from "@/public/icons/edit.svg";
 import ExitIcon from "@/public/icons/exit.svg";
+// import PhoneIcon from "@/public/icons/phone.svg";
 // import IntermediateBadge from "@/public/icons/profile-badge-preintermediate-text.svg";
 import QuestionIcon from "@/public/icons/question-mark-circle.svg";
 import ReloadIcon from "@/public/icons/reload.svg";
@@ -64,8 +65,8 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
     const { name, photo, phone, is_premium, start_date, end_date } = userData;
 
     const calculateProgress = (): number => {
-        const totalDaysOfSub = differenceInDays(new Date(end_date), new Date(start_date));
-        const totalDaysLeftBeforeExpire = totalDaysOfSub - differenceInDays(new Date(start_date), new Date());
+        const totalDaysOfSub = differenceInDays(parseISO(end_date), parseISO(start_date));
+        const totalDaysLeftBeforeExpire = totalDaysOfSub - differenceInDays(parseISO(start_date), new Date());
 
         return 100 - (totalDaysLeftBeforeExpire / totalDaysOfSub) * 100;
     };
@@ -103,11 +104,12 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
                         <div css={styles.subInfo}>
                             <div css={styles.subInfoTexts}>
                                 <span>
-                                    <strong>{differenceInDays(new Date(end_date), new Date())} days</strong>{" "}
+                                    <strong>{differenceInDays(parseISO(end_date), new Date())} days</strong>{" "}
                                     premium left
                                 </span>
                                 <span>
-                                    Expire at {end_date && format(new Date(end_date), "MMM dd, yyyy")}
+                                    Expire at{" "}
+                                    {isValid(end_date) && format(parseISO(end_date), "MMM dd, yyyy")}
                                 </span>
                             </div>
                             <Button css={styles.renewBtn} variant="contained" onClick={onGoPremiumBtnClick}>
@@ -178,14 +180,20 @@ const menuItems = [
     //     route: "/home/classroom",
     //     icon: <TickSquareIcon />,
     // },
+    // {
+    //     id: 2,
+    //     name: "Change Phone Number",
+    //     route: "/home/classroom",
+    //     icon: <PhoneIcon />,
+    // },
     {
-        id: 3,
+        id: 4,
         name: "Logout",
         route: "",
         icon: <ExitIcon />,
     },
     {
-        id: 4,
+        id: 5,
         name: "FAQs",
         route: "/faq",
         icon: <QuestionIcon />,

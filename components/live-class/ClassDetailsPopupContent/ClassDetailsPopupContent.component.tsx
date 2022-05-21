@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -52,7 +52,7 @@ const ClassDetailsPopupContent: FC<Props> = ({ data, buttonRef, onPopupClose }) 
             <div css={styles.classInfo}>
                 <div css={styles.date(is_notify)}>
                     {is_notify && <NotificationIcon />}
-                    {format(new Date(date), "MMM dd, EEE")} | {from}
+                    {format(parseISO(date), "MMM dd, EEE")} | {from}
                 </div>
 
                 <div css={styles.mainTexts}>
