@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,6 +15,7 @@ import * as styles from "./EditProfileForm.styles";
 const EditProfileForm = () => {
     const userData = useSelector((state: ReduxState) => state.userState.userData);
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const [name, setName] = useState(userData.name);
     const [email, setEmail] = useState(userData.email);
@@ -63,6 +65,8 @@ const EditProfileForm = () => {
         );
     };
 
+    const onCancel = () => router.back();
+
     useEffect(() => {
         if (userData.photo !== avatar) setAvatar(userData.photo);
     }, [userData.photo]);
@@ -100,14 +104,7 @@ const EditProfileForm = () => {
                 <label css={styles.label} htmlFor="email">
                     Email
                 </label>
-                <input
-                    css={styles.input}
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={onEmailChange}
-                    required
-                />
+                <input css={styles.input} id="email" type="email" value={email} onChange={onEmailChange} />
             </div>
             <div css={styles.col}>
                 <span css={styles.genderTitle}>Select gender</span>
@@ -145,7 +142,9 @@ const EditProfileForm = () => {
                     type="submit">
                     Save
                 </Button>
-                <Button>Cancel</Button>
+                <Button type="button" onClick={onCancel}>
+                    Cancel
+                </Button>
             </div>
         </form>
     );

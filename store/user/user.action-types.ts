@@ -1,1 +1,2 @@
 export const USER_DATA_CHANGE = "USER_DATA_CHANGE";
+export const USER_DATA_UPDATE = "USER_DATA_UPDATE";

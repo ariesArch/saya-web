@@ -1,26 +1,28 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { ChangeEvent, FormEvent, memo, useState } from "react";
-import { useDispatch } from "react-redux";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
 import { carouselTransition, carouselVariants } from "@/components/common/FramerMotion";
 import OTPInput from "@/components/common/OTPInput/OTPInput.component";
 import PhoneNumberInput from "@/components/common/PhoneNumberInput/PhoneNumberInput.component";
-import ArrowLeft from "@/public/icons/chevron-left.svg";
-import { userLoginAsync, userVerifyLoginAsync } from "@/store/user/user.actions";
+import { ReduxState } from "@/interfaces/redux.interfaces";
+import { updatePhoneNumberAsync, updatePhoneVerifyAsync } from "@/store/user/user.actions";
 
-import * as styles from "./LoginSignUpBox.styles";
+import * as styles from "./ChangePhoneForm.styles";
 
-const LoginSignUpBox = () => {
+const ChangePhoneForm = () => {
+    const { initialPhone } = useSelector((state: ReduxState) => ({
+        initialPhone: state.userState.userData?.phone?.slice(2),
+    }));
     const dispatch = useDispatch();
     const router = useRouter();
 
     const [step, setStep] = useState<"phone" | "otp">("phone");
-    const [phone, setPhone] = useState<string>("");
+    const [phone, setPhone] = useState<string>(initialPhone);
     const [otp, setOtp] = useState("");
     const [optExpiredAt, setOptExpiredAt] = useState<number>(0);
-
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string>("");
     const [direction, setDirection] = useState(1);
@@ -33,14 +35,15 @@ const LoginSignUpBox = () => {
         setPhone(e.target.value);
     };
 
-    const onOTPSendSuccess = (expiresAt: number) => {
-        setIsLoading(false);
+    const onOTPSendSuccess = (expiredAt: number) => {
+        setDirection(1);
 
+        setIsLoading(false);
         setStep("otp");
 
         if (error) setError("");
 
-        setOptExpiredAt(expiresAt);
+        setOptExpiredAt(expiredAt);
     };
 
     const onOTPSendFailure = (e: any) => {
@@ -54,7 +57,12 @@ const LoginSignUpBox = () => {
     };
 
     const onOTPVerifySuccess = () => {
-        router.push("/home").then(() => setIsLoading(false));
+        setDirection(-1);
+
+        setStep("phone");
+        setIsLoading(false);
+
+        if (error) setError("");
     };
 
     const onOTPVerifyFailure = (e: any) => {
@@ -67,28 +75,31 @@ const LoginSignUpBox = () => {
         }
     };
 
-    const onClickNext = (e: FormEvent) => {
+    const onSave = (e: FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        setDirection(1);
 
         if (step === "phone") {
             dispatch(
-                userLoginAsync(
-                    { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}` },
+                updatePhoneNumberAsync(
+                    phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
                     onOTPSendSuccess,
                     onOTPSendFailure
                 )
             );
         } else {
             dispatch(
-                userVerifyLoginAsync(
+                updatePhoneVerifyAsync(
                     { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`, otp },
                     onOTPVerifySuccess,
                     onOTPVerifyFailure
                 )
             );
         }
+    };
+
+    const isSubmitBtnDisabled = () => {
+        return step === "phone" ? phone === initialPhone || phone.length < 7 : otp.length < 6;
     };
 
     const onGoBack = () => {
@@ -99,8 +110,10 @@ const LoginSignUpBox = () => {
         if (error) setError("");
     };
 
+    const onCancel = () => router.back();
+
     return (
-        <form css={styles.container} onSubmit={onClickNext}>
+        <form css={styles.form} onSubmit={onSave}>
             <motion.div
                 css={styles.col}
                 key={step}
@@ -110,21 +123,21 @@ const LoginSignUpBox = () => {
                 animate="center"
                 exit="exit"
                 transition={carouselTransition}>
+                <h5 css={styles.heading}>{step === "phone" ? "Change phone number" : "Enter OTP"}</h5>
+
                 {step === "phone" ? (
-                    <PhoneNumberInput value={phone} onChange={onPhoneChange} />
+                    <div css={styles.inputContainer}>
+                        <span css={styles.label}>Enter New Phone</span>
+                        <PhoneNumberInput value={phone} onChange={onPhoneChange} />
+                        <span css={styles.tip}>
+                            We will send an SMS with a confirmation code to your new number
+                        </span>
+                    </div>
                 ) : (
-                    <div css={styles.otpInputContainer}>
-                        <div css={styles.optTextsContainer}>
-                            <div css={styles.optHeader}>
-                                <div css={styles.backBtn} onClick={onGoBack}>
-                                    <ArrowLeft />
-                                </div>
-                                <span css={styles.optHeading}>Enter OTP</span>
-                            </div>
-                            <span css={styles.optSubHeading}>
-                                We sent an one-time password to <span>{phone}</span>
-                            </span>
-                        </div>
+                    <div css={styles.inputContainer}>
+                        <span css={styles.otpTip}>
+                            We sent one time password to <span>{phone}</span>
+                        </span>
                         <OTPInput value={otp} onChange={onOTPChange} expiredAt={optExpiredAt} />
                     </div>
                 )}
@@ -132,17 +145,20 @@ const LoginSignUpBox = () => {
 
             {error && <div css={styles.error}>{error}</div>}
 
-            <Button
-                css={styles.button}
-                variant="contained"
-                color="success"
-                type="submit"
-                loading={isLoading}
-                isDisabled={step === "phone" ? phone.length < 7 : otp.length < 6}>
-                {step === "phone" ? "Next" : "Login"}
-            </Button>
+            <div css={styles.buttonsContainer}>
+                <Button type="button" onClick={step === "phone" ? onCancel : onGoBack}>
+                    {step === "phone" ? "Cancel" : "Back"}
+                </Button>
+                <Button
+                    variant="contained"
+                    loading={isLoading}
+                    type="submit"
+                    isDisabled={isSubmitBtnDisabled()}>
+                    {step === "phone" ? "Continue" : "Verify"}
+                </Button>
+            </div>
         </form>
     );
 };
 
-export default memo(LoginSignUpBox);
+export default ChangePhoneForm;

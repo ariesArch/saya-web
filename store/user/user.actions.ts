@@ -4,12 +4,17 @@ import cookie from "js-cookie";
 import { DispatchType } from "@/interfaces/redux.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
 import { onEnrolledCoursesChange } from "@/store/courses/courses.actions";
-import { USER_DATA_CHANGE } from "@/store/user/user.action-types";
+import { USER_DATA_CHANGE, USER_DATA_UPDATE } from "@/store/user/user.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
 import { emptyFunction } from "@/utils/index";
 
 export const onUserDataChange = (data: UserData | Record<string, any>) => ({
     type: USER_DATA_CHANGE,
+    payload: data,
+});
+
+export const onUserDataUpdate = (data: Partial<UserData>) => ({
+    type: USER_DATA_UPDATE,
     payload: data,
 });
 
@@ -93,17 +98,16 @@ export const userUpdateProfileAsync = (
     onFailure: () => void = emptyFunction
 ) => {
     return async (dispatch: DispatchType) => {
-        try {
-            const token = cookie.get("token");
+        const token = cookie.get("token");
+        const instance = createAxiosInstance(token);
 
+        try {
             // image file object can only be sent by appending to formData
             const formData = new FormData();
             if (form.name) formData.append("name", form.name);
             if (form.email) formData.append("email", form.email);
             if (form.gender) formData.append("gender", form.gender);
             if (form.image) formData.append("image", form.image);
-
-            const instance = createAxiosInstance(token);
 
             const { data } = await instance.post(endpoints.user.updateProfile, formData);
 
@@ -126,6 +130,47 @@ export const userUpdateProfileAsync = (
         } catch (e) {
             console.log(e);
             onFailure();
+        }
+    };
+};
+
+export const updatePhoneNumberAsync = (
+    phone: string,
+    onSuccess: (expiresAt: number) => void = emptyFunction,
+    onFailure: (error: unknown) => void = emptyFunction
+) => {
+    return async () => {
+        const token = cookie.get("token");
+        const instance = createAxiosInstance(token);
+
+        try {
+            const { data } = await instance.post(endpoints.user.updatePhoneNumber, { phone });
+
+            onSuccess(differenceInSeconds(new Date(data?.otp_expired * 1000), new Date()));
+        } catch (e) {
+            console.log(e);
+            onFailure(e);
+        }
+    };
+};
+
+export const updatePhoneVerifyAsync = (
+    form: { phone: string; otp: string },
+    onSuccess: () => void = emptyFunction,
+    onFailure: (error: unknown) => void = emptyFunction
+) => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+        const instance = createAxiosInstance(token);
+
+        try {
+            await instance.post(endpoints.user.verifyUpdatePhoneNumber, { otp: form.otp });
+
+            dispatch(onUserDataUpdate({ phone: form.phone }));
+
+            onSuccess();
+        } catch (e) {
+            onFailure(e);
         }
     };
 };
