@@ -13,7 +13,7 @@ import ChevronRight from "@/public/icons/chevron-right.svg";
 import CrownIcon from "@/public/icons/crown.svg";
 import EditIcon from "@/public/icons/edit.svg";
 import ExitIcon from "@/public/icons/exit.svg";
-// import PhoneIcon from "@/public/icons/phone.svg";
+import PhoneIcon from "@/public/icons/phone.svg";
 // import IntermediateBadge from "@/public/icons/profile-badge-preintermediate-text.svg";
 import QuestionIcon from "@/public/icons/question-mark-circle.svg";
 import ReloadIcon from "@/public/icons/reload.svg";
@@ -179,12 +179,12 @@ const menuItems = [
     //     route: "/home/classroom",
     //     icon: <TickSquareIcon />,
     // },
-    // {
-    //     id: 2,
-    //     name: "Change Phone Number",
-    //     route: "/home/classroom",
-    //     icon: <PhoneIcon />,
-    // },
+    {
+        id: 2,
+        name: "Change Phone Number",
+        route: "/change-phone-number",
+        icon: <PhoneIcon />,
+    },
     {
         id: 4,
         name: "Logout",

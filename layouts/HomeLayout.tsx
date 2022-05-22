@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Fragment, ReactNode } from "react";
+import { CSSProperties, Fragment, ReactNode } from "react";
 import { useSelector } from "react-redux";
 
 import GoPremiumPopupBtn from "@/components/common/GoPremiumPopupBtn/GoPremiumPopupBtn.component";
@@ -16,6 +16,7 @@ interface HomeLayoutProps {
     showSidePanel?: boolean;
     heading?: ReactNode;
     backgroundColor?: string;
+    contentsStyles?: CSSProperties;
 }
 
 const HomeLayout = (props: HomeLayoutProps) => {
@@ -25,13 +26,14 @@ const HomeLayout = (props: HomeLayoutProps) => {
         heading,
         children,
         backgroundColor = "#fff",
+        contentsStyles,
     } = props;
     const { is_premium } = useSelector((state: ReduxState) => state.userState.userData);
 
     return (
         <DefaultLayout title={title}>
             <div css={body(backgroundColor)}>
-                <div css={contents}>
+                <div css={contents} style={contentsStyles}>
                     <SideNav />
                     <HeaderNav heading={heading} />
                     <div css={mainContents}>{children}</div>
