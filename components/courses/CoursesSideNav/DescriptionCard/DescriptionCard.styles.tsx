@@ -10,6 +10,7 @@ export const card = (isSelectedCourse: boolean) => css`
     padding: 1.5rem 1.5rem 1.2rem;
     background-color: #fff;
     margin: 0 0.5rem 2rem;
+    flex-shrink: 0;
 
     ${isSelectedCourse &&
     `

@@ -10,6 +10,7 @@ export const headerNav = css`
     z-index: 50;
     background-color: #fff;
     padding-left: 8rem;
+    flex-shrink: 0;
 
     @media only screen and (max-width: 695px) {
         padding-left: 2rem;
@@ -22,6 +23,7 @@ export const navItem = (isSingle?: boolean) => css`
     font-weight: 700;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    ${!isSingle && "cursor: pointer;"};
 
     @media only screen and (max-width: 495px) {
         font-size: 4rem;

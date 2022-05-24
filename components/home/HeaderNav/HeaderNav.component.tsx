@@ -21,9 +21,9 @@ const HeaderNav: FC<Props> = ({ heading }) => {
         <div css={styles.headerNav}>
             {!heading ? (
                 items.map(({ id, name, route }) => (
-                    <motion.a
+                    <motion.div
                         key={id}
-                        css={styles.navItem()}
+                        css={styles.navItem(false)}
                         onClick={() => onItemSelect(route)}
                         animate={router.pathname === route ? "active" : "inactive"}
                         variants={navItemVariants}>
@@ -36,7 +36,7 @@ const HeaderNav: FC<Props> = ({ heading }) => {
                                 transition={transition}
                             />
                         )}
-                    </motion.a>
+                    </motion.div>
                 ))
             ) : (
                 <div css={styles.navItem(!!heading)}>{heading}</div>
