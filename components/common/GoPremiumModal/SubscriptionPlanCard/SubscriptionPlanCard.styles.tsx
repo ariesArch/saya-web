@@ -36,7 +36,6 @@ export const popularBadge = css`
 `;
 
 export const card = css`
-    height: 100%;
     background-color: #f6f6f6;
     border-radius: 1.4rem;
     border: 1px solid #e1e1e1;
@@ -47,9 +46,10 @@ export const card = css`
     justify-content: center;
     color: #222;
     position: relative;
-
     cursor: pointer;
     transition: all 0.2s;
+    height: fit-content;
+    min-height: 17rem;
 
     &:hover {
         background-color: #eee;

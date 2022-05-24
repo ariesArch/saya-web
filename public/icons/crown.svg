@@ -1,16 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="237.821 192.878 30.444 26.737" width="30.443" height="26.737">
-  <defs>
-    <filter id="Vector" x="0" y="0" width="51.135" height="46.893" filterUnits="userSpaceOnUse">
-      <feComposite operator="in" in2="blur"/>
-    </filter>
-  </defs>
-  <g id="vuesax_bold_crown" data-name="vuesax/bold/crown" transform="matrix(1, 0, 0, 1, 237.159255, 189.512725)">
+  <g id="vuesax_bold_crown" transform="matrix(1, 0, 0, 1, 237.159255, 189.512725)">
     <g id="crown">
-      <path id="Vector-2" data-name="Vector" d="M14.69,2.05H1.025A1.032,1.032,0,0,1,0,1.025,1.032,1.032,0,0,1,1.025,0H14.69a1.032,1.032,0,0,1,1.025,1.025A1.032,1.032,0,0,1,14.69,2.05Z" transform="translate(8.541 28.014)" fill="currentColor"/>
-      <g transform="matrix(1, 0, 0, 1, -9.17, -4.96)" filter="url(#Vector)">
-        <path id="Vector-3" data-name="Vector" d="M24.983,4.5,19.517,8.408a1.376,1.376,0,0,1-2.077-.629L14.857.892a1.361,1.361,0,0,0-2.555,0L9.7,7.765a1.347,1.347,0,0,1-2.063.629L2.175,4.486A1.377,1.377,0,0,0,.085,6.071l5.685,15.92a1.356,1.356,0,0,0,1.285.9H20.077a1.375,1.375,0,0,0,1.285-.9l5.685-15.92A1.355,1.355,0,0,0,24.983,4.5ZM16.989,17.112H10.156a1.025,1.025,0,1,1,0-2.05h6.833a1.025,1.025,0,1,1,0,2.05Z" transform="translate(12 8)" fill="currentColor"/>
+      <path id="Vector-2" d="M14.69,2.05H1.025A1.032,1.032,0,0,1,0,1.025,1.032,1.032,0,0,1,1.025,0H14.69a1.032,1.032,0,0,1,1.025,1.025A1.032,1.032,0,0,1,14.69,2.05Z" transform="translate(8.541 28.014)" fill="currentColor"/>
+      <g transform="matrix(1, 0, 0, 1, -9.17, -4.96)">
+        <path id="Vector-3" d="M24.983,4.5,19.517,8.408a1.376,1.376,0,0,1-2.077-.629L14.857.892a1.361,1.361,0,0,0-2.555,0L9.7,7.765a1.347,1.347,0,0,1-2.063.629L2.175,4.486A1.377,1.377,0,0,0,.085,6.071l5.685,15.92a1.356,1.356,0,0,0,1.285.9H20.077a1.375,1.375,0,0,0,1.285-.9l5.685-15.92A1.355,1.355,0,0,0,24.983,4.5ZM16.989,17.112H10.156a1.025,1.025,0,1,1,0-2.05h6.833a1.025,1.025,0,1,1,0,2.05Z" transform="translate(12 8)" fill="currentColor"/>
       </g>
-      <path id="Vector-4" data-name="Vector" d="M0,0H32.8V32.8H0Z" transform="translate(32.797 32.797) rotate(180)" fill="none" opacity="0"/>
+      <path id="Vector-4" d="M0,0H32.8V32.8H0Z" transform="translate(32.797 32.797) rotate(180)" fill="none" opacity="0"/>
     </g>
   </g>
 </svg>
