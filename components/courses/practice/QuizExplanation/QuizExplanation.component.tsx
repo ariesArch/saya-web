@@ -40,7 +40,7 @@ const QuizExplanation: FC<Props> = ({ isCorrect = true, explanation, onNext }) =
 
                         <div css={styles.textContainer}>
                             <span css={styles.heading}>Oops !</span>
-                            <span css={styles.subHeading}>You choose the worng one. Explanation below.</span>
+                            <span css={styles.subHeading}>You choose the wrong one. Explanation below.</span>
                         </div>
                     </div>
                     <div css={styles.explanation} dangerouslySetInnerHTML={{ __html: explanation }} />

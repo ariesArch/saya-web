@@ -7,6 +7,7 @@ import {
     QuizSummary,
 } from "@/interfaces/courses.interfaces";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
+import { NotificationItem, NotificationsAds } from "@/interfaces/notifications.interfaces";
 import { PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
 
@@ -20,6 +21,7 @@ export interface ReduxState {
     coursesState: CoursesState;
     liveClassState: LiveClassState;
     paymentState: PaymentState;
+    notificationsState: NotificationsState;
 }
 
 export type DispatchType = (action: ActionType) => ActionType;
@@ -51,4 +53,9 @@ export interface CoursesState {
 
 export interface LiveClassState {
     events: LiveEvent[];
+}
+
+export interface NotificationsState {
+    notifications: NotificationItem[];
+    ads: NotificationsAds[];
 }
