@@ -17,6 +17,7 @@ interface HomeLayoutProps {
     heading?: ReactNode;
     backgroundColor?: string;
     contentsStyles?: CSSProperties;
+    mainContentsStyles?: CSSProperties;
 }
 
 const HomeLayout = (props: HomeLayoutProps) => {
@@ -27,6 +28,7 @@ const HomeLayout = (props: HomeLayoutProps) => {
         children,
         backgroundColor = "#fff",
         contentsStyles,
+        mainContentsStyles,
     } = props;
     const { is_premium } = useSelector((state: ReduxState) => state.userState.userData);
 
@@ -36,7 +38,9 @@ const HomeLayout = (props: HomeLayoutProps) => {
                 <div css={contents} style={contentsStyles}>
                     <SideNav />
                     <HeaderNav heading={heading} />
-                    <div css={mainContents}>{children}</div>
+                    <div css={mainContents} style={mainContentsStyles}>
+                        {children}
+                    </div>
                 </div>
                 {showSidePanel && (
                     <Fragment />

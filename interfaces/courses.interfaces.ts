@@ -45,6 +45,8 @@ export interface Course {
     cover_video_finished_length: number;
     course_total_length: number;
     course_total_finished_length: number;
+    category_color: string;
+    illustration_type: string;
     level: ClassLevel;
     level_icon: string;
     category: 0;
