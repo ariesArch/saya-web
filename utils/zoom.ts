@@ -50,7 +50,7 @@ export const startMeeting = async ({
     if (!signature) return;
 
     ZoomMtg.init({
-        leaveUrl: `${siteURL}/home/live-class`,
+        leaveUrl: `${siteURL}/live-class`,
         success: (success: any) => {
             console.log(success);
 

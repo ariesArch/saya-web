@@ -37,8 +37,6 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
         promoCode: "",
     });
 
-    console.log(selectedPlan);
-
     const [paymentResponse, setPaymentResponse] = useState<PaymentResponse | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
