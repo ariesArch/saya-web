@@ -1,4 +1,4 @@
-import { differenceInSeconds } from "date-fns";
+import { differenceInSeconds, parseISO } from "date-fns";
 
 import { Chapter, QuizPayloadData, QuizSummary } from "@/interfaces/courses.interfaces";
 import { numToArrOfNum } from "@/utils/index";
@@ -16,8 +16,8 @@ export const calculateQuizSummary = (quizPayloadData: QuizPayloadData): QuizSumm
             incorrectAnswers += 1;
         }
         totalTime += differenceInSeconds(
-            new Date(item.ended_practice_at),
-            new Date(item.started_practice_at)
+            parseISO(item.ended_practice_at),
+            parseISO(item.started_practice_at)
         );
     });
 

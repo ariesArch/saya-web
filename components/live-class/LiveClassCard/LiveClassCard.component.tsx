@@ -65,6 +65,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
                     // eslint-disable-next-line no-new
                     new Notification("A class is live now.", {
                         body: title,
+                        icon: "/favicon-32x32.png",
                     });
                 }
 

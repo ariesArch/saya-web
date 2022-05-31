@@ -1,5 +1,6 @@
 import { differenceInSeconds } from "date-fns";
 import cookie from "js-cookie";
+import localforage from "localforage";
 
 import { DispatchType } from "@/interfaces/redux.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
@@ -53,11 +54,28 @@ export const userVerifyLoginAsync = (
 
             cookie.set("token", access_token as string, { expires: expires_in });
 
+            await localforage.removeItem("fcm_token");
+
             // dispatch(onUserDataChange({ ...rest, is_new_user } as UserData));
 
             onSuccess();
         } catch (e) {
             onFailure(e);
+        }
+    };
+};
+
+export const fetchUserDataAsync = () => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+        const instance = createAxiosInstance(token);
+
+        try {
+            const { data } = await instance.get(endpoints.user.getProfile);
+
+            dispatch(onUserDataChange(data as UserData));
+        } catch (e) {
+            console.log(e);
         }
     };
 };
@@ -75,6 +93,7 @@ export const userLogoutAsync = (
             await instance.get(endpoints.user.logout);
 
             cookie.remove("token");
+            await localforage.removeItem("fcm_token");
 
             onSuccess();
 

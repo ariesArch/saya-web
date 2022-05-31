@@ -2,69 +2,82 @@ import "@/public/css/globals.css";
 
 import cookie from "js-cookie";
 import { AppContext, AppProps } from "next/app";
-import Router, { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
-import ReactGA from "react-ga";
+import { useDispatch, useSelector } from "react-redux";
 
 import LoadingIndicator from "@/components/common/LoadingIndicator/LoadingIndicator.component";
-import { InitialPageProps } from "@/interfaces/redux.interfaces";
+import useRouteHandler from "@/hooks/useRouteHandler";
+import { InitialPageProps, ReduxState } from "@/interfaces/redux.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
+import { updateFirebaseTokenAsync } from "@/store/notifications/notifications.actions";
+import { onPaymentModalToggle, onPaymentSuccessModalToggle } from "@/store/payment/payment.actions";
 import { wrapper } from "@/store/store";
-import { onUserDataChange } from "@/store/user/user.actions";
+import { fetchUserDataAsync, onUserDataChange } from "@/store/user/user.actions";
 import { createAxiosInstance, endpoints } from "@/utils/api";
-import { GATrackingId } from "@/utils/constants";
+import { firebaseCloudMessaging } from "@/utils/firebase";
 import { redirectOnEitherSide } from "@/utils/index";
 
 interface Props extends InitialPageProps, AppProps {}
 
 const App = ({ Component, pageProps }: Props) => {
-    const router = useRouter();
-    const [state, setState] = useState({
-        isRouteChanging: false,
-        loadingKey: 0,
-    });
+    const { userData } = useSelector((state: ReduxState) => ({ userData: state.userState.userData }));
+    const dispatch = useDispatch();
+    const [mounted, setMounted] = useState(false);
+    const { isRouteChanging, loadingKey } = useRouteHandler();
+
+    const onPaymentSuccess = () => {
+        dispatch(fetchUserDataAsync());
+        dispatch(onPaymentModalToggle(false));
+
+        setTimeout(() => {
+            dispatch(onPaymentSuccessModalToggle(true));
+        }, 200);
+    };
 
     useEffect(() => {
-        const handleRouteChangeStart = () => {
-            setState((prevState) => ({
-                ...prevState,
-                isRouteChanging: true,
-                // eslint-disable-next-line no-bitwise
-                loadingKey: prevState.loadingKey ^ 1,
-            }));
-        };
-        if (process.env.NEXT_PUBLIC_ENVIRONMENT === "production") {
-            ReactGA.initialize(GATrackingId as string, { debug: false });
-            ReactGA.set({ page: router.pathname });
-            ReactGA.pageview(router.pathname);
+        if (!mounted) return;
+
+        if (userData.phone) {
+            firebaseCloudMessaging.onMessage((payload) => {
+                if (payload?.notification?.title === "Payment Successful") {
+                    onPaymentSuccess();
+                }
+
+                if ("Notification" in window) {
+                    if (Notification.permission !== "granted") {
+                        Notification.requestPermission();
+                    }
+
+                    // eslint-disable-next-line no-new
+                    new Notification((payload.notification?.title as string) || "", {
+                        body: payload.notification?.body || "",
+                        icon: "/favicon-32x32.png",
+                    });
+                }
+            });
+        } else {
+            // to remove the listener
+            firebaseCloudMessaging.onMessage();
         }
+    }, [userData, mounted]);
 
-        const handleRouteChangeEnd = (url: string) => {
-            setState((prevState) => ({
-                ...prevState,
-                isRouteChanging: false,
-            }));
+    useEffect(() => {
+        if (!userData?.phone) return;
 
-            if (process.env.NEXT_PUBLIC_ENVIRONMENT === "production") {
-                ReactGA.set({ page: url });
-                ReactGA.pageview(url);
+        firebaseCloudMessaging.init((token) => dispatch(updateFirebaseTokenAsync(token)));
+
+        const setToken = async () => {
+            const token = await firebaseCloudMessaging.tokenInlocalforage();
+            if (token) {
+                setMounted(true);
             }
         };
-
-        Router.events.on("routeChangeStart", handleRouteChangeStart);
-        Router.events.on("routeChangeComplete", handleRouteChangeEnd);
-        Router.events.on("routeChangeError", handleRouteChangeEnd);
-
-        return () => {
-            Router.events.off("routeChangeStart", handleRouteChangeStart);
-            Router.events.off("routeChangeComplete", handleRouteChangeEnd);
-            Router.events.off("routeChangeError", handleRouteChangeEnd);
-        };
-    }, []);
+        setToken();
+    }, [userData]);
 
     return (
         <Fragment>
-            <LoadingIndicator isRouteChanging={state.isRouteChanging} key={state.loadingKey} />
+            <LoadingIndicator isRouteChanging={isRouteChanging} key={loadingKey} />
             <Component {...pageProps} />
         </Fragment>
     );

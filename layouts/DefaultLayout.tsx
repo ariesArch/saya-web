@@ -5,12 +5,15 @@ import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ReduxState } from "@/interfaces/redux.interfaces";
-import { onPaymentModalToggle } from "@/store/payment/payment.actions";
+import { onPaymentModalToggle, onPaymentSuccessModalToggle } from "@/store/payment/payment.actions";
 
 const CompleteProfileModal = dynamic(
     () => import("@/components/common/CompleteProfileModal/CompleteProfileModal.component")
 );
 const GoPremiumModal = dynamic(() => import("@/components/common/GoPremiumModal/GoPremiumModal.component"));
+const PaymentSuccessModal = dynamic(
+    () => import("@/components/common/PaymentSuccessModal/PaymentSuccessModal.component")
+);
 
 interface DefaultLayoutProps {
     title?: string;
@@ -21,13 +24,15 @@ interface DefaultLayoutProps {
 
 const DefaultLayout = (props: DefaultLayoutProps) => {
     const { title = "SAYA - The English Learning Platform", topBar, headChildren, children } = props;
-    const { isOpen, userData } = useSelector((state: ReduxState) => ({
-        isOpen: state.paymentState.isPaymentModalOpen,
+    const { isPaymentModalOpen, userData, isPaymentSuccessModalOpen } = useSelector((state: ReduxState) => ({
+        isPaymentModalOpen: state.paymentState.isPaymentModalOpen,
         userData: state.userState.userData,
+        isPaymentSuccessModalOpen: state.paymentState.isPaymentSuccessModalOpen,
     }));
     const dispatch = useDispatch();
 
-    const onClose = () => dispatch(onPaymentModalToggle(false));
+    const onPaymentModalClose = () => dispatch(onPaymentModalToggle(false));
+    const onPaymentSuccessModalClose = () => dispatch(onPaymentSuccessModalToggle(false));
 
     return (
         <div css={container}>
@@ -39,7 +44,9 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
             {topBar && <header>{topBar}</header>}
             <div css={body}>{children}</div>
 
-            <GoPremiumModal isOpen={isOpen} onClose={onClose} />
+            <GoPremiumModal isOpen={isPaymentModalOpen} onClose={onPaymentModalClose} />
+
+            <PaymentSuccessModal isOpen={isPaymentSuccessModalOpen} onClose={onPaymentSuccessModalClose} />
 
             {userData.phone && (userData.is_new_user || !userData.name) && <CompleteProfileModal />}
         </div>

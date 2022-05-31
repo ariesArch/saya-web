@@ -57,7 +57,7 @@ export const readNotificationAsync = (notificationId: string) => {
         try {
             await instance.post(endpoints.user.getSingleNotification, { notification_id: notificationId });
 
-            dispatch(getAllNotificationsAsync());
+            dispatch(readNotification(notificationId));
         } catch (e) {
             console.log(e);
         }
@@ -76,6 +76,20 @@ export const getNotificationsAdsAsync = () => {
             });
 
             dispatch(setNotificationsAds(data?.data as NotificationsAds[]));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const updateFirebaseTokenAsync = (firebaseToken: string) => {
+    return async () => {
+        const token = cookie.get("token");
+
+        const instance = createAxiosInstance(token);
+
+        try {
+            await instance.post(endpoints.user.updateFirebaseToken, { firebase_token: firebaseToken });
         } catch (e) {
             console.log(e);
         }

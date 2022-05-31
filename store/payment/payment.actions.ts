@@ -5,6 +5,7 @@ import { DispatchType } from "@/interfaces/redux.interfaces";
 import {
     PAYMENT_MODAL_TOGGLE,
     PAYMENT_PROVIDERS_CHANGE,
+    PAYMENT_SUCCESS_MODAL_TOGGLE,
     SUBSCRIPTION_PLANS_CHANGE,
 } from "@/store/payment/payment.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
@@ -22,6 +23,11 @@ export const onPaymentProvidersChange = (data: any) => ({
 
 export const onPaymentModalToggle = (isOpen: boolean) => ({
     type: PAYMENT_MODAL_TOGGLE,
+    payload: isOpen,
+});
+
+export const onPaymentSuccessModalToggle = (isOpen: boolean) => ({
+    type: PAYMENT_SUCCESS_MODAL_TOGGLE,
     payload: isOpen,
 });
 

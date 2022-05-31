@@ -39,6 +39,7 @@ export interface PaymentState {
     subscriptionPlans: SubscriptionPlan[];
     providers: PaymentProvider[];
     isPaymentModalOpen: boolean;
+    isPaymentSuccessModalOpen: boolean;
 }
 
 export interface CoursesState {

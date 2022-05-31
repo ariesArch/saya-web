@@ -26,7 +26,7 @@ const notificationsReducer = (state = initialState, action: ActionType) => {
             return {
                 ...state,
                 notifications: state.notifications.map((notification) =>
-                    notification.id === action.payload ? { ...notification, read: true } : notification
+                    notification.id === action.payload ? { ...notification, is_read: 1 } : notification
                 ),
             };
         default:
