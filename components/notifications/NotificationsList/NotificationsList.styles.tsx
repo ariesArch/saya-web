@@ -4,6 +4,14 @@ export const container = css`
     display: flex;
     width: 100%;
     height: 100%;
+
+    @media only screen and (max-width: 745px) {
+        padding-left: 4rem;
+    }
+
+    @media only screen and (max-width: 695px) {
+        padding-left: 0;
+    }
 `;
 
 export const list = css`

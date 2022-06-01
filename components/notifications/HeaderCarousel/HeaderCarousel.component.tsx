@@ -40,8 +40,8 @@ const HeaderCarousel = () => {
                         <motion.img
                             key={index}
                             src={ads[index].normal_image_url}
-                            srcSet={`${ads[index].normal_image_url} 1920w, ${ads[index].wide_image_url} 3640w`}
-                            sizes="(min-width: 1920px) 3640px, 1920px"
+                            srcSet={`${ads[index].image_url} 1029w, ${ads[index].normal_image_url} 1920w, ${ads[index].wide_image_url} 3640w`}
+                            sizes="(min-width: 1920px) 3640px, (max-width: 695px) 1029px, 1920px"
                             variants={carouselVariants}
                             transition={carouselTransition}
                             initial="enter"

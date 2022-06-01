@@ -33,7 +33,7 @@ export const iconContainer = css`
 `;
 
 export const input = css`
-    flex-grow: 1;
+    width: 100%;
     border: none;
     padding: 0 1rem;
     border-top-right-radius: 1rem;

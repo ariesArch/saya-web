@@ -41,6 +41,7 @@ export const endpoints = {
         // notifications
         getNotifications: "/notifications",
         getSingleNotification: "/notification",
+        updateFirebaseToken: "/me/updateFirebaseToken",
 
         // notify live class
         notifyLiveEvent: "/notify_me",
