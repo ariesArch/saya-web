@@ -9,7 +9,7 @@ import {
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
 import { NotificationItem, NotificationsAds } from "@/interfaces/notifications.interfaces";
 import { PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
-import { UserData } from "@/interfaces/user.interfaces";
+import { SurveyData, UserData } from "@/interfaces/user.interfaces";
 
 export interface InitialPageProps {
     pageProps: any;
@@ -33,6 +33,7 @@ export interface ActionType {
 
 export interface UserState {
     userData: UserData | Record<string, never>; // Record<string, never> means Empty Object
+    surveyData: SurveyData | Record<string, never>;
 }
 
 export interface PaymentState {

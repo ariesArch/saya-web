@@ -1,7 +1,9 @@
 import { FC } from "react";
+import { useSelector } from "react-redux";
 
 import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 
 import * as styles from "./FirstStep.styles";
 
@@ -16,6 +18,10 @@ interface Props {
 }
 
 const FirstStep: FC<Props> = ({ data, onDataChange }) => {
+    const { ageGroups } = useSelector((state: ReduxState) => ({
+        ageGroups: state.userState.surveyData?.ageGroups,
+    }));
+
     return (
         <div css={styles.container}>
             <InputCard label="Name" labelFor="name">
@@ -35,8 +41,7 @@ const FirstStep: FC<Props> = ({ data, onDataChange }) => {
                     css={styles.input}
                     id="email"
                     type="email"
-                    required
-                    placeholder="your email"
+                    placeholder="your email (optional)"
                     value={data.email}
                     onChange={(e) => onDataChange("email", e.target.value)}
                 />
@@ -66,48 +71,23 @@ const FirstStep: FC<Props> = ({ data, onDataChange }) => {
                 </div>
             </InputCard>
 
-            <InputCard label={ageRange.title}>
+            <InputCard label="How young are you?">
                 <div css={styles.radioContainer}>
-                    {ageRange.data.map(({ id, text }) => (
-                        <div key={id} css={styles.radioInput(data.ageRange === text)}>
-                            <RadioButton
-                                label={text}
-                                radioSize="1.8rem"
-                                checked={data.ageRange === text}
-                                onChange={() => onDataChange("ageRange", text)}
-                            />
-                        </div>
-                    ))}
+                    {ageGroups &&
+                        ageGroups.map(({ id, title }) => (
+                            <div key={id} css={styles.radioInput(data.ageRange === id)}>
+                                <RadioButton
+                                    label={title}
+                                    radioSize="1.8rem"
+                                    checked={data.ageRange === id}
+                                    onChange={() => onDataChange("ageRange", id)}
+                                />
+                            </div>
+                        ))}
                 </div>
             </InputCard>
         </div>
     );
-};
-
-const ageRange = {
-    title: "How young are you?",
-    data: [
-        {
-            id: 1,
-            text: "Below 16",
-        },
-        {
-            id: 2,
-            text: "17 to 22",
-        },
-        {
-            id: 3,
-            text: "23 to 29",
-        },
-        {
-            id: 4,
-            text: "over 30",
-        },
-        {
-            id: 5,
-            text: "over 40",
-        },
-    ],
 };
 
 export default FirstStep;

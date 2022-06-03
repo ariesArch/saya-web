@@ -32,8 +32,8 @@ export const timeKeeperStyles = css`
 
             & > div:nth-of-type(2) {
                 position: absolute;
-                top: 2.5rem;
-                right: 4.5rem;
+                top: 25px;
+                right: 45px;
                 display: flex;
                 flex-direction: column;
                 padding: 0;
@@ -64,10 +64,10 @@ export const timeKeeperStyles = css`
                 width: auto;
                 height: fit-content;
                 line-height: unset;
-                padding: 0 0.5rem;
+                padding: 0 5px;
                 border-radius: unset;
                 background-color: transparent;
-                font-size: 1.3rem;
+                font-size: 13px;
                 font-weight: 600;
             }
             &--active {
