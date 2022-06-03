@@ -1,19 +1,42 @@
 import { motion, Variants } from "framer-motion";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { ReduxState } from "@/interfaces/redux.interfaces";
 import ChevronRightIcon from "@/public/icons/chevron-right.svg";
 import CrownIcon from "@/public/icons/crown.svg";
-import { onPaymentModalToggle } from "@/store/payment/payment.actions";
+import { fetchSubscriptionPlansAsync, onPaymentModalToggle } from "@/store/payment/payment.actions";
 
 import * as styles from "./GoPremiumPopupBtn.styles";
 
 const GoPremiumPopupBtn = () => {
+    const { plans } = useSelector((state: ReduxState) => ({ plans: state.paymentState.subscriptionPlans }));
     const dispatch = useDispatch();
     const [showTexts, setShowTexts] = useState(false);
     const onOpen = () => dispatch(onPaymentModalToggle(true));
 
+    const highestPercent = () => {
+        let percent = 0;
+
+        if (!plans) return 0;
+
+        plans.forEach((item) => {
+            if (!item.is_percentage) return;
+            if (item.promotion_price > percent) {
+                percent = item.promotion_price;
+            }
+        });
+
+        return percent;
+    };
+
     const onToggleTexts = () => setShowTexts(!showTexts);
+
+    useEffect(() => {
+        if (plans.length === 0) {
+            dispatch(fetchSubscriptionPlansAsync());
+        }
+    }, [dispatch, plans.length]);
 
     return (
         <button css={styles.button}>
@@ -30,7 +53,7 @@ const GoPremiumPopupBtn = () => {
                     Go Premium
                     <ChevronRightIcon />
                 </div>
-                <span css={styles.buttonSubtitle}>30% off</span>
+                <span css={styles.buttonSubtitle}>{highestPercent()}% off</span>
             </motion.div>
         </button>
     );
