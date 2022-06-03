@@ -1,7 +1,9 @@
 import { FC } from "react";
+import { useSelector } from "react-redux";
 
 import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 
 import * as styles from "./ThirdStep.styles";
 
@@ -11,55 +13,30 @@ interface Props {
 }
 
 const ThirdStep: FC<Props> = ({ purpose, onChange }) => {
+    const { purposes } = useSelector((state: ReduxState) => ({
+        purposes: state.userState.surveyData?.practicingFor,
+    }));
+
     return (
-        <InputCard label={purposeData.title}>
+        <InputCard label="Why are you practicing English?">
             <div css={styles.radioContainer}>
-                {purposeData.items.map(({ id, text }) => (
-                    <label key={id} css={styles.radioInput(purpose === text)} htmlFor={text}>
-                        <RadioButton
-                            id={text}
-                            radioSize="1.6rem"
-                            checked={purpose === text}
-                            onChange={() => onChange(text)}
-                        />
-                        <div css={styles.textContainer}>
-                            <span css={styles.title}>{text}</span>
-                        </div>
-                    </label>
-                ))}
+                {purposes &&
+                    purposes.map(({ id, title }) => (
+                        <label key={id} css={styles.radioInput(purpose === id)} htmlFor={id}>
+                            <RadioButton
+                                id={id}
+                                radioSize="1.6rem"
+                                checked={purpose === id}
+                                onChange={() => onChange(id)}
+                            />
+                            <div css={styles.textContainer}>
+                                <span css={styles.title}>{title}</span>
+                            </div>
+                        </label>
+                    ))}
             </div>
         </InputCard>
     );
-};
-
-const purposeData = {
-    title: "Why are you practicing English?",
-    items: [
-        {
-            id: 1,
-            text: "Education 🏫",
-        },
-        {
-            id: 2,
-            text: "Job Opportunities 💼",
-        },
-        {
-            id: 3,
-            text: "Travel 🧳",
-        },
-        {
-            id: 4,
-            text: "Live & Work Abroad 🌎",
-        },
-        {
-            id: 5,
-            text: "Culture & Entertainment 🎤",
-        },
-        {
-            id: 6,
-            text: "Others ❓",
-        },
-    ],
 };
 
 export default ThirdStep;

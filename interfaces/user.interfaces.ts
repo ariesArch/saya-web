@@ -19,3 +19,24 @@ export interface UserData {
         title: string;
     };
 }
+
+export interface SurveyData {
+    ageGroups: {
+        id: string;
+        title: string;
+    }[];
+    positions: {
+        id: string;
+        title: string;
+        content: string;
+    }[];
+    practicingFor: {
+        id: string;
+        title: string;
+    }[];
+    levels: {
+        id: string;
+        name: string;
+        icon: string;
+    }[];
+}

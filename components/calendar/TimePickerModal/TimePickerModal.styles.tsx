@@ -81,15 +81,20 @@ export const buttonsContainer = css`
 `;
 
 export const button = (isSet: boolean) => css`
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 500;
+    color: #5b5b5b;
     transition: all 0.2s;
 
     &:active {
         opacity: 0.6;
     }
 
-    ${isSet && `color: var(--color-green-light);`};
+    ${isSet &&
+    `
+        color: var(--color-green-light);
+        font-size: 1.7rem;
+    `};
 
     &:not(:last-of-type) {
         margin-right: 1.5rem;

@@ -1,7 +1,9 @@
 import { FC } from "react";
+import { useSelector } from "react-redux";
 
 import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
+import { ReduxState } from "@/interfaces/redux.interfaces";
 
 import * as styles from "./SecondStep.styles";
 
@@ -11,57 +13,31 @@ interface Props {
 }
 
 const SecondStep: FC<Props> = ({ status, onChange }) => {
+    const { positions } = useSelector((state: ReduxState) => ({
+        positions: state.userState.surveyData?.positions,
+    }));
+
     return (
-        <InputCard label={statusData.title}>
+        <InputCard label="">
             <div css={styles.radioContainer}>
-                {statusData.items.map(({ id, text, subText }) => (
-                    <label key={id} css={styles.radioInput(status === text)} htmlFor={text}>
-                        <RadioButton
-                            id={text}
-                            radioSize="1.6rem"
-                            checked={status === text}
-                            onChange={() => onChange(text)}
-                        />
-                        <div css={styles.textContainer}>
-                            <span css={styles.title}>{text}</span>
-                            {subText && <span>{subText}</span>}
-                        </div>
-                    </label>
-                ))}
+                {positions &&
+                    positions.map(({ id, title, content }) => (
+                        <label key={id} css={styles.radioInput(status === id)} htmlFor={id}>
+                            <RadioButton
+                                id={id}
+                                radioSize="1.6rem"
+                                checked={status === id}
+                                onChange={() => onChange(id)}
+                            />
+                            <div css={styles.textContainer}>
+                                <span css={styles.title}>{title}</span>
+                                {content && <span>{content}</span>}
+                            </div>
+                        </label>
+                    ))}
             </div>
         </InputCard>
     );
-};
-
-const statusData = {
-    title: "",
-    items: [
-        {
-            id: 1,
-            text: "Student 🎒",
-            subText: "State, University, College or other classes.",
-        },
-        {
-            id: 2,
-            text: "Fresher job-hunter 👋🏻",
-            subText: "Hunting job for first time with graduated or without graduated.",
-        },
-        {
-            id: 3,
-            text: "Junior level employee 🏅",
-            subText: "",
-        },
-        {
-            id: 4,
-            text: "Senior & Manager level employee 👑",
-            subText: "",
-        },
-        {
-            id: 5,
-            text: "Employer or Freelancer 😎",
-            subText: "",
-        },
-    ],
 };
 
 export default SecondStep;

@@ -1,13 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import "simplebar/dist/simplebar.min.css";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import SimpleBar from "simplebar-react";
 
 import Button from "@/components/common/Button/Button.component";
 import ChevronLeft from "@/public/icons/chevron-left.svg";
-import { userUpdateProfileAsync } from "@/store/user/user.actions";
+import { getUserSurveyDataAsync, userUpdateProfileAsync } from "@/store/user/user.actions";
 
 import * as styles from "./CompleteProfileModal.styles";
 import FirstStep from "./FirstStep/FirstStep.component";
@@ -49,11 +49,7 @@ const CompleteProfileModal = () => {
     const isBtnDisabled = (): boolean => {
         let isDisabled = false;
         if (step === 1) {
-            isDisabled =
-                !firstStepData.name ||
-                !firstStepData.email ||
-                !firstStepData.gender ||
-                !firstStepData.ageRange;
+            isDisabled = !firstStepData.name || !firstStepData.gender || !firstStepData.ageRange;
         } else if (step === 2) {
             isDisabled = !status;
         } else if (step === 3) {
@@ -69,8 +65,7 @@ const CompleteProfileModal = () => {
         e.preventDefault();
 
         if (step === 1) {
-            if (firstStepData.name && firstStepData.email && firstStepData.gender && firstStepData.ageRange)
-                setStep(2);
+            if (firstStepData.name && firstStepData.gender && firstStepData.ageRange) setStep(2);
         }
         if (step === 2) {
             if (status) setStep(3);
@@ -90,7 +85,13 @@ const CompleteProfileModal = () => {
         setIsLoading(true);
         dispatch(
             userUpdateProfileAsync(
-                { ...firstStepData },
+                {
+                    ...firstStepData,
+                    ageGroupId: firstStepData.ageRange,
+                    positionId: status,
+                    purposeId: purpose,
+                    levelId: level,
+                },
                 () => setIsLoading(false),
                 () => setIsLoading(false)
             )
@@ -102,6 +103,10 @@ const CompleteProfileModal = () => {
 
         setStep(step - 1);
     };
+
+    useEffect(() => {
+        dispatch(getUserSurveyDataAsync());
+    }, []);
 
     return (
         <div css={styles.wrapper}>

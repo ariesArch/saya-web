@@ -47,6 +47,9 @@ export const endpoints = {
         notifyLiveEvent: "/notify_me",
         unnotifyLiveEvent: "/unnotify_me",
         toggleNotifyMultipleEvents: "/confirm_notify_me",
+
+        // get survey data for new users
+        getDataForProfileUpdate: "/get-data-for-profile-update",
     },
     liveEvents: {
         getJWTForZoom: "/get_zoom_jwt",

@@ -3,9 +3,9 @@ import cookie from "js-cookie";
 import localforage from "localforage";
 
 import { DispatchType } from "@/interfaces/redux.interfaces";
-import { UserData } from "@/interfaces/user.interfaces";
+import { SurveyData, UserData } from "@/interfaces/user.interfaces";
 import { onEnrolledCoursesChange } from "@/store/courses/courses.actions";
-import { USER_DATA_CHANGE, USER_DATA_UPDATE } from "@/store/user/user.action-types";
+import { SURVEY_DATA_CHANGE, USER_DATA_CHANGE, USER_DATA_UPDATE } from "@/store/user/user.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
 import { emptyFunction } from "@/utils/index";
 
@@ -16,6 +16,11 @@ export const onUserDataChange = (data: UserData | Record<string, any>) => ({
 
 export const onUserDataUpdate = (data: Partial<UserData>) => ({
     type: USER_DATA_UPDATE,
+    payload: data,
+});
+
+export const onSurveyDataChange = (data: SurveyData | Record<string, never>) => ({
+    type: SURVEY_DATA_CHANGE,
     payload: data,
 });
 
@@ -112,6 +117,10 @@ export const userUpdateProfileAsync = (
         email: string;
         gender: string;
         image?: string;
+        ageGroupId?: string;
+        positionId?: string;
+        purposeId?: string;
+        levelId?: string;
     },
     onSuccess: () => void = emptyFunction,
     onFailure: () => void = emptyFunction
@@ -127,6 +136,11 @@ export const userUpdateProfileAsync = (
             if (form.email) formData.append("email", form.email);
             if (form.gender) formData.append("gender", form.gender);
             if (form.image) formData.append("image", form.image);
+
+            if (form.ageGroupId) formData.append("age_group_id", form.ageGroupId);
+            if (form.positionId) formData.append("position_id", form.positionId);
+            if (form.purposeId) formData.append("practicing_for_id", form.purposeId);
+            if (form.levelId) formData.append("level_id", form.levelId);
 
             const { data } = await instance.post(endpoints.user.updateProfile, formData);
 
@@ -190,6 +204,21 @@ export const updatePhoneVerifyAsync = (
             onSuccess();
         } catch (e) {
             onFailure(e);
+        }
+    };
+};
+
+export const getUserSurveyDataAsync = () => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+        const instance = createAxiosInstance(token);
+
+        try {
+            const { data } = await instance.get(endpoints.user.getDataForProfileUpdate);
+
+            dispatch(onSurveyDataChange(data?.data as SurveyData));
+        } catch (e) {
+            console.log(e);
         }
     };
 };
