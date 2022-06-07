@@ -64,8 +64,10 @@ export const iconContainer = (status: string) => css`
     `};
     ${status === "undetermined" &&
     `
-        margin-top: .5rem;
         font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     `};
 
     svg {
