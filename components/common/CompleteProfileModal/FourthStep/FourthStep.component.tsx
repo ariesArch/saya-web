@@ -32,7 +32,7 @@ const FourthStep: FC<Props> = ({ level, onChange }) => {
                                 onChange={() => onChange(id)}
                             />
                             <div css={styles.textContainer}>
-                                {levelIcons[name.toLowerCase() as Levels]}
+                                {levelIcons[id as Levels]}
                                 <span css={styles.title}>{name}</span>
                             </div>
                         </label>
