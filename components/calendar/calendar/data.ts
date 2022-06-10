@@ -4,7 +4,7 @@ interface ScheduleItem {
     duration: number;
 }
 
-interface WeekDayItem {
+export interface WeekDayItem {
     id: number;
     name: string;
     schedules: ScheduleItem[];

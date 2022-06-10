@@ -32,7 +32,16 @@
   --color-violet-light-button-hover: hsl(251, 94%, 67%);
   --color-gold: #ffc800;
   --color-badge-gold: #F5B914;
+  --color-yellow: #DF9449;
   --color-gray: #cfcfcf;
+
+  /* course theme colors */
+  --color-course-blue: #4F66E2;
+  --color-course-green: #03C06E;
+  --color-course-light-green: #278590;
+  --color-course-pink: #EF5B96;
+  --color-course-violet: #745BEF;
+  --color-course-yellow: #DF9449;
 }
 
 html {

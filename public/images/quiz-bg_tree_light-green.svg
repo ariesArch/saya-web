@@ -1,16 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1196" height="913" viewBox="0 0 1196 913">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-742.631 143.838 1193.552 307.728" width="1193.551" height="307.728">
   <defs>
-    <filter id="Practice_BG" x="-4.5" y="-3.5" width="1205" height="922" filterUnits="userSpaceOnUse">
-      <feOffset dy="1" input="SourceAlpha"/>
-      <feFlood flood-opacity="0.078"/>
-      <feComposite operator="in" in2="blur"/>
-      <feComposite in="SourceGraphic"/>
-    </filter>
     <clipPath id="clip-path">
-        <rect id="Practice_BG-2" width="1196" height="913" rx="14" transform="translate(189 32)" fill="#8c75ff"/>
+      <rect id="Practice_BG-2" width="1196" height="913" rx="14" transform="translate(189 32)" fill="#8c75ff"/>
     </clipPath>
   </defs>
-  <g id="Mask_Group_7" transform="translate(-189 -32)" clip-path="url(#clip-path)">
+  <g id="Mask_Group_7" transform="matrix(1, 0, 0, 1, -934.001967, -494.808143)" clip-path="url(#clip-path)">
     <g id="Layer_2" transform="translate(148.888 637.69)">
       <g id="Ñëîé_1" data-name="Ñëîé 1" transform="translate(0.049)">
         <g id="_1" data-name="1">

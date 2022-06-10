@@ -10,20 +10,48 @@ import QuizView from "@/components/courses/practice/QuizView/QuizView.component"
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
 import CloseIcon from "@/public/icons/close.svg";
-import QuizBg1 from "@/public/images/quiz-bg-1.svg";
+import QuizBgMountainBlue from "@/public/images/quiz-bg_mountain_blue.svg";
+import QuizBgMountainGreen from "@/public/images/quiz-bg_mountain_green.svg";
+import QuizBgMountainLightGreen from "@/public/images/quiz-bg_mountain_light-green.svg";
+import QuizBgMountainPink from "@/public/images/quiz-bg_mountain_pink.svg";
+import QuizBgMountainViolet from "@/public/images/quiz-bg_mountain_violet.svg";
+import QuizBgMountainYellow from "@/public/images/quiz-bg_mountain_yellow.svg";
+import QuizBgTreeBlue from "@/public/images/quiz-bg_tree_blue.svg";
+import QuizBgTreeGreen from "@/public/images/quiz-bg_tree_green.svg";
+import QuizBgTreeLightGreen from "@/public/images/quiz-bg_tree_light-green.svg";
+import QuizBgTreePink from "@/public/images/quiz-bg_tree_pink.svg";
+import QuizBgTreeViolet from "@/public/images/quiz-bg_tree_violet.svg";
+import QuizBgTreeYellow from "@/public/images/quiz-bg_tree_yellow.svg";
 import { fetchLessonQuizAsync, fetchSummaryAsync } from "@/store/courses/courses.actions";
 import { getNextLessonId } from "@/utils/courses";
+
+const bgIllustrations = {
+    mountain_yellow: <QuizBgMountainYellow />,
+    mountain_blue: <QuizBgMountainBlue />,
+    mountain_green: <QuizBgMountainGreen />,
+    "mountain_light-green": <QuizBgMountainLightGreen />,
+    mountain_pink: <QuizBgMountainPink />,
+    mountain_violet: <QuizBgMountainViolet />,
+    tree_blue: <QuizBgTreeBlue />,
+    tree_green: <QuizBgTreeGreen />,
+    "tree_light-green": <QuizBgTreeLightGreen />,
+    tree_pink: <QuizBgTreePink />,
+    tree_violet: <QuizBgTreeViolet />,
+    tree_yellow: <QuizBgTreeYellow />,
+};
 
 const PracticePage = () => {
     const router = useRouter();
     const { courseId, lessonId } = router.query;
-    const { quiz, nextLessonId, firstLessonId } = useSelector((state: ReduxState) => ({
+    const { quiz, selectedCourse, nextLessonId, firstLessonId } = useSelector((state: ReduxState) => ({
         quiz: state.coursesState.quiz,
+        selectedCourse: state.coursesState.selectedCourse,
         nextLessonId: getNextLessonId(state.coursesState.selectedCourse.chapters, lessonId as string),
         firstLessonId: state.coursesState.selectedCourse?.chapters
             ? state.coursesState.selectedCourse.chapters[0].lessons[0].id
             : "",
     }));
+    const { illustration_color, illustration_type } = selectedCourse;
     const dispatch = useDispatch();
     const [route, setRoute] = useState<"practice" | "completion" | "summary">("practice");
     const [loading, setIsLoading] = useState(false);
@@ -67,7 +95,7 @@ const PracticePage = () => {
 
     return (
         <CourseLayout>
-            <div css={container}>
+            <div css={container(illustration_color)}>
                 <button css={closeBtn} onClick={onClose}>
                     <CloseIcon />
                 </button>
@@ -88,7 +116,9 @@ const PracticePage = () => {
 
                 {route !== "summary" && (
                     <div css={background}>
-                        <QuizBg1 />
+                        {bgIllustrations[
+                            `${illustration_type || "moutain"}_${illustration_color || "violet"}`
+                        ] || bgIllustrations.mountain_violet}
                     </div>
                 )}
 
@@ -102,14 +132,14 @@ const PracticePage = () => {
     );
 };
 
-const container = css`
+const container = (color = "violet") => css`
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 3rem;
     min-height: calc(100vh - 8rem);
     width: 100%;
-    background-color: var(--color-violet-light);
+    background-color: var(--color-course-${color});
     border-radius: 1rem;
     padding: 1rem 4rem;
     color: #fff;

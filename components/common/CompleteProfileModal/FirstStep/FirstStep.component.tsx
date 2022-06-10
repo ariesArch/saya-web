@@ -71,7 +71,7 @@ const FirstStep: FC<Props> = ({ data, onDataChange }) => {
                 </div>
             </InputCard>
 
-            <InputCard label="How young are you?">
+            <InputCard label="Your Age Group">
                 <div css={styles.radioContainer}>
                     {ageGroups &&
                         ageGroups.map(({ id, title }) => (
