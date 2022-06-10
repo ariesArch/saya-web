@@ -27,6 +27,7 @@ const DescriptionCard = () => {
         chapters,
         course_total_finished_length,
         course_total_length,
+        illustration_color,
     } = selectedCourse;
     const dispatch = useDispatch();
     const isTablet = useMediaQuery({ maxWidth: 992 });
@@ -47,7 +48,7 @@ const DescriptionCard = () => {
     };
 
     return (
-        <div css={styles.card(!!id)}>
+        <div css={styles.card(!!id, illustration_color)}>
             <div css={styles.mainContents}>
                 <div css={styles.textsContainer}>
                     <span css={styles.title}>{title || <Skeleton width="20rem" />}</span>

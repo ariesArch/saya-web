@@ -1,15 +1,15 @@
 import { css } from "@emotion/react";
 
 import TopBar from "@/components/common/TopBar/TopBar.component";
-import FAQSection from "@/components/faq/FAQSection/FAQSection.component";
 import Footer from "@/components/landing/Footer/Footer.component";
+import PlatformsSection from "@/components/platforms/PlatformsSection/PlatformsSection.components";
 import UnauthedLayout from "@/layouts/UnauthedLayout";
 
-const FAQPage = () => {
+const PlatformsPage = () => {
     return (
         <UnauthedLayout topBar={<TopBar navItem={navItem} />}>
             <div css={container}>
-                <FAQSection />
+                <PlatformsSection />
                 <Footer />
             </div>
         </UnauthedLayout>
@@ -26,8 +26,8 @@ const container = css`
 
 const navItem = {
     id: 2,
-    name: "FAQs",
-    href: "faq",
+    name: "Platforms",
+    href: "platforms",
 };
 
-export default FAQPage;
+export default PlatformsPage;

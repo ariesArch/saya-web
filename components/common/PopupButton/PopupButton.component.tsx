@@ -6,6 +6,7 @@ interface PopupButtonProps extends HTMLAttributes<HTMLDivElement> {
     popupContent: ReactNode | ReactNode[];
     style?: CSSProperties;
     containerStyle?: CSSProperties;
+    popupContentStyles?: CSSProperties;
     className?: string;
     children: ReactNode | ReactNode[];
     open: boolean;
@@ -20,6 +21,7 @@ const PopupButton: FC<PopupButtonProps> = (props) => {
     const {
         popupContent,
         containerStyle,
+        popupContentStyles,
         className,
         children,
         open,
@@ -52,7 +54,10 @@ const PopupButton: FC<PopupButtonProps> = (props) => {
                 {children}
             </div>
 
-            <div css={styles.contents(open, position, horizontalOffset, verticalOffset)} ref={popupRef}>
+            <div
+                css={styles.contents(open, position, horizontalOffset, verticalOffset)}
+                ref={popupRef}
+                style={popupContentStyles}>
                 {popupContent}
             </div>
         </div>

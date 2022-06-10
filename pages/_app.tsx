@@ -91,7 +91,7 @@ App.getInitialProps = wrapper.getInitialAppProps(
             let token: string | undefined = "";
             let userData: UserData | undefined;
             // the routes that don't need any conditional logics to be redirected or not.
-            const allowedPaths = ["/faq"];
+            const allowedPaths = ["/faq", "/platforms"];
 
             if (Component.getInitialProps) {
                 pageProps = await Component.getInitialProps(ctx);

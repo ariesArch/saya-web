@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { timeKeeperStyles } from "@/components/common/commonStyles";
+import { clickEffect, timeKeeperStyles } from "@/components/common/commonStyles";
 
 export const modal = (isOpen: boolean) => css`
     position: fixed;
@@ -62,6 +62,7 @@ export const durationInputContainer = css`
     display: flex;
     justify-content: space-between;
     font-size: 1.6rem;
+    cursor: pointer;
 `;
 
 export const durationChange = css`
@@ -72,12 +73,18 @@ export const durationChange = css`
 
 export const footer = css`
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    margin-top: 2rem;
 `;
 
 export const buttonsContainer = css`
     display: flex;
-    margin-top: 2rem;
+    align-items: center;
+`;
+
+export const deleteBtn = css`
+    ${clickEffect};
 `;
 
 export const button = (isSet: boolean) => css`
@@ -98,5 +105,23 @@ export const button = (isSet: boolean) => css`
 
     &:not(:last-of-type) {
         margin-right: 1.5rem;
+    }
+`;
+
+export const popupContainer = css`
+    display: flex;
+    flex-direction: column;
+    max-height: 10rem;
+    overflow: auto;
+`;
+
+export const popupItem = css`
+    padding: 0.5rem 1rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: #f6f6f6;
     }
 `;

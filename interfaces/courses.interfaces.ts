@@ -46,7 +46,8 @@ export interface Course {
     course_total_length: number;
     course_total_finished_length: number;
     category_color: string;
-    illustration_type: string;
+    illustration_color: CourseThemeColors;
+    illustration_type: "tree" | "mountain";
     level: ClassLevel;
     level_icon: string;
     category: 0;
@@ -128,3 +129,5 @@ export interface QuizSummary {
     averageCorrectness: number;
     averageSpeed: number;
 }
+
+export type CourseThemeColors = "violet" | "green" | "light-green" | "yellow" | "pink" | "blue";

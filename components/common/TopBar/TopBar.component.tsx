@@ -1,16 +1,32 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { memo } from "react";
+import { FC, memo } from "react";
 
 import useTopBarStatus from "@/hooks/useTopBarStatus";
 import LogoText from "@/public/icons/logo-text.png";
 
 import * as styles from "./TopBar.styles";
 
-const TopBar = () => {
+interface Props {
+    navItem: {
+        id: number;
+        name: string;
+        href: string;
+    };
+}
+
+const TopBar: FC<Props> = ({ navItem }) => {
     const { isFloating, isHidden } = useTopBarStatus();
     const router = useRouter();
+    const navItems = [
+        {
+            id: 1,
+            name: "Home",
+            href: "",
+        },
+        navItem,
+    ];
 
     const onNavClick = (id: string) => {
         if (!id) {
@@ -28,27 +44,17 @@ const TopBar = () => {
             </div>
             <div css={styles.nav}>
                 {navItems.map(({ id, name, href }) => (
-                    <div key={id} css={styles.navItem(href === "faq")} onClick={() => onNavClick(href)}>
+                    <div
+                        key={id}
+                        css={styles.navItem(href === navItem.href)}
+                        onClick={() => onNavClick(href)}>
                         <span>{name}</span>
-                        {href === "faq" && <div css={styles.underline} />}
+                        {href === navItem.href && <div css={styles.underline} />}
                     </div>
                 ))}
             </div>
         </motion.div>
     );
 };
-
-const navItems = [
-    {
-        id: 1,
-        name: "Home",
-        href: "",
-    },
-    {
-        id: 2,
-        name: "FAQs",
-        href: "faq",
-    },
-];
 
 export default memo(TopBar);

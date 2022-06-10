@@ -1,8 +1,9 @@
 import { css } from "@emotion/react";
 
 import { clickEffect } from "@/components/common/commonStyles";
+import { CourseThemeColors } from "@/interfaces/courses.interfaces";
 
-export const card = (isSelectedCourse: boolean) => css`
+export const card = (isSelectedCourse: boolean, color: CourseThemeColors = "violet") => css`
     display: flex;
     flex-direction: column;
     color: #fff;
@@ -14,7 +15,7 @@ export const card = (isSelectedCourse: boolean) => css`
 
     ${isSelectedCourse &&
     `
-       background-color: var(--color-violet);
+       background-color: var(--color-course-${color});
    `}
 `;
 
