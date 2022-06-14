@@ -49,6 +49,7 @@ export const navButton = (isActive: boolean) => css`
     display: flex;
     justify-content: center;
     align-items: center;
+    backface-visibility: hidden;
 
     &:hover {
         color: inherit;

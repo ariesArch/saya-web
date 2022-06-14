@@ -8,7 +8,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "GET") {
         const { videoId } = req.query;
 
-        if (typeof videoId !== "string") return res.status(400).send("Please add videoId in your query");
+        if (typeof videoId !== "string") {
+            res.status(400).send("Please add videoId in your query");
+            return res.end();
+        }
 
         const instance = axios.create({
             headers: {
@@ -19,14 +22,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             const { data } = await instance.get(`https://dev.vdocipher.com/api/videos/${videoId}/otp`);
 
-            return res.status(200).json(data);
+            res.status(200).json(data);
+            return res.end();
         } catch (e) {
             console.log(e);
-            return res.status(500).send("Failed to generate the OTP.");
+            res.status(500).send("Failed to generate the OTP.");
+            return res.end();
         }
     }
 
-    return res.status(400).send(`${req.method} Bad request`);
+    res.status(400).send(`${req.method} Bad request`);
+    return res.end();
 };
 
-export default withSentry(handler);
+export default withSentry(handler as (req: NextApiRequest, res: NextApiResponse) => void);
