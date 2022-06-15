@@ -10,7 +10,7 @@ export const container = css`
     min-height: calc(100vh - 22rem);
 
     @media only screen and (max-width: 695px) {
-        flex-direction: column;
+        flex-direction: column-reverse;
         padding: 0;
     }
 `;
@@ -26,15 +26,15 @@ export const illuContainer = css`
 
     @media only screen and (max-width: 695px) {
         width: 100%;
-        padding: 5rem 10rem 10rem 10rem;
+        padding: 2rem 10rem 10rem;
     }
 
     @media only screen and (max-width: 545px) {
-        padding: 5rem 5rem 10rem 10rem;
+        padding: 2rem 5rem 10rem 10rem;
     }
 
     @media only screen and (max-width: 478px) {
-        padding: 5rem 2.5rem 5rem 5rem;
+        padding: 0 2.5rem 5rem 5rem;
     }
 
     svg {
@@ -67,11 +67,11 @@ export const contents = css`
 
     @media only screen and (max-width: 695px) {
         width: 100%;
-        padding: 0 6rem 8rem;
+        padding: 5rem 6rem 8rem;
     }
 
     @media only screen and (max-width: 545px) {
-        padding: 0 3rem 8rem;
+        padding: 2rem 3rem 8rem;
     }
 `;
 
