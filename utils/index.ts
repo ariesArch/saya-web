@@ -3,6 +3,7 @@ import { ServerResponse } from "http";
 import Router from "next/router";
 
 import { LiveEvent, ParsedLiveEventData } from "@/interfaces/live-class.interfaces";
+import { createAxiosInstance, endpoints } from "@/utils/api";
 import { isNextWeek } from "@/utils/date-time";
 
 export const generateUniqueId = (): string => `_${Math.random().toString(36).substr(2, 9)}`;
@@ -119,4 +120,16 @@ export const numToArrOfNum = (num: number) => {
         arr.push(i);
     }
     return arr;
+};
+
+export const fetchApkDownloadLink = async (onSuccess: (link: string) => void = emptyFunction) => {
+    const instance = createAxiosInstance();
+
+    try {
+        const { data } = await instance.get(endpoints.apk.getApkDownloadLink);
+
+        onSuccess(data?.data?.link as string);
+    } catch (e) {
+        console.log(e);
+    }
 };
