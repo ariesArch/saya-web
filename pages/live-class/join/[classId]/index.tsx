@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { calendarJoinedLiveEventSecondsAsync } from "@/store/calendar/calendar.actions";
 import { onLiveClassesFetchAsync } from "@/store/live-class/live-class.actions";
 
 const LiveClassJoinPage = () => {
@@ -33,8 +34,10 @@ const LiveClassJoinPage = () => {
                 passWord: zoom_meeting_password,
                 userName: user.name,
             });
+
+            dispatch(calendarJoinedLiveEventSecondsAsync(event.id));
         }
-    }, [event, user.name]);
+    }, [dispatch, event, user.name]);
 
     useEffect(() => {
         startMeeting();

@@ -1,3 +1,4 @@
+import { WeekDayItem, WeeklyProgressItem } from "@/interfaces/calendar.interfaces";
 import {
     Category,
     Course,
@@ -22,6 +23,7 @@ export interface ReduxState {
     liveClassState: LiveClassState;
     paymentState: PaymentState;
     notificationsState: NotificationsState;
+    calendarState: CalendarState;
 }
 
 export type DispatchType = (action: ActionType) => ActionType;
@@ -60,4 +62,9 @@ export interface LiveClassState {
 export interface NotificationsState {
     notifications: NotificationItem[];
     ads: NotificationsAds[];
+}
+
+export interface CalendarState {
+    schedule: WeekDayItem[];
+    weeklyProgress: WeeklyProgressItem[];
 }

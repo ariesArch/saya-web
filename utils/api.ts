@@ -69,6 +69,15 @@ export const endpoints = {
         enrollACourse: "/enrollCourse",
         getCourseDetails: "/course",
     },
+    calendar: {
+        saveRepeatWeeklySchedule: "/calendar/save-repeat-weekly-schedule",
+        updateSingleScheduleData: "/calendar/update-schedule-data",
+        createSingleScheduleData: "/calendar/create-schedule-data",
+        getCalendarData: "/calendar/start",
+        saveViewedVideoSeconds: "/calendar/save-viewed-video-second",
+        saveQuizTookSeconds: "/calendar/save-took-quizz-second",
+        saveJoinedLiveEvent: "/calendar/save-jointed-live-event-second",
+    },
     featureList: {
         getFeatureList: "/feature-lists",
     },

@@ -4,6 +4,7 @@ import { FC, Fragment, memo, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import { OTPResponse } from "@/interfaces/courses.interfaces";
+import { calendarSaveViewVideoSecondsAsync } from "@/store/calendar/calendar.actions";
 import { fetchVideoOtp, submitVideoViewingBehavior } from "@/store/courses/courses.actions";
 
 interface Props {
@@ -49,6 +50,11 @@ const VideoPlayer: FC<Props> = ({ vdocipherId }) => {
                 courseId as string
             )
         );
+
+        // for calendar
+        if (video?.totalCovered) {
+            dispatch(calendarSaveViewVideoSecondsAsync((video.totalCovered as number) || 0));
+        }
     };
 
     useEffect(() => {

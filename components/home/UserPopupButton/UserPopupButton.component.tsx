@@ -168,6 +168,12 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
 
 const menuItems = [
     {
+        id: 6,
+        name: "Calendar",
+        route: "/calendar",
+        icon: <EditIcon />,
+    },
+    {
         id: 1,
         name: "Edit Profile",
         route: "/edit-profile",
