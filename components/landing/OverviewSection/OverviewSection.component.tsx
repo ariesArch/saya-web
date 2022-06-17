@@ -1,5 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import LoginSignUpBox from "@/components/landing/LoginSignUpBox/LoginSignUpBox.component";
 import AndroidIcon from "@/public/icons/download-android.png";
@@ -7,10 +8,16 @@ import AppleStoreIcon from "@/public/icons/download-app-store.png";
 import PlayStoreIcon from "@/public/icons/download-google-play.png";
 import OverviewIllu from "@/public/images/landing-illu-1.svg";
 import { downloadLinks } from "@/utils/constants";
+import { fetchApkDownloadLink } from "@/utils/index";
 
 import * as styles from "./OverviewSection.styles";
 
 const OverviewSection = () => {
+    const [apkDownloadLink, setApkDownloadLink] = useState(downloadLinks.apk);
+
+    useEffect(() => {
+        fetchApkDownloadLink((link) => setApkDownloadLink(link));
+    }, []);
     return (
         <section css={styles.container} id="overview">
             <motion.div
@@ -55,13 +62,13 @@ const OverviewSection = () => {
                         <span css={styles.downloadHeading}>Learn on mobile</span>
                         <div css={styles.downloadLinks}>
                             <a href={downloadLinks.playStore} target="_blank" rel="noopener noreferrer">
-                                <Image src={PlayStoreIcon} alt="Play Store Icon" />
+                                <Image src={PlayStoreIcon} alt="Play Store Icon" layout="fill" />
                             </a>
-                            <a href={downloadLinks.apk} target="_blank" rel="noopener noreferrer">
-                                <Image src={AndroidIcon} alt="APK Icon" />
+                            <a href={apkDownloadLink} target="_blank" rel="noopener noreferrer">
+                                <Image src={AndroidIcon} alt="APK Icon" layout="fill" />
                             </a>
                             <a href={downloadLinks.appStore} target="_blank" rel="noopener noreferrer">
-                                <Image src={AppleStoreIcon} alt="Appstore Icon" />
+                                <Image src={AppleStoreIcon} alt="Appstore Icon" layout="fill" />
                             </a>
                         </div>
                     </div>

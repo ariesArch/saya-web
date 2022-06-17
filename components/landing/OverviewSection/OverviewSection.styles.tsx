@@ -204,9 +204,12 @@ export const downloadLinks = css`
 
     a {
         width: 15rem;
+        height: 5rem;
+        position: relative;
 
         @media only screen and (max-width: 1245px) {
             width: 10rem;
+            height: 3.5rem;
         }
 
         img {

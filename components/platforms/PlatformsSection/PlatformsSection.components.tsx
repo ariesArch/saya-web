@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 import { contentsVariant, illuVariants, landingAnimationConfig } from "@/components/common/FramerMotion";
 import AndroidIcon from "@/public/icons/android.svg";
@@ -8,10 +9,16 @@ import DotsIllu from "@/public/images/faq-dots.svg";
 import Dots from "@/public/images/platforms-dots.svg";
 import PlatformIllu from "@/public/images/platforms-illu.svg";
 import { downloadLinks } from "@/utils/constants";
+import { fetchApkDownloadLink } from "@/utils/index";
 
 import * as styles from "./PlatformsSection.styles";
 
 const PlatformsSection = () => {
+    const [apkDownloadLink, setApkDownloadLink] = useState(downloadLinks.apk);
+
+    useEffect(() => {
+        fetchApkDownloadLink((link) => setApkDownloadLink(link));
+    }, []);
     return (
         <section css={styles.container} id="faq">
             <motion.div css={styles.illuContainer} variants={illuVariants} {...landingAnimationConfig}>
@@ -53,7 +60,7 @@ const PlatformsSection = () => {
                     <div css={styles.downloadLinks}>
                         <a
                             css={styles.button}
-                            href={downloadLinks.apk}
+                            href={apkDownloadLink}
                             target="_blank"
                             rel="noopener noreferrer">
                             <AndroidIcon />

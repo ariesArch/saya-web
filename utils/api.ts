@@ -97,4 +97,7 @@ export const endpoints = {
         setQuizzesPracticingBehavior: "/submitQuizzesPracticingBehaviours",
         setVideoViewingBehavior: "/submitVideoViewingBehaviours",
     },
+    apk: {
+        getApkDownloadLink: "/get-latest-apk-download-link",
+    },
 };
