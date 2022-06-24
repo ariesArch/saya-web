@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { differenceInSeconds, format, parseISO } from "date-fns";
 import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ import QuizExplanation from "@/components/courses/practice/QuizExplanation/QuizE
 import QuizProgress from "@/components/courses/practice/QuizProgress/QuizProgress.component";
 import { QuizPayloadData, QuizQuestion, QuizQuestionAnswer } from "@/interfaces/courses.interfaces";
 import LampChargeIcon from "@/public/icons/bold-lamp-charge.svg";
+import { calendarSaveQuizTookSecondsAsync } from "@/store/calendar/calendar.actions";
 import { onSubmitQuizPracticingBehavior } from "@/store/courses/courses.actions";
 import { convertTZ } from "@/utils/date-time";
 
@@ -105,6 +106,13 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
 
         setIsLoading(true);
         dispatch(onSubmitQuizPracticingBehavior(newQuizData, onSubmitSuccess, onSubmitFailure));
+
+        // for Calendar
+        dispatch(
+            calendarSaveQuizTookSecondsAsync(
+                differenceInSeconds(new Date(), parseISO(newQuizData?.overall_started_practice_at))
+            )
+        );
     };
 
     const onSubmitSuccess = () => {

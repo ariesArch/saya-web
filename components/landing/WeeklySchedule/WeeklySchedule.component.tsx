@@ -1,5 +1,6 @@
 import { FC, HTMLAttributes } from "react";
 
+import { WeeklyProgressItem } from "@/interfaces/calendar.interfaces";
 import CheckCircleIcon from "@/public/icons/check-circle.svg";
 import CloseIcon from "@/public/icons/close-circle.svg";
 import TickIcon from "@/public/icons/tick-circle.svg";
@@ -7,7 +8,7 @@ import TickIcon from "@/public/icons/tick-circle.svg";
 import * as styles from "./WeeklySchedule.styles";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-    data?: ScheduleData;
+    data?: WeeklyProgressItem;
 }
 
 const WeeklyScheduler: FC<Props> = ({ data = scheduleData, ...rest }) => {
@@ -34,74 +35,65 @@ const WeeklyScheduler: FC<Props> = ({ data = scheduleData, ...rest }) => {
                 </span>
             </div>
             <div css={styles.table}>
-                {data.data.map(({ id, day, percentage, status }) => (
-                    <div css={styles.dayItem} key={id}>
-                        <span css={styles.day}>{day}</span>
-                        <span css={styles.iconContainer(status)}>{icon(status)}</span>
-                        <span css={styles.percent}>{percentage}</span>
-                    </div>
-                ))}
+                {data &&
+                    data?.data?.length &&
+                    data?.data?.map(({ day, date, percentage, status }) => (
+                        <div css={styles.dayItem} key={date}>
+                            <span css={styles.day}>{day}</span>
+                            <span css={styles.iconContainer(status)}>{icon(status)}</span>
+                            {(status === "ongoing" || status === "active") && (
+                                <span css={styles.percent}>{percentage}</span>
+                            )}
+                        </div>
+                    ))}
             </div>
         </div>
     );
 };
 
-export interface ScheduleData {
-    id: number;
-    month: string;
-    avg: string;
-    data: {
-        id: number;
-        day: string;
-        status: "active" | "inactive" | "undetermined" | "ongoing";
-        percentage: string;
-    }[];
-}
-
-const scheduleData: ScheduleData = {
-    id: 1,
+const scheduleData: WeeklyProgressItem = {
     month: "Feb",
     avg: "55",
     data: [
         {
-            id: 11,
             day: "7",
+            date: "2022-02-07",
             status: "active",
             percentage: "82%",
         },
         {
-            id: 12,
             day: "8",
+            date: "2022-02-08",
             status: "inactive",
             percentage: "",
         },
         {
-            id: 13,
             day: "9",
+            date: "2022-02-09",
             status: "active",
             percentage: "70%",
         },
         {
-            id: 14,
             day: "10",
+            date: "2022-02-10",
             status: "active",
             percentage: "100%",
         },
         {
-            id: 15,
             day: "11",
+            date: "2022-02-11",
             status: "undetermined",
             percentage: "",
         },
         {
-            id: 6,
             day: "12",
+            date: "2022-02-12",
             status: "undetermined",
             percentage: "",
         },
         {
-            id: 17,
             day: "13",
+            date: "2022-02-13",
             status: "inactive",
             percentage: "",
         },

@@ -87,7 +87,7 @@ export const deleteBtn = css`
     ${clickEffect};
 `;
 
-export const button = (isSet: boolean) => css`
+export const button = (isSet: boolean, isDisabled = false) => css`
     font-size: 1.5rem;
     font-weight: 500;
     color: #5b5b5b;
@@ -101,6 +101,13 @@ export const button = (isSet: boolean) => css`
     `
         color: var(--color-green-light);
         font-size: 1.7rem;
+    `};
+
+    ${isDisabled &&
+    `
+        color: inherit;
+        opacity: 0.8;
+        cursor: auto;
     `};
 
     &:not(:last-of-type) {

@@ -3,6 +3,26 @@ import { css } from "@emotion/react";
 export const container = css`
     display: flex;
     flex-direction: column;
+    position: relative;
+`;
+
+export const header = css`
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 1rem;
+    position: sticky;
+    top: 7rem;
+    background-color: #fff;
+
+    @media only screen and (max-width: 595px) {
+        display: none;
+    }
+`;
+
+export const headerItem = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const grid = css`
@@ -34,13 +54,13 @@ export const gridCol = css`
 `;
 
 export const colHeader = css`
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 3rem;
 
     @media only screen and (max-width: 595px) {
         width: 10rem;
+        display: flex;
     }
 `;
 
@@ -57,9 +77,12 @@ export const subHeading = css`
 export const colBody = css`
     display: flex;
     flex-direction: column;
+    margin-top: 3rem;
 
     @media only screen and (max-width: 595px) {
         flex-grow: 1;
+        margin-top: 0;
+        margin-left: 1rem;
     }
 `;
 

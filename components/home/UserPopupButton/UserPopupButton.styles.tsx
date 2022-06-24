@@ -130,7 +130,7 @@ export const menuItem = css`
     padding: 0.5em 2rem;
     display: flex;
     align-items: center;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     cursor: pointer;
     transition: all 0.2s;
 
