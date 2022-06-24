@@ -8,7 +8,11 @@ import ClientOnlyModal from "@/components/common/ClientOnlyModal/ClientOnlyModal
 import PopupButton from "@/components/common/PopupButton/PopupButton.component";
 import { ScheduleItem } from "@/interfaces/calendar.interfaces";
 import DustbinIcon from "@/public/icons/dustbin.svg";
-import { createScheduleItemAsync, updateScheduleItemAsync } from "@/store/calendar/calendar.actions";
+import {
+    createScheduleItemAsync,
+    deleteScheduleItemAsync,
+    updateScheduleItemAsync,
+} from "@/store/calendar/calendar.actions";
 
 import * as styles from "./TimePickerModal.styles";
 
@@ -17,10 +21,11 @@ interface Props {
     onClose: () => void;
     initialData: ScheduleItem | null;
     dayId: string;
+    dayName: string;
     isUpdate: boolean;
 }
 
-const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, isUpdate }) => {
+const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, dayName, isUpdate }) => {
     const dispatch = useDispatch();
     const [time, setTime] = useState(initialData?.time || format(new Date(), "hh:mm a"));
     const [duration, setDuration] = useState(0);
@@ -29,6 +34,7 @@ const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, isUpd
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const onPopupClose = () => setIsPopupOpen(false);
     const onPopupToggle = () => setIsPopupOpen(!isPopupOpen);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onDurationChange = (duration: number) => {
         setDuration(duration);
@@ -77,6 +83,31 @@ const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, isUpd
         }
     };
 
+    const onDeleteSuccess = () => {
+        setIsLoading(false);
+        toast("Schedule deleted successfully", { type: "success" });
+
+        onClose();
+    };
+
+    const onDeleteFailure = () => {
+        setIsLoading(false);
+        toast("Failed to delete schedule", { type: "error" });
+    };
+
+    const onDeleteBtnClick = () => {
+        if (!initialData?.schedule_id) return;
+
+        setIsLoading(true);
+        dispatch(
+            deleteScheduleItemAsync(
+                { scheduleId: initialData?.schedule_id, dayId },
+                onDeleteSuccess,
+                onDeleteFailure
+            )
+        );
+    };
+
     useEffect(() => {
         if (initialData) {
             if (initialData.time !== time) {
@@ -105,7 +136,7 @@ const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, isUpd
             <div css={styles.modal(isOpen)}>
                 <div css={styles.backdrop} onClick={onClose} />
                 <div css={styles.contents}>
-                    <span css={styles.title}>Thursday</span>
+                    <span css={styles.title}>{dayName}</span>
                     <TimeKeeper
                         key={timePickerKey}
                         time={time}
@@ -140,7 +171,7 @@ const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, isUpd
 
                     <div css={styles.footer}>
                         {isUpdate ? (
-                            <button css={styles.deleteBtn}>
+                            <button css={styles.deleteBtn} onClick={onDeleteBtnClick} disabled={isLoading}>
                                 <DustbinIcon />
                             </button>
                         ) : (

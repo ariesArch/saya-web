@@ -1,6 +1,8 @@
 import { WeekDayItem } from "@/interfaces/calendar.interfaces";
 import { ActionType, CalendarState } from "@/interfaces/redux.interfaces";
 import {
+    REMOVE_SCHEDULE_ITEM,
+    REPEAT_WEEKLY_SCHEDULE_CHANGE,
     SET_SCHEDULE,
     SET_WEEKLY_PROGRESS,
     UPDATE_SCHEDULE_ITEM,
@@ -9,6 +11,7 @@ import {
 const initialState: CalendarState = {
     schedule: [],
     weeklyProgress: [],
+    repeatWeeklySchedule: false,
 };
 
 const calendarReducer = (state = initialState, action: ActionType) => {
@@ -37,10 +40,29 @@ const calendarReducer = (state = initialState, action: ActionType) => {
                         : day
                 ),
             };
+        case REMOVE_SCHEDULE_ITEM:
+            return {
+                ...state,
+                schedule: state.schedule.map((day) =>
+                    day.day_id === action.payload.dayId
+                        ? {
+                              ...day,
+                              schedules: day.schedules.filter(
+                                  (item) => item.schedule_id !== action.payload.scheduleId
+                              ),
+                          }
+                        : day
+                ),
+            };
         case SET_WEEKLY_PROGRESS:
             return {
                 ...state,
                 weeklyProgress: action.payload,
+            };
+        case REPEAT_WEEKLY_SCHEDULE_CHANGE:
+            return {
+                ...state,
+                repeatWeeklySchedule: action.payload,
             };
         default:
             return state;

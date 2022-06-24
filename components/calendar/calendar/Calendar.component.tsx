@@ -1,11 +1,11 @@
 import "react-toastify/dist/ReactToastify.min.css";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 
 import TimePickerModal from "@/components/calendar/TimePickerModal/TimePickerModal.component";
-import { DayStatus, ScheduleItem } from "@/interfaces/calendar.interfaces";
+import { DayStatus, ScheduleItem, WeekDayItem } from "@/interfaces/calendar.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import AddCircleIcon from "@/public/icons/add-circle.svg";
 
@@ -16,72 +16,77 @@ const Calendar = () => {
         scheduleData: state.calendarState.schedule,
     }));
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedDay, setSelectedDay] = useState<string>("");
+    const [selectedDay, setSelectedDay] = useState({ name: "", dayId: "" });
     const [selectedItem, setSelectedItem] = useState<ScheduleItem | null>(null);
 
-    const onModalOpen = (item: ScheduleItem | null, dayId: string) => {
+    const onModalOpen = (item: ScheduleItem | null, day: WeekDayItem) => {
         if (item) {
             setSelectedItem(item);
         } else {
             setSelectedItem(null);
         }
 
-        setSelectedDay(dayId);
+        setSelectedDay({ name: day?.name, dayId: day?.day_id });
         setIsOpen(true);
     };
     const onModalClose = () => setIsOpen(false);
 
-    useEffect(() => {
-        if ("Notification" in window) {
-            if (Notification.permission !== "granted") {
-                Notification.requestPermission();
-            }
-        }
-    }, []);
-
     return (
         <div css={styles.container}>
-            <div css={styles.grid}>
-                {scheduleData.map((day) => (
-                    <div key={day.day_id} css={styles.gridCol}>
-                        <div css={styles.colHeader}>
+            <div css={styles.header}>
+                {scheduleData &&
+                    scheduleData.map((day) => (
+                        <div key={day.day_id} css={styles.headerItem}>
                             <span css={styles.heading}>{day.name}</span>
                             <span css={styles.subHeading}>
                                 {mapDayStatus[day.schedules.length > 4 ? 4 : day.schedules.length]}
                             </span>
                         </div>
-                        <div css={styles.colBody}>
-                            {day.schedules.map((item) => (
-                                <button
-                                    key={item.schedule_id}
-                                    css={styles.scheduleItem}
-                                    onClick={() => onModalOpen(item, day.day_id)}>
-                                    <div css={styles.textContainer}>
-                                        <span css={styles.text}>{item.time.split(" ")[0]}</span>
-                                        <span css={styles.label}>
-                                            {item.time.split(" ")[1].toUpperCase()}
-                                        </span>
-                                    </div>
-                                    <div css={styles.textContainer}>
-                                        <span css={styles.text}>{item.duration / 60}</span>{" "}
-                                        <span css={styles.label}>mins</span>
-                                    </div>
-                                </button>
-                            ))}
+                    ))}
+            </div>
+            <div css={styles.grid}>
+                {scheduleData &&
+                    scheduleData.map((day) => (
+                        <div key={day.day_id} css={styles.gridCol}>
+                            <div css={styles.colHeader}>
+                                <span css={styles.heading}>{day.name}</span>
+                                <span css={styles.subHeading}>
+                                    {mapDayStatus[day.schedules.length > 4 ? 4 : day.schedules.length]}
+                                </span>
+                            </div>
+                            <div css={styles.colBody}>
+                                {day.schedules.map((item) => (
+                                    <button
+                                        key={item.schedule_id}
+                                        css={styles.scheduleItem}
+                                        onClick={() => onModalOpen(item, day)}>
+                                        <div css={styles.textContainer}>
+                                            <span css={styles.text}>{item.time.split(" ")[0]}</span>
+                                            <span css={styles.label}>
+                                                {item.time.split(" ")[1].toUpperCase()}
+                                            </span>
+                                        </div>
+                                        <div css={styles.textContainer}>
+                                            <span css={styles.text}>{item.duration / 60}</span>{" "}
+                                            <span css={styles.label}>mins</span>
+                                        </div>
+                                    </button>
+                                ))}
 
-                            <button css={styles.addBtn} onClick={() => onModalOpen(null, day.day_id)}>
-                                <AddCircleIcon />
-                            </button>
+                                <button css={styles.addBtn} onClick={() => onModalOpen(null, day)}>
+                                    <AddCircleIcon />
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
             </div>
 
             <TimePickerModal
                 initialData={selectedItem}
                 isOpen={isOpen}
                 onClose={onModalClose}
-                dayId={selectedDay}
+                dayId={selectedDay?.dayId}
+                dayName={mapDayName[selectedDay?.name]}
                 isUpdate={selectedItem !== null}
             />
 
@@ -97,6 +102,16 @@ export const mapDayStatus: DayStatus[] = [
     "Good enough",
     "Hard learning",
 ];
+
+export const mapDayName: { [name: string]: string } = {
+    Mon: "Monday",
+    Tue: "Tuesday",
+    Wed: "Wednesday",
+    Thu: "Thursday",
+    Fri: "Friday",
+    Sat: "Saturday",
+    Sun: "Sunday",
+};
 
 // const findScheduleById = (data: WeekDayItem[], id: number) => {
 //     const schedule = data.find(({ schedules }) => schedules.find((item) => item.schedule_id === id));

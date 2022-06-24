@@ -4,6 +4,8 @@ import { ThunkDispatch } from "redux-thunk";
 import { ScheduleItem, WeeklyProgressItem } from "@/interfaces/calendar.interfaces";
 import { DispatchType } from "@/interfaces/redux.interfaces";
 import {
+    REMOVE_SCHEDULE_ITEM,
+    REPEAT_WEEKLY_SCHEDULE_CHANGE,
     SCHEDULE_CHANGE,
     SET_SCHEDULE,
     SET_WEEKLY_PROGRESS,
@@ -27,9 +29,19 @@ export const onUpdateScheduleItem = (schedule: ScheduleItem, dayId: string) => (
     payload: { schedule, dayId },
 });
 
+export const onRemoveScheduleItem = (scheduleId: string, dayId: string) => ({
+    type: REMOVE_SCHEDULE_ITEM,
+    payload: { scheduleId, dayId },
+});
+
 export const onSetWeeklyProgress = (weeklyProgress: WeeklyProgressItem[]) => ({
     type: SET_WEEKLY_PROGRESS,
     payload: weeklyProgress,
+});
+
+export const onRepeatWeeklyScheduleChange = (repeatSchedule: boolean) => ({
+    type: REPEAT_WEEKLY_SCHEDULE_CHANGE,
+    payload: repeatSchedule,
 });
 
 export const fetchCalendarDataAsync = () => {
@@ -40,9 +52,9 @@ export const fetchCalendarDataAsync = () => {
         try {
             const { data } = await instance.get(endpoints.calendar.getCalendarData);
 
-            console.log(data);
             dispatch(onSetSchedule(data?.data?.schedule_data as ScheduleItem[]));
             dispatch(onSetWeeklyProgress(data?.data?.schedule_progress as WeeklyProgressItem[]));
+            dispatch(onRepeatWeeklyScheduleChange(!!data?.data?.repeat_weekly_schedule));
         } catch (e) {
             console.log(e);
         }
@@ -90,6 +102,54 @@ export const updateScheduleItemAsync = (
             onSuccess();
         } catch (e) {
             console.log(e);
+            onFailure();
+        }
+    };
+};
+
+export const deleteScheduleItemAsync = (
+    form: { scheduleId: string; dayId: string },
+    onSuccess = emptyFunction,
+    onFailure = emptyFunction
+) => {
+    return async (dispatch: ThunkDispatch<any, any, any>) => {
+        const token = cookie.get("token");
+        const instance = createAxiosInstance(token);
+
+        try {
+            await instance.delete(endpoints.calendar.deleteSingleScheduleData, {
+                data: { schedule_id: form.scheduleId },
+            });
+
+            dispatch(onRemoveScheduleItem(form.scheduleId, form.dayId));
+            onSuccess();
+        } catch (e) {
+            console.log(e);
+            onFailure();
+        }
+    };
+};
+
+export const calendarUpdateRepeatWeeklySchedule = (
+    repeatWeeklySchedule: boolean,
+    onSuccess = emptyFunction,
+    onFailure = emptyFunction
+) => {
+    return async (dispatch: DispatchType) => {
+        const token = cookie.get("token");
+        const instance = createAxiosInstance(token);
+
+        try {
+            await instance.post(endpoints.calendar.saveRepeatWeeklySchedule, {
+                repeat_weekly_schedule: repeatWeeklySchedule ? 1 : 0,
+            });
+
+            dispatch(onRepeatWeeklyScheduleChange(repeatWeeklySchedule));
+
+            onSuccess();
+        } catch (e) {
+            console.log(e);
+
             onFailure();
         }
     };

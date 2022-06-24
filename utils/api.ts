@@ -73,6 +73,7 @@ export const endpoints = {
         saveRepeatWeeklySchedule: "/calendar/save-repeat-weekly-schedule",
         updateSingleScheduleData: "/calendar/update-schedule-data",
         createSingleScheduleData: "/calendar/create-schedule-data",
+        deleteSingleScheduleData: "/calendar/delete-schedule-data",
         getCalendarData: "/calendar/start",
         saveViewedVideoSeconds: "/calendar/save-viewed-video-second",
         saveQuizTookSeconds: "/calendar/save-took-quizz-second",

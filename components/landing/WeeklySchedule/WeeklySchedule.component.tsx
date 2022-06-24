@@ -35,15 +35,17 @@ const WeeklyScheduler: FC<Props> = ({ data = scheduleData, ...rest }) => {
                 </span>
             </div>
             <div css={styles.table}>
-                {data.data.map(({ day, date, percentage, status }) => (
-                    <div css={styles.dayItem} key={date}>
-                        <span css={styles.day}>{day}</span>
-                        <span css={styles.iconContainer(status)}>{icon(status)}</span>
-                        {(status === "ongoing" || status === "active") && (
-                            <span css={styles.percent}>{percentage}</span>
-                        )}
-                    </div>
-                ))}
+                {data &&
+                    data?.data?.length &&
+                    data?.data?.map(({ day, date, percentage, status }) => (
+                        <div css={styles.dayItem} key={date}>
+                            <span css={styles.day}>{day}</span>
+                            <span css={styles.iconContainer(status)}>{icon(status)}</span>
+                            {(status === "ongoing" || status === "active") && (
+                                <span css={styles.percent}>{percentage}</span>
+                            )}
+                        </div>
+                    ))}
             </div>
         </div>
     );

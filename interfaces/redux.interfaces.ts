@@ -67,4 +67,5 @@ export interface NotificationsState {
 export interface CalendarState {
     schedule: WeekDayItem[];
     weeklyProgress: WeeklyProgressItem[];
+    repeatWeeklySchedule: boolean;
 }
