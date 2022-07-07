@@ -42,7 +42,7 @@ const WeeklyScheduler: FC<Props> = ({ data = scheduleData, ...rest }) => {
                             <span css={styles.day}>{day}</span>
                             <span css={styles.iconContainer(status)}>{icon(status)}</span>
                             {(status === "ongoing" || status === "active") && (
-                                <span css={styles.percent}>{percentage}</span>
+                                <span css={styles.percent}>{percentage}%</span>
                             )}
                         </div>
                     ))}

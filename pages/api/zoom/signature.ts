@@ -2,7 +2,7 @@ import { withSentry } from "@sentry/nextjs";
 import crypto from "crypto";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { zoomSdkKey, zoomSdkSecretKey } from "@/utils/constants";
+import { zoomSdkKey } from "@/utils/constants";
 
 function generateSignature(apiKey: string, apiSecret: string, meetingNumber: string, role: number) {
     // Prevent time sync issue between client signature generation and zoom
@@ -22,7 +22,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 
         const signature = generateSignature(
             zoomSdkKey || "",
-            zoomSdkSecretKey || "",
+            process.env.ZOOM_API_SECRET_KEY || "",
             meetingNumber,
             parseInt(role, 10)
         );

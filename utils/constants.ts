@@ -36,6 +36,4 @@ export const zoomSdkKey = process.env.NEXT_PUBLIC_ZOOM_API_KEY;
 export const zoomSdkSecretKey = process.env.NEXT_PUBLIC_ZOOM_API_SECRET_KEY;
 export const zoomDecryptionKey = process.env.NEXT_PUBLIC_ZOOM_DECRYPTION_KEY;
 
-export const vdocipherSecretKey = process.env.NEXT_PUBLIC_VDOCIPHER_API_SECRET_KEY;
-
 export const GATrackingId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
