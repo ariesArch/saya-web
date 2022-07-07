@@ -19,7 +19,7 @@ import { redirectOnEitherSide } from "@/utils/index";
 
 interface Props extends InitialPageProps, AppProps {}
 
-const App = ({ Component, pageProps }: Props) => {
+const App = ({ Component, pageProps, ...rest }: Props) => {
     const { userData } = useSelector((state: ReduxState) => ({ userData: state.userState.userData }));
     const dispatch = useDispatch();
     const [mounted, setMounted] = useState(false);
@@ -78,7 +78,7 @@ const App = ({ Component, pageProps }: Props) => {
     return (
         <Fragment>
             <LoadingIndicator isRouteChanging={isRouteChanging} key={loadingKey} />
-            <Component {...pageProps} />
+            <Component {...pageProps} {...rest} />
         </Fragment>
     );
 };

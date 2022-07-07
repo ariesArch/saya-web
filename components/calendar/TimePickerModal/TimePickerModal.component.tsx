@@ -28,7 +28,7 @@ interface Props {
 const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, dayName, isUpdate }) => {
     const dispatch = useDispatch();
     const [time, setTime] = useState(initialData?.time || format(new Date(), "hh:mm a"));
-    const [duration, setDuration] = useState(0);
+    const [duration, setDuration] = useState(30);
     const [timePickerKey, setTimePickerKey] = useState(0);
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -123,7 +123,7 @@ const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, dayNa
             setTime(format(new Date(), "hh:mm a"));
             setTimePickerKey(timePickerKey === 0 ? 1 : 0); // to force re-render the timepicker
         }
-        if (duration !== 0) setDuration(0);
+        if (duration !== 0) setDuration(30);
     }, [initialData]);
 
     const isSetBtnDisabled =
@@ -195,6 +195,6 @@ const TimePickerModal: FC<Props> = ({ isOpen, initialData, onClose, dayId, dayNa
     );
 };
 
-const selectableMinutes = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
+const selectableMinutes = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180];
 
 export default TimePickerModal;

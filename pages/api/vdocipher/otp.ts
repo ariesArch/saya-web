@@ -2,8 +2,6 @@ import { withSentry } from "@sentry/nextjs";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { vdocipherSecretKey } from "@/utils/constants";
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "GET") {
         const { videoId } = req.query;
@@ -15,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const instance = axios.create({
             headers: {
-                Authorization: `Apisecret ${vdocipherSecretKey}`,
+                Authorization: `Apisecret ${process.env.VDOCIPHER_API_SECRET_KEY}`,
             },
         });
 

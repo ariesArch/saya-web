@@ -47,7 +47,7 @@ export const classInfo = css`
 `;
 
 export const date = (isNotify: boolean) => css`
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 600;
     padding: 0.5rem 1.5rem;
     border-radius: 4rem;
@@ -56,6 +56,7 @@ export const date = (isNotify: boolean) => css`
     width: fit-content;
     display: flex;
     align-items: center;
+    white-space: nowrap;
 
     ${isNotify && `color: var(--color-green);`};
 

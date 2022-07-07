@@ -9,6 +9,7 @@ import PopupButton from "@/components/common/PopupButton/PopupButton.component";
 import ProgressBar from "@/components/common/ProgressBar/ProgressBar.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
+import CalendarIcon from "@/public/icons/calendar-outlined.svg";
 import ChevronRight from "@/public/icons/chevron-right.svg";
 import CrownIcon from "@/public/icons/crown.svg";
 import EditIcon from "@/public/icons/edit.svg";
@@ -171,7 +172,7 @@ const menuItems = [
         id: 6,
         name: "Calendar",
         route: "/calendar",
-        icon: <EditIcon />,
+        icon: <CalendarIcon />,
     },
     {
         id: 1,
