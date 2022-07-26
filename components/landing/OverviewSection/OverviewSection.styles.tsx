@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
 
+import { clickEffect } from "@/components/common/commonStyles";
+
 export const container = css`
     display: flex;
     padding: 5rem 0;
@@ -68,7 +70,7 @@ export const headingTips = css`
     left: calc(100% - 10rem);
     white-space: nowrap;
 
-    @media only screen and (max-width: 1095px) {
+    @media only screen and (max-width: 1105px) {
         display: none;
     }
 `;
@@ -199,25 +201,76 @@ export const downloadHeading = css`
 `;
 
 export const downloadLinks = css`
+    display: grid;
+    grid-template-columns: repeat(2, 17rem);
+    row-gap: 1rem;
+    column-gap: 1rem;
+
+    @media only screen and (max-width: 1255px) {
+        grid-template-columns: repeat(2, 15rem);
+    }
+    @media only screen and (max-width: 695px) {
+        grid-template-columns: repeat(2, 17rem);
+    }
+`;
+
+export const button = css`
+    background-color: #d12a33;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
 
-    a {
-        width: 15rem;
-        height: 5rem;
-        position: relative;
+    ${clickEffect};
 
-        @media only screen and (max-width: 1245px) {
-            width: 10rem;
-            height: 3.5rem;
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    svg {
+        width: 3rem;
+        height: auto;
+
+        @media only screen and (max-width: 1255px) {
+            width: 2.5rem;
         }
 
-        img {
-            width: 100%;
+        @media only screen and (max-width: 695px) {
+            width: 3rem;
         }
-        &:not(:last-child) {
-            margin-right: 1rem;
-            margin-bottom: 1rem;
-        }
+    }
+`;
+
+export const textContainer = css`
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    margin-left: 0.8rem;
+    font-family: "Product Sans", sans-serif;
+`;
+
+export const btnTextSubHeading = css`
+    font-size: 1rem;
+
+    @media only screen and (max-width: 1255px) {
+        font-size: 0.9rem;
+    }
+
+    @media only screen and (max-width: 695px) {
+        font-size: 1.3rem;
+    }
+`;
+
+export const btnTextHeading = css`
+    font-size: 1.6rem;
+    font-weight: bold;
+
+    @media only screen and (max-width: 1255px) {
+        font-size: 1.5rem;
+    }
+
+    @media only screen and (max-width: 695px) {
+        font-size: 1.7rem;
     }
 `;

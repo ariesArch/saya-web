@@ -14,6 +14,7 @@ export const downloadLinks = {
     playStore: "https://play.google.com/store/apps/details?id=com.saya&hl=en&gl=US",
     appStore: "https://apps.apple.com/us/app/saya-the-english-learning-app/id1612592914",
     apk: "https://play.google.com/store/apps/details?id=com.saya&hl=en&gl=US",
+    appGallery: "https://appgallery.huawei.com/app/C106635839",
 };
 
 export const socialLinks = {

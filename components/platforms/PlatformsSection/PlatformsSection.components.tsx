@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { contentsVariant, illuVariants, landingAnimationConfig } from "@/components/common/FramerMotion";
 import AndroidIcon from "@/public/icons/android.svg";
 import AppleStoreIcon from "@/public/icons/apple-store.svg";
+import AppGalleryIcon from "@/public/icons/hwawei.svg";
 import PlayStoreIcon from "@/public/icons/playstore.svg";
 import DotsIllu from "@/public/images/faq-dots.svg";
 import Dots from "@/public/images/platforms-dots.svg";
@@ -55,9 +56,19 @@ const PlatformsSection = () => {
                                 <span css={styles.btnTextHeading}>App Store</span>
                             </span>
                         </a>
-                    </div>
 
-                    <div css={styles.downloadLinks}>
+                        <a
+                            css={styles.button}
+                            href={downloadLinks.appGallery}
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <AppGalleryIcon />
+
+                            <span css={styles.textContainer}>
+                                <span css={styles.btnTextSubHeading}>Download on the</span>
+                                <span css={styles.btnTextHeading}>App Gallery</span>
+                            </span>
+                        </a>
                         <a
                             css={styles.button}
                             href={apkDownloadLink}

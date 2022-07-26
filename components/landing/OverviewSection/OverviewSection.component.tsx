@@ -1,11 +1,11 @@
 import { motion, Variants } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import LoginSignUpBox from "@/components/landing/LoginSignUpBox/LoginSignUpBox.component";
-import AndroidIcon from "@/public/icons/download-android.png";
-import AppleStoreIcon from "@/public/icons/download-app-store.png";
-import PlayStoreIcon from "@/public/icons/download-google-play.png";
+import AndroidIcon from "@/public/icons/android.svg";
+import AppleStoreIcon from "@/public/icons/apple-store.svg";
+import AppGalleryIcon from "@/public/icons/hwawei.svg";
+import PlayStoreIcon from "@/public/icons/playstore.svg";
 import OverviewIllu from "@/public/images/landing-illu-1.svg";
 import { downloadLinks } from "@/utils/constants";
 import { fetchApkDownloadLink } from "@/utils/index";
@@ -61,14 +61,54 @@ const OverviewSection = () => {
                     <div css={styles.downloadLinksContainer}>
                         <span css={styles.downloadHeading}>Learn on mobile</span>
                         <div css={styles.downloadLinks}>
-                            <a href={downloadLinks.playStore} target="_blank" rel="noopener noreferrer">
-                                <Image src={PlayStoreIcon} alt="Play Store Icon" layout="fill" />
+                            <a
+                                css={styles.button}
+                                href={downloadLinks.playStore}
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                <PlayStoreIcon />
+
+                                <span css={styles.textContainer}>
+                                    <span css={styles.btnTextSubHeading}>GET IT ON</span>
+                                    <span css={styles.btnTextHeading}>Google Play</span>
+                                </span>
                             </a>
-                            <a href={apkDownloadLink} target="_blank" rel="noopener noreferrer">
-                                <Image src={AndroidIcon} alt="APK Icon" layout="fill" />
+                            <a
+                                css={styles.button}
+                                href={apkDownloadLink}
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                <AndroidIcon />
+
+                                <span css={styles.textContainer}>
+                                    <span css={styles.btnTextSubHeading}>DOWNLOAD</span>
+                                    <span css={styles.btnTextHeading}>Android APK</span>
+                                </span>
                             </a>
-                            <a href={downloadLinks.appStore} target="_blank" rel="noopener noreferrer">
-                                <Image src={AppleStoreIcon} alt="Appstore Icon" layout="fill" />
+                            <a
+                                css={styles.button}
+                                href={downloadLinks.appStore}
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                <AppleStoreIcon />
+
+                                <span css={styles.textContainer}>
+                                    <span css={styles.btnTextSubHeading}>Download on the</span>
+                                    <span css={styles.btnTextHeading}>App Store</span>
+                                </span>
+                            </a>
+
+                            <a
+                                css={styles.button}
+                                href={downloadLinks.appGallery}
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                <AppGalleryIcon />
+
+                                <span css={styles.textContainer}>
+                                    <span css={styles.btnTextSubHeading}>Download on the</span>
+                                    <span css={styles.btnTextHeading}>App Gallery</span>
+                                </span>
                             </a>
                         </div>
                     </div>
