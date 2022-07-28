@@ -81,34 +81,24 @@ export const downloadLinksContainer = css`
 `;
 
 export const downloadLinks = css`
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 25rem);
+    row-gap: 3rem;
+    column-gap: 2rem;
 
-    &:not(:last-child) {
-        margin-bottom: 2rem;
-
-        @media only screen and (max-width: 992px) {
-            margin-bottom: 0;
-        }
-    }
-
-    & > a:not(:last-child) {
-        margin-right: 3rem;
-
-        @media only screen and (max-width: 992px) {
-            margin-right: 0;
-        }
+    @media only screen and (max-width: 1200px) {
+        grid-template-columns: repeat(2, 21rem);
+        row-gap: 1.5rem;
     }
 
     @media only screen and (max-width: 992px) {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: repeat(1, 21rem);
+        row-gap: 1.5rem;
+    }
 
-        &:not(:last-child) {
-            & > a {
-                margin-bottom: 1.5rem;
-            }
-        }
+    @media only screen and (max-width: 695px) {
+        grid-template-columns: repeat(1, 27rem);
+        margin: 0 auto;
     }
 `;
 
@@ -118,20 +108,12 @@ export const button = css`
     border-radius: 1.4rem;
     display: flex;
     align-items: center;
-    width: fit-content;
+    width: 100%;
 
     ${clickEffect};
 
     &:hover {
         transform: scale(1.02);
-    }
-
-    @media only screen and (max-width: 992px) {
-        width: 21rem;
-    }
-
-    @media only screen and (max-width: 695px) {
-        width: 27rem;
     }
 
     svg {
