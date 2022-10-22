@@ -50,7 +50,7 @@ const PopupButton: FC<PopupButtonProps> = (props) => {
 
     return (
         <div css={styles.popupContainer} className={className} style={{ ...containerStyle }}>
-            <div {...rest} ref={buttonRef}>
+            <div css={styles.button} {...rest} ref={buttonRef}>
                 {children}
             </div>
 

@@ -12,7 +12,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const SubscriptionPlanCard: FC<Props> = ({ data, showBadge = true, ...rest }) => {
-    const { price, final_price, month, has_promotion, promotion_price, id } = data;
+    const { price, final_price, month, has_promotion, promotion_price, is_percentage, id } = data;
 
     return (
         <div css={styles.card} {...rest}>
@@ -44,7 +44,12 @@ const SubscriptionPlanCard: FC<Props> = ({ data, showBadge = true, ...rest }) =>
                 </span>
             </div>
 
-            {!!has_promotion && <span css={styles.discount}>{promotion_price}% OFF</span>}
+            {!!has_promotion && (
+                <span css={styles.discount}>
+                    {promotion_price}
+                    {is_percentage ? "%" : ""} OFF
+                </span>
+            )}
         </div>
     );
 };
