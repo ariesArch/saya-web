@@ -4,6 +4,10 @@ export const popupContainer = css`
     position: relative;
 `;
 
+export const button = css`
+    cursor: pointer;
+`;
+
 export const contents = (
     open: boolean,
     position: string,

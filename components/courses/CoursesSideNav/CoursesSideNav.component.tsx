@@ -60,7 +60,7 @@ const CoursesSideNav = () => {
 
             <div css={styles.scrollContainer}>
                 {!selectedChapter.chapter.id ? (
-                    <div css={styles.sections}>
+                    <SimpleBar css={styles.sections}>
                         {selectedCourse?.chapters?.map((chapter, i) => (
                             <SectionCard
                                 key={chapter.id}
@@ -70,7 +70,7 @@ const CoursesSideNav = () => {
                                 onClick={() => onSelectChapter(chapter, i)}
                             />
                         ))}
-                    </div>
+                    </SimpleBar>
                 ) : (
                     <SimpleBar css={styles.materials}>
                         <div css={styles.chapterInfo}>
