@@ -12,6 +12,8 @@ export const scrollContainer = css`
 export const sections = css`
     display: flex;
     flex-direction: column;
+    max-height: calc(100vh - 22rem);
+    padding: 0.5rem 0.5rem 1rem;
 `;
 
 export const title = css`
