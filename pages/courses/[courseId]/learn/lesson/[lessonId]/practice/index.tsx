@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,34 +11,53 @@ import QuizView from "@/components/courses/practice/QuizView/QuizView.component"
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
 import CloseIcon from "@/public/icons/close.svg";
-import QuizBgMountainBlue from "@/public/images/quiz-bg_mountain_blue.svg";
-import QuizBgMountainGreen from "@/public/images/quiz-bg_mountain_green.svg";
-import QuizBgMountainLightGreen from "@/public/images/quiz-bg_mountain_light-green.svg";
-import QuizBgMountainPink from "@/public/images/quiz-bg_mountain_pink.svg";
-import QuizBgMountainViolet from "@/public/images/quiz-bg_mountain_violet.svg";
-import QuizBgMountainYellow from "@/public/images/quiz-bg_mountain_yellow.svg";
-import QuizBgTreeBlue from "@/public/images/quiz-bg_tree_blue.svg";
-import QuizBgTreeGreen from "@/public/images/quiz-bg_tree_green.svg";
-import QuizBgTreeLightGreen from "@/public/images/quiz-bg_tree_light-green.svg";
-import QuizBgTreePink from "@/public/images/quiz-bg_tree_pink.svg";
-import QuizBgTreeViolet from "@/public/images/quiz-bg_tree_violet.svg";
-import QuizBgTreeYellow from "@/public/images/quiz-bg_tree_yellow.svg";
 import { fetchLessonQuizAsync, fetchSummaryAsync } from "@/store/courses/courses.actions";
 import { getNextLessonId } from "@/utils/courses";
 
-const bgIllustrations = {
-    mountain_yellow: <QuizBgMountainYellow />,
-    mountain_blue: <QuizBgMountainBlue />,
-    mountain_green: <QuizBgMountainGreen />,
-    "mountain_light-green": <QuizBgMountainLightGreen />,
-    mountain_pink: <QuizBgMountainPink />,
-    mountain_violet: <QuizBgMountainViolet />,
-    tree_blue: <QuizBgTreeBlue />,
-    tree_green: <QuizBgTreeGreen />,
-    "tree_light-green": <QuizBgTreeLightGreen />,
-    tree_pink: <QuizBgTreePink />,
-    tree_violet: <QuizBgTreeViolet />,
-    tree_yellow: <QuizBgTreeYellow />,
+// for performance reasons
+const MountainYellow = dynamic(() => import("@/public/images/quiz-bg_mountain_yellow.svg"));
+const MountainBlue = dynamic(() => import("@/public/images/quiz-bg_mountain_blue.svg"));
+const MountainGreen = dynamic(() => import("@/public/images/quiz-bg_mountain_green.svg"));
+const MountainLightGreen = dynamic(() => import("@/public/images/quiz-bg_mountain_light-green.svg"));
+const MountainPink = dynamic(() => import("@/public/images/quiz-bg_mountain_pink.svg"));
+const MountainViolet = dynamic(() => import("@/public/images/quiz-bg_mountain_violet.svg"));
+const TreeBlue = dynamic(() => import("@/public/images/quiz-bg_tree_blue.svg"));
+const TreeGreen = dynamic(() => import("@/public/images/quiz-bg_tree_green.svg"));
+const TreeLightGreen = dynamic(() => import("@/public/images/quiz-bg_tree_light-green.svg"));
+const TreePink = dynamic(() => import("@/public/images/quiz-bg_tree_pink.svg"));
+const TreeViolet = dynamic(() => import("@/public/images/quiz-bg_tree_violet.svg"));
+const TreeYellow = dynamic(() => import("@/public/images/quiz-bg_tree_yellow.svg"));
+
+const renderBgIllustrations = (illuName: string) => {
+    switch (illuName) {
+        case "mountain_yellow":
+            return <MountainYellow />;
+        case "mountain_blue":
+            return <MountainBlue />;
+        case "mountain_green":
+            return <MountainGreen />;
+        case "mountain_light-green":
+            return <MountainLightGreen />;
+        case "mountain_pink":
+            return <MountainPink />;
+        case "mountain_violet":
+            return <MountainViolet />;
+        case "tree_blue":
+            return <TreeBlue />;
+        case "tree_green":
+            return <TreeGreen />;
+        case "tree_light-green":
+            return <TreeLightGreen />;
+        case "tree_pink":
+            return <TreePink />;
+        case "tree_violet":
+            return <TreeViolet />;
+        case "tree_yellow":
+            return <TreeYellow />;
+
+        default:
+            return <MountainViolet />;
+    }
 };
 
 const PracticePage = () => {
@@ -116,9 +136,9 @@ const PracticePage = () => {
 
                 {route !== "summary" && (
                     <div css={background}>
-                        {bgIllustrations[
+                        {renderBgIllustrations(
                             `${illustration_type || "moutain"}_${illustration_color || "violet"}`
-                        ] || bgIllustrations.mountain_violet}
+                        )}
                     </div>
                 )}
 
