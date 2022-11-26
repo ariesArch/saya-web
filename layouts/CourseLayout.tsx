@@ -11,11 +11,12 @@ import { onSetSelectedCourse, onSingleCourseFetchAsync } from "@/store/courses/c
 
 interface CourseLayoutProps {
     title?: string;
+    sidePanel?: ReactNode;
     children: ReactNode;
 }
 
 const HomeLayout = (props: CourseLayoutProps) => {
-    const { title = "SAYA - The English Learning Platform", children } = props;
+    const { title = "SAYA - The English Learning Platform", sidePanel, children } = props;
     const router = useRouter();
     const { courseId } = router.query;
     const selectedCourse = useSelector((state: ReduxState) => state.coursesState.selectedCourse);
@@ -50,9 +51,7 @@ const HomeLayout = (props: CourseLayoutProps) => {
                     <SideNav />
                     <div css={mainContents}>{children}</div>
                 </div>
-                <div css={sidePanel}>
-                    <CoursesSideNav />
-                </div>
+                <div css={sidePanelStyles}>{sidePanel || <CoursesSideNav />}</div>
             </div>
         </DefaultLayout>
     );
@@ -99,7 +98,7 @@ const mainContents = css`
     }
 `;
 
-const sidePanel = css`
+const sidePanelStyles = css`
     padding: 2rem 0 2rem 2rem;
     position: sticky;
     top: 0;

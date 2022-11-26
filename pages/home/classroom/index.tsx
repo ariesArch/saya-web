@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,6 +10,7 @@ import PlaylistIcon from "@/public/icons/playlist-primary.svg";
 import { onEnrolledCoursesFetchAsync } from "@/store/courses/courses.actions";
 
 const ClassroomPage = () => {
+    const router = useRouter();
     const dispatch = useDispatch();
     const { enrolledCourses } = useSelector((state: ReduxState) => ({
         enrolledCourses: state.coursesState.enrolledCourses,
@@ -19,7 +21,13 @@ const ClassroomPage = () => {
         setIsFetching(true);
         dispatch(
             onEnrolledCoursesFetchAsync(
-                () => setIsFetching(false),
+                (hasEnrolledCourses) => {
+                    setIsFetching(false);
+
+                    if (!hasEnrolledCourses) {
+                        router.push("/home/explore");
+                    }
+                },
                 () => setIsFetching(false)
             )
         );

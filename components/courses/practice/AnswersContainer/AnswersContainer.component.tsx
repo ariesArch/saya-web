@@ -16,6 +16,7 @@ interface Props {
     onSelectAnswer?: (answer: QuizQuestionAnswer) => void;
     isSummary?: boolean;
     isTemp?: boolean;
+    showCorrectAnswer?: boolean;
 }
 
 const AnswersContainer: FC<Props> = (props) => {
@@ -27,6 +28,7 @@ const AnswersContainer: FC<Props> = (props) => {
         onSelectAnswer = emptyFunction,
         isSummary = false,
         isTemp = false,
+        showCorrectAnswer = true,
     } = props;
     const isMultipleChoice = questionType === "multiple-choice" && format !== "audio";
     const isTrueFalse = questionType === "true-false" && format !== "audio";
@@ -35,7 +37,7 @@ const AnswersContainer: FC<Props> = (props) => {
         if (isTemp) {
             return <CheckCircleIcon />;
         }
-        if (isSelected) {
+        if (isSelected && showCorrectAnswer) {
             if (isCorrect) {
                 return <TickCircleIcon color="var(--color-violet-light)" />;
             }

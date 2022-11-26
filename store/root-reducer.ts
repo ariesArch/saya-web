@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import calendarReducer from "@/store/calendar/calendar.reducer";
 import coursesReducer from "@/store/courses/courses.reducer";
+import levelTestReducer from "@/store/level-test/level-test.reducer";
 import liveClassReducer from "@/store/live-class/live-class.reducer";
 import notificationsReducer from "@/store/notifications/notifications.reducer";
 import paymentReducer from "@/store/payment/payment.reducer";
@@ -15,6 +16,7 @@ const rootReducer = combineReducers<ReduxState>({
     paymentState: paymentReducer,
     notificationsState: notificationsReducer,
     calendarState: calendarReducer,
+    levelTestState: levelTestReducer,
 });
 
 export default rootReducer; // this will return modified version of rootReducer with storage persistence

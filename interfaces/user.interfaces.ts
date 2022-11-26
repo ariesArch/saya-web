@@ -1,3 +1,5 @@
+import { StudentLevel } from "@/interfaces/redux.interfaces";
+
 export interface UserData {
     name: string;
     photo: string;
@@ -18,6 +20,7 @@ export interface UserData {
         has_promotion: boolean;
         title: string;
     };
+    student_level: null | "-" | StudentLevel;
 }
 
 export interface SurveyData {

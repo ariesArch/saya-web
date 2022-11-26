@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 export const answersContainer = (isMultipleChoice: boolean) => css`
     display: flex;
     margin: 2rem 0 6rem;
+    flex-wrap: wrap;
 
     ${isMultipleChoice ? `flex-direction: column;` : `justify-content: center;`};
 `;
@@ -21,6 +22,7 @@ export const selectItem = (
     border: 2px solid transparent;
     cursor: pointer;
     font-size: 1.8rem;
+    margin: 1rem 0;
     transition: all 0.2s;
 
     &:hover {
@@ -29,6 +31,10 @@ export const selectItem = (
 
     &:active {
         background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    span {
+        word-break: break-all;
     }
 
     ${isActive && `border-color: #fff;`};
@@ -53,11 +59,7 @@ export const selectItem = (
             margin-right: 1.5rem;
         }
     `
-        : `
-          &:not(:last-child) {
-            margin-bottom: 1.5rem;
-        }
-    `};
+        : ``};
 
     ${isTrueFalse &&
     `

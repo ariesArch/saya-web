@@ -114,7 +114,10 @@ export const onCoursesFilterAsync = (
     };
 };
 
-export const onEnrolledCoursesFetchAsync = (onSuccess = emptyFunction, onFailure = emptyFunction) => {
+export const onEnrolledCoursesFetchAsync = (
+    onSuccess: (hasEnrolledCourses: boolean) => void = emptyFunction,
+    onFailure = emptyFunction
+) => {
     return async (dispatch: DispatchType) => {
         const token = cookie.get("token");
         try {
@@ -122,7 +125,7 @@ export const onEnrolledCoursesFetchAsync = (onSuccess = emptyFunction, onFailure
             const { data } = await instance.get(endpoints.user.getEnrolledCourses);
 
             dispatch(onEnrolledCoursesChange(data?.data as CourseItem[]));
-            onSuccess();
+            onSuccess(!!data?.data?.length);
         } catch (e) {
             console.log(e);
             onFailure();
