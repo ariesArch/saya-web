@@ -48,3 +48,11 @@
     font-weight: 400;
     font-style: normal;
 }
+
+@font-face {
+    font-family: FreeStyle-Script;
+    src: local("FreeStyle-Script Regular"), local("FreeStyle-Script-Regular"),
+    url(/fonts/FREESCPT.woff2) format("woff2"), url(/fonts/FREESCPT.woff) format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
