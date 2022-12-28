@@ -13,7 +13,18 @@ export const heading = css`
     margin-bottom: 3rem;
 `;
 
+export const illuContainer = css`
+    margin: 3rem 0;
+    width: 100%;
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+`;
+
 export const button = css`
     color: var(--color-light-green);
     font-size: 2rem;
+    padding: 1rem 4rem;
 `;

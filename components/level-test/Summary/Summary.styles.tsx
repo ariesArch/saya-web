@@ -13,6 +13,8 @@ export const congrats = css`
     margin: 5rem 0 0;
 `;
 
+export const levelBadge = css``;
+
 export const text = css`
     font-size: 2.5rem;
     font-weight: 500;

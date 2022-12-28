@@ -16,15 +16,15 @@ const LevelTestSidePanel = () => {
                 <span css={styles.heading}>Rules & Regulations</span>
                 <ul css={styles.list}>
                     <li css={styles.listItem}>
-                        All of certification levels are applicable for 12months/1year.
+                        Level badge will be provided only after completing the test until the end
                     </li>
                     <li css={styles.listItem}>
-                        If you don’t earn a skill badge for a given skill, you can retake the exam once more
-                        within six months
+                        You can retake the test unlimited time. The badge will be assigned according to the
+                        last test.
                     </li>
                     <li css={styles.listItem}>
-                        Retake your test if you didn’t get the result you wanted. Do some revision and then
-                        resit the test.
+                        Certification isn’t provided after taking the test, this level test is only to help
+                        you decide from where you should start learning.
                     </li>
                 </ul>
             </div>

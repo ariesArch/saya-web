@@ -8,7 +8,7 @@ export const radioContainer = css`
 export const radioInput = (isChecked = false) => css`
     display: flex;
     align-items: flex-start;
-    padding: 0.7rem 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 0.5rem;
     background-color: #f9f9f9;
     margin: 0.5rem 1rem 0.5rem 0;
@@ -33,11 +33,16 @@ export const radioInput = (isChecked = false) => css`
 
 export const textContainer = css`
     display: flex;
-    flex-direction: column;
+    align-items: center;
     margin-left: 0.5rem;
+`;
+
+export const iconContainer = css`
+    display: flex;
 `;
 
 export const title = css`
     font-size: 1.6rem;
     font-weight: 600;
+    margin-left: 1rem;
 `;

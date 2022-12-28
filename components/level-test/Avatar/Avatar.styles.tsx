@@ -43,3 +43,11 @@ export const badge = (size = "") => css`
         height: auto;
     }
 `;
+
+export const confetti = css`
+    position: absolute;
+    width: 50rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -35%);
+`;
