@@ -7,7 +7,8 @@ import Avatar from "@/components/common/Avatar/Avatar.component";
 import Button from "@/components/common/Button/Button.component";
 import PopupButton from "@/components/common/PopupButton/PopupButton.component";
 import ProgressBar from "@/components/common/ProgressBar/ProgressBar.component";
-import { ReduxState } from "@/interfaces/redux.interfaces";
+import { mapStudentLevelToLevel } from "@/components/common/sharedData";
+import { ReduxState, StudentLevel } from "@/interfaces/redux.interfaces";
 import { UserData } from "@/interfaces/user.interfaces";
 import CalendarIcon from "@/public/icons/calendar-outlined.svg";
 import ChevronRight from "@/public/icons/chevron-right.svg";
@@ -39,6 +40,8 @@ const UserPopupButton: FC<Props> = ({ position = "right", verticalOffset = -70, 
     const onPopupToggle = () => setIsOpen(!isOpen);
     const onPopupClose = () => setIsOpen(false);
 
+    const hasStudentLevel = userData?.student_level !== "-" && !!userData?.student_level;
+
     return (
         <PopupButton
             popupContent={<PopupContents userData={userData} onPopupClose={onPopupClose} />}
@@ -49,7 +52,16 @@ const UserPopupButton: FC<Props> = ({ position = "right", verticalOffset = -70, 
             onClose={onPopupClose}
             onClick={onPopupToggle}>
             <button>
-                <Avatar src={userData?.photo} size="5rem" hasBorder={false} />
+                <Avatar
+                    src={userData?.photo}
+                    size="5rem"
+                    hasBorder={hasStudentLevel}
+                    badge={
+                        hasStudentLevel
+                            ? mapStudentLevelToLevel[userData?.student_level as StudentLevel]
+                            : undefined
+                    }
+                />
             </button>
         </PopupButton>
     );
@@ -63,7 +75,8 @@ interface PopupContentsProps {
 const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const { name, photo, phone, is_premium, start_date, end_date } = userData;
+    const { name, photo, phone, is_premium, start_date, end_date, student_level } = userData;
+    const hasStudentLevel = student_level !== "-" && !!student_level;
 
     const calculateProgress = (): number => {
         const totalDaysOfSub = differenceInDays(parseISO(end_date), parseISO(start_date));
@@ -93,7 +106,12 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
         <div css={styles.popupContents}>
             <div css={styles.header}>
                 <div css={styles.userInfo}>
-                    <Avatar src={photo} size="5.5rem" hasBorder={false} />
+                    <Avatar
+                        src={photo}
+                        size="5.5rem"
+                        hasBorder={hasStudentLevel}
+                        badge={hasStudentLevel ? mapStudentLevelToLevel[student_level] : undefined}
+                    />
                     <div css={styles.userInfoTexts}>
                         <span css={styles.username}>{name}</span>
                         <span css={styles.phone}>{phone && `0${phone.substr(2)}`}</span>

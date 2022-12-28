@@ -12,7 +12,7 @@ import * as styles from "./Avatar.styles";
 interface Props {
     src: string | StaticImageData;
     size?: string;
-    badge?: "beginner" | "preintermediate" | "intermediate" | "advanced";
+    badge?: "beginner" | "preintermediate" | "intermediate" | "upperintermediate" | "advanced";
     borderColor?: string;
     hasBorder?: boolean;
 }
@@ -32,6 +32,7 @@ const badges = {
     beginner: <BeginnerBadge />,
     preintermediate: <PreintermediateBadge />,
     intermediate: <IntermediateBadge />,
+    upperintermediate: <IntermediateBadge />,
     advanced: <AdvancedBadge />,
 };
 

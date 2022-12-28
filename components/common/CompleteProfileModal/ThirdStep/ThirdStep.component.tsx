@@ -1,11 +1,26 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { useSelector } from "react-redux";
 
 import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
+import CulturalEntertainmentIcon from "@/public/icons/cultural-entertainment.svg";
+import EducationIcon from "@/public/icons/education.svg";
+import JobOpportunitiesIcon from "@/public/icons/job-opportunities.svg";
+import LiveAndWorkAbroadIcon from "@/public/icons/live-and-work-abroad.svg";
+import OthersIcon from "@/public/icons/others.svg";
+import TravelIcon from "@/public/icons/travel.svg";
 
 import * as styles from "./ThirdStep.styles";
+
+const mapIcons: Record<string, ReactNode> = {
+    education: <EducationIcon />,
+    "job-opportunities": <JobOpportunitiesIcon />,
+    "live-&-work-abroad": <LiveAndWorkAbroadIcon />,
+    travel: <TravelIcon />,
+    "culture-&-entertainment": <CulturalEntertainmentIcon />,
+    others: <OthersIcon />,
+};
 
 interface Props {
     purpose: string;
@@ -30,6 +45,7 @@ const ThirdStep: FC<Props> = ({ purpose, onChange }) => {
                                 onChange={() => onChange(id)}
                             />
                             <div css={styles.textContainer}>
+                                <div css={styles.iconContainer}>{mapIcons[id as any]}</div>
                                 <span css={styles.title}>{title}</span>
                             </div>
                         </label>

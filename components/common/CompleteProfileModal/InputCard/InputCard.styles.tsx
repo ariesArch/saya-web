@@ -6,7 +6,7 @@ export const inputCard = css`
     background-color: #fff;
     border-radius: 1rem;
     box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.14);
-    padding: 1.2rem 1rem;
+    padding: 1.2rem 1.5rem;
     margin-bottom: 1.5rem;
 `;
 

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import CourseFilters from "@/components/home/explore/CourseFilters/CourseFilters.component";
+import EnglishLevelTestBanner from "@/components/home/explore/EnglishLevelTestBanner/EnglishLevelTestBanner.component";
 import ExploreCourseCard from "@/components/home/explore/ExploreCourseCard/ExploreCourseCard.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import HomeLayout from "@/layouts/HomeLayout";
@@ -11,7 +12,10 @@ import { fetchCategoriesAsync, onCoursesFetchAsync } from "@/store/courses/cours
 
 const ExplorePage = () => {
     const dispatch = useDispatch();
-    const { popularCourses } = useSelector((state: ReduxState) => state.coursesState);
+    const { popularCourses, studentLevel } = useSelector((state: ReduxState) => ({
+        popularCourses: state.coursesState.popularCourses,
+        studentLevel: state.userState.userData?.student_level,
+    }));
 
     useEffect(() => {
         dispatch(fetchCategoriesAsync());
@@ -22,6 +26,8 @@ const ExplorePage = () => {
         <HomeLayout>
             <div css={container}>
                 <CourseFilters />
+
+                {(!studentLevel || studentLevel === "-") && <EnglishLevelTestBanner />}
 
                 <div css={header}>
                     <CertificateBadge />

@@ -69,6 +69,11 @@ export const endpoints = {
         enrollACourse: "/enrollCourse",
         getCourseDetails: "/course",
     },
+    levelTest: {
+        getQuestions: (level: string) => `/get-level-test-exam-questions?student_level=${level}`,
+        checkIfExamReady: "/check-level-test-exam-questions",
+        saveResult: "/save-level-test-exam-result",
+    },
     calendar: {
         saveRepeatWeeklySchedule: "/calendar/save-repeat-weekly-schedule",
         updateSingleScheduleData: "/calendar/update-schedule-data",

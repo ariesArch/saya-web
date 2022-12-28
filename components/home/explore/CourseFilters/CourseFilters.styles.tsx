@@ -11,7 +11,7 @@ export const courseFilters = css`
 `;
 
 export const dropdownWrapper = css`
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     padding: 0.6rem 1.2rem;
     position: relative;
     margin-right: 2rem !important;

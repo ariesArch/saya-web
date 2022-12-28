@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="22.41" viewBox="0 0 24 22.4">
+  <g id="student_icon" data-name="student icon" transform="translate(0 0)">
+    <path id="Icon_awesome-university" data-name="Icon awesome-university" d="M25.125,7.05v.8a.4.4,0,0,1-.4.4h-1.2v.6a.6.6,0,0,1-.6.6H3.325a.6.6,0,0,1-.6-.6v-.6h-1.2a.4.4,0,0,1-.4-.4v-.8a.4.4,0,0,1,.247-.37l11.6-4.4a.4.4,0,0,1,.306,0l11.6,4.4A.4.4,0,0,1,25.125,7.05Zm-1.2,15.2H2.325a1.2,1.2,0,0,0-1.2,1.2v.8a.4.4,0,0,0,.4.4h23.2a.4.4,0,0,0,.4-.4v-.8A1.2,1.2,0,0,0,23.925,22.25Zm-18.8-12v9.6h-1.8a.6.6,0,0,0-.6.6v1h20.8v-1a.6.6,0,0,0-.6-.6h-1.8v-9.6h-3.2v9.6h-3.2v-9.6h-3.2v9.6h-3.2v-9.6Z" transform="translate(-1.125 -2.25)" fill="currentColor"/>
+  </g>
+</svg>

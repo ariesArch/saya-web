@@ -24,6 +24,7 @@ export interface ReduxState {
     paymentState: PaymentState;
     notificationsState: NotificationsState;
     calendarState: CalendarState;
+    levelTestState: LevelTestState;
 }
 
 export type DispatchType = (action: ActionType) => ActionType;
@@ -69,3 +70,10 @@ export interface CalendarState {
     weeklyProgress: WeeklyProgressItem[];
     repeatWeeklySchedule: boolean;
 }
+
+export interface LevelTestState {
+    questions: QuizQuestion[];
+    upcomingQuestions: QuizQuestion[];
+}
+
+export type StudentLevel = "A1" | "A2" | "B1" | "B2" | "C1";

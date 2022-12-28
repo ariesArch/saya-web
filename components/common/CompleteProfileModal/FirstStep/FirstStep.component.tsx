@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
 import { ReduxState } from "@/interfaces/redux.interfaces";
+import FemaleIcon from "@/public/icons/female.svg";
+import MaleIcon from "@/public/icons/male.svg";
 
 import * as styles from "./FirstStep.styles";
 
@@ -46,7 +48,7 @@ const FirstStep: FC<Props> = ({ data, onDataChange }) => {
                     onChange={(e) => onDataChange("email", e.target.value)}
                 />
                 <p css={styles.text}>
-                    Don&apos;t be worry. Saya will never sent <span>spam mail.</span>
+                    Don&apos;t worry, we will never sent you <span>spam mails.</span>
                 </p>
             </InputCard>
 
@@ -54,7 +56,14 @@ const FirstStep: FC<Props> = ({ data, onDataChange }) => {
                 <div css={styles.radioContainer}>
                     <div css={styles.radioInput(data.gender === "male")}>
                         <RadioButton
-                            label="Male 🚹"
+                            label={
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <div style={{ marginRight: "1rem", marginBottom: "-.5rem" }}>
+                                        <MaleIcon />
+                                    </div>{" "}
+                                    Male
+                                </div>
+                            }
                             radioSize="1.8rem"
                             checked={data.gender === "male"}
                             onChange={() => onDataChange("gender", "male")}
@@ -62,7 +71,14 @@ const FirstStep: FC<Props> = ({ data, onDataChange }) => {
                     </div>
                     <div css={styles.radioInput(data.gender === "female")}>
                         <RadioButton
-                            label="Female 🚺"
+                            label={
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <div style={{ marginRight: "1rem", marginBottom: "-.5rem" }}>
+                                        <FemaleIcon />
+                                    </div>{" "}
+                                    Female
+                                </div>
+                            }
                             radioSize="1.8rem"
                             checked={data.gender === "female"}
                             onChange={() => onDataChange("gender", "female")}
