@@ -33,7 +33,7 @@ export const levelData: Record<number, any> = {
 
 export const mapStudentLevelToLevel: Record<StudentLevel, Levels> = {
     A1: "beginner",
-    A2: "preintermediate",
+    A2: "beginner",
     B1: "intermediate",
     B2: "upperintermediate",
     C1: "advanced",
