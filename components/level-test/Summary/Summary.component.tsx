@@ -10,9 +10,10 @@ import * as styles from "./Summary.styles";
 
 interface Props {
     level: StudentLevel;
+    onRetake: () => void;
 }
 
-const LevelTestSummary = ({ level }: Props) => {
+const LevelTestSummary = ({ level, onRetake }: Props) => {
     const { photo } = useSelector((state: ReduxState) => state.userState.userData);
 
     return (
@@ -25,11 +26,14 @@ const LevelTestSummary = ({ level }: Props) => {
                 You&apos;ve got a verified badge for {mapStudentLevelToLevel[level]} level!
             </motion.p>
 
-            <Link as="/home/explore" href="/home/explore" {...textAnimationData}>
-                <motion.span css={styles.link} {...textAnimationData}>
-                    Exit
-                </motion.span>
-            </Link>
+            <motion.div css={styles.buttonsContainer} {...textAnimationData}>
+                <Link as="/home/explore" href="/home/explore" {...textAnimationData}>
+                    <span css={styles.link}>Exit</span>
+                </Link>
+                <button css={styles.link} onClick={onRetake}>
+                    Retake
+                </button>
+            </motion.div>
         </div>
     );
 };

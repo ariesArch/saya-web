@@ -81,6 +81,17 @@ export const premiumBtn = css`
     margin-left: -1rem;
 `;
 
+export const buttonContainer = css`
+    padding: 0.2rem 0.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+
+    button {
+        flex: 1;
+        border-radius: 0.5rem;
+    }
+`;
+
 export const crownIcon = css`
     margin-right: 1rem;
     width: 2.5rem;

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 
+import { Levels } from "@/components/common/sharedData";
 import AdvancedBadge from "@/public/icons/profile-badge-advanced.svg";
 import BeginnerBadge from "@/public/icons/profile-badge-beginner.svg";
 import IntermediateBadge from "@/public/icons/profile-badge-intermediate.svg";
@@ -12,7 +13,7 @@ import * as styles from "./Avatar.styles";
 interface Props {
     src: string | StaticImageData;
     size?: string;
-    badge?: "beginner" | "preintermediate" | "intermediate" | "upperintermediate" | "advanced";
+    badge?: Levels;
     borderColor?: string;
     hasBorder?: boolean;
 }
@@ -30,6 +31,7 @@ const Avatar: FC<Props> = ({ src, size, badge, borderColor, hasBorder = true }) 
 
 const badges = {
     beginner: <BeginnerBadge />,
+    elementary: <BeginnerBadge />,
     preintermediate: <PreintermediateBadge />,
     intermediate: <IntermediateBadge />,
     upperintermediate: <IntermediateBadge />,

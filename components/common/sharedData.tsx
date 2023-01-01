@@ -6,10 +6,17 @@ import BeginnerLevel from "@/public/icons/level-beginner.svg";
 import IntermediateLevel from "@/public/icons/level-intermediate.svg";
 import PreintermediateLevel from "@/public/icons/level-preintermediate.svg";
 
-export type Levels = "beginner" | "intermediate" | "preintermediate" | "upperintermediate" | "advanced";
+export type Levels =
+    | "beginner"
+    | "elementary"
+    | "intermediate"
+    | "preintermediate"
+    | "upperintermediate"
+    | "advanced";
 
 export const levelIcons: Record<Levels, ReactNode> = {
     beginner: <BeginnerLevel />,
+    elementary: <BeginnerLevel />,
     preintermediate: <PreintermediateLevel />,
     intermediate: <IntermediateLevel />,
     upperintermediate: <IntermediateLevel />,
@@ -33,7 +40,7 @@ export const levelData: Record<number, any> = {
 
 export const mapStudentLevelToLevel: Record<StudentLevel, Levels> = {
     A1: "beginner",
-    A2: "beginner",
+    A2: "elementary",
     B1: "intermediate",
     B2: "upperintermediate",
     C1: "advanced",

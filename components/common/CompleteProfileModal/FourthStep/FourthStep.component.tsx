@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 import { useSelector } from "react-redux";
 
+import Button from "@/components/common/Button/Button.component";
 import InputCard from "@/components/common/CompleteProfileModal/InputCard/InputCard.component";
 // import Button from "@/components/common/Button/Button.component";
 import RadioButton from "@/components/common/RadioButton/RadioButton.component";
@@ -23,9 +24,10 @@ const mapIcons: Record<string, ReactNode> = {
 interface Props {
     level: string;
     onChange: (value: string) => void;
+    onTakeLevelTest: () => void;
 }
 
-const FourthStep: FC<Props> = ({ level, onChange }) => {
+const FourthStep: FC<Props> = ({ level, onChange, onTakeLevelTest }) => {
     const { levels } = useSelector((state: ReduxState) => ({
         levels: state.userState.surveyData?.levels,
     }));
@@ -51,15 +53,17 @@ const FourthStep: FC<Props> = ({ level, onChange }) => {
                     ))}
             </div>
 
-            {/* <div css={styles.separator}>-or-</div> */}
+            <div css={styles.separator}>
+                <span>or</span>
+            </div>
 
-            {/* <div css={styles.buttonContainer}> */}
-            {/*    <Button variant="contained" color="light-green"> */}
-            {/*        Take your level test now! */}
-            {/*    </Button> */}
-            {/* </div> */}
+            <div css={styles.buttonContainer}>
+                <Button variant="contained" color="light-green" onClick={onTakeLevelTest}>
+                    Take your level test now!
+                </Button>
+            </div>
 
-            {/* <a css={styles.link}>Get badge on profile</a> */}
+            <span css={styles.link}>Get badge on profile</span>
         </InputCard>
     );
 };

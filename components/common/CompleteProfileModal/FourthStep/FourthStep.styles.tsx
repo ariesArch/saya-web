@@ -56,9 +56,30 @@ export const title = css`
 
 export const separator = css`
     text-align: center;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 1.6rem;
+    position: relative;
+    z-index: 2;
+
+    span {
+        background-color: #fff;
+        padding: 0.5rem 2rem;
+        z-index: 2;
+    }
+
+    &::before {
+        content: "";
+        z-index: -1;
+        width: 100%;
+        height: 0.1rem;
+        background-color: #e7e7e7;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 `;
 
 export const buttonContainer = css`
@@ -71,7 +92,7 @@ export const buttonContainer = css`
 `;
 
 export const link = css`
-    color: var(--color-violet-light);
+    font-weight: 500;
     margin-top: 0.5rem;
     text-align: center;
 `;
