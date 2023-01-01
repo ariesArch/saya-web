@@ -20,8 +20,14 @@ export const text = css`
     font-weight: 500;
 `;
 
+export const buttonsContainer = css`
+    display: flex;
+    align-items: center;
+`;
+
 export const link = css`
-    font-size: 2rem;
+    color: #fff;
+    font-size: 2.1rem;
     font-weight: 500;
     text-decoration: underline;
     margin-top: 5rem;
@@ -30,5 +36,9 @@ export const link = css`
 
     &:active {
         opacity: 0.9;
+    }
+
+    &:not(:last-child) {
+        margin-right: 4rem;
     }
 `;

@@ -3,9 +3,11 @@ import Lottie from "lottie-react";
 import Image from "next/image";
 import { FC, useEffect, useRef } from "react";
 
+import { Levels } from "@/components/common/sharedData";
 import confettiAnimation from "@/public/animations/78667-confetti.json";
 import AdvancedBadge from "@/public/icons/profile-badge-advanced-text.svg";
 import BeginnerBadge from "@/public/icons/profile-badge-beginner-text.svg";
+import ElementaryBadge from "@/public/icons/profile-badge-elementary-text.svg";
 import IntermediateBadge from "@/public/icons/profile-badge-intermediate-text.svg";
 import PreintermediateBadge from "@/public/icons/profile-badge-preintermediate-text.svg";
 import UpperintermediateBadge from "@/public/icons/profile-badge-upper-intermediate-text.svg";
@@ -16,7 +18,7 @@ import * as styles from "./Avatar.styles";
 interface Props {
     src: string | StaticImageData;
     size?: string;
-    badge?: "beginner" | "preintermediate" | "intermediate" | "upperintermediate" | "advanced";
+    badge?: Levels;
     borderColor?: string;
     hasBorder?: boolean;
 }
@@ -52,6 +54,7 @@ const Avatar: FC<Props> = ({ src, size, badge, borderColor, hasBorder = true }) 
 
 const badges = {
     beginner: <BeginnerBadge />,
+    elementary: <ElementaryBadge />,
     preintermediate: <PreintermediateBadge />,
     intermediate: <IntermediateBadge />,
     upperintermediate: <UpperintermediateBadge />,

@@ -37,7 +37,10 @@ const LevelTestPage = () => {
                 {route === "start" && <LevelTestStart onStart={() => setRoute("practice")} />}
                 {route === "practice" && <LevelTestQuizView onShowSummary={() => setRoute("summary")} />}
                 {route === "summary" && student_level && (
-                    <LevelTestSummary level={student_level as StudentLevel} />
+                    <LevelTestSummary
+                        level={student_level as StudentLevel}
+                        onRetake={() => setRoute("start")}
+                    />
                 )}
                 <div css={background}>
                     <MountainLightGreen />

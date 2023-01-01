@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import "simplebar/dist/simplebar.min.css";
 
+import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import SimpleBar from "simplebar-react";
@@ -17,6 +18,7 @@ import ThirdStep from "./ThirdStep/ThirdStep.component";
 
 const CompleteProfileModal = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const [step, setStep] = useState(1);
     const [firstStepData, setFirstStepData] = useState({
@@ -81,7 +83,7 @@ const CompleteProfileModal = () => {
         }
     };
 
-    const onFormSubmit = () => {
+    const onFormSubmit = (isLevelTest = false) => {
         setIsLoading(true);
         dispatch(
             userUpdateProfileAsync(
@@ -92,7 +94,12 @@ const CompleteProfileModal = () => {
                     purposeId: purpose,
                     levelId: level,
                 },
-                () => setIsLoading(false),
+                () => {
+                    setIsLoading(false);
+                    if (!isLevelTest) return;
+
+                    router.push("/level-test", "/level-test");
+                },
                 () => setIsLoading(false)
             )
         );
@@ -102,6 +109,10 @@ const CompleteProfileModal = () => {
         if (step === 1) return;
 
         setStep(step - 1);
+    };
+
+    const onTakeLevelTest = () => {
+        onFormSubmit(true);
     };
 
     useEffect(() => {
@@ -130,7 +141,13 @@ const CompleteProfileModal = () => {
                     {step === 1 && <FirstStep data={firstStepData} onDataChange={onFirstStepDataChange} />}
                     {step === 2 && <SecondStep status={status} onChange={onStatusChange} />}
                     {step === 3 && <ThirdStep purpose={purpose} onChange={onPurposeChange} />}
-                    {step === 4 && <FourthStep level={level} onChange={onLevelChange} />}
+                    {step === 4 && (
+                        <FourthStep
+                            level={level}
+                            onChange={onLevelChange}
+                            onTakeLevelTest={onTakeLevelTest}
+                        />
+                    )}
 
                     <div css={styles.buttonContainer}>
                         {step !== 1 && (

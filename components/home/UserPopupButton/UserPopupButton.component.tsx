@@ -92,6 +92,10 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
 
     const onGoPremiumBtnClick = () => dispatch(onPaymentModalToggle(true));
 
+    const onTakeLevelTest = () => {
+        router.push("/level-test", "/level-test");
+    };
+
     const onClickMenuItem = (route: string) => {
         // if no routes specified, just then it's logout
         if (!route) {
@@ -174,6 +178,11 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
             {/*        <strong>2500</strong> Collected */}
             {/*    </span> */}
             {/* </div> */}
+            <div css={styles.buttonContainer}>
+                <Button variant="contained" color="light-green" onClick={onTakeLevelTest}>
+                    Take your level test now!
+                </Button>
+            </div>
 
             {menuItems.map(({ id, name, icon, route }) => (
                 <div key={id} css={styles.menuItem} onClick={() => onClickMenuItem(route)}>

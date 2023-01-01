@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="290.993" height="82.914" viewBox="0 0 290.993 82.915">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.033" y1="0.201" x2="0.968" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffd347"/>
+      <stop offset="1" stop-color="#d67200"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.071" y1="-0.183" x2="0.927" y2="1.236" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff253"/>
+      <stop offset="1" stop-color="#f5b914"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffec48"/>
+      <stop offset="1" stop-color="#ffeda6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="Elementary" x="96.117" y="25.914" width="181" height="43" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_2943">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-opacity="0.161" result="color-2"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color-2"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <radialGradient id="radial-gradient-2" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff8c0"/>
+      <stop offset="1" stop-color="#ffeda6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="Begineer" transform="translate(-536.8 -176.085)">
+    <path id="Path_2942" data-name="Path 2942" d="M601.233,4073.8s10.339,17.1,3.619,30.378c-5.28-1.76-9.052-10.778-9.052-10.778Z" transform="translate(26.31 -3897.715)" fill="#f0ae2c"/>
+    <path id="Path_2927" data-name="Path 2927" d="M-19,21.656l290.993.144v6.137l-15.7,22.929H-1.2L-19,27.752Z" transform="translate(555.8 206)" fill="url(#linear-gradient)"/>
+    <path id="Union_2" data-name="Union 2" d="M19.893,77.319,0,51.421,19.893,24.915H36.756C46.277,17.5,63.021,7.615,90.625,0a50.054,50.054,0,0,1,2.531,24.915H273.194l17.8,26.684-17.8,25.721Z" transform="translate(536.8 176.085)" fill="url(#linear-gradient-2)"/>
+    <ellipse id="Ellipse_234" data-name="Ellipse 234" cx="89" cy="29" rx="89" ry="29" transform="translate(595.812 201)" fill="url(#radial-gradient)" style="mix-blend-mode: lighten;isolation: isolate"/>
+    <g data-type="innerShadowGroup">
+      <text id="Elementary-2" data-name="Elementary" transform="translate(632.917 237)" fill="#8a5f09" font-size="36" font-family="Gelion-Bold, Gelion" font-weight="700"><tspan x="0" y="0">Elementary</tspan></text>
+      <g transform="matrix(1, 0, 0, 1, 536.8, 176.09)" filter="url(#Elementary)">
+        <text id="Elementary-3" data-name="Elementary" transform="translate(96.12 60.91)" fill="#fff" font-size="36" font-family="Gelion-Bold, Gelion" font-weight="700"><tspan x="0" y="0">Elementary</tspan></text>
+      </g>
+    </g>
+    <g data-type="innerShadowGroup">
+      <path id="Path_2943-2" data-name="Path 2943" d="M76.707,148.25s-10.332-28.532,10.8-43.833c14.866-10.767,38.63-15.577,38.63-15.577s8.739,19.283-27.279,23.36c0,0-6.371.52-5.776,5.957,0,0,2.994-2.941,10.81-3.95l21.237-3.186s2.357,10.4-7.826,11.287-21.64-2.124-24.72,5.107a27.29,27.29,0,0,1,13.411-1.805c7.974.8,17.637,1.635,17.637,1.635s-.913,10.47-16.352,8.081C92.04,132.9,83.545,138.4,76.707,148.25Z" transform="translate(492.932 99.75)" fill="#8a5d08"/>
+      <g transform="matrix(1, 0, 0, 1, 536.8, 176.09)" filter="url(#Path_2943)">
+        <path id="Path_2943-3" data-name="Path 2943" d="M76.707,148.25s-10.332-28.532,10.8-43.833c14.866-10.767,38.63-15.577,38.63-15.577s8.739,19.283-27.279,23.36c0,0-6.371.52-5.776,5.957,0,0,2.994-2.941,10.81-3.95l21.237-3.186s2.357,10.4-7.826,11.287-21.64-2.124-24.72,5.107a27.29,27.29,0,0,1,13.411-1.805c7.974.8,17.637,1.635,17.637,1.635s-.913,10.47-16.352,8.081C92.04,132.9,83.545,138.4,76.707,148.25Z" transform="translate(-43.87 -76.34)" fill="#fff"/>
+      </g>
+    </g>
+    <ellipse id="Ellipse_244" data-name="Ellipse 244" cx="89" cy="4.433" rx="89" ry="4.433" transform="translate(571.9 248)" opacity="0.8" fill="url(#radial-gradient-2)" style="mix-blend-mode: overlay;isolation: isolate"/>
+  </g>
+</svg>
