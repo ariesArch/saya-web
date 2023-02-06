@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import CourseFilters from "@/components/home/explore/CourseFilters/CourseFilters.component";
@@ -89,4 +89,4 @@ const coursesGrid = css`
     }
 `;
 
-export default ExplorePage;
+export default memo(ExplorePage);

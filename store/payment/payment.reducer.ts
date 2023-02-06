@@ -4,6 +4,7 @@ import {
     PAYMENT_MODAL_TOGGLE,
     PAYMENT_PROVIDERS_CHANGE,
     PAYMENT_SUCCESS_MODAL_TOGGLE,
+    PROMOTION_CAMPAIGN_CHANGE,
     SUBSCRIPTION_PLANS_CHANGE,
 } from "@/store/payment/payment.action-types";
 
@@ -12,6 +13,7 @@ const initialState: PaymentState = {
     providers: [],
     isPaymentModalOpen: false,
     isPaymentSuccessModalOpen: false,
+    promotionCampaign: {},
 };
 
 const paymentReducer = (state = initialState, action: ActionType) => {
@@ -30,6 +32,8 @@ const paymentReducer = (state = initialState, action: ActionType) => {
             return { ...state, isPaymentModalOpen: action.payload };
         case PAYMENT_SUCCESS_MODAL_TOGGLE:
             return { ...state, isPaymentSuccessModalOpen: action.payload };
+        case PROMOTION_CAMPAIGN_CHANGE:
+            return { ...state, promotionCampaign: action.payload };
         default:
             return state;
     }

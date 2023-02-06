@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { levelIcons, Levels } from "@/components/common/sharedData";
 import { Teacher } from "@/interfaces/common.interfaces";
@@ -30,10 +30,10 @@ const ClassroomCourseCard: FC<Props> = ({ courseId, image, courseName, level, te
             <div css={styles.courseName}>{courseName}</div>
             <div css={styles.subTexts}>
                 {levelIcons[level.toLowerCase() as Levels] || levelIcons.preintermediate}
-                {level} . Tr. {teacher?.name}
+                {level} . {teacher?.name}
             </div>
         </div>
     );
 };
 
-export default ClassroomCourseCard;
+export default memo(ClassroomCourseCard);

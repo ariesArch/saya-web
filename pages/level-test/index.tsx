@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import LevelTestStart from "@/components/level-test/LevelTestStart/LevelTestStart.component";
 import LevelTestQuizView from "@/components/level-test/QuizView/QuizView.component";
@@ -11,10 +11,12 @@ import { ReduxState, StudentLevel } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
 import CloseIcon from "@/public/icons/close.svg";
 import MountainLightGreen from "@/public/images/quiz-bg_tree_light-green.svg";
+import { fetchLevelTestQuestionsAsync } from "@/store/level-test/level-test.actions";
 
 const LevelTestPage = () => {
     const router = useRouter();
     const { student_level } = useSelector((state: ReduxState) => state.userState.userData);
+    const dispatch = useDispatch();
 
     const [route, setRoute] = useState<"start" | "practice" | "summary">("start");
 
@@ -22,11 +24,18 @@ const LevelTestPage = () => {
         router.push("/home/explore");
     };
 
-    useEffect(() => {
-        if (student_level && student_level !== "-") {
-            setRoute("summary");
-        }
-    }, [student_level]);
+    // useEffect(() => {
+    //     if (student_level && student_level !== "-") {
+    //         setRoute("summary");
+    //     }
+    // }, [student_level]);
+
+    // TODO - improve with queries
+    const onRetake = useCallback(() => {
+        setRoute("start");
+
+        dispatch(fetchLevelTestQuestionsAsync("A2"));
+    }, [dispatch]);
 
     return (
         <CourseLayout sidePanel={<LevelTestSidePanel />}>
@@ -37,10 +46,7 @@ const LevelTestPage = () => {
                 {route === "start" && <LevelTestStart onStart={() => setRoute("practice")} />}
                 {route === "practice" && <LevelTestQuizView onShowSummary={() => setRoute("summary")} />}
                 {route === "summary" && student_level && (
-                    <LevelTestSummary
-                        level={student_level as StudentLevel}
-                        onRetake={() => setRoute("start")}
-                    />
+                    <LevelTestSummary level={student_level as StudentLevel} onRetake={onRetake} />
                 )}
                 <div css={background}>
                     <MountainLightGreen />

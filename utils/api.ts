@@ -115,4 +115,8 @@ export const endpoints = {
     apk: {
         getApkDownloadLink: "/get-latest-apk-download-link",
     },
+    campaign: {
+        getLinkCampaign: "/get-link-campaign",
+        submitPayment: "/submit-link-campaign-payment",
+    },
 };

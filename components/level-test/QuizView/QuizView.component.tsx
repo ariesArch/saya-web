@@ -128,11 +128,9 @@ const LevelTestQuizView = ({ onShowSummary }: { onShowSummary: () => void }) => 
         );
     };
 
-    console.log(totalIncorrectAnswers, totalConsecutiveIncorrectAnswers);
-
     useEffect(() => {
         dispatch(fetchLevelTestQuestionsAsync("A2"));
-    }, []);
+    }, [dispatch]);
 
     return (
         <div css={styles.container}>

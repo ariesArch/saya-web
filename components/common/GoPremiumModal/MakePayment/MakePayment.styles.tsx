@@ -152,3 +152,26 @@ export const summaryBackBtn = css`
         margin-top: -0.1rem;
     }
 `;
+
+export const phoneInputContainer = css`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+`;
+
+export const label = css`
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+`;
+
+export const phoneInput = css``;
+
+export const info = css`
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    line-height: 2.4rem;
+    font-weight: 400;
+    color: #6f6f6f;
+`;

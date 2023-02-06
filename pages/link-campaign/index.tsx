@@ -4,10 +4,10 @@ import { NextPageContext } from "next";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { redirectOnEitherSide } from "@/utils/index";
 
-const HomePage = () => {
+const LinkCampaignPage = () => {
     return (
         <DefaultLayout>
-            <div css={container}>Home</div>
+            <div css={container}>Link Campaign</div>
         </DefaultLayout>
     );
 };
@@ -20,11 +20,9 @@ const container = css`
     font-size: 5rem;
 `;
 
-HomePage.getInitialProps = (ctx: NextPageContext) => {
+LinkCampaignPage.getInitialProps = (ctx: NextPageContext) => {
     const { res } = ctx;
-    redirectOnEitherSide(res, "/home/classroom");
-
-    return {};
+    redirectOnEitherSide(res, "/");
 };
 
-export default HomePage;
+export default LinkCampaignPage;
