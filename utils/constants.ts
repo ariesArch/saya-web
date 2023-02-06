@@ -38,3 +38,8 @@ export const zoomSdkSecretKey = process.env.NEXT_PUBLIC_ZOOM_API_SECRET_KEY;
 export const zoomDecryptionKey = process.env.NEXT_PUBLIC_ZOOM_DECRYPTION_KEY;
 
 export const GATrackingId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+
+export const recaptchaSiteKey =
+    process.env.NEXT_PUBLIC_ENVIRONMENT === "development"
+        ? process.env.NEXT_PUBLIC_RECAPTCHAV3_SITEKEY_DEVELOPMENT
+        : process.env.NEXT_PUBLIC_RECAPTCHAV3_SITEKEY_PRODUCTION;

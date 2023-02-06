@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReactGA from "react-ga";
 
 import { GATrackingId } from "@/utils/constants";
@@ -49,7 +49,10 @@ const useRouteHandler = () => {
         };
     }, []);
 
-    return { isRouteChanging: state.isRouteChanging, loadingKey: state.loadingKey };
+    return useMemo(
+        () => ({ isRouteChanging: state.isRouteChanging, loadingKey: state.loadingKey }),
+        [state.isRouteChanging, state.loadingKey]
+    );
 };
 
 export default useRouteHandler;

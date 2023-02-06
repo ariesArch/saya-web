@@ -38,3 +38,15 @@ export interface CheckPromoResponse {
     start_date: string;
     type: string;
 }
+
+export interface PromotionCampaign {
+    id: number;
+    name: string;
+    short_des: string;
+    des: string;
+    promo_code: string;
+    link_campaign_subscription_plans: SubscriptionPlan[];
+    limit: number;
+    start_date: string;
+    end_date: string;
+}

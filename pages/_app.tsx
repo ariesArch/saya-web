@@ -2,7 +2,7 @@ import "@/public/css/globals.css";
 
 import cookie from "js-cookie";
 import { AppContext, AppProps } from "next/app";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, memo, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import LoadingIndicator from "@/components/common/LoadingIndicator/LoadingIndicator.component";
@@ -24,6 +24,7 @@ const App = ({ Component, pageProps, ...rest }: Props) => {
     const dispatch = useDispatch();
     const [mounted, setMounted] = useState(false);
     const { isRouteChanging, loadingKey } = useRouteHandler();
+    const firebaseTokenUpdatedRef = useRef(false);
 
     const onPaymentSuccess = () => {
         dispatch(fetchUserDataAsync());
@@ -62,7 +63,9 @@ const App = ({ Component, pageProps, ...rest }: Props) => {
     }, [userData, mounted]);
 
     useEffect(() => {
-        if (!userData?.phone) return;
+        if (!userData?.phone || firebaseTokenUpdatedRef.current) return;
+
+        firebaseTokenUpdatedRef.current = true;
 
         firebaseCloudMessaging.init((token) => dispatch(updateFirebaseTokenAsync(token)));
 
@@ -154,4 +157,4 @@ App.getInitialProps = wrapper.getInitialAppProps(
         }
 );
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(memo(App));

@@ -1,17 +1,24 @@
 import Image from "next/image";
-import { FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
 import MakePaymentSummary from "@/components/common/GoPremiumModal/MakePayment/Summary/Summary.component";
 import PaymentSummary from "@/components/common/GoPremiumModal/PaymentSummary/PaymentSummary.component";
 import SubscriptionPlanCard from "@/components/common/GoPremiumModal/SubscriptionPlanCard/SubscriptionPlanCard.component";
+import { GoPremiumModalContext } from "@/components/common/GoPremiumModal/utils";
+import PhoneNumberInput from "@/components/common/PhoneNumberInput/PhoneNumberInput.component";
 import { CheckPromoResponse, PaymentProvider, PaymentResponse } from "@/interfaces/payment.interfaces";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import ChevronDown from "@/public/icons/chevron-down.svg";
 import ChevronLeft from "@/public/icons/chevron-left.svg";
 import TickCircleIcon from "@/public/icons/tick-circle-inverted.svg";
-import { fetchPaymentProvidersAsync, onInitializePaymentAsync } from "@/store/payment/payment.actions";
+import {
+    fetchPaymentProvidersAsync,
+    handleSubmitCampaignPaymentAsync,
+    onInitializePaymentAsync,
+} from "@/store/payment/payment.actions";
 
 import * as styles from "./MakePayment.styles";
 
@@ -22,12 +29,19 @@ interface Props {
 }
 
 const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
+    const { isCampaign } = useContext(GoPremiumModalContext);
+
     const { selectedPlan, paymentProviders } = useSelector((state: ReduxState) => ({
-        selectedPlan: state.paymentState.subscriptionPlans.find((plan) => plan.id === selectedPlanId),
+        selectedPlan: (isCampaign
+            ? state.paymentState.promotionCampaign.link_campaign_subscription_plans
+            : state.paymentState.subscriptionPlans
+        ).find((plan) => plan.id === selectedPlanId),
         paymentProviders: state.paymentState.providers,
     }));
     const dispatch = useDispatch();
-    const allParsedProviders = parseProviders(paymentProviders);
+
+    const allParsedProviders = useMemo(() => parseProviders(paymentProviders), [paymentProviders]);
+
     const [parsedProviders, setParsedProviders] = useState<ParsedProviders[]>([]);
 
     const [selectedMethod, setSelectedMethod] = useState<string>("");
@@ -40,26 +54,56 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
     const [paymentResponse, setPaymentResponse] = useState<PaymentResponse | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const paymentData = selectedMethod.split("-");
+    const [phone, setPhone] = useState("");
+    const { executeRecaptcha } = useGoogleReCaptcha();
+
+    const onPhoneNumberChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        setPhone(e.target.value);
+    }, []);
+
+    const paymentData = useMemo(() => selectedMethod.split("-"), [selectedMethod]);
 
     const onSelectMethod = (provider: string) => setSelectedMethod(provider);
 
-    const showLessProviders = () => {
+    const showLessProviders = useCallback(() => {
         if (paymentProviders.length > 3) setParsedProviders(allParsedProviders.slice(0, 3));
         if (paymentProviders.length === 3) setParsedProviders(allParsedProviders.slice(0, 2));
         if (paymentProviders.length < 3) setParsedProviders(allParsedProviders);
-    };
+    }, [allParsedProviders, paymentProviders.length]);
 
-    const onClickSeeMore = () => {
+    const onClickSeeMore = useCallback(() => {
         if (parsedProviders.length < allParsedProviders.length) {
             setParsedProviders(allParsedProviders);
         } else {
             showLessProviders();
         }
-    };
+    }, [allParsedProviders, parsedProviders.length, showLessProviders]);
 
-    const onClickPayNow = () => {
+    const onClickPayNow = useCallback(async () => {
         setIsLoading(true);
+
+        if (isCampaign) {
+            if (!executeRecaptcha) {
+                setIsLoading(false);
+                return;
+            }
+
+            const token = await executeRecaptcha("register");
+
+            dispatch(
+                handleSubmitCampaignPaymentAsync(
+                    {
+                        phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
+                        link_campaign_subscription_plan_id: selectedPlanId,
+                        provider: paymentData[0],
+                        method: paymentData[1],
+                        "g-recaptcha-response": token,
+                    },
+                    onPayNowSuccess,
+                    onPayNowFailure
+                )
+            );
+        }
 
         dispatch(
             onInitializePaymentAsync(
@@ -73,7 +117,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                 onPayNowFailure
             )
         );
-    };
+    }, [discount.promoCode, dispatch, executeRecaptcha, isCampaign, paymentData, phone, selectedPlanId]);
 
     const onPayNowSuccess = (data: PaymentResponse) => {
         setIsLoading(false);
@@ -84,9 +128,9 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
 
     const onGoBackFromSummary = () => setPaymentResponse(null);
 
-    const onAddPromoCode = (data: CheckPromoResponse) => {
+    const onAddPromoCode = useCallback((data: CheckPromoResponse) => {
         setDiscount({ amount: data.amount, type: data.type, promoCode: data.promo_code });
-    };
+    }, []);
 
     useEffect(() => {
         if (isOpen && paymentProviders.length === 0) {
@@ -112,6 +156,24 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
             <div css={styles.cardContainer}>
                 {selectedPlan && <SubscriptionPlanCard data={selectedPlan} showBadge={false} />}
             </div>
+
+            {isCampaign && (
+                <div css={styles.phoneInputContainer}>
+                    <label css={styles.label} htmlFor="phone-number-input">
+                        Enter your phone number
+                    </label>
+                    <PhoneNumberInput
+                        css={styles.phoneInput}
+                        id="phone-number-input"
+                        value={phone}
+                        onChange={onPhoneNumberChange}
+                    />
+
+                    <span css={styles.info}>
+                        SAYA app တွင် အသုံးပြုရန်ရည်ရွယ်ထားသော ဖုန်းနံပါတ်ကိုသာ ရိုက်ထည့်‌ပါ။
+                    </span>
+                </div>
+            )}
 
             <div css={styles.paymentMethods}>
                 <span css={styles.paymentHeading}>Select Payment Method</span>
@@ -155,9 +217,9 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
             <div css={styles.buttonContainer}>
                 <Button
                     variant="contained"
-                    onClick={onClickPayNow}
+                    onClick={onClickPayNow as any}
                     loading={isLoading}
-                    isDisabled={!selectedMethod}>
+                    isDisabled={isCampaign ? !phone || !selectedMethod : !selectedMethod}>
                     Pay Now
                 </Button>
             </div>
@@ -194,4 +256,4 @@ const parseProviders = (providers: PaymentProvider[]): ParsedProviders[] => {
     return parsedProviders;
 };
 
-export default MakePayment;
+export default memo(MakePayment);

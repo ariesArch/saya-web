@@ -1,7 +1,8 @@
-import { FC, useEffect } from "react";
+import { FC, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import SubscriptionPlanCard from "@/components/common/GoPremiumModal/SubscriptionPlanCard/SubscriptionPlanCard.component";
+import { GoPremiumModalContext } from "@/components/common/GoPremiumModal/utils";
 import { ReduxState } from "@/interfaces/redux.interfaces";
 import BookIcon from "@/public/icons/book.svg";
 import CrownIcon from "@/public/icons/crown.svg";
@@ -18,8 +19,13 @@ interface Props {
 }
 
 const SubscriptionPlans: FC<Props> = ({ isOpen, onSelectPlan }) => {
+    const { isCampaign } = useContext(GoPremiumModalContext);
     const dispatch = useDispatch();
-    const plans = useSelector((state: ReduxState) => state.paymentState.subscriptionPlans);
+    const plans = useSelector((state: ReduxState) =>
+        isCampaign
+            ? state.paymentState.promotionCampaign.link_campaign_subscription_plans || []
+            : state.paymentState.subscriptionPlans
+    );
 
     useEffect(() => {
         if (isOpen && plans.length === 0) {
