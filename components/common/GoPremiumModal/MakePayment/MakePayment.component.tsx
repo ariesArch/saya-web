@@ -82,36 +82,38 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
     const onClickPayNow = useCallback(async () => {
         setIsLoading(true);
 
-        if (isCampaign) {
-            if (!executeRecaptcha) {
-                setIsLoading(false);
-                return;
-            }
-
-            const token = await executeRecaptcha("submitLinkCampaignPayment");
-
+        if (!isCampaign) {
             dispatch(
-                handleSubmitCampaignPaymentAsync(
+                onInitializePaymentAsync(
                     {
-                        phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
-                        link_campaign_subscription_plan_id: selectedPlanId,
+                        plan_id: selectedPlanId,
                         provider: paymentData[0],
                         method: paymentData[1],
-                        "g-recaptcha-response": token,
+                        promo_code: discount.promoCode,
                     },
                     onPayNowSuccess,
                     onPayNowFailure
                 )
             );
+
+            return;
         }
 
+        if (!executeRecaptcha) {
+            setIsLoading(false);
+            return;
+        }
+
+        const token = await executeRecaptcha("submitLinkCampaignPayment");
+
         dispatch(
-            onInitializePaymentAsync(
+            handleSubmitCampaignPaymentAsync(
                 {
-                    plan_id: selectedPlanId,
+                    phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
+                    link_campaign_subscription_plan_id: selectedPlanId,
                     provider: paymentData[0],
                     method: paymentData[1],
-                    promo_code: discount.promoCode,
+                    "g-recaptcha-response": token,
                 },
                 onPayNowSuccess,
                 onPayNowFailure
