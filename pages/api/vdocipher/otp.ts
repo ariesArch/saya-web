@@ -1,4 +1,4 @@
-import { withSentry } from "@sentry/nextjs";
+// import { withSentry } from "@sentry/nextjs";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -33,4 +33,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.end();
 };
 
-export default withSentry(handler as (req: NextApiRequest, res: NextApiResponse) => void);
+// export default withSentry(handler as (req: NextApiRequest, res: NextApiResponse) => void);
+
+export default handler as (req: NextApiRequest, res: NextApiResponse) => void;

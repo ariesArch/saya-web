@@ -1,6 +1,7 @@
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, useContext, useState } from "react";
 
 import AddCouponModal from "@/components/common/GoPremiumModal/MakePayment/AddCouponModal/AddCouponModal.component";
+import { GoPremiumModalContext } from "@/components/common/GoPremiumModal/utils";
 import { CheckPromoResponse } from "@/interfaces/payment.interfaces";
 import { formatCurrency } from "@/utils/index";
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddPromoCode }) => {
+    const { isCampaign } = useContext(GoPremiumModalContext);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const onOpen = () => setIsModalOpen(true);
     const onClose = () => setIsModalOpen(false);
@@ -26,9 +28,7 @@ const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddProm
                     <span>{formatCurrency(totalPrice)} MMK</span>
                 </div>
                 <div css={styles.summaryText}>
-                    <span>
-                        Discount <button onClick={onOpen}>[Add coupon code]</button>
-                    </span>
+                    <span>Discount {!isCampaign && <button onClick={onOpen}>[Add coupon code]</button>}</span>
                     <span>
                         -{" "}
                         {formatCurrency(

@@ -80,7 +80,7 @@ export const onInitializePaymentAsync = (
         promo_code: string;
     },
     onSuccess: (data: PaymentResponse) => void = emptyFunction,
-    onFailure = emptyFunction
+    onFailure: (e: unknown) => void = emptyFunction
 ) => {
     return async () => {
         try {
@@ -92,7 +92,7 @@ export const onInitializePaymentAsync = (
             onSuccess(data?.data as PaymentResponse);
         } catch (e) {
             console.log(e);
-            onFailure();
+            onFailure(e);
         }
     };
 };
@@ -149,7 +149,7 @@ type SubmitCampaignPaymentForm = {
 export const handleSubmitCampaignPaymentAsync = (
     form: SubmitCampaignPaymentForm,
     onSuccess: (data: PaymentResponse) => void = emptyFunction,
-    onFailure = emptyFunction
+    onFailure: (e: unknown) => void = emptyFunction
 ) => {
     return async () => {
         try {
@@ -159,8 +159,7 @@ export const handleSubmitCampaignPaymentAsync = (
 
             onSuccess(data?.data as PaymentResponse);
         } catch (e) {
-            console.log(e);
-            onFailure();
+            onFailure(e);
         }
     };
 };

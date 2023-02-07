@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import { format, parseISO } from "date-fns";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
@@ -23,7 +23,7 @@ const CampaignPage = () => {
     const { campaignId } = router.query;
 
     const { promotionCampaign, isPaymentModalOpen } = useSelector((state: ReduxState) => state.paymentState);
-    const { id, short_des, des, start_date, end_date, promo_code } = promotionCampaign;
+    const { id, short_des, des, end_date, promo_code } = promotionCampaign;
 
     const dispatch = useDispatch();
 
@@ -71,15 +71,19 @@ const CampaignPage = () => {
                             Promotion Ends in: <span>{format(parseISO(end_date), "LLLL dd")}</span>
                         </span>
 
-                        <TimeCountDown startDate={parseISO(start_date)} endDate={parseISO(end_date)} />
+                        <TimeCountDown endDate={parseISO(end_date)} />
 
                         <Button css={button} variant="contained" color="primary" onClick={onPaymentModalOpen}>
                             Get Promotion
                         </Button>
 
-                        <Separator css={separator}>or</Separator>
+                        {promo_code && (
+                            <Fragment>
+                                <Separator css={separator}>or</Separator>
 
-                        <CopyCouponCode couponCode={promo_code} />
+                                <CopyCouponCode couponCode={promo_code} />
+                            </Fragment>
+                        )}
                     </motion.div>
 
                     <motion.div css={leftDots} variants={illuVariants} {...landingAnimationConfig}>

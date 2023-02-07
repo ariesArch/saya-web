@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useCallback, useMemo } from "react";
 
 import { QuizQuestionAnswer, QuizQuestionFormat, QuizQuestionType } from "@/interfaces/courses.interfaces";
 import CheckCircleIcon from "@/public/icons/check-circle.svg";
@@ -30,27 +30,36 @@ const AnswersContainer: FC<Props> = (props) => {
         isTemp = false,
         showCorrectAnswer = true,
     } = props;
-    const isMultipleChoice = questionType === "multiple-choice" && format !== "audio";
-    const isTrueFalse = questionType === "true-false" && format !== "audio";
 
-    const renderAnswerIcon = (isSelected: boolean, isCorrect: boolean) => {
-        if (isTemp) {
-            return <CheckCircleIcon />;
-        }
-        if (isSelected && showCorrectAnswer) {
-            if (isCorrect) {
-                return <TickCircleIcon color="var(--color-violet-light)" />;
-            }
-            return <CloseCircleIcon />;
-        }
-        if (isSummary) {
-            if (isCorrect) {
-                return <TickCircleIcon color="var(--color-violet-light)" />;
-            }
-        }
+    const { isMultipleChoice, isTrueFalse } = useMemo(
+        () => ({
+            isMultipleChoice: questionType === "multiple-choice" && format !== "audio",
+            isTrueFalse: questionType === "true-false" && format !== "audio",
+        }),
+        [format, questionType]
+    );
 
-        return <CheckCircleIcon color="#d2d2d2" />;
-    };
+    const renderAnswerIcon = useCallback(
+        (isSelected: boolean, isCorrect: boolean) => {
+            if (isTemp) {
+                return <CheckCircleIcon />;
+            }
+            if (isSelected && showCorrectAnswer) {
+                if (isCorrect) {
+                    return <TickCircleIcon color="var(--color-violet-light)" />;
+                }
+                return <CloseCircleIcon />;
+            }
+            if (isSummary) {
+                if (isCorrect) {
+                    return <TickCircleIcon color="var(--color-violet-light)" />;
+                }
+            }
+
+            return <CheckCircleIcon color="#d2d2d2" />;
+        },
+        [isSummary, isTemp, showCorrectAnswer]
+    );
 
     return (
         <div css={styles.answersContainer(isMultipleChoice)}>

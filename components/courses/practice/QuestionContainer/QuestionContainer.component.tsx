@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import QuizAudioPlayer from "@/components/courses/practice/QuizAudioPlayer/QuizAudioPlayer.component";
 import { QuizQuestionFormat, QuizQuestionType } from "@/interfaces/courses.interfaces";
@@ -26,24 +26,26 @@ const QuestionContainer: FC<Props> = (props) => {
         isSelected = false,
         isTempAnswerSelected = true,
     } = props;
+    const innerHTML = useMemo(
+        () => ({
+            __html:
+                questionType === "fill-in-the-blank"
+                    ? renderFillInTheBankQuestion(
+                          question,
+                          isSelected,
+                          isTempAnswerSelected,
+                          correctAnswer,
+                          selectedAnswer
+                      )
+                    : question,
+        }),
+        [correctAnswer, isSelected, isTempAnswerSelected, question, questionType, selectedAnswer]
+    );
+
     return (
         <div css={styles.questionContainer(questionType === "true-false" && format !== "audio")}>
             {format === "text" ? (
-                <div
-                    css={styles.questionText}
-                    dangerouslySetInnerHTML={{
-                        __html:
-                            questionType === "fill-in-the-blank"
-                                ? renderFillInTheBankQuestion(
-                                      question,
-                                      isSelected,
-                                      isTempAnswerSelected,
-                                      correctAnswer,
-                                      selectedAnswer
-                                  )
-                                : question,
-                    }}
-                />
+                <div css={styles.questionText} dangerouslySetInnerHTML={innerHTML} />
             ) : (
                 <QuizAudioPlayer url={question} />
             )}

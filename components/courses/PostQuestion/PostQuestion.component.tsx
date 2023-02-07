@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
@@ -28,18 +28,21 @@ const PostQuestion: FC<Props> = ({ lessonId }) => {
         setIsLoading(false);
     };
 
-    const onSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
+    const onSubmit = useCallback(
+        (e: FormEvent) => {
+            e.preventDefault();
+            setIsLoading(true);
 
-        dispatch(
-            onSubmitStudentQuestion(
-                { lesson_id: lessonId, question },
-                onSubmitQuestionSuccess,
-                onSubmitQuestionFailure
-            )
-        );
-    };
+            dispatch(
+                onSubmitStudentQuestion(
+                    { lesson_id: lessonId, question },
+                    onSubmitQuestionSuccess,
+                    onSubmitQuestionFailure
+                )
+            );
+        },
+        [dispatch, lessonId, question]
+    );
 
     return (
         <form css={styles.container} onSubmit={onSubmit}>

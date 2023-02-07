@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import useSound from "use-sound";
@@ -56,7 +56,51 @@ const LevelTestQuizView = ({ onShowSummary }: { onShowSummary: () => void }) => 
         setSelectedAnswerTemp(answer);
     };
 
-    const onCheckAnswer = () => {
+    const handleSubmit = useCallback(
+        (level: StudentLevel) => {
+            setLoading(true);
+            dispatch(
+                handleSaveLevelTestResults(
+                    level,
+                    () => {
+                        toast("Schedule created successfully", { type: "success" });
+                        onShowSummary();
+                    },
+                    () => {
+                        toast("Failed to submit your results, please try again", { type: "error" });
+                    }
+                )
+            );
+        },
+        [dispatch, onShowSummary]
+    );
+
+    const onNext = useCallback(() => {
+        const nextLevel = getNextStudentLevel(currentLevel);
+
+        setSelectedAnswerTemp(null);
+
+        if (currentIndex + 2 === questions.length && nextLevel) {
+            dispatch(fetchLevelTestQuestionsAsync(nextLevel, true));
+        }
+
+        if (currentIndex + 1 < questions.length) {
+            setCurrentIndex(currentIndex + 1);
+
+            return;
+        }
+
+        if (nextLevel === null) return;
+
+        if (nextLevel !== "C1") {
+            setCurrentLevel(nextLevel);
+            dispatch(onSetQuestions(upcomingQuestions));
+        } else {
+            handleSubmit(nextLevel);
+        }
+    }, [currentIndex, currentLevel, dispatch, handleSubmit, questions.length, upcomingQuestions]);
+
+    const onCheckAnswer = useCallback(() => {
         if (!selectedAnswerTemp) return;
 
         setTimeout(() => {
@@ -85,48 +129,14 @@ const LevelTestQuizView = ({ onShowSummary }: { onShowSummary: () => void }) => 
             // stop
             handleSubmit(currentLevel);
         }
-    };
-
-    const onNext = () => {
-        const nextLevel = getNextStudentLevel(currentLevel);
-
-        setSelectedAnswerTemp(null);
-
-        if (currentIndex + 2 === questions.length && nextLevel) {
-            dispatch(fetchLevelTestQuestionsAsync(nextLevel, true));
-        }
-
-        if (currentIndex + 1 < questions.length) {
-            setCurrentIndex(currentIndex + 1);
-
-            return;
-        }
-
-        if (nextLevel === null) return;
-
-        if (nextLevel !== "C1") {
-            setCurrentLevel(nextLevel);
-            dispatch(onSetQuestions(upcomingQuestions));
-        } else {
-            handleSubmit(nextLevel);
-        }
-    };
-
-    const handleSubmit = (level: StudentLevel) => {
-        setLoading(true);
-        dispatch(
-            handleSaveLevelTestResults(
-                level,
-                () => {
-                    toast("Schedule created successfully", { type: "success" });
-                    onShowSummary();
-                },
-                () => {
-                    toast("Failed to submit your results, please try again", { type: "error" });
-                }
-            )
-        );
-    };
+    }, [
+        currentLevel,
+        handleSubmit,
+        onNext,
+        selectedAnswerTemp,
+        totalConsecutiveIncorrectAnswers,
+        totalIncorrectAnswers,
+    ]);
 
     useEffect(() => {
         dispatch(fetchLevelTestQuestionsAsync("A2"));

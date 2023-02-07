@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from "react";
 
 import { carouselTransition, carouselVariants } from "@/components/common/FramerMotion";
 import AnswersContainer from "@/components/courses/practice/AnswersContainer/AnswersContainer.component";
@@ -19,7 +19,7 @@ interface Props {
 const SummaryView: FC<Props> = ({ currentIndex, onCurrentIndexChange, questions }) => {
     const [direction, setDirection] = useState(1);
 
-    const onGoNext = () => {
+    const onGoNext = useCallback(() => {
         setDirection(1);
 
         if (currentIndex + 1 >= questions.length) {
@@ -27,9 +27,9 @@ const SummaryView: FC<Props> = ({ currentIndex, onCurrentIndexChange, questions 
             return;
         }
         onCurrentIndexChange(currentIndex + 1);
-    };
+    }, [currentIndex, onCurrentIndexChange, questions.length]);
 
-    const onGoBack = () => {
+    const onGoBack = useCallback(() => {
         setDirection(-1);
 
         if (currentIndex === 0) {
@@ -37,7 +37,7 @@ const SummaryView: FC<Props> = ({ currentIndex, onCurrentIndexChange, questions 
             return;
         }
         onCurrentIndexChange(currentIndex - 1);
-    };
+    }, [currentIndex, onCurrentIndexChange, questions.length]);
 
     return (
         <div css={styles.container}>
