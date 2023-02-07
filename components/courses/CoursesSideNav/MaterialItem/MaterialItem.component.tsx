@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { FC, Fragment, HTMLAttributes, ReactNode } from "react";
+import { FC, Fragment, HTMLAttributes, ReactNode, useCallback, useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import Avatar from "@/components/common/Avatar/Avatar.component";
@@ -22,10 +22,11 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const MaterialItem: FC<Props> = (props) => {
     const { material, currentLessonId, isCourseEnrolled, onGoPremiumModalOpen, ...rest } = props;
     const { id, title, cover_photo, mark_as_done, is_lock } = material;
+
     const router = useRouter();
     const isTablet = useMediaQuery({ maxWidth: 992 });
 
-    const status = (): LessonStatus => {
+    const status = useMemo((): LessonStatus => {
         let status: LessonStatus = "incomplete";
 
         if (id === currentLessonId) {
@@ -49,10 +50,19 @@ const MaterialItem: FC<Props> = (props) => {
         }
 
         return status;
-    };
+    }, [currentLessonId, id, is_lock, mark_as_done]);
+
+    const onGoPremium = useCallback(
+        (e) => {
+            e.stopPropagation();
+
+            onGoPremiumModalOpen();
+        },
+        [onGoPremiumModalOpen]
+    );
 
     const renderStatus = (): ReactNode => {
-        switch (status()) {
+        switch (status) {
             case "playing":
                 return (
                     <Fragment>
@@ -69,14 +79,7 @@ const MaterialItem: FC<Props> = (props) => {
             case "locked":
                 return (
                     <Fragment>
-                        <LockCircleIcon />{" "}
-                        <a
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onGoPremiumModalOpen();
-                            }}>
-                            Go Premium
-                        </a>
+                        <LockCircleIcon /> <a onClick={onGoPremium}>Go Premium</a>
                         {/* &nbsp;|&nbsp; */}
                         {/* <a css={styles.playOnceBtn} onClick={(e) => e.stopPropagation()}> */}
                         {/*    Play once by <StarIcon /> <span>10</span> */}
@@ -93,12 +96,12 @@ const MaterialItem: FC<Props> = (props) => {
     };
 
     return (
-        <div css={styles.material(status(), isCourseEnrolled)} {...rest}>
+        <div css={styles.material(status, isCourseEnrolled)} {...rest}>
             <Avatar src={cover_photo} hasBorder={false} size={isTablet ? "7rem" : undefined} />
 
             <div css={styles.contents}>
                 <span css={styles.title}>{title}</span>
-                <span css={styles.status(status())}>{renderStatus()}</span>
+                <span css={styles.status(status)}>{renderStatus()}</span>
             </div>
         </div>
     );

@@ -47,10 +47,13 @@ const CoursesSideNav = () => {
 
             if (chapter) {
                 const index = selectedCourse.chapters.indexOf(chapter);
+
                 setSelectedChapter({ chapter, index });
-            } else {
-                router.push(`/courses/${selectedCourse.id}`);
+
+                return;
             }
+
+            router.push(`/courses/${selectedCourse.id}`);
         }
     }, [lessonId, router, selectedCourse.chapters, selectedCourse.id]);
 

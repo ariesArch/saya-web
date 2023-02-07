@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Script from "next/script";
-import { FC, Fragment, memo, useEffect, useRef } from "react";
+import { FC, Fragment, memo, useCallback, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import { OTPResponse } from "@/interfaces/courses.interfaces";
@@ -17,7 +17,7 @@ const VideoPlayer: FC<Props> = ({ vdocipherId }) => {
     const dispatch = useDispatch();
     const vdocipherIdRef = useRef();
 
-    const onFetchOTPSuccess = ({ otp, playbackInfo }: OTPResponse) => {
+    const onFetchOTPSuccess = useCallback(({ otp, playbackInfo }: OTPResponse) => {
         // this is the only way to keep track of vdocipher object
         // @ts-ignore
         window.vdocipher = new VdoPlayer({
@@ -27,9 +27,9 @@ const VideoPlayer: FC<Props> = ({ vdocipherId }) => {
             // the container can be any DOM element on webapp
             container: document.querySelector("#vdocipherPlayer"),
         });
-    };
+    }, []);
 
-    const onSubmitViewingBehavior = () => {
+    const onSubmitViewingBehavior = useCallback(() => {
         // @ts-ignore
         const video = window?.vdocipher;
         dispatch(
@@ -55,14 +55,14 @@ const VideoPlayer: FC<Props> = ({ vdocipherId }) => {
         if (video?.totalCovered) {
             dispatch(calendarSaveViewVideoSecondsAsync((video.totalCovered as number) || 0));
         }
-    };
+    }, [courseId, dispatch]);
 
     useEffect(() => {
         if (!vdocipherId) return;
         // @ts-ignore
         vdocipherIdRef.current = vdocipherId;
         dispatch(fetchVideoOtp(vdocipherId, onFetchOTPSuccess));
-    }, [vdocipherId]);
+    }, [dispatch, onFetchOTPSuccess, vdocipherId]);
 
     useEffect(() => {
         if (router.pathname.includes("/learn/")) {
@@ -73,7 +73,7 @@ const VideoPlayer: FC<Props> = ({ vdocipherId }) => {
                 router.events.off("routeChangeStart", onSubmitViewingBehavior);
             }
         };
-    }, []);
+    }, [onSubmitViewingBehavior, router.events, router.pathname]);
 
     return (
         <Fragment>

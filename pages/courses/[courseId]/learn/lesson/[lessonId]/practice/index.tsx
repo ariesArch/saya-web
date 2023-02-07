@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Spinner from "@/components/common/Spinner/Spinner.component";
@@ -63,6 +63,7 @@ const renderBgIllustrations = (illuName: string) => {
 const PracticePage = () => {
     const router = useRouter();
     const { courseId, lessonId } = router.query;
+
     const { quiz, selectedCourse, nextLessonId, firstLessonId } = useSelector((state: ReduxState) => ({
         quiz: state.coursesState.quiz,
         selectedCourse: state.coursesState.selectedCourse,
@@ -73,6 +74,7 @@ const PracticePage = () => {
     }));
     const { illustration_color, illustration_type } = selectedCourse;
     const dispatch = useDispatch();
+
     const [route, setRoute] = useState<"practice" | "completion" | "summary">("practice");
     const [loading, setIsLoading] = useState(false);
 
@@ -98,7 +100,7 @@ const PracticePage = () => {
         router.push(router.asPath.replace("/practice", ""));
     };
 
-    const onVisitNextLesson = () => {
+    const onVisitNextLesson = useCallback(() => {
         let lessonId;
 
         if (!nextLessonId) {
@@ -107,7 +109,7 @@ const PracticePage = () => {
             lessonId = nextLessonId;
         }
         router.push(`/courses/${courseId}/learn/lesson/${lessonId}`);
-    };
+    }, [courseId, firstLessonId, nextLessonId, router]);
 
     useEffect(() => {
         dispatch(fetchLessonQuizAsync(lessonId as string));

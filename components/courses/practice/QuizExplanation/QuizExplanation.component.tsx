@@ -16,6 +16,7 @@ const QuizExplanation: FC<Props> = ({ isCorrect = true, explanation, onNext }) =
         const element = document.getElementById("PracticeQuizExplanation");
         if (element) element.scrollIntoView({ block: "center", behavior: "smooth" });
     }, []);
+
     return (
         <motion.div
             id="PracticeQuizExplanation"

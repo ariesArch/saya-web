@@ -1,7 +1,7 @@
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { useRouter } from "next/router";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useMemo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
@@ -32,9 +32,13 @@ const DescriptionCard = () => {
     const dispatch = useDispatch();
     const isTablet = useMediaQuery({ maxWidth: 992 });
     const [isLoading, setIsLoading] = useState(false);
-    const progress = Math.floor((course_total_finished_length / course_total_length) * 100);
 
-    const onEnroll = () => {
+    const progress = useMemo(
+        () => Math.floor((course_total_finished_length / course_total_length) * 100),
+        [course_total_finished_length, course_total_length]
+    );
+
+    const onEnroll = useCallback(() => {
         setIsLoading(true);
         dispatch(
             onCourseEnrollAsync(
@@ -45,7 +49,7 @@ const DescriptionCard = () => {
                 () => setIsLoading(false)
             )
         );
-    };
+    }, [chapters, dispatch, id, router]);
 
     return (
         <div css={styles.card(!!id, illustration_color)}>

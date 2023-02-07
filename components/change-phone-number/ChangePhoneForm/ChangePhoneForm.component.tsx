@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
@@ -56,16 +56,16 @@ const ChangePhoneForm = () => {
         }
     };
 
-    const onOTPVerifySuccess = () => {
+    const onOTPVerifySuccess = useCallback(() => {
         setDirection(-1);
 
         setStep("phone");
         setIsLoading(false);
 
         if (error) setError("");
-    };
+    }, [error]);
 
-    const onOTPVerifyFailure = (e: any) => {
+    const onOTPVerifyFailure = useCallback((e: any) => {
         setIsLoading(false);
 
         if (e?.response?.status === 422) {
@@ -73,42 +73,45 @@ const ChangePhoneForm = () => {
         } else {
             setError("Something went wrong. Please try again.");
         }
-    };
+    }, []);
 
-    const onSave = (e: FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
+    const onSave = useCallback(
+        (e: FormEvent) => {
+            e.preventDefault();
+            setIsLoading(true);
 
-        if (step === "phone") {
-            dispatch(
-                updatePhoneNumberAsync(
-                    phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
-                    onOTPSendSuccess,
-                    onOTPSendFailure
-                )
-            );
-        } else {
-            dispatch(
-                updatePhoneVerifyAsync(
-                    { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`, otp },
-                    onOTPVerifySuccess,
-                    onOTPVerifyFailure
-                )
-            );
-        }
-    };
+            if (step === "phone") {
+                dispatch(
+                    updatePhoneNumberAsync(
+                        phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
+                        onOTPSendSuccess,
+                        onOTPSendFailure
+                    )
+                );
+            } else {
+                dispatch(
+                    updatePhoneVerifyAsync(
+                        { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`, otp },
+                        onOTPVerifySuccess,
+                        onOTPVerifyFailure
+                    )
+                );
+            }
+        },
+        [dispatch, onOTPSendSuccess, onOTPVerifySuccess, otp, phone, step]
+    );
 
-    const isSubmitBtnDisabled = () => {
+    const isSubmitBtnDisabled = useMemo(() => {
         return step === "phone" ? phone === initialPhone || phone.length < 7 : otp.length < 6;
-    };
+    }, [initialPhone, otp.length, phone, step]);
 
-    const onGoBack = () => {
+    const onGoBack = useCallback(() => {
         setDirection(-1);
         setStep("phone");
 
         if (otp.length) setOtp("");
         if (error) setError("");
-    };
+    }, [error, otp.length]);
 
     const onCancel = () => router.back();
 
@@ -153,7 +156,7 @@ const ChangePhoneForm = () => {
                     variant="contained"
                     loading={isLoading}
                     type="submit"
-                    isDisabled={isSubmitBtnDisabled()}>
+                    isDisabled={isSubmitBtnDisabled}>
                     {step === "phone" ? "Continue" : "Verify"}
                 </Button>
             </div>

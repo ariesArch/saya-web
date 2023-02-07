@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ChangeEvent, FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useDispatch, useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 
 import Button from "@/components/common/Button/Button.component";
 import MakePaymentSummary from "@/components/common/GoPremiumModal/MakePayment/Summary/Summary.component";
@@ -121,12 +122,19 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
         );
     }, [discount.promoCode, dispatch, executeRecaptcha, isCampaign, paymentData, phone, selectedPlanId]);
 
-    const onPayNowSuccess = (data: PaymentResponse) => {
+    const onPayNowSuccess = useCallback((data: PaymentResponse) => {
         setIsLoading(false);
         setPaymentResponse(data);
-    };
+    }, []);
 
-    const onPayNowFailure = () => setIsLoading(false);
+    const onPayNowFailure = useCallback((e: any) => {
+        setIsLoading(false);
+
+        if (!e.response.data.error) return;
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        toast(e.response.data.error, { type: "error" });
+    }, []);
 
     const onGoBackFromSummary = () => setPaymentResponse(null);
 
@@ -174,6 +182,8 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                     <span css={styles.info}>
                         SAYA app တွင် အသုံးပြုရန်ရည်ရွယ်ထားသော ဖုန်းနံပါတ်ကိုသာ ရိုက်ထည့်‌ပါ။
                     </span>
+
+                    <ToastContainer autoClose={2000} />
                 </div>
             )}
 

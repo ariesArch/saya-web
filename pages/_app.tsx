@@ -2,7 +2,7 @@ import "@/public/css/globals.css";
 
 import cookie from "js-cookie";
 import { AppContext, AppProps } from "next/app";
-import { Fragment, memo, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import LoadingIndicator from "@/components/common/LoadingIndicator/LoadingIndicator.component";
@@ -106,6 +106,8 @@ App.getInitialProps = wrapper.getInitialAppProps(
                 token = cookie.get("token");
             }
 
+            console.log({ token });
+
             if (allowedPaths.includes(pathname)) {
                 return {
                     pageProps,
@@ -157,4 +159,4 @@ App.getInitialProps = wrapper.getInitialAppProps(
         }
 );
 
-export default wrapper.withRedux(memo(App));
+export default wrapper.withRedux(App);

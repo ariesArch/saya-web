@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Avatar from "@/components/common/Avatar/Avatar.component";
@@ -27,23 +27,26 @@ const EditProfileForm = () => {
     const onNameChange = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
     const onGenderChange = (gender: "male" | "female") => setGender(gender);
-    const onAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+    const onAvatarChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
+
             if (!file) return;
+
             setImageFile(file);
             setAvatar(URL.createObjectURL(file));
         }
-    };
+    }, []);
 
-    const isSaveBtnDisabled = () => {
-        return (
+    const isSaveBtnDisabled = useMemo(
+        () =>
             userData.name === name &&
             userData.email === email &&
             userData.gender === gender &&
-            userData.photo === avatar
-        );
-    };
+            userData.photo === avatar,
+        [avatar, email, gender, name, userData.email, userData.gender, userData.name, userData.photo]
+    );
 
     const onUpdateSuccess = () => {
         setIsLoading(false);
@@ -53,17 +56,22 @@ const EditProfileForm = () => {
         setIsLoading(false);
     };
 
-    const onSave = (e: FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
-        dispatch(
-            userUpdateProfileAsync(
-                { name, email, image: imageFile as string, gender },
-                onUpdateSuccess,
-                onUpdateFailure
-            )
-        );
-    };
+    const onSave = useCallback(
+        (e: FormEvent) => {
+            e.preventDefault();
+
+            setIsLoading(true);
+
+            dispatch(
+                userUpdateProfileAsync(
+                    { name, email, image: imageFile as string, gender },
+                    onUpdateSuccess,
+                    onUpdateFailure
+                )
+            );
+        },
+        [dispatch, email, gender, imageFile, name]
+    );
 
     const onCancel = () => router.back();
 
@@ -115,6 +123,7 @@ const EditProfileForm = () => {
                             checked={gender === "male"}
                             radioSize="2rem"
                             onChange={() => onGenderChange("male")}
+                            showRadio
                         />
                         <label htmlFor="maleRadio">Male</label>
                     </div>
@@ -124,6 +133,7 @@ const EditProfileForm = () => {
                             checked={gender === "female"}
                             radioSize="2rem"
                             onChange={() => onGenderChange("female")}
+                            showRadio
                         />
                         <label htmlFor="femaleRadio">Female</label>
                     </div>
@@ -135,11 +145,7 @@ const EditProfileForm = () => {
             {/* </div> */}
 
             <div css={styles.buttonsContainer}>
-                <Button
-                    variant="contained"
-                    isDisabled={isSaveBtnDisabled()}
-                    loading={isLoading}
-                    type="submit">
+                <Button variant="contained" isDisabled={isSaveBtnDisabled} loading={isLoading} type="submit">
                     Save
                 </Button>
                 <Button type="button" onClick={onCancel}>
