@@ -88,7 +88,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                 return;
             }
 
-            const token = await executeRecaptcha("register");
+            const token = await executeRecaptcha("submitLinkCampaignPayment");
 
             dispatch(
                 handleSubmitCampaignPaymentAsync(
