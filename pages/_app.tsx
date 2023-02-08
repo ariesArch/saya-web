@@ -94,7 +94,7 @@ App.getInitialProps = wrapper.getInitialAppProps(
             let token: string | undefined = "";
             let userData: UserData | undefined;
             // the routes that don't need any conditional logics to be redirected or not.
-            const allowedPaths = ["/faq", "/platforms"];
+            const allowedPaths = ["/faq", "/platforms", "/link-campaign/[campaignId]"];
 
             if (Component.getInitialProps) {
                 pageProps = await Component.getInitialProps(ctx);
@@ -106,9 +106,9 @@ App.getInitialProps = wrapper.getInitialAppProps(
                 token = cookie.get("token");
             }
 
-            console.log({ token });
-
             if (allowedPaths.includes(pathname)) {
+                console.log("hello");
+
                 return {
                     pageProps,
                     token,

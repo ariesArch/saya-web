@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 
 import Button from "@/components/common/Button/Button.component";
 import { contentsVariant, illuVariants, landingAnimationConfig } from "@/components/common/FramerMotion";
@@ -53,7 +54,7 @@ const CampaignPage = () => {
 
     useEffect(() => {
         if (isError) {
-            router.push("/");
+            toast("This campaign is no longer available", { type: "error" });
         }
     }, [isError, router]);
 
@@ -99,6 +100,8 @@ const CampaignPage = () => {
             {isPaymentModalOpen && (
                 <GoPremiumModal isOpen={isPaymentModalOpen} onClose={onPaymentModalClose} isCampaign />
             )}
+
+            <ToastContainer autoClose={false} />
         </UnauthedLayout>
     );
 };
