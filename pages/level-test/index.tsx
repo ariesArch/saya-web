@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +11,9 @@ import LevelTestSummary from "@/components/level-test/Summary/Summary.component"
 import { ReduxState, StudentLevel } from "@/interfaces/redux.interfaces";
 import CourseLayout from "@/layouts/CourseLayout";
 import CloseIcon from "@/public/icons/close.svg";
-import MountainLightGreen from "@/public/images/quiz-bg_tree_light-green.svg";
 import { fetchLevelTestQuestionsAsync } from "@/store/level-test/level-test.actions";
+
+const MountainLightGreen = dynamic(() => import("@/public/images/quiz-bg_tree_light-green.svg"));
 
 const LevelTestPage = () => {
     const router = useRouter();
