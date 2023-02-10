@@ -1,8 +1,8 @@
 {
-  "name": "client",
+  "name": "SAYA-WEB",
   "private": true,
   "scripts": {
-    "postinstall": "yarn prepare:husky",
+    "postinstall": "yarn prepare",
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
