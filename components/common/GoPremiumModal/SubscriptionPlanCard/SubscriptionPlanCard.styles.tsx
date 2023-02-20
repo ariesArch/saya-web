@@ -58,6 +58,10 @@ export const card = css`
     &:active {
         background-color: #f6f6f6;
     }
+
+    @media only screen and (max-width: 495px) {
+        margin-bottom: 2rem;
+    }
 `;
 
 export const month = css`

@@ -199,3 +199,5 @@ The development version of this project is deployed on Vercel. https://saya-web.
 The Production version is deployed on AWS EC2 (used nginx and pm2) - https://saya.education
 
 Please contact Binary Team for the Credentials of the Production Server
+
+In order to switch from development mode to production mode, in `.env` file, change NEXT_PUBLIC_ENVIRONMENT from `development` to `production` and vice vera
