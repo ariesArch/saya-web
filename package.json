@@ -1,5 +1,5 @@
 {
-  "name": "SAYA-WEB",
+  "name": "saya-web",
   "private": true,
   "scripts": {
     "postinstall": "yarn prepare",
@@ -47,7 +47,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.0",
     "sharp": "^0.31.3",
-    "simplebar-react": "^2.3.6",
+    "simplebar-react": "^3.2.1",
     "use-sound": "^4.0.1"
   },
   "devDependencies": {

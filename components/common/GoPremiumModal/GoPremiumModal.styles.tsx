@@ -99,4 +99,8 @@ export const mainContents = css`
     @media only screen and (max-width: 545px) {
         padding: 5rem 0;
     }
+
+    @media only screen and (max-width: 495px) {
+        max-height: 85vh;
+    }
 `;

@@ -7,7 +7,7 @@ export const plansContainer = css`
 
     @media only screen and (max-width: 495px) {
         align-items: center;
-        padding-top: 10rem;
+        padding-top: 2rem;
     }
 `;
 
@@ -92,7 +92,6 @@ export const cardsContainer = css`
     @media only screen and (max-width: 495px) {
         grid-template-columns: repeat(1, 1fr);
         height: calc(100vh - 25rem);
-        overflow-y: auto;
         padding-top: 5rem;
         margin-top: 2rem;
     }
