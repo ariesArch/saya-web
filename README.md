@@ -186,7 +186,6 @@ The logic for listening and showing notifications for **firebase** through **ser
 # Error Tracking Tools
 |Name|Description|Documentation|Installed|
 |--|--|--|--|
-
 | Sentry - @sentry/nextjs | To Log the Errors happening on Production (currently disabled due to limitations of the free plan) (configs in - sentry.client.config.js, sentry.client.config.js, next.config.js, _error.tsx, api folder in pages) (all the configs are currently commented out) | https://docs.sentry.io/platforms/javascript/guides/nextjs/ | ❌
 
 
