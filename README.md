@@ -130,8 +130,7 @@ Global CSS and fonts can't be found in `public/css` and `public/fonts` folders.
 CSS variables being used in the entire app can be found inside `public/css/global.css`
 
 # Packages Used
-| Name | Description | Documentation | Installed
-
+|Name|Description|Documentation|Installed|
 |--|--|--|--|
 
 |@emotion/core @emotion/react | CSS IN JS Library | https://emotion.sh/docs/ | ✅
@@ -174,8 +173,7 @@ Firebase messaging service-worker file is located in `public/firebase` as `fireb
 The logic for listening and showing notifications for **firebase** through **service worker** is located in _app.tsx
 
 # Code Quality Optimization tools
-| Name | Description | Documentation | Installed
-
+|Name|Description|Documentation|Installed|
 |--|--|--|--|
 
 | eslint | To reinforce Javascript and React best practices(the configurations are in `.eslintrc` file | https://eslint.org/docs/latest/use/getting-started | ✅
@@ -186,8 +184,7 @@ The logic for listening and showing notifications for **firebase** through **ser
 
 
 # Error Tracking Tools
-| Name | Description | Documentation | Installed
-
+|Name|Description|Documentation|Installed|
 |--|--|--|--|
 
 | Sentry - @sentry/nextjs | To Log the Errors happening on Production (currently disabled due to limitations of the free plan) (configs in - sentry.client.config.js, sentry.client.config.js, next.config.js, _error.tsx, api folder in pages) (all the configs are currently commented out) | https://docs.sentry.io/platforms/javascript/guides/nextjs/ | ❌
