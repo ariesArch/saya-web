@@ -12,7 +12,7 @@ import RadarIcon from "@/public/icons/radar.svg";
 import TimerIcon from "@/public/icons/timer.svg";
 import VideoCameraIcon from "@/public/icons/video-camera.svg";
 import { onRemoveClass, onUpdateClass } from "@/store/live-class/live-class.actions";
-import { convertTo24hr } from "@/utils/date-time";
+import { convertTo24hr, convertTZ } from "@/utils/date-time";
 
 import * as styles from "./LiveClassCard.styles";
 
@@ -23,7 +23,24 @@ interface Props {
 }
 
 const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
-    const { date, from, to, image_url, title, teacher_name, is_notify, level, zoom_meeting_id } = data;
+    const {
+        date_time_from,
+        date_time_to,
+        image_url,
+        title,
+        teacher_name,
+        is_notify,
+        level,
+        zoom_meeting_id,
+    } = data;
+
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const convertedDate = format(convertTZ(date_time_from + " UTC", timezone), "yyyy-MM-dd");
+    const convertedFrom = format(convertTZ(date_time_from + " UTC", timezone), "hh:mm aa");
+
+    console.log(convertedDate);
+
     const dispatch = useDispatch();
 
     const [distance, setDistance] = useState({ hours: 0, minutes: 0, seconds: 0 });
@@ -35,6 +52,12 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
 
     useEffect(() => {
         if (!isToday) return;
+
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        const date = format(convertTZ(date_time_from + " UTC", timezone), "yyyy-MM-dd");
+        const from = format(convertTZ(date_time_from + " UTC", timezone), "hh:mm aa");
+        const to = format(convertTZ(date_time_to + " UTC", timezone), "hh:mm aa");
 
         const d = intervalToDuration({
             start: new Date(),
@@ -81,7 +104,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
 
         // eslint-disable-next-line consistent-return
         return () => clearInterval(interval);
-    }, [data, date, dispatch, from, isToday, is_notify, status, title, to]);
+    }, [data, date_time_from, date_time_to, dispatch, isToday, is_notify, status, title]);
 
     return (
         <div css={styles.container(status)}>
@@ -92,7 +115,7 @@ const LiveClassCard: FC<Props> = ({ status = "default", isToday, data }) => {
                 <div css={styles.classInfo}>
                     <div css={styles.date(is_notify)}>
                         {is_notify && <NotificationIcon />}
-                        {format(parseISO(date), "MMM dd, EEE")} | {from}
+                        {format(parseISO(convertedDate), "MMM dd, EEE")} | {convertedFrom}
                     </div>
                     <div css={styles.mainTexts}>
                         <span css={styles.title}>{title}</span>

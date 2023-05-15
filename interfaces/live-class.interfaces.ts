@@ -8,6 +8,8 @@ export interface LiveEvent {
     zoom_meeting_password: string;
     image_url: string;
     thumb_url: string;
+    date_time_from: string;
+    date_time_to: string;
     date: string;
     old_date: string | null;
     from: string;

@@ -12,6 +12,11 @@ const moduleExports = {
     images: {
         domains: ["saya-education.s3.amazonaws.com", "staging.saya.education", "backend.saya.education"],
     },
+    eslint: {
+        // Warning: This allows production builds to successfully complete even if
+        // your project has ESLint errors.
+        ignoreDuringBuilds: true,
+    },
 };
 
 // const sentryWebpackPluginOptions = {

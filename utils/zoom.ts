@@ -7,7 +7,8 @@ import { siteURL, zoomDecryptionKey, zoomSdkKey } from "@/utils/constants";
 ZoomMtg.setZoomJSLib("https://source.zoom.us/2.4.0/lib", "/av");
 
 ZoomMtg.preLoadWasm();
-ZoomMtg.prepareJssdk();
+// ZoomMtg.prepareJssdk();
+ZoomMtg.prepareWebSDK();
 
 export const decrypt = (encrypted: string) => {
     const keyUtf8 = enc.Utf8.parse(zoomDecryptionKey || "");
@@ -58,7 +59,7 @@ export const startMeeting = async ({
                 signature,
                 meetingNumber: decryptedMeetingNumber,
                 userName,
-                apiKey: zoomSdkKey,
+                sdkKey: zoomSdkKey,
                 userEmail: "",
                 passWord: decryptedPassword,
                 success: (success: any) => {
