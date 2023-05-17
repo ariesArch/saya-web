@@ -54,12 +54,12 @@ const LiveClassJoinPage = () => {
                     <link
                         type="text/css"
                         rel="stylesheet"
-                        href="https://source.zoom.us/2.4.0/css/bootstrap.css"
+                        href="https://source.zoom.us/2.10.0/css/bootstrap.css"
                     />
                     <link
                         type="text/css"
                         rel="stylesheet"
-                        href="https://source.zoom.us/2.4.0/css/react-select.css"
+                        href="https://source.zoom.us/2.10.0/css/react-select.css"
                     />
                 </Fragment>
             }>

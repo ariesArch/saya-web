@@ -4,7 +4,7 @@ import { AES, enc, mode } from "crypto-js";
 
 import { siteURL, zoomDecryptionKey, zoomSdkKey } from "@/utils/constants";
 
-ZoomMtg.setZoomJSLib("https://source.zoom.us/2.4.0/lib", "/av");
+ZoomMtg.setZoomJSLib("https://source.zoom.us/2.10.0/lib", "/av");
 
 ZoomMtg.preLoadWasm();
 // ZoomMtg.prepareJssdk();
