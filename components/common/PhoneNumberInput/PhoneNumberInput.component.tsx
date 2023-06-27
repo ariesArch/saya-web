@@ -30,7 +30,7 @@ const PhoneNumberInput: FC<Props> = ({ containerStyles, onChange, formatedPhone 
     }, []);
 
     const [selectedOption, setSelectedOption] = useState(null);
-    const [options, setOptions] = useState();
+    const [options, setOptions] = useState(null);
 
     useEffect(() => {
         const formatData = countryCodes.countryCodes.map((item) => {
@@ -85,6 +85,7 @@ const PhoneNumberInput: FC<Props> = ({ containerStyles, onChange, formatedPhone 
                     value={selectedOption}
                     options={options}
                     onChange={onSelectedCountryCode}
+                    // @ts-ignore
                     getOptionLabel={(e) => (
                         <div style={{ display: "flex", alignItems: "center" }}>
                             <Image src={e.icon} alt="Myanmar Flag" width={10} height={10} />

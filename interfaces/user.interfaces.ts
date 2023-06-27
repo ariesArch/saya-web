@@ -5,7 +5,7 @@ export interface UserData {
     name: string;
     photo: string;
     email: string;
-    phone: string;
+    phone: number;
     gender: "male" | "female";
     is_verified: boolean;
     enrolled_courses_count: number;

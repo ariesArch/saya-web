@@ -1,8 +1,5 @@
 import { DispatchType } from "@/interfaces/redux.interfaces";
-import {
-    SET_COUNTRY_CODES,
-    SET_SELECTED_COUNTRY_CODES,
-} from "@/store/country-code/country-codes.action-types";
+import { SET_COUNTRY_CODES } from "@/store/country-code/country-codes.action-types";
 import { createAxiosInstance, endpoints } from "@/utils/api";
 import { CountryCodeData } from "@/interfaces/country-code.interfaces";
 

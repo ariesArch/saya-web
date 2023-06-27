@@ -21,7 +21,7 @@ const ChangePhoneForm = () => {
     const router = useRouter();
 
     const [step, setStep] = useState<"phone" | "otp">("phone");
-    const [phone, setPhone] = useState<string>(initialPhone);
+    const [phone, setPhone] = useState<number>(initialPhone);
     const [formatedPhone, setFormatedPhone] = useState<number>(null);
     const [otp, setOtp] = useState("");
     const [optExpiredAt, setOptExpiredAt] = useState<number>(0);
@@ -34,7 +34,7 @@ const ChangePhoneForm = () => {
     };
 
     const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-        setPhone(e.target.value);
+        setPhone(parseInt(e.target.value));
     };
 
     const onChangeFormatedPhone = (value: number) => {
@@ -102,7 +102,7 @@ const ChangePhoneForm = () => {
     );
 
     const isSubmitBtnDisabled = useMemo(() => {
-        return step === "phone" ? phone === initialPhone || phone.length < 7 : otp.length < 6;
+        return step === "phone" ? phone === initialPhone || phone.toString().length < 7 : otp.length < 6;
     }, [initialPhone, otp.length, phone, step]);
 
     const onGoBack = useCallback(() => {
