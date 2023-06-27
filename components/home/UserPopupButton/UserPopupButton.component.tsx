@@ -118,7 +118,7 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
                     />
                     <div css={styles.userInfoTexts}>
                         <span css={styles.username}>{name}</span>
-                        <span css={styles.phone}>{phone && `0${phone.substr(2)}`}</span>
+                        <span css={styles.phone}>{phone}</span>
                     </div>
                 </div>
 

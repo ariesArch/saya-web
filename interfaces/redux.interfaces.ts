@@ -11,6 +11,7 @@ import { LiveEvent } from "@/interfaces/live-class.interfaces";
 import { NotificationItem, NotificationsAds } from "@/interfaces/notifications.interfaces";
 import { PaymentProvider, PromotionCampaign, SubscriptionPlan } from "@/interfaces/payment.interfaces";
 import { SurveyData, UserData } from "@/interfaces/user.interfaces";
+import { CountryCodeData } from "./country-code.interfaces";
 
 export interface InitialPageProps {
     pageProps: any;
@@ -25,6 +26,7 @@ export interface ReduxState {
     notificationsState: NotificationsState;
     calendarState: CalendarState;
     levelTestState: LevelTestState;
+    countryCodeState: CountryCodeState;
 }
 
 export type DispatchType = (action: ActionType) => ActionType;
@@ -75,6 +77,10 @@ export interface CalendarState {
 export interface LevelTestState {
     questions: QuizQuestion[];
     upcomingQuestions: QuizQuestion[];
+}
+
+export interface CountryCodeState {
+    countryCodes: CountryCodeData[];
 }
 
 export type StudentLevel = "A1" | "A2" | "B1" | "B2" | "C1";

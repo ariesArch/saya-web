@@ -23,7 +23,6 @@ export const col = css`
     display: flex;
     flex-direction: column;
     justify-self: flex-start;
-    overflow: hidden;
 `;
 
 export const inputContainer = css`

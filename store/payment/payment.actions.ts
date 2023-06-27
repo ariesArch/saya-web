@@ -140,7 +140,7 @@ export const fetchCampaignInfoAsync = (
 
 type SubmitCampaignPaymentForm = {
     link_campaign_subscription_plan_id: number;
-    phone: string;
+    phone: number;
     provider: string;
     method: string;
     "g-recaptcha-response": string;

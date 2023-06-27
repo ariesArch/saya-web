@@ -18,6 +18,7 @@ const LoginSignUpBox = () => {
 
     const [step, setStep] = useState<"phone" | "otp">("phone");
     const [phone, setPhone] = useState<string>("");
+    const [formatedPhone, setFormatedPhone] = useState<number>(null);
     const [otp, setOtp] = useState("");
     const [optExpiredAt, setOptExpiredAt] = useState<number>(0);
 
@@ -29,8 +30,12 @@ const LoginSignUpBox = () => {
         setOtp(otp);
     };
 
-    const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
         setPhone(e.target.value);
+    };
+
+    const onChangeFormatedPhone = (value: number) => {
+        setFormatedPhone(value);
     };
 
     const onOTPSendSuccess = (expiresAt: number) => {
@@ -73,20 +78,18 @@ const LoginSignUpBox = () => {
         setDirection(1);
 
         if (step === "phone") {
-            dispatch(
-                userLoginAsync(
-                    { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}` },
-                    onOTPSendSuccess,
-                    onOTPSendFailure
-                )
-            );
+            dispatch(userLoginAsync({ phone: formatedPhone }, onOTPSendSuccess, onOTPSendFailure));
+
+            // dispatch(
+            //     userLoginAsync(
+            //         { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}` },
+            //         onOTPSendSuccess,
+            //         onOTPSendFailure
+            //     )
+            // );
         } else {
             dispatch(
-                userVerifyLoginAsync(
-                    { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`, otp },
-                    onOTPVerifySuccess,
-                    onOTPVerifyFailure
-                )
+                userVerifyLoginAsync({ phone: formatedPhone, otp }, onOTPVerifySuccess, onOTPVerifyFailure)
             );
         }
     };
@@ -111,7 +114,11 @@ const LoginSignUpBox = () => {
                 exit="exit"
                 transition={carouselTransition}>
                 {step === "phone" ? (
-                    <PhoneNumberInput value={phone} onChange={onPhoneChange} />
+                    <PhoneNumberInput
+                        value={phone}
+                        formatedPhone={onChangeFormatedPhone}
+                        onChange={onChangePhone}
+                    />
                 ) : (
                     <div css={styles.otpInputContainer}>
                         <div css={styles.optTextsContainer}>

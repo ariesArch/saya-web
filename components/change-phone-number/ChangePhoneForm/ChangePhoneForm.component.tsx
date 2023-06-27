@@ -14,13 +14,15 @@ import * as styles from "./ChangePhoneForm.styles";
 
 const ChangePhoneForm = () => {
     const { initialPhone } = useSelector((state: ReduxState) => ({
-        initialPhone: state.userState.userData?.phone?.slice(2),
+        // initialPhone: state.userState.userData?.phone?.slice(2),
+        initialPhone: state.userState.userData?.phone,
     }));
     const dispatch = useDispatch();
     const router = useRouter();
 
     const [step, setStep] = useState<"phone" | "otp">("phone");
     const [phone, setPhone] = useState<string>(initialPhone);
+    const [formatedPhone, setFormatedPhone] = useState<number>(null);
     const [otp, setOtp] = useState("");
     const [optExpiredAt, setOptExpiredAt] = useState<number>(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -31,8 +33,12 @@ const ChangePhoneForm = () => {
         setOtp(otp);
     };
 
-    const onPhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
         setPhone(e.target.value);
+    };
+
+    const onChangeFormatedPhone = (value: number) => {
+        setFormatedPhone(value);
     };
 
     const onOTPSendSuccess = (expiredAt: number) => {
@@ -50,7 +56,7 @@ const ChangePhoneForm = () => {
         setIsLoading(false);
 
         if (e?.response?.status === 422) {
-            setError("Invalid phone number.");
+            setError(e?.response?.data?.error);
         } else {
             setError("Something went wrong. Please try again.");
         }
@@ -81,24 +87,18 @@ const ChangePhoneForm = () => {
             setIsLoading(true);
 
             if (step === "phone") {
-                dispatch(
-                    updatePhoneNumberAsync(
-                        phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
-                        onOTPSendSuccess,
-                        onOTPSendFailure
-                    )
-                );
+                dispatch(updatePhoneNumberAsync(formatedPhone, onOTPSendSuccess, onOTPSendFailure));
             } else {
                 dispatch(
                     updatePhoneVerifyAsync(
-                        { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`, otp },
+                        { phone: formatedPhone, otp },
                         onOTPVerifySuccess,
                         onOTPVerifyFailure
                     )
                 );
             }
         },
-        [dispatch, onOTPSendSuccess, onOTPVerifySuccess, otp, phone, step]
+        [dispatch, onOTPSendSuccess, onOTPVerifySuccess, otp, formatedPhone, step]
     );
 
     const isSubmitBtnDisabled = useMemo(() => {
@@ -131,7 +131,11 @@ const ChangePhoneForm = () => {
                 {step === "phone" ? (
                     <div css={styles.inputContainer}>
                         <span css={styles.label}>Enter New Phone</span>
-                        <PhoneNumberInput value={phone} onChange={onPhoneChange} />
+                        <PhoneNumberInput
+                            value={phone}
+                            formatedPhone={onChangeFormatedPhone}
+                            onChange={onChangePhone}
+                        />
                         <span css={styles.tip}>
                             We will send an SMS with a confirmation code to your new number
                         </span>

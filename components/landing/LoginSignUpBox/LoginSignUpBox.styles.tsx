@@ -8,7 +8,6 @@ export const container = css`
     flex-direction: column;
     margin-top: 2rem;
     margin-bottom: 8rem;
-    overflow: hidden;
 `;
 
 export const col = css`

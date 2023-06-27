@@ -8,6 +8,7 @@ import liveClassReducer from "@/store/live-class/live-class.reducer";
 import notificationsReducer from "@/store/notifications/notifications.reducer";
 import paymentReducer from "@/store/payment/payment.reducer";
 import userReducer from "@/store/user/user.reducer";
+import countryCodesReducer from "./country-code/country-codes.reducer";
 
 const rootReducer = combineReducers<ReduxState>({
     userState: userReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers<ReduxState>({
     notificationsState: notificationsReducer,
     calendarState: calendarReducer,
     levelTestState: levelTestReducer,
+    countryCodeState: countryCodesReducer
 });
 
 export default rootReducer; // this will return modified version of rootReducer with storage persistence

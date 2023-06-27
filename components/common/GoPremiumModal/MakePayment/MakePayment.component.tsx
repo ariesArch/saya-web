@@ -44,6 +44,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
     const allParsedProviders = useMemo(() => parseProviders(paymentProviders), [paymentProviders]);
 
     const [parsedProviders, setParsedProviders] = useState<ParsedProviders[]>([]);
+    const [formatedPhone, setFormatedPhone] = useState<number>(null);
 
     const [selectedMethod, setSelectedMethod] = useState<string>("");
     const [discount, setDiscount] = useState({
@@ -57,6 +58,10 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
 
     const [phone, setPhone] = useState("");
     const { executeRecaptcha } = useGoogleReCaptcha();
+
+    const onChangeFormatedPhone = (value: number) => {
+        setFormatedPhone(value);
+    };
 
     const onPhoneNumberChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setPhone(e.target.value);
@@ -110,7 +115,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
         dispatch(
             handleSubmitCampaignPaymentAsync(
                 {
-                    phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}`,
+                    phone: formatedPhone,
                     link_campaign_subscription_plan_id: selectedPlanId,
                     provider: paymentData[0],
                     method: paymentData[1],
@@ -120,7 +125,15 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                 onPayNowFailure
             )
         );
-    }, [discount.promoCode, dispatch, executeRecaptcha, isCampaign, paymentData, phone, selectedPlanId]);
+    }, [
+        discount.promoCode,
+        dispatch,
+        executeRecaptcha,
+        isCampaign,
+        paymentData,
+        formatedPhone,
+        selectedPlanId,
+    ]);
 
     const onPayNowSuccess = useCallback((data: PaymentResponse) => {
         setIsLoading(false);
@@ -174,8 +187,9 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                     </label>
                     <PhoneNumberInput
                         css={styles.phoneInput}
-                        id="phone-number-input"
                         value={phone}
+                        id="phone-number-input"
+                        formatedPhone={onChangeFormatedPhone}
                         onChange={onPhoneNumberChange}
                     />
 

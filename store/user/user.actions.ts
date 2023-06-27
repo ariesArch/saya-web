@@ -25,7 +25,7 @@ export const onSurveyDataChange = (data: SurveyData | Record<string, never>) => 
 });
 
 export const userLoginAsync = (
-    form: { phone: string },
+    form: { phone: number },
     onSuccess: (expiresAt: number) => void = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {
@@ -45,7 +45,7 @@ export const userLoginAsync = (
 };
 
 export const userVerifyLoginAsync = (
-    form: { phone: string; otp: string },
+    form: { phone: number; otp: string },
     onSuccess: () => void = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {
@@ -168,7 +168,7 @@ export const userUpdateProfileAsync = (
 };
 
 export const updatePhoneNumberAsync = (
-    phone: string,
+    phone: number,
     onSuccess: (expiresAt: number) => void = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {
@@ -188,7 +188,7 @@ export const updatePhoneNumberAsync = (
 };
 
 export const updatePhoneVerifyAsync = (
-    form: { phone: string; otp: string },
+    form: { phone: number; otp: string },
     onSuccess: () => void = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {

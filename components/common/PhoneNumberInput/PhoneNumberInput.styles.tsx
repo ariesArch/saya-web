@@ -14,10 +14,15 @@ export const iconContainer = css`
     flex-shrink: 0;
     padding: 1rem;
     border-right: 1px solid rgba(0, 0, 0, 0.09);
-
+    
     img {
         width: 3rem !important;
         height: auto;
+        border-radius: 5px;
+    }
+
+    select {
+        z-index: 200 !important;
     }
 
     span {

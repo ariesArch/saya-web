@@ -9,7 +9,6 @@ import PlayStoreIcon from "@/public/icons/playstore.svg";
 import OverviewIllu from "@/public/images/landing-illu-1.svg";
 import { downloadLinks } from "@/utils/constants";
 import { fetchApkDownloadLink } from "@/utils/index";
-
 import * as styles from "./OverviewSection.styles";
 
 const OverviewSection = () => {
