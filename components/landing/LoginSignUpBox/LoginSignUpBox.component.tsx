@@ -79,14 +79,6 @@ const LoginSignUpBox = () => {
 
         if (step === "phone") {
             dispatch(userLoginAsync({ phone: formatedPhone }, onOTPSendSuccess, onOTPSendFailure));
-
-            // dispatch(
-            //     userLoginAsync(
-            //         { phone: phone[0] === "0" ? `95${phone.substring(1)}` : `95${phone}` },
-            //         onOTPSendSuccess,
-            //         onOTPSendFailure
-            //     )
-            // );
         } else {
             dispatch(
                 userVerifyLoginAsync({ phone: formatedPhone, otp }, onOTPVerifySuccess, onOTPVerifyFailure)

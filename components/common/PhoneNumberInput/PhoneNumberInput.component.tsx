@@ -31,6 +31,7 @@ const PhoneNumberInput: FC<Props> = ({ containerStyles, onChange, formatedPhone 
 
     const [selectedOption, setSelectedOption] = useState(null);
     const [options, setOptions] = useState(null);
+    const [phone, setPhone] = useState("");
 
     useEffect(() => {
         const formatData = countryCodes.countryCodes.map((item) => {
@@ -58,11 +59,12 @@ const PhoneNumberInput: FC<Props> = ({ containerStyles, onChange, formatedPhone 
 
     function onSelectedCountryCode(e) {
         setSelectedOption(e);
+        setPhone("");
     }
 
     const onChangePhone = (e) => {
         onChange(e);
-
+        setPhone(e.target.value);
         formatedPhone(joinPhoneWithCountryCode(e.target.value));
     };
 
@@ -97,6 +99,7 @@ const PhoneNumberInput: FC<Props> = ({ containerStyles, onChange, formatedPhone 
                 <span>+95</span> */}
             </div>
             <input
+                value={phone}
                 css={styles.input}
                 type="number"
                 placeholder="Enter Phone Number"
