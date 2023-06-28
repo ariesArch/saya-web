@@ -73,6 +73,8 @@ const PhoneNumberInput: FC<Props> = ({ containerStyles, onChange, formatedPhone 
 
         if (phone[0] === "0") {
             formatPhone = `${phone.substring(1)}`;
+        } else {
+            formatPhone = phone;
         }
 
         return parseInt(selectedOption.value + formatPhone);
