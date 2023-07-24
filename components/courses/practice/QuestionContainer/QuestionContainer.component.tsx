@@ -1,23 +1,30 @@
-import { FC, useMemo } from "react";
+import React, { FC, useMemo } from "react";
 
-import QuizAudioPlayer from "@/components/courses/practice/QuizAudioPlayer/QuizAudioPlayer.component";
 import { QuizQuestionFormat, QuizQuestionType } from "@/interfaces/courses.interfaces";
-import { renderFillInTheBankQuestion } from "@/utils/courses";
 
+import FillTheBlankQuestion from "./FillTheBlankQuestion.component";
+import MatchingQuestion from "./MatchingQuestion.component";
 import * as styles from "./QuestionContainer.styles";
+import ReArrangeQuestion from "./ReArrangeQuestion.component";
+import TrueFalseQuestion from "./TrueFalseQuestion.component";
 
 interface Props {
+    audio: string;
+    picture: string;
     format: QuizQuestionFormat;
     questionType: QuizQuestionType;
     question: string;
-    selectedAnswer: string;
-    correctAnswer: string;
+    selectedAnswer: string | string[];
+    correctAnswer: string | string[];
     isSelected?: boolean;
     isTempAnswerSelected?: boolean;
+    arrangedQuestionData: string[];
 }
 
 const QuestionContainer: FC<Props> = (props) => {
     const {
+        audio,
+        picture,
         format,
         questionType,
         question,
@@ -25,32 +32,58 @@ const QuestionContainer: FC<Props> = (props) => {
         correctAnswer,
         isSelected = false,
         isTempAnswerSelected = true,
+        arrangedQuestionData,
     } = props;
-    const innerHTML = useMemo(
-        () => ({
-            __html:
-                questionType === "fill-in-the-blank"
-                    ? renderFillInTheBankQuestion(
-                          question,
-                          isSelected,
-                          isTempAnswerSelected,
-                          correctAnswer,
-                          selectedAnswer
-                      )
-                    : question,
-        }),
-        [correctAnswer, isSelected, isTempAnswerSelected, question, questionType, selectedAnswer]
-    );
 
-    return (
-        <div css={styles.questionContainer(questionType === "true-false" && format !== "audio")}>
-            {format === "text" ? (
-                <div css={styles.questionText} dangerouslySetInnerHTML={innerHTML} />
-            ) : (
-                <QuizAudioPlayer url={question} />
-            )}
-        </div>
-    );
+    const renderedQuestion = useMemo(() => {
+        switch (questionType) {
+            case "true-false":
+                return <TrueFalseQuestion question={question} audio={audio} picture={picture} />;
+            case "fill-in-the-blank":
+                return (
+                    <FillTheBlankQuestion
+                        question={question}
+                        audio={audio}
+                        picture={picture}
+                        isSelected={isSelected}
+                        isTempAnswerSelected={isTempAnswerSelected}
+                        selectedAnswer={selectedAnswer as string}
+                        correctAnswer={correctAnswer as string}
+                    />
+                );
+            case "rearrange":
+                return (
+                    <ReArrangeQuestion
+                        selectedAnswer={selectedAnswer as string[]}
+                        question={question}
+                        audio={audio}
+                    />
+                );
+            case "matching":
+                return (
+                    <MatchingQuestion
+                        arrangedQuestionData={arrangedQuestionData}
+                        question={question}
+                        audio={audio}
+                        selectedAnswer={selectedAnswer as string[]}
+                    />
+                );
+            // Add more cases for other question types
+            default:
+                return question;
+        }
+    }, [
+        audio,
+        question,
+        questionType,
+        selectedAnswer,
+        correctAnswer,
+        isTempAnswerSelected,
+        arrangedQuestionData,
+        isSelected,
+    ]);
+
+    return <div css={styles.questionContainer(questionType)}>{renderedQuestion}</div>;
 };
 
 export default QuestionContainer;

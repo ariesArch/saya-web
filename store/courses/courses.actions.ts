@@ -266,7 +266,10 @@ export const fetchLessonQuizAsync = (lessonId: string) => {
 
         try {
             const instance = createAxiosInstance(token);
-            const { data } = await instance.post(endpoints.question.getAllQuestions, { lesson_id: lessonId });
+            const { data } = await instance.post(endpoints.question.getAllQuestions, {
+                lesson_id: lessonId,
+                new_format: 1,
+            });
 
             dispatch(onSetQuiz(data?.data as QuizQuestion[]));
         } catch (e) {

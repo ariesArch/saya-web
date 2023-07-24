@@ -1,6 +1,6 @@
 import { differenceInSeconds, format, parseISO } from "date-fns";
 import { motion } from "framer-motion";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import useSound from "use-sound";
 
@@ -44,6 +44,7 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
 
     const onSelectAnswerTemp = (answer: QuizQuestionAnswer) => {
         if (selectedAnswer) return;
+        // alert(JSON.stringify(answer));
         playSelect();
         setSelectedAnswerTemp(answer);
     };
@@ -93,11 +94,11 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
             practices: [
                 ...quizData.practices,
                 {
-                    clicked_answer_option_id: (selectedAnswerTemp as QuizQuestionAnswer).id,
+                    clicked_answer_option_id: selectedAnswerTemp.id,
                     started_practice_at: questionStartedTime,
                     ended_practice_at: formatDate(new Date()),
                     question_id: questions[currentIndex].id,
-                    isAnswer: (selectedAnswerTemp as QuizQuestionAnswer).is_answer,
+                    isAnswer: selectedAnswerTemp.is_answer,
                 },
             ],
             overall_ended_practice_at: formatDate(new Date()),
@@ -133,6 +134,31 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
         if (selectedAnswerTemp) setSelectedAnswerTemp(null);
         if (selectedAnswer) setSelectedAnswer(null);
     }, [currentIndex]);
+    const userAnswer = useMemo(() => {
+        const default_result = { answer: "", is_finish: false, correct_answer: "" };
+        if (!selectedAnswerTemp) {
+            return default_result;
+        }
+        const { answer } = selectedAnswerTemp;
+        const original_answers = questions[currentIndex].answers;
+        if (typeof answer === "string") {
+            return {
+                answer,
+                is_finish: true,
+                correct_answer: original_answers.find((answer) => answer.is_answer)?.answer ?? "",
+            };
+        }
+        if (Array.isArray(answer)) {
+            const arrange_answers = original_answers[0].arrange_data;
+            return {
+                answer,
+                is_finish: arrange_answers.length === answer.filter((element) => element !== "").length,
+                correct_answer: arrange_answers.join(","),
+            };
+        }
+
+        return default_result;
+    }, [selectedAnswerTemp]);
 
     return (
         <div css={styles.container}>
@@ -153,15 +179,16 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                 transition={carouselTransition}>
                 {questions[currentIndex] && (
                     <QuestionContainer
+                        audio={questions[currentIndex].audio}
+                        picture={questions[currentIndex].picture}
                         format={questions[currentIndex].format}
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
-                        selectedAnswer={selectedAnswerTemp?.answer || ""}
-                        correctAnswer={
-                            questions[currentIndex].answers.find((answer) => answer.is_answer)?.answer ?? ""
-                        }
+                        selectedAnswer={userAnswer?.answer || ""}
+                        correctAnswer={userAnswer?.correct_answer}
                         isTempAnswerSelected={!!selectedAnswerTemp}
                         isSelected={!!selectedAnswer}
+                        arrangedQuestionData={questions[currentIndex].arrange_question_data}
                     />
                 )}
 
@@ -173,10 +200,11 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                         questionType={questions[currentIndex].question_type}
                         format={questions[currentIndex].format}
                         onSelectAnswer={onSelectAnswerTemp}
+                        answerBy={questions[currentIndex].answer_by}
                     />
                 )}
 
-                {selectedAnswerTemp && !selectedAnswer && (
+                {userAnswer.is_finish && !selectedAnswer && (
                     <Button css={styles.checkBtn} variant="contained" color="primary" onClick={onCheckAnswer}>
                         Check answer
                     </Button>

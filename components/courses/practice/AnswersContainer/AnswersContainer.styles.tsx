@@ -1,19 +1,12 @@
 import { css } from "@emotion/react";
 
-export const answersContainer = (isMultipleChoice: boolean) => css`
+export const answersContainer = () => css`
     display: flex;
     margin: 2rem 0 6rem;
-    flex-wrap: wrap;
-
-    ${isMultipleChoice ? `flex-direction: column;` : `justify-content: center;`};
+    justify-content: center;
 `;
 
-export const selectItem = (
-    isActive: boolean,
-    isMultipleChoice: boolean,
-    isTrueFalse: boolean,
-    isAnswerSelected: boolean
-) => css`
+export const selectItem = (isActive: boolean, isTrueFalse?: boolean, isAnswerSelected?: boolean) => css`
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
@@ -36,6 +29,11 @@ export const selectItem = (
     span {
         word-break: break-all;
     }
+    white-space: nowrap;
+
+    &:not(:last-child) {
+        margin-right: 1.5rem;
+    }
 
     ${isActive && `border-color: #fff;`};
     ${isAnswerSelected &&
@@ -50,17 +48,6 @@ export const selectItem = (
              background-color: rgba(0, 0, 0, 0.1);
         }
     `};
-
-    ${!isMultipleChoice
-        ? `
-        white-space: nowrap;
-    
-        &:not(:last-child) {
-            margin-right: 1.5rem;
-        }
-    `
-        : ``};
-
     ${isTrueFalse &&
     `
         justify-content: center;

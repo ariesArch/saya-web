@@ -72,7 +72,12 @@ export interface OTPResponse {
     playbackInfo: string;
 }
 
-export type QuizQuestionType = "true-false" | "multiple-choice" | "fill-in-the-blank";
+export type QuizQuestionType =
+    | "true-false"
+    | "multiple-choice"
+    | "fill-in-the-blank"
+    | "rearrange"
+    | "matching";
 
 export type QuizQuestionFormat = "text" | "audio";
 
@@ -84,15 +89,21 @@ export interface QuizQuestion {
     question: string;
     lesson_id: string;
     answers: QuizQuestionAnswer[];
+    arrange_question_data: string[];
+    audio: string;
+    picture: string;
+    answer_by: string;
 }
 
 export interface QuizQuestionAnswer {
     id: string;
     format: string;
     updated_at: number;
-    answer: string;
+    answer: string | string[];
     is_answer: boolean;
     explanation: string;
+    arrange_data?: [string] | [];
+    audio?: string;
 }
 
 export interface QuizSolutionItem {
