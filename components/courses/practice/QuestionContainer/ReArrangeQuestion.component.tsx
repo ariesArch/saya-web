@@ -1,17 +1,17 @@
-import { css } from "@emotion/react";
 import React, { FC } from "react";
 
-import * as styles from "./QuestionContainer.styles";
+// import * as styles from "./QuestionContainer.styles";
 
 interface Props {
-    question: string;
-    audio: string;
+    isSelected: boolean;
     selectedAnswer: string[];
+    correctAnswer: string[];
+    questionTitle: string;
 }
 
 const ReArrangeQuestion: FC<Props> = (props) => {
-    const { audio, question, selectedAnswer } = props;
-    const questionTitle = {
+    const { selectedAnswer, correctAnswer, isSelected, questionTitle } = props;
+    const questionTitleStyle = {
         fontFamily: "Gelion",
         fontSize: "24px",
         fontStyle: "normal",
@@ -33,17 +33,38 @@ const ReArrangeQuestion: FC<Props> = (props) => {
         alignItems: "flex-start",
         alignContent: "flex-start",
     };
-    // const userAnswers = selectedAnswer?.split(",");
+    const userAnswers = typeof correctAnswer === "string" ? correctAnswer.split(",") : [];
     return (
         <>
-            <p style={questionTitle}>{question}</p>
+            <p style={questionTitleStyle}>{questionTitle}</p>
             <div style={questionSection as React.CSSProperties}>
-                {Array.isArray(selectedAnswer) &&
-                    selectedAnswer?.map((answer, i: number) => (
-                        <div key={i} style={{ marginLeft: "3px", whiteSpace: "nowrap" }}>
-                            {answer}
-                        </div>
-                    ))}
+                {selectedAnswer
+                    ? selectedAnswer.map((answer, i: number) => (
+                          <div
+                              // eslint-disable-next-line react/no-array-index-key
+                              key={i}
+                              style={{
+                                  marginLeft: "3px",
+
+                                  whiteSpace: "nowrap",
+
+                                  // eslint-disable-next-line no-nested-ternary
+                                  color: isSelected
+                                      ? userAnswers[i] === answer
+                                          ? "#03C06E"
+                                          : "#FF4347"
+                                      : "",
+                              }}>
+                              {answer}
+                          </div>
+                      ))
+                    : correctAnswer &&
+                      correctAnswer?.map((answer, i: number) => (
+                          // eslint-disable-next-line react/no-array-index-key
+                          <div key={i} style={{ marginLeft: "3px", whiteSpace: "nowrap" }}>
+                              {answer}
+                          </div>
+                      ))}
             </div>
         </>
     );

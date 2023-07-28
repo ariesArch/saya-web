@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useMemo, useState } from "react";
 
 import { carouselTransition, carouselVariants } from "@/components/common/FramerMotion";
 import AnswersContainer from "@/components/courses/practice/AnswersContainer/AnswersContainer.component";
@@ -38,7 +38,13 @@ const SummaryView: FC<Props> = ({ currentIndex, onCurrentIndexChange, questions 
         }
         onCurrentIndexChange(currentIndex - 1);
     }, [currentIndex, onCurrentIndexChange, questions.length]);
-
+    const correctAnswer = useMemo(() => {
+        const correct = questions[currentIndex].answers.find((ans) => ans.is_answer);
+        if (correct.arrange_data) {
+            correct.answer = correct.arrange_data;
+        }
+        return correct.answer;
+    }, [currentIndex]);
     return (
         <div css={styles.container}>
             <motion.div
@@ -54,16 +60,17 @@ const SummaryView: FC<Props> = ({ currentIndex, onCurrentIndexChange, questions 
                     <span css={styles.label}>QUESTION NO.{currentIndex + 1}</span>
 
                     <QuestionContainer
+                        audio={questions[currentIndex].audio}
+                        picture={questions[currentIndex].picture}
                         format={questions[currentIndex].format}
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
-                        correctAnswer={
-                            questions[currentIndex].answers.find((answer) => answer.is_answer)?.answer ?? ""
-                        }
+                        correctAnswer={correctAnswer}
                         selectedAnswer={
                             questions[currentIndex].answers.find((answer) => answer.is_user_choice)?.answer ??
                             ""
                         }
+                        arrangedQuestionData={questions[currentIndex].arrange_question_data}
                     />
 
                     <AnswersContainer

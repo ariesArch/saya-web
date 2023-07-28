@@ -6,12 +6,23 @@ import * as styles from "./QuestionContainer.styles";
 interface Props {
     question: string;
     audio: string;
-    selectedAnswer: string | string[];
+    selectedAnswer: string[];
+    correctAnswer: string[];
     arrangedQuestionData: string[];
+    questionTitle: string;
+    isSelected: boolean;
 }
 
 const MatchingQuestion: FC<Props> = (props) => {
-    const { question, audio, selectedAnswer, arrangedQuestionData } = props;
+    const {
+        question,
+        audio,
+        selectedAnswer,
+        isSelected,
+        questionTitle,
+        correctAnswer,
+        arrangedQuestionData,
+    } = props;
 
     const matchingContainer = css`
         display: flex;
@@ -20,7 +31,7 @@ const MatchingQuestion: FC<Props> = (props) => {
         gap: 32px;
     `;
 
-    const questionTitle = css`
+    const questionTitleStyle = css`
         font-family: Gelion;
         font-size: 24px;
         font-style: normal;
@@ -45,8 +56,8 @@ const MatchingQuestion: FC<Props> = (props) => {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: flex-start;
-        align-content: flex-start;
+        align-items: center;
+        align-content: flex-star;
         font-size: 1.8rem;
     `;
 
@@ -59,16 +70,29 @@ const MatchingQuestion: FC<Props> = (props) => {
         font-weight: 500;
         line-height: 28px;
     `;
-    // const userAnswers = selectedAnswer.split(",");
+    // const userAnswers = correctAnswer?.split(",");
+    const userAnswers = typeof correctAnswer === "string" ? correctAnswer.split(",") : [];
     const itemsHTML = arrangedQuestionData.map((item, i) => (
         <div key={i} css={itemContainer}>
-            <div css={answerItems}>{selectedAnswer[i] ?? ""}</div>
+            <div
+                css={answerItems}
+                style={{
+                    background: selectedAnswer[i] ? "white" : "",
+                    color: selectedAnswer[i] ? "black" : "",
+                }}>
+                <span
+                    style={{
+                        color: isSelected ? (selectedAnswer[i] === userAnswers[i] ? "green" : "red") : "",
+                    }}>
+                    {selectedAnswer ? selectedAnswer[i] : correctAnswer ? correctAnswer[i] : ""}
+                </span>
+            </div>
             <div css={questionItems}>{item}</div>
         </div>
     ));
     return (
         <>
-            <p css={questionTitle}>{question}</p>
+            <p css={questionTitleStyle}>{questionTitle}</p>
             <div css={matchingContainer}>{itemsHTML}</div>
         </>
     );

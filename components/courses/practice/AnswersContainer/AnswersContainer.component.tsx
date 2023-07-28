@@ -7,6 +7,7 @@ import TickCircleIcon from "@/public/icons/tick-circle-inverted.svg";
 import { emptyFunction } from "@/utils/index";
 
 import * as styles from "./AnswersContainer.styles";
+// eslint-disable-next-line import/no-named-as-default
 import FillTheBlankAnswer from "./FillTheBlankAnswer.component";
 // import FillInBlankComponent from "./FillInBlankComponent";
 import MatchingAnswer from "./MatchingAnswer.component";
@@ -24,7 +25,7 @@ interface Props {
     isSummary?: boolean;
     isTemp?: boolean;
     showCorrectAnswer?: boolean;
-    answerBy: string;
+    answerBy?: string;
 }
 
 const AnswersContainer: FC<Props> = (props) => {

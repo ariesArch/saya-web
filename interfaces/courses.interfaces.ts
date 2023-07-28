@@ -79,7 +79,7 @@ export type QuizQuestionType =
     | "rearrange"
     | "matching";
 
-export type QuizQuestionFormat = "text" | "audio";
+export type QuizQuestionFormat = "text" | "audio" | "image";
 
 export interface QuizQuestion {
     id: string;
@@ -104,6 +104,7 @@ export interface QuizQuestionAnswer {
     explanation: string;
     arrange_data?: [string] | [];
     audio?: string;
+    inputAnswer?: string;
 }
 
 export interface QuizSolutionItem {
@@ -114,6 +115,9 @@ export interface QuizSolutionItem {
     question: string;
     lesson_id: string;
     answers: QuizSolutionAnswer[];
+    arrange_question_data: string[];
+    audio: string;
+    picture: string;
 }
 
 export interface QuizSolutionAnswer extends QuizQuestionAnswer {

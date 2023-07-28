@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { differenceInSeconds, format, parseISO } from "date-fns";
 import { motion } from "framer-motion";
 import { FC, useEffect, useMemo, useState } from "react";
@@ -44,7 +45,6 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
 
     const onSelectAnswerTemp = (answer: QuizQuestionAnswer) => {
         if (selectedAnswer) return;
-        // alert(JSON.stringify(answer));
         playSelect();
         setSelectedAnswerTemp(answer);
     };
@@ -135,17 +135,19 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
         if (selectedAnswer) setSelectedAnswer(null);
     }, [currentIndex]);
     const userAnswer = useMemo(() => {
-        const default_result = { answer: "", is_finish: false, correct_answer: "" };
+        const default_result = { answer: "", is_finish: false, correct_answer: "", inputAnswer: "" };
         if (!selectedAnswerTemp) {
             return default_result;
         }
-        const { answer } = selectedAnswerTemp;
+        const { answer, inputAnswer } = selectedAnswerTemp;
         const original_answers = questions[currentIndex].answers;
+        console.log(original_answers.find((answer) => answer.is_answer)?.answer ?? "");
         if (typeof answer === "string") {
             return {
                 answer,
                 is_finish: true,
-                correct_answer: original_answers.find((answer) => answer.is_answer)?.answer ?? "",
+                correct_answer: (original_answers.find((answer) => answer.is_answer)?.answer ?? "") as string,
+                inputAnswer,
             };
         }
         if (Array.isArray(answer)) {
@@ -154,6 +156,7 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                 answer,
                 is_finish: arrange_answers.length === answer.filter((element) => element !== "").length,
                 correct_answer: arrange_answers.join(","),
+                inputAnswer,
             };
         }
 
@@ -168,7 +171,6 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                     <QuizProgress totalLength={questions.length} currentQuestion={currentIndex + 1} />
                 </div>
             )}
-
             <motion.div
                 css={styles.contents}
                 key={currentIndex}
@@ -185,9 +187,11 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
                         selectedAnswer={userAnswer?.answer || ""}
+                        inputAnswer={userAnswer?.inputAnswer || ""}
                         correctAnswer={userAnswer?.correct_answer}
                         isTempAnswerSelected={!!selectedAnswerTemp}
                         isSelected={!!selectedAnswer}
+                        answerBy={questions[currentIndex].answer_by}
                         arrangedQuestionData={questions[currentIndex].arrange_question_data}
                     />
                 )}

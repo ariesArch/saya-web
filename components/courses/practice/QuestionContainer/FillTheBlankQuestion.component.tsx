@@ -12,12 +12,33 @@ interface Props {
     isTempAnswerSelected: boolean;
     correctAnswer: string;
     selectedAnswer: string;
+    questionTitle: string;
+    answerBy?: string;
+    inputAnswer?: string;
 }
 
 const TrueFalseQuestion: FC<Props> = (props) => {
-    const { audio, question, picture, isSelected, isTempAnswerSelected, correctAnswer, selectedAnswer } =
-        props;
-    const questionTitle = css`
+    const {
+        audio,
+        question,
+        picture,
+        isSelected,
+        isTempAnswerSelected,
+        questionTitle,
+        correctAnswer,
+        selectedAnswer,
+        answerBy,
+        inputAnswer,
+    } = props;
+    const isUrl = (str: any) => {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            return Boolean(new URL(str));
+        } catch (e) {
+            return false;
+        }
+    };
+    const questionTitleStyle = css`
         fontFamily: "Gelion",
         fontSize: "24px",
         fontStyle: "normal",
@@ -67,23 +88,36 @@ const TrueFalseQuestion: FC<Props> = (props) => {
             .map(() => "_")
             .join("");
     const renderFillInTheBankQuestion = () => {
-        const replaceableStr = !isSelected
-            ? `<span style="position: relative; font-size: 3.5rem; line-height: 0.1rem; white-space: nowrap">&nbsp;&nbsp;${numToUnderscores(
-                  correctAnswer
-              )}${
-                  isTempAnswerSelected
-                      ? `<span style="font-size: 2.5rem; position: absolute; top: calc(50% + 0.4rem); left: 50%; transform: translate(-50%, -50%)">${selectedAnswer}</span>`
-                      : "________"
-              }&nbsp;&nbsp;</span>`
-            : `<span style="color: var(--color-green); white-space: nowrap">${correctAnswer}</span>`;
+        if (answerBy !== "input") {
+            const replaceableStr = !isSelected
+                ? `<span style="position: relative; font-size: 3.5rem; line-height: 0.1rem; white-space: nowrap">&nbsp;&nbsp;${numToUnderscores(
+                      correctAnswer
+                  )}${
+                      isTempAnswerSelected
+                          ? `<span style="font-size: 2.5rem; position: absolute; top: calc(50% + 0.4rem); left: 50%; transform: translate(-50%, -50%)">${selectedAnswer}</span>`
+                          : "________"
+                  }&nbsp;&nbsp;</span>`
+                : `<span style="color: var(--color-green); white-space: nowrap">${correctAnswer}</span>`;
+
+            // return question.replace("[__]", replaceableStr);
+            // eslint-disable-next-line react/no-danger
+            return <div dangerouslySetInnerHTML={{ __html: question.replace("[__]", replaceableStr) }} />;
+        }
+        // eslint-disable-next-line no-nested-ternary
+        const replaceableStr = isSelected
+            ? `<span style="color: var(--color-green); white-space: nowrap">${selectedAnswer}</span>`
+            : inputAnswer
+            ? `<span style="text-decoration: underline;">${inputAnswer}</span>`
+            : `<span>_________</span>`;
 
         // return question.replace("[__]", replaceableStr);
+        // eslint-disable-next-line react/no-danger
         return <div dangerouslySetInnerHTML={{ __html: question.replace("[__]", replaceableStr) }} />;
     };
 
     return (
         <>
-            <p css={questionTitle}>Fill the correct answer.</p>
+            <p css={questionTitleStyle}>{questionTitle}</p>
             <div css={wrapper(picture)}>
                 <div className="pictureWrapper">
                     {audio && (
@@ -93,7 +127,7 @@ const TrueFalseQuestion: FC<Props> = (props) => {
                     )}
                 </div>
                 {/* <div css={questionText} dangerouslySetInnerHTML={{ __html: renderFillInTheBankQuestion() }} /> */}
-                <div css={questionText}>{renderFillInTheBankQuestion()}</div>
+                {!isUrl(question) && <div css={questionText}>{renderFillInTheBankQuestion()}</div>}
             </div>
         </>
     );

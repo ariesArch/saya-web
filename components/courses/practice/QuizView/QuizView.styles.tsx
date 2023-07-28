@@ -4,7 +4,7 @@ export const container = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 12%;
+    padding: 0 6%;
     z-index: 2;
 
     @media only screen and (max-width: 1325px) {
@@ -31,7 +31,7 @@ export const header = css`
 export const contents = css`
     display: flex;
     flex-direction: column;
-    padding: 0 6rem;
+    padding: 0 4rem;
 
     @media only screen and (max-width: 1095px) {
         padding: 0 2rem;

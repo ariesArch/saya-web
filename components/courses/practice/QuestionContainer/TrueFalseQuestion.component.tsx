@@ -7,11 +7,12 @@ interface Props {
     question: string;
     audio: string;
     picture: string;
+    questionTitle: string;
 }
 
 const TrueFalseQuestion: FC<Props> = (props) => {
-    const { audio, question, picture } = props;
-    const questionTitle = css`
+    const { audio, question, picture, questionTitle } = props;
+    const questionTitleStyle = css`
         fontFamily: "Gelion",
         fontSize: "24px",
         fontStyle: "normal",
@@ -19,20 +20,25 @@ const TrueFalseQuestion: FC<Props> = (props) => {
         lineHeight: "36px",
     `;
     const wrapper = (picture: string) => css`
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: "32px",
-        background-color:blue;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background-color:#FFF;
+        border-radius:16px;
         .pictureWrapper{
             display: flex;
             flex-direction: column;
+            min-width:300px;
             ${
                 picture &&
                 `
                 position: relative;
                 border: 2px solid var(--neutral-n-100, #e2e2e2);
-                width: 100%;
+                width:100%;
                 height: 280px;
                 border-radius: 16px;
                 background-image: url(${picture});
@@ -55,11 +61,20 @@ const TrueFalseQuestion: FC<Props> = (props) => {
         font-style: normal;
         font-weight: 600;
         line-height: 48px;
+        color: #515151;
+        text-align: center;
     `;
-
+    const isUrl = (str: any) => {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            return Boolean(new URL(str));
+        } catch (e) {
+            return false;
+        }
+    };
     return (
         <>
-            <p css={questionTitle}>True or False</p>
+            <p css={questionTitleStyle}>{questionTitle}</p>
             <div css={wrapper(picture)}>
                 <div className="pictureWrapper">
                     {audio && (
@@ -68,9 +83,11 @@ const TrueFalseQuestion: FC<Props> = (props) => {
                         </div>
                     )}
                 </div>
-                <div css={questionText}>
-                    <h3>{question}</h3>
-                </div>
+                {!isUrl(question) && (
+                    <div css={questionText}>
+                        <h3>{question}</h3>
+                    </div>
+                )}
             </div>
         </>
     );
