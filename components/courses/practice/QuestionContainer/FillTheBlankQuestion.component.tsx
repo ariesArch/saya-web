@@ -46,14 +46,19 @@ const TrueFalseQuestion: FC<Props> = (props) => {
         lineHeight: "36px",
     `;
     const wrapper = (picture: string) => css`
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: "32px",
-        background-color:blue;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 560px;
+        height: 280px
+        padding: 8px;
+        gap: 8px;
+        border-radius:16px;
         .pictureWrapper{
             display: flex;
             flex-direction: column;
+            width:100%;
             ${
                 picture &&
                 `

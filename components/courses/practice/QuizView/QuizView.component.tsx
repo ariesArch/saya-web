@@ -140,8 +140,8 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
             return default_result;
         }
         const { answer, inputAnswer } = selectedAnswerTemp;
-        const original_answers = questions[currentIndex].answers;
-        console.log(original_answers.find((answer) => answer.is_answer)?.answer ?? "");
+        const original_answers = questions[currentIndex]?.answers;
+        if (!original_answers) return default_result;
         if (typeof answer === "string") {
             return {
                 answer,
@@ -154,14 +154,14 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
             const arrange_answers = original_answers[0].arrange_data;
             return {
                 answer,
-                is_finish: arrange_answers.length === answer.filter((element) => element !== "").length,
-                correct_answer: arrange_answers.join(","),
+                is_finish: arrange_answers?.length === answer.filter((element) => element !== "").length,
+                correct_answer: arrange_answers?.join(","),
                 inputAnswer,
             };
         }
 
         return default_result;
-    }, [selectedAnswerTemp]);
+    }, [selectedAnswerTemp, currentIndex, questions]);
 
     return (
         <div css={styles.container}>

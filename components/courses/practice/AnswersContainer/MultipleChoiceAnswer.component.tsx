@@ -71,8 +71,12 @@ const MultipleChoiceAnswer: FC<Props> = (props) => {
                             )}
                         </div>
                     )}
-                    {answer.answer && <span css={styles.label}>{answer.answer}</span>}
-                    {answer.audio && <QuizAudioPlayer url={answer.audio} />}
+                    {/* {answer.answer && <span css={styles.label}>{answer.answer}</span>} */}
+                    {answer.audio ? (
+                        <QuizAudioPlayer url={answer.audio} />
+                    ) : (
+                        <span css={styles.label}>{answer.answer}</span>
+                    )}
                 </div>
             ))}
         </>

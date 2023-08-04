@@ -22,17 +22,18 @@ const TrueFalseQuestion: FC<Props> = (props) => {
     const wrapper = (picture: string) => css`
         display: flex;
         flex-direction: column;
-        width: 100%;
-        padding: 8px;
         justify-content: center;
         align-items: center;
+        width: 560px;
+        height: 280px
+        padding: 8px;
         gap: 8px;
         background-color:#FFF;
         border-radius:16px;
         .pictureWrapper{
             display: flex;
             flex-direction: column;
-            min-width:300px;
+            width:100;
             ${
                 picture &&
                 `
@@ -63,6 +64,7 @@ const TrueFalseQuestion: FC<Props> = (props) => {
         line-height: 48px;
         color: #515151;
         text-align: center;
+        padding: 12px;
     `;
     const isUrl = (str: any) => {
         try {

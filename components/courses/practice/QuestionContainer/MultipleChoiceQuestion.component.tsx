@@ -35,14 +35,18 @@ const MultipleChoiceQuestion: FC<Props> = (props) => {
     `;
     const wrapper = (picture: string) => css`
         display: flex;
-        width: 664px;
-        height: 72px;
-        padding: 8px 24px;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        gap: 16px;
+        width: 560px;
+        height: 280px
+        padding: 8px;
+        gap: 8px;
+        border-radius:16px;
         .pictureWrapper{
             display: flex;
             flex-direction: column;
+            width:100%;
             ${
                 picture &&
                 `
@@ -90,6 +94,14 @@ const MultipleChoiceQuestion: FC<Props> = (props) => {
         // return question.replace("[__]", replaceableStr);
         return <div dangerouslySetInnerHTML={{ __html: question.replace("[__]", replaceableStr) }} />;
     };
+    const isUrl = (str: any) => {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+            return Boolean(new URL(str));
+        } catch (e) {
+            return false;
+        }
+    };
 
     return (
         <>
@@ -103,7 +115,12 @@ const MultipleChoiceQuestion: FC<Props> = (props) => {
                     )}
                 </div>
                 {/* <div css={questionText} dangerouslySetInnerHTML={{ __html: renderFillInTheBankQuestion() }} /> */}
-                <div css={questionText}>{question}</div>
+                {/* <div css={questionText}>{question}</div> */}
+                {!isUrl(question) && (
+                    <div css={questionText}>
+                        <h3>{question}</h3>
+                    </div>
+                )}
             </div>
         </>
     );

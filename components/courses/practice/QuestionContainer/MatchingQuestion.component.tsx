@@ -49,7 +49,7 @@ const MatchingQuestion: FC<Props> = (props) => {
         height: 3.6rem;
         width: 29vh;
         overflow: auto;
-        border: 1px solid #e1e4e9;
+        border: 2px solid #e1e4e9;
         padding: 2px;
         gap: 24px;
         border-radius: 8px;
@@ -82,7 +82,7 @@ const MatchingQuestion: FC<Props> = (props) => {
                 }}>
                 <span
                     style={{
-                        color: isSelected ? (selectedAnswer[i] === userAnswers[i] ? "green" : "red") : "",
+                        color: isSelected ? (selectedAnswer[i] === userAnswers[i] ? "black" : "red") : "",
                     }}>
                     {selectedAnswer ? selectedAnswer[i] : correctAnswer ? correctAnswer[i] : ""}
                 </span>

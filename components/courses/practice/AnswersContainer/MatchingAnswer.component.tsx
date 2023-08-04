@@ -79,9 +79,16 @@ const ReArrangeAnswer: FC<Props> = (props) => {
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
             {selectedAnswers.length > 0 && (
-                <Button css={resetBtn} variant="contained" color="primary" onClick={() => answerMatching("")}>
-                    Reset Question
-                </Button>
+                <button
+                    style={{
+                        fontWeight: "bold",
+                        textDecoration: "underline",
+                        fontSize: "1.8rem",
+                        color: "white",
+                    }}
+                    onClick={() => answerMatching("")}>
+                    Reset Answer
+                </button>
             )}
             <div
                 style={{

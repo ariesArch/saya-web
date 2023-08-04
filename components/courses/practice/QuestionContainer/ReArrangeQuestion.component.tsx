@@ -23,7 +23,7 @@ const ReArrangeQuestion: FC<Props> = (props) => {
         minHeight: "40vh",
         minWidth: "100%",
         overflow: "auto",
-        border: "1px solid #E1E4E9",
+        border: "2px solid #E1E4E9",
         padding: "24px",
         gap: "24px",
         borderRadius: "16px",
@@ -49,11 +49,7 @@ const ReArrangeQuestion: FC<Props> = (props) => {
                                   whiteSpace: "nowrap",
 
                                   // eslint-disable-next-line no-nested-ternary
-                                  color: isSelected
-                                      ? userAnswers[i] === answer
-                                          ? "#03C06E"
-                                          : "#FF4347"
-                                      : "",
+                                  color: isSelected ? (userAnswers[i] === answer ? "black" : "red") : "",
                               }}>
                               {answer}
                           </div>
