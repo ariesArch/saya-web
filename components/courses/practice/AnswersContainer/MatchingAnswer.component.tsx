@@ -1,8 +1,6 @@
-import { css } from "@emotion/react";
 import shuffle from "lodash.shuffle";
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 
-import Button from "@/components/common/Button/Button.component";
 import { QuizQuestionAnswer } from "@/interfaces/courses.interfaces";
 import { emptyFunction } from "@/utils/index";
 
@@ -22,9 +20,6 @@ const ReArrangeAnswer: FC<Props> = (props) => {
             return;
         }
         setSelectedAnswers((prevSelectedAnswers) => {
-            // if (prevSelectedAnswers.includes(ans)) {
-            //     return prevSelectedAnswers.filter((selectedAns) => selectedAns !== ans);
-            // }
             const emptyIndex = prevSelectedAnswers.indexOf("");
             const ansIndex = prevSelectedAnswers.indexOf(ans);
 
@@ -44,14 +39,10 @@ const ReArrangeAnswer: FC<Props> = (props) => {
                 // If no empty value and the new value doesn't exist, add the new value to the end
                 return [...prevSelectedAnswers, ans];
             }
-            // return [...prevSelectedAnswers, ans];
             return prevSelectedAnswers;
         });
     }, []);
     useEffect(() => {
-        // if (!selectedAnswers.length) return;
-        // let choosedResult = selectedAnswers?.join("၊");
-        // choosedResult = choosedResult.replace(/၊/g, " ");
         const areEqual = JSON.stringify(selectedAnswers) === JSON.stringify(answers[0].arrange_data);
         const { id, format, explanation, updated_at } = answers[0];
         const transformedData = {
@@ -64,18 +55,6 @@ const ReArrangeAnswer: FC<Props> = (props) => {
         };
         onSelectAnswer(transformedData);
     }, [selectedAnswers]);
-    const resetBtn = css`
-        align-self: center;
-        background-color: #222;
-        border-radius: 0.8rem;
-        border-color: #222;
-        padding: 1rem 2rem;
-
-        &:hover {
-            background-color: #272727;
-            border-color: #444;
-        }
-    `;
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
             {selectedAnswers.length > 0 && (

@@ -1,11 +1,7 @@
 import { css } from "@emotion/react";
 import React, { FC } from "react";
 
-import * as styles from "./QuestionContainer.styles";
-
 interface Props {
-    question: string;
-    audio: string;
     selectedAnswer: string[];
     correctAnswer: string[];
     arrangedQuestionData: string[];
@@ -14,15 +10,7 @@ interface Props {
 }
 
 const MatchingQuestion: FC<Props> = (props) => {
-    const {
-        question,
-        audio,
-        selectedAnswer,
-        isSelected,
-        questionTitle,
-        correctAnswer,
-        arrangedQuestionData,
-    } = props;
+    const { selectedAnswer, isSelected, questionTitle, correctAnswer, arrangedQuestionData } = props;
 
     const matchingContainer = css`
         display: flex;
@@ -71,7 +59,7 @@ const MatchingQuestion: FC<Props> = (props) => {
         line-height: 28px;
     `;
     // const userAnswers = correctAnswer?.split(",");
-    const userAnswers = typeof correctAnswer === "string" ? correctAnswer.split(",") : [];
+    // const userAnswers = typeof correctAnswer === "string" ? correctAnswer.split(",") : [];
     const itemsHTML = arrangedQuestionData.map((item, i) => (
         <div key={i} css={itemContainer}>
             <div
@@ -82,7 +70,7 @@ const MatchingQuestion: FC<Props> = (props) => {
                 }}>
                 <span
                     style={{
-                        color: isSelected ? (selectedAnswer[i] === userAnswers[i] ? "black" : "red") : "",
+                        color: isSelected ? (selectedAnswer[i] === correctAnswer[i] ? "black" : "red") : "",
                     }}>
                     {selectedAnswer ? selectedAnswer[i] : correctAnswer ? correctAnswer[i] : ""}
                 </span>

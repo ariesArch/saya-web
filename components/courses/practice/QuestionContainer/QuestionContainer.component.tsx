@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from "react";
 
-import { QuizQuestionFormat, QuizQuestionType } from "@/interfaces/courses.interfaces";
+import { QuizQuestionType } from "@/interfaces/courses.interfaces";
 
 import FillTheBlankQuestion from "./FillTheBlankQuestion.component";
 import MatchingQuestion from "./MatchingQuestion.component";
@@ -12,7 +12,6 @@ import TrueFalseQuestion from "./TrueFalseQuestion.component";
 interface Props {
     audio: string;
     picture: string;
-    format: QuizQuestionFormat;
     questionType: QuizQuestionType;
     question: string;
     selectedAnswer: string | string[];
@@ -28,7 +27,6 @@ const QuestionContainer: FC<Props> = (props) => {
     const {
         audio,
         picture,
-        format,
         questionType,
         question,
         selectedAnswer,
@@ -88,8 +86,6 @@ const QuestionContainer: FC<Props> = (props) => {
                 return (
                     <MatchingQuestion
                         arrangedQuestionData={arrangedQuestionData}
-                        question={question}
-                        audio={audio}
                         selectedAnswer={selectedAnswer as string[]}
                         correctAnswer={correctAnswer as string[]}
                         questionTitle={questionTitle}
@@ -102,10 +98,6 @@ const QuestionContainer: FC<Props> = (props) => {
                         question={question}
                         audio={audio}
                         picture={picture}
-                        isSelected={isSelected}
-                        isTempAnswerSelected={isTempAnswerSelected}
-                        selectedAnswer={selectedAnswer as string}
-                        correctAnswer={correctAnswer as string}
                         questionTitle={questionTitle}
                     />
                 );
@@ -114,14 +106,18 @@ const QuestionContainer: FC<Props> = (props) => {
                 return question;
         }
     }, [
-        audio,
-        question,
         questionType,
+        question,
+        audio,
+        picture,
+        questionTitle,
+        isSelected,
+        isTempAnswerSelected,
         selectedAnswer,
         correctAnswer,
-        isTempAnswerSelected,
+        inputAnswer,
+        answerBy,
         arrangedQuestionData,
-        isSelected,
     ]);
 
     return <div css={styles.questionContainer(questionType)}>{renderedQuestion}</div>;

@@ -27,9 +27,11 @@ const TreeLightGreen = dynamic(() => import("@/public/images/quiz-bg_tree_light-
 const TreePink = dynamic(() => import("@/public/images/quiz-bg_tree_pink.svg"));
 const TreeViolet = dynamic(() => import("@/public/images/quiz-bg_tree_violet.svg"));
 const TreeYellow = dynamic(() => import("@/public/images/quiz-bg_tree_yellow.svg"));
-
+const PracticeRework = dynamic(() => import("@/public/images/quiz-bg_practice_rework.svg"));
 const renderBgIllustrations = (illuName: string) => {
     switch (illuName) {
+        case "practice_rework":
+            return <PracticeRework />;
         case "mountain_yellow":
             return <MountainYellow />;
         case "mountain_blue":
@@ -72,7 +74,8 @@ const PracticePage = () => {
             ? state.coursesState.selectedCourse.chapters[0].lessons[0].id
             : "",
     }));
-    const { illustration_color, illustration_type } = selectedCourse;
+    // const { illustration_color, illustration_type } = selectedCourse;
+    const { illustration_color } = selectedCourse;
     const dispatch = useDispatch();
 
     const [route, setRoute] = useState<"practice" | "completion" | "summary">("practice");
@@ -138,9 +141,11 @@ const PracticePage = () => {
 
                 {route !== "summary" && (
                     <div css={background}>
-                        {renderBgIllustrations(
+                        {/* {renderBgIllustrations(
+                            // `${illustration_type || "moutain"}_${illustration_color || "violet"}`
                             `${illustration_type || "moutain"}_${illustration_color || "violet"}`
-                        )}
+                        )} */}
+                        {renderBgIllustrations("practice_rework")}
                     </div>
                 )}
 
@@ -161,7 +166,8 @@ const container = (color = "violet") => css`
     font-size: 3rem;
     min-height: calc(100vh - 8rem);
     width: 100%;
-    background-color: var(--color-course-${color});
+    // background-color: var(--color-course-${color});
+    background-color: var(--color-course-practice-rework-bg);
     border-radius: 1rem;
     padding: 1rem 4rem;
     color: #fff;

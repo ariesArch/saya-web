@@ -30,7 +30,21 @@ const MultipleChoiceAnswer: FC<Props> = (props) => {
     const shuffledData = useMemo(() => shuffle(answers), [answers]);
     const renderAnswerIcon = useCallback(
         (isSelected: boolean, isCorrect: boolean, isAudio: boolean) => {
-            if (isTemp || isAudio) {
+            if (isTemp) {
+                return <CheckCircleIcon />;
+            }
+            if (isAudio) {
+                if (isSelected && showCorrectAnswer) {
+                    if (isCorrect) {
+                        return <TickCircleIcon color="var(--color-violet-light)" />;
+                    }
+                    return <CloseCircleIcon />;
+                }
+                if (isSummary) {
+                    if (isCorrect) {
+                        return <TickCircleIcon color="var(--color-violet-light)" />;
+                    }
+                }
                 return <CheckCircleIcon />;
             }
             if (isSelected && showCorrectAnswer) {

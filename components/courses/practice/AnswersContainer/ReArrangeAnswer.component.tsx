@@ -1,8 +1,6 @@
-import { css } from "@emotion/react";
 import shuffle from "lodash.shuffle";
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 
-import Button from "@/components/common/Button/Button.component";
 import { QuizQuestionAnswer } from "@/interfaces/courses.interfaces";
 import { emptyFunction } from "@/utils/index";
 
@@ -31,49 +29,10 @@ const ReArrangeAnswer: FC<Props> = (props) => {
                 }
                 return [...prevUserAnswers, ans];
             });
-            // let choosedResult = userAnswers?.join("၊");
-            // choosedResult = choosedResult.replace(/၊/g, " ");
-            // const { id, format, explanation, updated_at } = answers[0];
-            // const transformedData = {
-            //     id,
-            //     format,
-            //     explanation,
-            //     updated_at,
-            //     answer: userAnswers,
-            //     is_answer: choosedResult === explanation,
-            // };
-            // onSelectAnswer(transformedData);
-
-            // setUserAnswers((prevUserAnswers) => {
-            //     const emptyIndex = prevUserAnswers.indexOf("");
-            //     const ansIndex = prevUserAnswers.indexOf(ans);
-
-            //     if (emptyIndex !== -1 && ansIndex === -1) {
-            //         // If an empty value exists, replace it with the new value
-            //         const newUserAnswers = [...prevUserAnswers];
-            //         newUserAnswers[emptyIndex] = ans;
-            //         return newUserAnswers;
-            //     }
-            //     if (ansIndex !== -1) {
-            //         const newUserAnswers = [...prevUserAnswers];
-            //         newUserAnswers[ansIndex] = "";
-            //         return newUserAnswers;
-            //     }
-
-            //     if (emptyIndex === -1 && ansIndex === -1) {
-            //         return [...prevUserAnswers, ans];
-            //     }
-            //     return prevUserAnswers;
-            // });
         },
         [userAnswers]
     );
     useEffect(() => {
-        // if (!userAnswers.length) {
-        //     return;
-        // }
-        // let choosedResult = userAnswers?.join("၊");
-        // choosedResult = choosedResult.replace(/၊/g, " ");
         const areEqual = JSON.stringify(userAnswers) === JSON.stringify(answers[0].arrange_data);
         const { id, format, explanation, updated_at } = answers[0];
         const transformedData = {
@@ -86,18 +45,6 @@ const ReArrangeAnswer: FC<Props> = (props) => {
         };
         onSelectAnswer(transformedData);
     }, [userAnswers]);
-    const resetBtn = css`
-        align-self: center;
-        background-color: #222;
-        border-radius: 0.8rem;
-        border-color: #222;
-        padding: 1rem 2rem;
-
-        &:hover {
-            background-color: #272727;
-            border-color: #444;
-        }
-    `;
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
             {userAnswers.length > 0 && (

@@ -62,7 +62,6 @@ const SummaryView: FC<Props> = ({ currentIndex, onCurrentIndexChange, questions 
                     <QuestionContainer
                         audio={questions[currentIndex].audio}
                         picture={questions[currentIndex].picture}
-                        format={questions[currentIndex].format}
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
                         correctAnswer={correctAnswer}

@@ -4,7 +4,7 @@ export const container = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 6%;
+    padding: 0;
     z-index: 2;
 
     @media only screen and (max-width: 1325px) {

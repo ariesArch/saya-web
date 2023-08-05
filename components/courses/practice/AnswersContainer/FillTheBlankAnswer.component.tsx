@@ -1,5 +1,5 @@
 import shuffle from "lodash.shuffle";
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 
 import { QuizQuestionAnswer } from "@/interfaces/courses.interfaces";
 import CheckCircleIcon from "@/public/icons/check-circle.svg";

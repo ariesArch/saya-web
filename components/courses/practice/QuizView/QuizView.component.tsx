@@ -183,7 +183,6 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                     <QuestionContainer
                         audio={questions[currentIndex].audio}
                         picture={questions[currentIndex].picture}
-                        format={questions[currentIndex].format}
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
                         selectedAnswer={userAnswer?.answer || ""}

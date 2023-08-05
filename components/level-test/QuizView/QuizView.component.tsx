@@ -7,8 +7,8 @@ import useSound from "use-sound";
 import Button from "@/components/common/Button/Button.component";
 import { carouselTransition, carouselVariants } from "@/components/common/FramerMotion";
 import Spinner from "@/components/common/Spinner/Spinner.component";
-import AnswersContainer from "@/components/courses/practice/AnswersContainer/AnswersContainer.component";
-import QuestionContainer from "@/components/courses/practice/QuestionContainer/QuestionContainer.component";
+import AnswersContainer from "@/components/courses/test/AnswerContainer/AnswerContainer.component";
+import QuestionContainer from "@/components/courses/test/QuestionContainer/QuestionContainer.component";
 import { QuizQuestionAnswer } from "@/interfaces/courses.interfaces";
 import { ReduxState, StudentLevel } from "@/interfaces/redux.interfaces";
 import {
@@ -157,9 +157,10 @@ const LevelTestQuizView = ({ onShowSummary }: { onShowSummary: () => void }) => 
                         format={questions[currentIndex].format}
                         questionType={questions[currentIndex].question_type}
                         question={questions[currentIndex].question}
-                        selectedAnswer={selectedAnswerTemp?.answer || ""}
+                        selectedAnswer={(selectedAnswerTemp?.answer as string) || ""}
                         correctAnswer={
-                            questions[currentIndex].answers.find((answer) => answer.is_answer)?.answer ?? ""
+                            (questions[currentIndex].answers.find((answer) => answer.is_answer)
+                                ?.answer as string) ?? ""
                         }
                         isTempAnswerSelected={!!selectedAnswerTemp}
                         isSelected={false}

@@ -2,30 +2,16 @@ import { css } from "@emotion/react";
 import React, { FC } from "react";
 
 import QuizAudioPlayer from "@/components/courses/practice/QuizAudioPlayer/QuizAudioPlayer.component";
-import { numToArrOfNum } from "@/utils/index";
 
 interface Props {
     question: string;
     audio: string;
     picture: string;
-    isSelected: boolean;
-    isTempAnswerSelected: boolean;
-    correctAnswer: string;
-    selectedAnswer: string;
     questionTitle: string;
 }
 
 const MultipleChoiceQuestion: FC<Props> = (props) => {
-    const {
-        audio,
-        question,
-        picture,
-        isSelected,
-        isTempAnswerSelected,
-        questionTitle,
-        correctAnswer,
-        selectedAnswer,
-    } = props;
+    const { audio, question, picture, questionTitle } = props;
     const questionTitleStyle = css`
         fontFamily: "Gelion",
         fontSize: "24px",
@@ -76,24 +62,6 @@ const MultipleChoiceQuestion: FC<Props> = (props) => {
         font-weight: 600;
         line-height: 48px;
     `;
-    const numToUnderscores = (str: string) =>
-        numToArrOfNum(str.length)
-            .map(() => "_")
-            .join("");
-    const renderFillInTheBankQuestion = () => {
-        const replaceableStr = !isSelected
-            ? `<span style="position: relative; font-size: 3.5rem; line-height: 0.1rem; white-space: nowrap">&nbsp;&nbsp;${numToUnderscores(
-                  correctAnswer
-              )}${
-                  isTempAnswerSelected
-                      ? `<span style="font-size: 2.5rem; position: absolute; top: calc(50% + 0.4rem); left: 50%; transform: translate(-50%, -50%)">${selectedAnswer}</span>`
-                      : "________"
-              }&nbsp;&nbsp;</span>`
-            : `<span style="color: var(--color-green); white-space: nowrap">${correctAnswer}</span>`;
-
-        // return question.replace("[__]", replaceableStr);
-        return <div dangerouslySetInnerHTML={{ __html: question.replace("[__]", replaceableStr) }} />;
-    };
     const isUrl = (str: any) => {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -114,8 +82,6 @@ const MultipleChoiceQuestion: FC<Props> = (props) => {
                         </div>
                     )}
                 </div>
-                {/* <div css={questionText} dangerouslySetInnerHTML={{ __html: renderFillInTheBankQuestion() }} /> */}
-                {/* <div css={questionText}>{question}</div> */}
                 {!isUrl(question) && (
                     <div css={questionText}>
                         <h3>{question}</h3>

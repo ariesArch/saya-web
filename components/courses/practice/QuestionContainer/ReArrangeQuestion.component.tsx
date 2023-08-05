@@ -1,7 +1,5 @@
 import React, { FC } from "react";
 
-// import * as styles from "./QuestionContainer.styles";
-
 interface Props {
     isSelected: boolean;
     selectedAnswer: string[];
@@ -33,7 +31,6 @@ const ReArrangeQuestion: FC<Props> = (props) => {
         alignItems: "flex-start",
         alignContent: "flex-start",
     };
-    const userAnswers = typeof correctAnswer === "string" ? correctAnswer.split(",") : [];
     return (
         <>
             <p style={questionTitleStyle}>{questionTitle}</p>
@@ -49,7 +46,7 @@ const ReArrangeQuestion: FC<Props> = (props) => {
                                   whiteSpace: "nowrap",
 
                                   // eslint-disable-next-line no-nested-ternary
-                                  color: isSelected ? (userAnswers[i] === answer ? "black" : "red") : "",
+                                  color: isSelected ? (correctAnswer[i] === answer ? "black" : "red") : "",
                               }}>
                               {answer}
                           </div>

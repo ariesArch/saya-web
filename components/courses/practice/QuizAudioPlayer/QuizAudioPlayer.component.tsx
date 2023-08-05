@@ -10,11 +10,6 @@ interface Props {
     url: string;
 }
 
-interface CurrTime {
-    min: number;
-    sec: number;
-}
-
 const QuizAudioPlayer: FC<Props> = ({ url }) => {
     const [play, { pause, duration, sound }] = useSound(url, {
         onend: () => onEnd(),
@@ -30,22 +25,12 @@ const QuizAudioPlayer: FC<Props> = ({ url }) => {
         }
     };
     const onEnd = () => setIsPlaying(false);
-    const [currTime, setCurrTime] = useState<CurrTime>({
-        min: 0,
-        sec: 0,
-    }); // current position of the audio in minutes and seconds
 
     const [seconds, setSeconds] = useState<number>(0);
     useEffect(() => {
         const interval = setInterval(() => {
             if (sound) {
                 setSeconds(sound.seek([])); // setting the seconds state with the current state
-                const min = Math.floor(sound.seek([]) / 60);
-                const sec = Math.floor(sound.seek([]) % 60);
-                setCurrTime({
-                    min,
-                    sec,
-                });
             }
         }, 100);
         return () => clearInterval(interval);

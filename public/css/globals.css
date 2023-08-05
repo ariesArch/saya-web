@@ -42,7 +42,7 @@
   --color-course-pink: #EF5B96;
   --color-course-violet: #745BEF;
   --color-course-yellow: #DF9449;
-
+  --color-course-practice-rework-bg: #8C75FF;
   /* Toastify */
   --toastify-color-success: var(--color-green);
   --toastify-z-index: 10000000000000000000000;
