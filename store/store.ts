@@ -11,7 +11,7 @@ import rootReducer from "./root-reducer";
 const middlewares: Middleware[] = [thunk];
 
 if (process.env.NODE_ENV === "development") {
-    middlewares.push(logger);
+    // middlewares.push(logger);
 }
 
 const makeStore: MakeStore<Store<ReduxState>> = (_context: Context) =>

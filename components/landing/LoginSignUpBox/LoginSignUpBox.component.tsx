@@ -80,8 +80,13 @@ const LoginSignUpBox = () => {
         if (step === "phone") {
             dispatch(userLoginAsync({ phone: formatedPhone }, onOTPSendSuccess, onOTPSendFailure));
         } else {
+            const onepay_only_view = "showonepayonly" in router.query;
             dispatch(
-                userVerifyLoginAsync({ phone: formatedPhone, otp }, onOTPVerifySuccess, onOTPVerifyFailure)
+                userVerifyLoginAsync(
+                    { phone: formatedPhone, otp, onepay_only_view },
+                    onOTPVerifySuccess,
+                    onOTPVerifyFailure
+                )
             );
         }
     };

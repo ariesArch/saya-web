@@ -45,11 +45,12 @@ export const userLoginAsync = (
 };
 
 export const userVerifyLoginAsync = (
-    form: { phone: number; otp: string },
+    form: { phone: number; otp: string; onepay_only_view?: boolean },
     onSuccess: () => void = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {
     return async () => {
+        cookie.remove("onepay_only_view");
         try {
             const instance = createAxiosInstance();
 
@@ -58,7 +59,9 @@ export const userVerifyLoginAsync = (
             const { access_token, expires_in } = data;
 
             cookie.set("token", access_token as string, { expires: expires_in });
-
+            if (form.onepay_only_view) {
+                cookie.set("onepay_only_view", "true" as string, { expires: expires_in });
+            }
             await localforage.removeItem("fcm_token");
 
             // dispatch(onUserDataChange({ ...rest, is_new_user } as UserData));

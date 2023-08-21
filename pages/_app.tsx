@@ -107,8 +107,6 @@ App.getInitialProps = wrapper.getInitialAppProps(
             }
 
             if (allowedPaths.includes(pathname)) {
-                console.log("hello");
-
                 return {
                     pageProps,
                     token,
@@ -127,7 +125,7 @@ App.getInitialProps = wrapper.getInitialAppProps(
                     }
                 } catch (e) {
                     // only remove the token if the token is invalid // preventing the token from being remove if the user lost the connection
-                    if ((e as any)?.response?.status === 401) {
+                    if (e?.response?.status === 401) {
                         if (res) {
                             res.setHeader(
                                 "Set-Cookie",
@@ -143,6 +141,7 @@ App.getInitialProps = wrapper.getInitialAppProps(
                     }
                 }
             } else {
+                cookie.remove("onepay_only_view");
                 if (pathname !== "/") {
                     redirectOnEitherSide(res, "/");
                 }
