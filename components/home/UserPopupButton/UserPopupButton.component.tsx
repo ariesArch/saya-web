@@ -1,4 +1,5 @@
 import { differenceInDays, format, parseISO } from "date-fns";
+import cookie from "js-cookie";
 import { useRouter } from "next/router";
 import { FC, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -86,7 +87,12 @@ const PopupContents: FC<PopupContentsProps> = ({ userData, onPopupClose }) => {
     };
 
     const onLogoutSuccess = () => {
-        router.push("/");
+        const onepay_only_view = cookie.get("onepay_only_view");
+        if (onepay_only_view) {
+            router.push("/?showonepayonly=true");
+        } else {
+            router.push("/");
+        }
         onPopupClose();
     };
 

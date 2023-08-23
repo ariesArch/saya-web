@@ -64,6 +64,10 @@ export const fetchPaymentProvidersAsync = () => {
             const instance = createAxiosInstance(token);
 
             const { data } = await instance.get(endpoints.payment.getPaymentProviders);
+            const onepay_only_view = cookie.get("onepay_only_view");
+            if (onepay_only_view) {
+                data.data = data?.data.filter((pv) => pv.provider === "Onepay");
+            }
 
             dispatch(onPaymentProvidersChange(data?.data));
         } catch (e) {

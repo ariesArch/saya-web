@@ -1,4 +1,3 @@
-import cookie from "js-cookie";
 import Image from "next/image";
 import { ChangeEvent, FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
@@ -32,16 +31,12 @@ interface Props {
 
 const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
     const { isCampaign } = useContext(GoPremiumModalContext);
-    const onepay_only_view = cookie.get("onepay_only_view");
-
     const { selectedPlan, paymentProviders } = useSelector((state: ReduxState) => ({
         selectedPlan: (isCampaign
             ? state.paymentState.promotionCampaign.link_campaign_subscription_plans
             : state.paymentState.subscriptionPlans
         ).find((plan) => plan.id === selectedPlanId),
-        paymentProviders: onepay_only_view
-            ? state.paymentState.providers.filter((pv) => pv.provider === "One Pay")
-            : state.paymentState.providers,
+        paymentProviders: state.paymentState.providers,
     }));
     const dispatch = useDispatch();
 

@@ -141,7 +141,11 @@ App.getInitialProps = wrapper.getInitialAppProps(
                     }
                 }
             } else {
-                cookie.remove("onepay_only_view");
+                const onepay = cookie.get("onepay_only_view");
+                if (onepay) {
+                    redirectOnEitherSide(res, "/?showonepayonly=true");
+                    cookie.remove("onepay_only_view");
+                }
                 if (pathname !== "/") {
                     redirectOnEitherSide(res, "/");
                 }
