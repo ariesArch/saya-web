@@ -64,7 +64,7 @@ const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddProm
                 onClose={onClose}
                 planId={planId}
                 onAddPromoCode={onAddPromoCode}
-                provider={provider}
+                provider_name={provider}
             />
         </Fragment>
     );

@@ -14,10 +14,10 @@ interface Props {
     onClose: () => void;
     planId: number;
     onAddPromoCode: (data: CheckPromoResponse) => void;
-    provider: string;
+    provider_name: string;
 }
 
-const AddCouponModal: FC<Props> = ({ isOpen, onClose, planId, onAddPromoCode, provider }) => {
+const AddCouponModal: FC<Props> = ({ isOpen, onClose, planId, onAddPromoCode, provider_name }) => {
     const dispatch = useDispatch();
     const [promoCode, setPromoCode] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +43,7 @@ const AddCouponModal: FC<Props> = ({ isOpen, onClose, planId, onAddPromoCode, pr
         setIsLoading(true);
         dispatch(
             onCheckPromoCodeAsync(
-                { promo_code: promoCode, subscription_plan_id: planId, provider },
+                { promo_code: promoCode, subscription_plan_id: planId, provider_name },
                 onCheckPromoCodeSuccess,
                 onCheckPromoCodeFailure
             )

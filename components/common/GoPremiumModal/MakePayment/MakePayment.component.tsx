@@ -237,7 +237,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                 discount={discount}
                 planId={selectedPlanId}
                 onAddPromoCode={onAddPromoCode}
-                provider={selectedMethod}
+                provider={paymentData[0]}
             />
 
             <div css={styles.buttonContainer}>
