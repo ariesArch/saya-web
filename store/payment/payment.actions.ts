@@ -102,7 +102,7 @@ export const onInitializePaymentAsync = (
 };
 
 export const onCheckPromoCodeAsync = (
-    form: { promo_code: string; subscription_plan_id: number },
+    form: { promo_code: string; subscription_plan_id: number; provider: string },
     onSuccess: (data: CheckPromoResponse) => void = emptyFunction,
     onFailure = emptyFunction
 ) => {

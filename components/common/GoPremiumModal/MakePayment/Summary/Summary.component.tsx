@@ -12,9 +12,10 @@ interface Props {
     discount: { amount: number; type: string };
     planId: number;
     onAddPromoCode: (data: CheckPromoResponse) => void;
+    provider: string;
 }
 
-const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddPromoCode }) => {
+const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddPromoCode, provider }) => {
     const { isCampaign } = useContext(GoPremiumModalContext);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const onOpen = () => setIsModalOpen(true);
@@ -28,7 +29,14 @@ const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddProm
                     <span>{formatCurrency(totalPrice)} MMK</span>
                 </div>
                 <div css={styles.summaryText}>
-                    <span>Discount {!isCampaign && <button onClick={onOpen}>[Add coupon code]</button>}</span>
+                    <span>
+                        Discount{" "}
+                        {!isCampaign && (
+                            <button onClick={onOpen} disabled={!provider} css={styles.cuponButton(!provider)}>
+                                [Add coupon code]
+                            </button>
+                        )}
+                    </span>
                     <span>
                         -{" "}
                         {formatCurrency(
@@ -56,6 +64,7 @@ const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddProm
                 onClose={onClose}
                 planId={planId}
                 onAddPromoCode={onAddPromoCode}
+                provider={provider}
             />
         </Fragment>
     );

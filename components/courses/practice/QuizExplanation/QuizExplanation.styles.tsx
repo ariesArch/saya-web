@@ -8,7 +8,7 @@ export const container = (isCorrect: boolean) => css`
     background-color: #fff;
     color: var(--default-font-color);
     border-radius: 1.4rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
 
     ${isCorrect &&
     `

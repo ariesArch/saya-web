@@ -137,6 +137,9 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
     const userAnswer = useMemo(() => {
         const default_result = { answer: "", is_finish: false, correct_answer: "", inputAnswer: "" };
         if (!selectedAnswerTemp) {
+            if (questions[currentIndex]?.question_type === "fill-in-the-blank") {
+                default_result.is_finish = true;
+            }
             return default_result;
         }
         const { answer, inputAnswer } = selectedAnswerTemp;
@@ -207,8 +210,13 @@ const QuizView: FC<Props> = ({ lessonId, questions, onComplete, setIsLoading }) 
                     />
                 )}
 
-                {userAnswer.is_finish && !selectedAnswer && (
-                    <Button css={styles.checkBtn} variant="contained" color="primary" onClick={onCheckAnswer}>
+                {userAnswer.is_finish && (
+                    <Button
+                        css={styles.checkBtn(!selectedAnswerTemp)}
+                        variant="contained"
+                        color="primary"
+                        isDisabled={!selectedAnswerTemp || !!selectedAnswer}
+                        onClick={onCheckAnswer}>
                         Check answer
                     </Button>
                 )}

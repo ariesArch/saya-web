@@ -32,3 +32,11 @@ export const summaryText = css`
         font-weight: 600;
     }
 `;
+export const cuponButton = (loading: boolean) => css`
+    ${loading &&
+    `
+    color: #555555 !important;
+    cursor: not-allowed !important;
+    pointer-events: auto !important;
+    `}
+`;

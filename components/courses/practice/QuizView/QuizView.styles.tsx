@@ -42,7 +42,7 @@ export const contents = css`
     }
 `;
 
-export const checkBtn = css`
+export const checkBtn = (isDisabled: boolean) => css`
     align-self: center;
     background-color: #222;
     border-radius: 0.8rem;
@@ -53,4 +53,10 @@ export const checkBtn = css`
         background-color: #272727;
         border-color: #444;
     }
+    ${isDisabled &&
+    `
+    color: #555555 !important;
+    cursor: not-allowed !important;
+    pointer-events: auto !important;
+    `}
 `;
