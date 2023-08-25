@@ -104,7 +104,7 @@ export const onInitializePaymentAsync = (
 export const onCheckPromoCodeAsync = (
     form: { promo_code: string; subscription_plan_id: number; provider_name: string },
     onSuccess: (data: CheckPromoResponse) => void = emptyFunction,
-    onFailure = emptyFunction
+    onFailure: (error: unknown) => void = emptyFunction
 ) => {
     return async () => {
         try {
@@ -116,7 +116,7 @@ export const onCheckPromoCodeAsync = (
             onSuccess(data as CheckPromoResponse);
         } catch (e) {
             console.log(e);
-            onFailure();
+            onFailure(e);
         }
     };
 };

@@ -196,7 +196,7 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                         SAYA app တွင် အသုံးပြုရန်ရည်ရွယ်ထားသော ဖုန်းနံပါတ်ကိုသာ ရိုက်ထည့်‌ပါ။
                     </span>
 
-                    <ToastContainer autoClose={2000} />
+                    <ToastContainer autoClose={2000} style={{ zIndex: 1002 }} />
                 </div>
             )}
 

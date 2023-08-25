@@ -7,7 +7,8 @@ export const modal = (isOpen: boolean) => css`
     width: 100%;
     height: 100vh;
     background-color: #fff;
-    z-index: 1000000;
+    // z-index: 1000000;
+    z-index: 1000;
     display: ${isOpen ? "flex" : "none"};
     justify-content: center;
 `;

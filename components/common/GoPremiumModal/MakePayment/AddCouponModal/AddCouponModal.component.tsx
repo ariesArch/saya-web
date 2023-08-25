@@ -33,9 +33,14 @@ const AddCouponModal: FC<Props> = ({ isOpen, onClose, planId, onAddPromoCode, pr
         onClose();
     };
 
-    const onCheckPromoCodeFailure = () => {
+    const onCheckPromoCodeFailure = (e: any) => {
         setIsLoading(false);
-        setError("Incorrect coupon code");
+        // setError("Incorrect coupon code");
+        if (e?.response?.status === 422) {
+            setError(e?.response?.data?.error);
+        } else {
+            setError("Something went wrong. Please try again.");
+        }
     };
 
     const onEnter = (e: FormEvent) => {

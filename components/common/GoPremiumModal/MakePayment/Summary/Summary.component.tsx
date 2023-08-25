@@ -20,7 +20,6 @@ const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddProm
     const [isModalOpen, setIsModalOpen] = useState(false);
     const onOpen = () => setIsModalOpen(true);
     const onClose = () => setIsModalOpen(false);
-
     return (
         <Fragment>
             <div css={styles.summary}>
@@ -32,7 +31,7 @@ const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddProm
                     <span>
                         Discount{" "}
                         {!isCampaign && (
-                            <button onClick={onOpen} disabled={!provider} css={styles.cuponButton(!provider)}>
+                            <button onClick={onOpen} css={styles.cuponButton()}>
                                 [Add coupon code]
                             </button>
                         )}
@@ -64,7 +63,7 @@ const MakePaymentSummary: FC<Props> = ({ totalPrice, discount, planId, onAddProm
                 onClose={onClose}
                 planId={planId}
                 onAddPromoCode={onAddPromoCode}
-                provider_name={provider}
+                provider_name={provider === "" ? "-" : provider}
             />
         </Fragment>
     );
