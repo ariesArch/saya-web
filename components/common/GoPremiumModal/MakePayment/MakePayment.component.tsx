@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ChangeEvent, FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useDispatch, useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import Button from "@/components/common/Button/Button.component";
 import MakePaymentSummary from "@/components/common/GoPremiumModal/MakePayment/Summary/Summary.component";
@@ -195,8 +195,6 @@ const MakePayment: FC<Props> = ({ isOpen, selectedPlanId, onGoBack }) => {
                     <span css={styles.info}>
                         SAYA app တွင် အသုံးပြုရန်ရည်ရွယ်ထားသော ဖုန်းနံပါတ်ကိုသာ ရိုက်ထည့်‌ပါ။
                     </span>
-
-                    <ToastContainer autoClose={2000} style={{ zIndex: 1002 }} />
                 </div>
             )}
 

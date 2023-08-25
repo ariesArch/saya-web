@@ -1,6 +1,9 @@
+import "react-toastify/dist/ReactToastify.min.css";
+
 import { css } from "@emotion/react";
 import { CSSProperties, Fragment, ReactNode } from "react";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 import GoPremiumPopupBtn from "@/components/common/GoPremiumPopupBtn/GoPremiumPopupBtn.component";
 import SideNav from "@/components/common/SideNav/SideNav.component";
@@ -42,6 +45,7 @@ const HomeLayout = (props: HomeLayoutProps) => {
                         {children}
                     </div>
                 </div>
+                <ToastContainer autoClose={2000} />
                 {showSidePanel && (
                     <Fragment />
                     // <div css={sidePanelContainer}>

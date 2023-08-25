@@ -1,7 +1,10 @@
+import "react-toastify/dist/ReactToastify.min.css";
+
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 import SideNav from "@/components/common/SideNav/SideNav.component";
 import CoursesSideNav from "@/components/courses/CoursesSideNav/CoursesSideNav.component";
@@ -51,6 +54,7 @@ const HomeLayout = (props: CourseLayoutProps) => {
                     <SideNav />
                     <div css={mainContents}>{children}</div>
                 </div>
+                <ToastContainer autoClose={2000} />
                 <div css={sidePanelStyles}>{sidePanel || <CoursesSideNav />}</div>
             </div>
         </DefaultLayout>

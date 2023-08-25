@@ -1,3 +1,5 @@
+import "react-toastify/dist/ReactToastify.min.css";
+
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 
