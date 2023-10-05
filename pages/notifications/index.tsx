@@ -2,11 +2,11 @@ import { css } from "@emotion/react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import HeaderCarousel from "@/components/notifications/HeaderCarousel/HeaderCarousel.component";
+// import HeaderCarousel from "@/components/notifications/HeaderCarousel/HeaderCarousel.component";
+// import NotificationsList from "@/components/notifications/NotificationsList/NotificationsList.component";
 import TabNotifiation from "@/components/notifications/TabNotifiation/TabNotification.component";
-import NotificationsList from "@/components/notifications/NotificationsList/NotificationsList.component";
 import HomeLayout from "@/layouts/HomeLayout";
-import NotiBellIcon from "@/public/icons/noti-bell.svg";
+// import NotiBellIcon from "@/public/icons/noti-bell.svg";
 import {
     getAllNotificationsAsync,
     getNotificationsAdsAsync,
