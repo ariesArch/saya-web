@@ -30,16 +30,16 @@ const NotificationsPage = () => {
     );
 };
 
-const heading = css`
-    color: var(--color-primary);
-    display: flex;
-    align-items: center;
+// const heading = css`
+//     color: var(--color-primary);
+//     display: flex;
+//     align-items: center;
 
-    svg {
-        width: 2.5rem;
-        height: auto;
-        margin-right: 1rem;
-    }
-`;
+//     svg {
+//         width: 2.5rem;
+//         height: auto;
+//         margin-right: 1rem;
+//     }
+// `;
 
 export default NotificationsPage;
