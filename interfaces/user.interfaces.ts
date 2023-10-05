@@ -1,4 +1,5 @@
 import { StudentLevel } from "@/interfaces/redux.interfaces";
+
 import { CountryCodeData } from "./country-code.interfaces";
 
 export interface UserData {
@@ -23,6 +24,10 @@ export interface UserData {
     };
     student_level: null | "-" | StudentLevel;
     country_code: CountryCodeData;
+    specific_promotion: {
+        expiry_date: string;
+        title: string;
+    };
 }
 
 export interface SurveyData {

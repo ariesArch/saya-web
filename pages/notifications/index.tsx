@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import HeaderCarousel from "@/components/notifications/HeaderCarousel/HeaderCarousel.component";
+import TabNotifiation from "@/components/notifications/TabNotifiation/TabNotification.component";
 import NotificationsList from "@/components/notifications/NotificationsList/NotificationsList.component";
 import HomeLayout from "@/layouts/HomeLayout";
 import NotiBellIcon from "@/public/icons/noti-bell.svg";
@@ -20,17 +21,11 @@ const NotificationsPage = () => {
     }, []);
 
     return (
-        <HomeLayout
-            showSidePanel={false}
-            heading={
-                <h5 css={heading}>
-                    <NotiBellIcon /> Notifications
-                </h5>
-            }
-            mainContentsStyles={{ padding: 0 }}>
-            <HeaderCarousel />
+        <HomeLayout showSidePanel={false} showHeaderNav={false}>
+            {/* <HeaderCarousel /> */}
+            <TabNotifiation />
 
-            <NotificationsList />
+            {/* <NotificationsList /> */}
         </HomeLayout>
     );
 };

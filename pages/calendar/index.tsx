@@ -15,7 +15,9 @@ import CalenderIcon from "@/public/icons/calendar.svg";
 import { fetchCalendarDataAsync } from "@/store/calendar/calendar.actions";
 
 const HomeLayout = () => {
-    const { is_premium } = useSelector((state: ReduxState) => state.userState.userData);
+    const { is_premium, promotion, specific_promotion } = useSelector(
+        (state: ReduxState) => state.userState.userData
+    );
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const onModalOpen = () => setIsModalOpen(true);
@@ -50,7 +52,9 @@ const HomeLayout = () => {
                         <SidePanel />
                     </SideModal>
                 )}
-                {!is_premium && <GoPremiumPopupBtn />}
+                {!is_premium && (
+                    <GoPremiumPopupBtn promotion={promotion} specific_promotion={specific_promotion} />
+                )}
             </div>
         </DefaultLayout>
     );

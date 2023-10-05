@@ -21,6 +21,7 @@ interface HomeLayoutProps {
     backgroundColor?: string;
     contentsStyles?: CSSProperties;
     mainContentsStyles?: CSSProperties;
+    showHeaderNav?: boolean;
 }
 
 const HomeLayout = (props: HomeLayoutProps) => {
@@ -32,15 +33,18 @@ const HomeLayout = (props: HomeLayoutProps) => {
         backgroundColor = "#fff",
         contentsStyles,
         mainContentsStyles,
+        showHeaderNav = true,
     } = props;
-    const { is_premium } = useSelector((state: ReduxState) => state.userState.userData);
+    const { is_premium, promotion, specific_promotion } = useSelector(
+        (state: ReduxState) => state.userState.userData
+    );
 
     return (
         <DefaultLayout title={title}>
             <div css={body(backgroundColor)}>
                 <div css={contents} style={contentsStyles}>
                     <SideNav />
-                    <HeaderNav heading={heading} />
+                    {showHeaderNav && <HeaderNav heading={heading} />}
                     <div css={mainContents} style={mainContentsStyles}>
                         {children}
                     </div>
@@ -54,7 +58,9 @@ const HomeLayout = (props: HomeLayoutProps) => {
                     // </div>
                 )}
 
-                {!is_premium && <GoPremiumPopupBtn />}
+                {!is_premium && (
+                    <GoPremiumPopupBtn promotion={promotion} specific_promotion={specific_promotion} />
+                )}
             </div>
         </DefaultLayout>
     );
