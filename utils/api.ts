@@ -7,7 +7,7 @@ export const createAxiosInstance = (token = "") => {
         baseURL: apiUrl,
         headers: {
             Authorization: token ? `Bearer ${token}` : false,
-            app_token: appToken as string,
+            app_token: appToken,
         },
     });
 };
@@ -106,6 +106,7 @@ export const endpoints = {
     payment: {
         initializePayment: "/payment/initialize",
         getPaymentProviders: "/payment/providers",
+        getPaymentIcons: "/payment-icon-lists",
     },
     survey: {
         addScreenVisited: "/add_screen_visited_histories",
