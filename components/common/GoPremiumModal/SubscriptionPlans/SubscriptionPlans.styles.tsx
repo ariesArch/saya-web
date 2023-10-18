@@ -77,7 +77,7 @@ export const descriptionItem = css`
 export const cardsContainer = css`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 2rem;
+    row-gap: 4rem;
     column-gap: 2rem;
     margin-top: 5rem;
 
@@ -95,4 +95,10 @@ export const cardsContainer = css`
         padding-top: 5rem;
         margin-top: 2rem;
     }
+`;
+export const paymentIconContainer = css`
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 `;

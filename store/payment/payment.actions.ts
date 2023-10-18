@@ -8,6 +8,7 @@ import {
 } from "@/interfaces/payment.interfaces";
 import { DispatchType } from "@/interfaces/redux.interfaces";
 import {
+    PAYMENT_ICONS_CHANGE,
     PAYMENT_MODAL_TOGGLE,
     PAYMENT_PROVIDERS_CHANGE,
     PAYMENT_SUCCESS_MODAL_TOGGLE,
@@ -27,6 +28,10 @@ export const onPaymentProvidersChange = (data: any) => ({
     payload: data,
 });
 
+export const onPaymentIconsChange = (data: any) => ({
+    type: PAYMENT_ICONS_CHANGE,
+    payload: data,
+});
 export const onPaymentModalToggle = (isOpen: boolean) => ({
     type: PAYMENT_MODAL_TOGGLE,
     payload: isOpen,
@@ -70,6 +75,19 @@ export const fetchPaymentProvidersAsync = () => {
             }
 
             dispatch(onPaymentProvidersChange(data?.data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const fetchPaymentIconsAsync = () => {
+    return async (dispatch: DispatchType) => {
+        try {
+            const token = cookie.get("token");
+            const instance = createAxiosInstance(token);
+            const { data } = await instance.get(endpoints.payment.getPaymentIcons);
+            dispatch(onPaymentIconsChange(data?.data));
         } catch (e) {
             console.log(e);
         }

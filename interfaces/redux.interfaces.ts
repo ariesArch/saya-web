@@ -9,8 +9,14 @@ import {
 } from "@/interfaces/courses.interfaces";
 import { LiveEvent } from "@/interfaces/live-class.interfaces";
 import { NotificationItem, NotificationsAds } from "@/interfaces/notifications.interfaces";
-import { PaymentProvider, PromotionCampaign, SubscriptionPlan } from "@/interfaces/payment.interfaces";
+import {
+    PaymentIcon,
+    PaymentProvider,
+    PromotionCampaign,
+    SubscriptionPlan,
+} from "@/interfaces/payment.interfaces";
 import { SurveyData, UserData } from "@/interfaces/user.interfaces";
+
 import { CountryCodeData } from "./country-code.interfaces";
 
 export interface InitialPageProps {
@@ -47,6 +53,7 @@ export interface PaymentState {
     isPaymentModalOpen: boolean;
     isPaymentSuccessModalOpen: boolean;
     promotionCampaign: PromotionCampaign | Record<string, never>;
+    paymentIcons: PaymentIcon[];
 }
 
 export interface CoursesState {

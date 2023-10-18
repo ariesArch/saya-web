@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,7 +10,7 @@ import CrownIcon from "@/public/icons/crown.svg";
 import LampChargeIcon from "@/public/icons/lamp-charge.svg";
 import PlayCircleIcon from "@/public/icons/play-circle.svg";
 import RadarIcon from "@/public/icons/radar.svg";
-import { fetchSubscriptionPlansAsync } from "@/store/payment/payment.actions";
+import { fetchPaymentIconsAsync, fetchSubscriptionPlansAsync } from "@/store/payment/payment.actions";
 
 import * as styles from "./SubscriptionPlans.styles";
 
@@ -26,10 +27,12 @@ const SubscriptionPlans: FC<Props> = ({ isOpen, onSelectPlan }) => {
             ? state.paymentState.promotionCampaign.link_campaign_subscription_plans || []
             : state.paymentState.subscriptionPlans
     );
+    const paymentIcons = useSelector((state: ReduxState) => state.paymentState.paymentIcons);
 
     useEffect(() => {
         if (isOpen && plans.length === 0) {
             dispatch(fetchSubscriptionPlansAsync());
+            dispatch(fetchPaymentIconsAsync());
         }
     }, [dispatch, isOpen, plans.length]);
 
@@ -55,6 +58,11 @@ const SubscriptionPlans: FC<Props> = ({ isOpen, onSelectPlan }) => {
             <div css={styles.cardsContainer}>
                 {plans.map((plan) => (
                     <SubscriptionPlanCard key={plan.id} data={plan} onClick={() => onSelectPlan(plan.id)} />
+                ))}
+            </div>
+            <div css={styles.paymentIconContainer}>
+                {paymentIcons.map(({ name, image_url }) => (
+                    <Image key={name} src={image_url} width={30} height={30} alt="Provider Icon" />
                 ))}
             </div>
         </div>

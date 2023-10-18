@@ -50,3 +50,8 @@ export interface PromotionCampaign {
     start_date: string;
     end_date: string;
 }
+export interface PaymentIcon {
+    image_url: string;
+    name: string;
+    order: number;
+}

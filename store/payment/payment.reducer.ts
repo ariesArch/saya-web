@@ -1,6 +1,7 @@
-import { PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
+import { PaymentIcon, PaymentProvider, SubscriptionPlan } from "@/interfaces/payment.interfaces";
 import { ActionType, PaymentState } from "@/interfaces/redux.interfaces";
 import {
+    PAYMENT_ICONS_CHANGE,
     PAYMENT_MODAL_TOGGLE,
     PAYMENT_PROVIDERS_CHANGE,
     PAYMENT_SUCCESS_MODAL_TOGGLE,
@@ -14,6 +15,7 @@ const initialState: PaymentState = {
     isPaymentModalOpen: false,
     isPaymentSuccessModalOpen: false,
     promotionCampaign: {},
+    paymentIcons: [],
 };
 
 const paymentReducer = (state = initialState, action: ActionType) => {
@@ -21,7 +23,8 @@ const paymentReducer = (state = initialState, action: ActionType) => {
         case SUBSCRIPTION_PLANS_CHANGE:
             return {
                 ...state,
-                subscriptionPlans: (action.payload as SubscriptionPlan[]).sort((a, b) => a.month - b.month),
+                // subscriptionPlans: (action.payload as SubscriptionPlan[]).sort((a, b) => a.month - b.month),
+                subscriptionPlans: action.payload as SubscriptionPlan[],
             };
         case PAYMENT_PROVIDERS_CHANGE:
             return {
@@ -34,6 +37,11 @@ const paymentReducer = (state = initialState, action: ActionType) => {
             return { ...state, isPaymentSuccessModalOpen: action.payload };
         case PROMOTION_CAMPAIGN_CHANGE:
             return { ...state, promotionCampaign: action.payload };
+        case PAYMENT_ICONS_CHANGE:
+            return {
+                ...state,
+                paymentIcons: (action.payload as PaymentIcon[]).sort((a, b) => a.order - b.order),
+            };
         default:
             return state;
     }
