@@ -25,7 +25,7 @@ export const onSurveyDataChange = (data: SurveyData | Record<string, never>) => 
 });
 
 export const userLoginAsync = (
-    form: { phone: number },
+    form: { phone: number; "g-recaptcha-response": string },
     onSuccess: (expiresAt: number) => void = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {
@@ -45,7 +45,7 @@ export const userLoginAsync = (
 };
 
 export const userVerifyLoginAsync = (
-    form: { phone: number; otp: string; onepay_only_view?: boolean },
+    form: { phone: number; otp: string; onepay_only_view?: boolean; "g-recaptcha-response": string },
     onSuccess: () => void = emptyFunction,
     onFailure: (error: unknown) => void = emptyFunction
 ) => {

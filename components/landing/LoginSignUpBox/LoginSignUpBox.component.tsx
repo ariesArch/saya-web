@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, memo, useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useDispatch } from "react-redux";
 
 import Button from "@/components/common/Button/Button.component";
@@ -25,8 +26,15 @@ const LoginSignUpBox = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string>("");
     const [direction, setDirection] = useState(1);
+    const { executeRecaptcha } = useGoogleReCaptcha();
 
-    const onOTPChange = (otp: string) => {
+    const onOTPChange = async (otp: string) => {
+        if (!executeRecaptcha) {
+            setIsLoading(false);
+            return;
+        }
+        const token = await executeRecaptcha("submitLinkCampaignPayment");
+        console.log("token in Logging OTP: ", token);
         setOtp(otp);
     };
 
@@ -72,18 +80,30 @@ const LoginSignUpBox = () => {
         }
     };
 
-    const onClickNext = (e: FormEvent) => {
+    const onClickNext = async (e: FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        if (!executeRecaptcha) {
+            setIsLoading(false);
+            return;
+        }
+        const token = await executeRecaptcha("submitLinkCampaignPayment");
+        console.log("token in Requesting OTP: ", token);
         setDirection(1);
 
         if (step === "phone") {
-            dispatch(userLoginAsync({ phone: formatedPhone }, onOTPSendSuccess, onOTPSendFailure));
+            dispatch(
+                userLoginAsync(
+                    { phone: formatedPhone, "g-recaptcha-response": token },
+                    onOTPSendSuccess,
+                    onOTPSendFailure
+                )
+            );
         } else {
             const onepay_only_view = "showonepayonly" in router.query;
             dispatch(
                 userVerifyLoginAsync(
-                    { phone: formatedPhone, otp, onepay_only_view },
+                    { phone: formatedPhone, otp, onepay_only_view, "g-recaptcha-response": token },
                     onOTPVerifySuccess,
                     onOTPVerifyFailure
                 )
@@ -100,7 +120,7 @@ const LoginSignUpBox = () => {
     };
 
     return (
-        <form css={styles.container} onSubmit={onClickNext}>
+        <form css={styles.container} onSubmit={onClickNext as any}>
             <motion.div
                 css={styles.col}
                 key={step}
@@ -129,7 +149,7 @@ const LoginSignUpBox = () => {
                                 We sent an one-time password to <span>{phone}</span>
                             </span>
                         </div>
-                        <OTPInput value={otp} onChange={onOTPChange} expiredAt={optExpiredAt} />
+                        <OTPInput value={otp} onChange={onOTPChange as any} expiredAt={optExpiredAt} />
                     </div>
                 )}
             </motion.div>

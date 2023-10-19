@@ -1,5 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 import LoginSignUpBox from "@/components/landing/LoginSignUpBox/LoginSignUpBox.component";
 import AndroidIcon from "@/public/icons/android.svg";
@@ -7,8 +8,9 @@ import AppleStoreIcon from "@/public/icons/apple-store.svg";
 import AppGalleryIcon from "@/public/icons/hwawei.svg";
 import PlayStoreIcon from "@/public/icons/playstore.svg";
 import OverviewIllu from "@/public/images/landing-illu-1.svg";
-import { downloadLinks } from "@/utils/constants";
+import { downloadLinks, recaptchaSiteKey } from "@/utils/constants";
 import { fetchApkDownloadLink } from "@/utils/index";
+
 import * as styles from "./OverviewSection.styles";
 
 const OverviewSection = () => {
@@ -55,7 +57,9 @@ const OverviewSection = () => {
                 variants={loginBoxVariants}>
                 <div css={styles.login}>
                     <h5 css={styles.loginHeading}>Getting Started</h5>
-                    <LoginSignUpBox />
+                    <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
+                        <LoginSignUpBox />
+                    </GoogleReCaptchaProvider>
 
                     <div css={styles.downloadLinksContainer}>
                         <span css={styles.downloadHeading}>Learn on mobile</span>
